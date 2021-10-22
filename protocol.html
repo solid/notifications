@@ -294,7 +294,8 @@ content: "";
                   <ol>
                     <li><a href="#terminology"><span class="secno">1.1</span> <span class="content">Terminology</span></a></li>
                     <li><a href="#namespaces"><span class="secno">1.2</span> <span class="content">Namespaces</span></a></li>
-                    <li><a href="#conformance"><span class="secno">1.3</span> <span class="content">Conformance</span></a></li>
+                    <li><a href="#overview"><span class="secno">1.3</span> <span class="content">Overview</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.4</span> <span class="content">Conformance</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -397,37 +398,25 @@ content: "";
                 </div>
               </section>
 
+              <section id="overview" inlist="" rel="schema:hasPart" resource="#overview">
+                <h3 property="schema:name">Overview</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The following diagram shows the high level interactions involved in this high-level flow. How a client retrieves an access token for step 5 is outside the scope of this document.</p>
+
+                  <figure id="solid-notifications-flow" rel="schema:hasPart" resource="#solid-notifications-flow">
+                    <img src="solid-notifications-flow.png" height="318" rel="schema:image" width="640" />
+
+                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
+                  </figure>
+                </div>
+              </section>
+
               <section id="conformance" inlist="" rel="schema:hasPart" resource="#conformance">
                 <h3 property="schema:name">Conformance</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p>All assertions, diagrams, examples, and notes are non-normative, as are all sections explicitly marked non-normative. Everything else is normative.</p>
 
                   <p>The key words “MUST” and “MUST NOT” are to be interpreted as described in <cite><a href="https://tools.ietf.org/html/bcp14" rel="rdfs:seeAlso">BCP 14</a></cite> [<cite><a class="bibref" href="#bib-rfc2119">RFC2119</a></cite>] [<cite><a class="bibref" href="#bib-rfc8174">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
-                </div>
-              </section>
-            </div>
-          </section>
-
-          <section id="extensions" inlist="" rel="schema:hasPart" resource="#extensions">
-            <h2 property="schema:name">Extensions</h2>
-            <div datatype="rdf:HTML" property="schema:description">
-              <p>Extensions incorporate additional features beyond what is defined in this specification. Extensions MUST NOT contradict nor cause the non-conformance of functionality defined in this specification.</p>
-
-              <section id="subscription-types" inlist="" rel="schema:hasPart" resource="#subscription-types">
-                <h3 property="schema:name">Subscription Types</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p><em>This section is non-normative.</em></p>
-
-                  <p>e.g. `WebSocketSubscription2021` vs. `LinkedDataNotificationSubscription2021`</p>
-                </div>
-              </section>
-
-              <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features">
-                <h3 property="schema:name">Notification Features</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p><em>This section is non-normative.</em></p>
-
-                  <p>e.g. `expiration` vs. `state`</p>
                 </div>
               </section>
             </div>
