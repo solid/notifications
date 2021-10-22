@@ -289,9 +289,100 @@ content: "";
                 <li class="tocline">
                   <a class="tocxref" href="#sotd">Status of This Document</a>
                 </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+                  <ol>
+                    <li><a href="#terminology"><span class="secno">1.1</span> <span class="content">Terminology</span></a></li>
+                    <li><a href="#namespaces"><span class="secno">1.2</span> <span class="content">Namespaces</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.3</span> <span class="content">Conformance</span></a></li>
+                  </ol>
+                </li>
               </ol>
             </div>
           </nav>
+
+          <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
+            <h2 about="#introduction" property="schema:name" typeof="deo:Introduction">Introduction</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p><em>This section is non-normative.</em></p>
+
+              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">Much of the Solid Protocol is built on a RESTful API. This allows Solid to make use of well-understood interactions with resources on the Web, and this satisfies many use cases for client applications in the Solid ecosystem. However, for interactive client applications with multiple participants, chat-apps being just one such example, a RESTful API is too limited, as clients need to rely on polling in order to discover changes in the underlying data.</span></p>
+
+              <p>A notification API for Solid would complement the core RESTful API so that clients can listen for updates to particular resources. In addition, a notification-based mechanism may reduce latency and load on a Pod server.</p>
+
+              <p>One challenge with (near) real-time notifications on the Web involves the diversity of technologies available. WebSockets and EventSource APIs are two options that are widely supported by browsers; ReadableStreams are becoming more widely supported. Furthermore, there are other, more asynchronous models that are relevant in certain cases: WebHooks, WebSub and Linked Data Notifications are three examples. A major goal of the model described in this document is to make it possible for client applications to navigate the diversity of these technologies while also being open to new notification mechanisms as they emerge.</p>
+
+              <p>Finally, a critically important part of this model is security. Any notification-based API not only needs the same level of security that is found in the RESTful API but also the authorization mechanism needs to be consistent across these endpoints.</p>
+
+              <p>This specification is for:</p>
+
+              <ul rel="schema:audience">
+                <li><a href="http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135">Resource server developers</a> that want to enable clients to listen for updates to particular resources.</li>
+                <li><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who want to implement a client to listen for updates to particular resources.</li>
+              </ul>
+
+              <section id="terminology" inlist="" rel="schema:hasPart" resource="#terminology" typeof="skos:ConceptScheme">
+                <h3 property="schema:name skos:prefLabel">Terminology</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+
+                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification, including <q>data pod</q>. This document also uses terms from the <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">OAuth2</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q>topic</q>.</p>
+
+                  <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
+
+                  <span rel="skos:hasTopConcept"><span resource="#notification-gateway-api"></span><span resource="#notification-subscription-api"></span><span resource="#solid-server-metadata-resource"></span></span>
+
+                  <dl>
+                    <dt about="#notification-gateway-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-gateway-api">Notification Gateway API</dfn></dt>
+                    <dd about="#notification-gateway-api" property="skos:definition">An HTTP endpoint at which a client can negotiate an acceptable notification subscription location.</dd>
+
+                    <dt about="#notification-subscription-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-subscription-api">Notification Subscription API</dfn></dt>
+                    <dd about="#notification-subscription-api" property="skos:definition">An HTTP endpoint at which a client can initiate a subscription to notification events for a particular set of resources.</dd>
+
+                    <dt about="#solid-server-metadata-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="solid-server-metadata-resource">Solid Server Metadata Resource</dfn></dt>
+                    <dd about="#solid-server-metadata-resource" property="skos:definition">An RDF document that includes metadata about the Solid server</dd>
+                  </dl>
+                </div>
+              </section>
+
+              <section id="namespaces" inlist="" rel="schema:hasPart" resource="#namespaces">
+                <h3 property="schema:name">Namespaces</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <table>
+                    <caption>Prefixes and Namespaces</caption>
+                    <thead>
+                      <tr>
+                        <th>Prefix</th>
+                        <th>Namespace</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>rdf</td>
+                        <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+                        <td>[<cite><a class="bibref" href="#bib-rdf-schema">rdf-schema</a></cite>]</td>
+                      </tr>
+                      <tr>
+                        <td>solid</td>
+                        <td>http://www.w3.org/ns/solid/terms#</td>
+                        <td>Solid Terms</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="conformance" inlist="" rel="schema:hasPart" resource="#conformance">
+                <h3 property="schema:name">Conformance</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>All assertions, diagrams, examples, and notes are non-normative, as are all sections explicitly marked non-normative. Everything else is normative.</p>
+
+                  <p>The key words “MUST” and “MUST NOT” are to be interpreted as described in <cite><a href="https://tools.ietf.org/html/bcp14" rel="rdfs:seeAlso">BCP 14</a></cite> [<cite><a class="bibref" href="#bib-rfc2119">RFC2119</a></cite>] [<cite><a class="bibref" href="#bib-rfc8174">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
+                </div>
+              </section>
+            </div>
+          </section>
         </div>
       </article>
     </main>
