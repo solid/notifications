@@ -299,6 +299,9 @@ content: "";
                   </ol>
                 </li>
                 <li class="tocline">
+                  <a class="tocxref" href="#discovery"><span class="secno">2</span> Discovery</a>
+                </li>
+                <li class="tocline">
                   <a class="tocxref" href="#extensions"><span class="secno">7</span> <span class="content">Extensions</span></a>
                   <ol>
                     <li><a href="#subscription-types"><span class="secno">7.1</span> <span class="content">Subscription Types</span></a></li>
@@ -419,6 +422,43 @@ content: "";
                   <p>The key words “MUST” and “MUST NOT” are to be interpreted as described in <cite><a href="https://tools.ietf.org/html/bcp14" rel="rdfs:seeAlso">BCP 14</a></cite> [<cite><a class="bibref" href="#bib-rfc2119">RFC2119</a></cite>] [<cite><a class="bibref" href="#bib-rfc8174">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
                 </div>
               </section>
+            </div>
+          </section>
+
+          <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
+            <h2 property="schema:name">Discovery</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>For any resource in a data pod, a client can discover the associated notification gateway API by fetching the Solid Server Metadata Resource. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
+
+              <figure id="get-solid-server-metadata-resource" class="example listing" rel="schema:hasPart" resource="#get-solid-server-metadata-resource">
+                <p class="example-h"><span>Example</span>: Retrieve Solid Server Metadata Resource</p>
+
+                <pre about="#get-solid-server-metadata-resource" property="schema:description" typeof="fabio:Script"><code>GET /.well-known/solid</code></pre>
+
+                <figcaption property="schema:name">HTTP <code>GET</code> request targeting <code>.well-known/solid</code></figcaption>
+              </figure>
+
+              <p>The server <code>MUST</code> be capable of serializing this resource as Turtle or JSON-LD.</p>
+
+              <p>A sample representation of this resource might include the following:</p>
+
+              <figure id="example-solid-server-metadata-resource" class="example listing" rel="schema:hasPart" resource="#example-solid-server-metadata-resource">
+                <p class="example-h"><span>Example</span>: Representation of Solid Server Metadata Resource</p>
+
+                <pre about="#example-solid-server-metadata-resource" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
+<code>  "notification_endpoint": "https://gateway.example",</code>
+<code>  ...</code>
+<code>}</code></pre>
+
+                <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Solid Server Metadata Resource</figcaption>
+              </figure>
+
+              <p class="advisement">The <cite><a href="https://github.com/solid/notification-panel">Notifications Panel</a></cite> should define a particular JSON-LD <code>@context</code> for use with JSON-LD serializations.</p>
+
+              <p class="advisement">The use of a <em>well-known</em> resource is based on suggestions to avoid too many HTTP <code>Link</code> headers, but that is not a settled issue.</p>
             </div>
           </section>
 
