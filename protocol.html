@@ -462,6 +462,136 @@ content: "";
             </div>
           </section>
 
+
+          <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
+            <h2 property="schema:name">Protocol</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>The notification protocol involves two endpoints: a notification gateway API and a notification subscription API. A server MUST support JSON-LD in these interactions.</p>
+
+              <section id="notification-gateway" inlist="" rel="schema:hasPart" resource="#notification-gateway">
+                <h3 property="schema:name">Notification Gateway</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>Once the location of a notification gateway is discovered, an application will negotiate for a particular notification channel, based on acceptable features and protocols.</p>
+
+                  <p>The <code>type</code> array advertises which subscription channels a client is able to understand. The <code>features</code> array advertises which notification features are required by the client. The server selects one of the proposed subscription types and responds with a JSON-LD document that includes the selected protocol, the endpoint for negotiating a subscription and the supported features offered by that protocol.</p>
+
+                  <p>Authentication is not required at this endpoint.</p>
+
+                  <p>A sample interaction is described below. The type and feature names are included as examples.</p>
+
+                  <figure id="notification-gateway-request" class="example listing" rel="schema:hasPart" resource="#notification-gateway-request">
+                    <p class="example-h"><span>Example</span>: Requesting subscription types and features from the Notification Gateway.</p>
+
+                    <pre about="#notification-gateway-request" property="schema:description" typeof="fabio:Script"><code>POST /gateway</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
+<code>  "type": ["WebSocketSubscription2021", "WebHookSubscription2021"],</code>
+<code>  "features": ["state", "rate"]</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>features</code> targeting the Notifications Gateway.</figcaption>
+                  </figure>
+
+                  <figure id="notification-gateway-response" class="example listing" rel="schema:hasPart" resource="#notification-gateway-response">
+                    <p class="example-h"><span>Example</span>: Response from the Notification Gateway including a type of subscription endpoint with available features.</p>
+
+                    <pre about="#notification-gateway-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
+<code>  "type": "WebSocketSubscription2021",</code>
+<code>  "endpoint": "https://websocket.example/subscription",</code>
+<code>  "features": ["state", "rate", "expiration", "feature1", "feature2"]</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code>, <code>endpoint</code> and <code>features</code>.</figcaption>
+                  </figure>
+
+                  <div class="note" id="features-negotiation" inlist="" rel="schema:hasPart" resource="#features-negotiation">
+                    <h4 property="schema:name"><span>Note</span>: Features Negotiation May Not Be Needed</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p>The <code>features</code> array may not be needed as part of this negotiation.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="notification-subscription" inlist="" rel="schema:hasPart" resource="#notification-subscription">
+                <h3 property="schema:name">Notification Subscription</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The details of subscribing to a particular endpoint depend on the technology used, but all will follow a similar pattern. For WebSockets, this involves sending an authenticated subscription request to the endpoint retrieved from the gateway service.</p>
+
+                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. The <code>type</code> field MUST contain the type of subscription being requested. The <code>topic</code> field MUST contain the URL of the resource a client wishes to subscribe to changes.</p>
+
+                  <p>All other fields are defined by the particular subscription type. Some common features are described in the Features section of this document.</p>
+
+                  <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
+
+                  <figure id="notification-subscription-request" class="example listing" rel="schema:hasPart" resource="#notification-subscription-request">
+                    <p class="example-h"><span>Example</span>: Requesting a WebSocket subscription endpoint from the Notification Subscription.</p>
+
+                    <pre about="#notification-subscription-request" property="schema:description" typeof="fabio:Script"><code>POST /subscription</code>
+<code>Authorization: DPoP &lt;token&gt;</code>
+<code>DPoP: &lt;proof&gt;</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
+<code>  "type": "WebSocketSubscription2021",</code>
+<code>  "topic": "https://pod.example/resource",</code>
+<code>  "state": "opaque-state",</code>
+<code>  "expiration": "2021-09-21T12:37:15Z",</code>
+<code>  "rate": "PT10s"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>topic</code> targeting the Notification Subscription.</figcaption>
+                  </figure>
+
+                  <p>A successful response will contain a URL to the subscription endpoint that can be used directly with a JavaScript client.</p>
+
+                  <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
+                    <p class="example-h"><span>Example</span>: Response from the Notification Subscription including the WebSocket subscription endpoint.</p>
+
+                    <pre about="#notification-subscription-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": "https://www.w3.org/ns/solid/notification/v1",</code>
+<code>  "type": "WebSocketSubscription2021",</code>
+<code>  "endpoint": "wss://websocket.example/?auth=Ys3KiUq"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code> and <code>endpoint</code>.</figcaption>
+                  </figure>
+
+                  <p>In JavaScript, a client can use the data in the response to establish a connection to the WebSocket endpoint.</p>
+
+                  <figure id="websocket-new" class="example listing" rel="schema:hasPart" resource="#websocket-new">
+                    <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection to a subscription endpoint.</p>
+
+                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket(endpoint, type)</code></pre>
+
+                    <figcaption property="schema:name">JavaScript code to establish a <code>new WebSocket</code> connection</figcaption>
+                  </figure>
+
+                  <p>A client will define how to handle events, especially the <code>onclose</code> and <code>onmessage</code> events.</p>
+
+                  <figure id="websocket-onclose-onmessage" class="example listing" rel="schema:hasPart" resource="#websocket-onclose-onmessage">
+                    <p class="example-h"><span>Example</span>: Handling WebSocket events after the connection.</p>
+
+                    <pre about="#websocket-onclose-onmessage" property="schema:description" typeof="fabio:Script"><code>ws.onclose(evt => reconnect(evt));</code>
+<code>ws.onmessage(evt => console.log("Message received: ", evt))</code></pre>
+
+                    <figcaption property="schema:name">JavaScript code to handle <code>onclose</code> and <code>onmessage</code> events</figcaption>
+                  </figure>
+                </div>
+              </section>
+            </div>
+          </section>
+
           <section id="considerations" inlist="" rel="schema:hasPart" resource="#considerations">
             <h2 property="schema:name">Considerations</h2>
             <div datatype="rdf:HTML" property="schema:description">
