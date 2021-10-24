@@ -299,7 +299,18 @@ content: "";
                   </ol>
                 </li>
                 <li class="tocline">
-                  <a class="tocxref" href="#discovery"><span class="secno">2</span> Discovery</a>
+                  <a class="tocxref" href="#protocol"><span class="secno">2</span> <span class="content">Protocol</span></a>
+                  <ol>
+                    <li class="tocline">
+                      <a class="tocxref" href="#discovery"><span class="secno">2.1</span> Discovery</a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-gateway"><span class="secno">2.2</span> Notification Gateway</a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-subscription"><span class="secno">2.3</span> Notification Subscription</a>
+                    </li>
+                  </ol>
                 </li>
                 <li class="tocline">
                   <a class="tocxref" href="#extensions"><span class="secno">7</span> <span class="content">Extensions</span></a>
@@ -425,29 +436,34 @@ content: "";
             </div>
           </section>
 
-          <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
-            <h2 property="schema:name">Discovery</h2>
+          <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
+            <h2 property="schema:name">Protocol</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>For any resource in a data pod, a client can discover the associated notification gateway API by fetching the Solid Server Metadata Resource. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
+              <p>The notification protocol involves the Discovery of the Notification Gateway service to negotiate subscription channels and the Notification Subscription endpoint to listen to updates from particular resources. A server MUST support JSON-LD in these interactions.</p>
 
-              <figure id="solid-server-metadata-resource-request" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-request">
-                <p class="example-h"><span>Example</span>: Retrieve Solid Server Metadata Resource.</p>
+              <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
+                <h3 property="schema:name">Discovery</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>For any resource in a data pod, a client can discover the associated notification gateway API by fetching the Solid Server Metadata Resource. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
 
-                <pre about="#solid-server-metadata-resource-request" property="schema:description" typeof="fabio:Script"><code>GET /.well-known/solid</code></pre>
+                  <figure id="solid-server-metadata-resource-request" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-request">
+                    <p class="example-h"><span>Example</span>: Retrieve Solid Server Metadata Resource.</p>
 
-                <figcaption property="schema:name">HTTP <code>GET</code> request targeting <code>.well-known/solid</code></figcaption>
-              </figure>
+                    <pre about="#solid-server-metadata-resource-request" property="schema:description" typeof="fabio:Script"><code>GET /.well-known/solid</code></pre>
 
-              <p class="advisement">The use of a <em>well-known</em> resource is based on suggestions to avoid too many HTTP <code>Link</code> headers, but that is not a settled issue.</p>
+                    <figcaption property="schema:name">HTTP <code>GET</code> request targeting <code>.well-known/solid</code></figcaption>
+                  </figure>
 
-              <p>The server MUST be capable of serializing this resource as Turtle or JSON-LD.</p>
+                  <p class="advisement">The use of a <em>well-known</em> resource is based on suggestions to avoid too many HTTP <code>Link</code> headers, but that is not a settled issue.</p>
 
-              <p>A sample representation of this resource might include the following:</p>
+                  <p>The server MUST be capable of serializing this resource as Turtle or JSON-LD.</p>
 
-              <figure id="solid-server-metadata-resource-response" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-response">
-                <p class="example-h"><span>Example</span>: Representation of Solid Server Metadata Resource.</p>
+                  <p>A sample representation of this resource might include the following:</p>
 
-                <pre about="#solid-server-metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+                  <figure id="solid-server-metadata-resource-response" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-response">
+                    <p class="example-h"><span>Example</span>: Representation of Solid Server Metadata Resource.</p>
+
+                    <pre about="#solid-server-metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
 <code></code>
 <code>{</code>
 <code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
@@ -455,18 +471,13 @@ content: "";
 <code>  ...</code>
 <code>}</code></pre>
 
-                <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Solid Server Metadata Resource</figcaption>
-              </figure>
+                    <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Solid Server Metadata Resource</figcaption>
+                  </figure>
 
-              <p class="advisement">The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite> should define a particular JSON-LD <code>@context</code> for use with JSON-LD serializations.</p>
-            </div>
-          </section>
+                  <p class="advisement">The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite> should define a particular JSON-LD <code>@context</code> for use with JSON-LD serializations.</p>
+                </div>
+              </section>
 
-
-          <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
-            <h2 property="schema:name">Protocol</h2>
-            <div datatype="rdf:HTML" property="schema:description">
-              <p>The notification protocol involves two endpoints: a notification gateway API and a notification subscription API. A server MUST support JSON-LD in these interactions.</p>
 
               <section id="notification-gateway" inlist="" rel="schema:hasPart" resource="#notification-gateway">
                 <h3 property="schema:name">Notification Gateway</h3>
