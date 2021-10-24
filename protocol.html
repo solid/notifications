@@ -329,6 +329,9 @@ content: "";
                   <a class="tocxref" href="#notification-features"><span class="secno">5</span> <span class="content">Notification Features</span></a>
                 </li>
                 <li class="tocline">
+                  <a class="tocxref" href="#notification-data-model"><span class="secno">6</span> <span class="content">Notification Data Model</span></a>
+                </li>
+                <li class="tocline">
                   <a class="tocxref" href="#extensions"><span class="secno">7</span> <span class="content">Extensions</span></a>
                   <ol>
                     <li><a href="#subscription-types-extension"><span class="secno">7.1</span> <span class="content">Subscription Types Extension</span></a></li>
@@ -752,6 +755,46 @@ content: "";
                 <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
                 <dd about="#feature-accept" property="skos:definition">A MIME-Type value that indicates the desired serialization of the notification. For instance, <code>text/turtle</code> may be acceptable.</dd>
               </dl>
+            </div>
+          </section>
+
+          <section id="notification-data-model" inlist="" rel="schema:hasPart" resource="#notification-data-model">
+            <h2 property="schema:name">Notification Data Model</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>The content of a Solid Notification is defined in terms of a W3C Activity Streams 2.0 document. As such, JSON-LD 1.0 is a required baseline serialization format, though other formats are not prohibited. JSON-LD version 1.1 is recommended when using JSON-LD serializations.</p>
+
+                    <pre about="#solid-server-metadata-resource-request" property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id":"urn:uuid:&lt;uuid&gt;",</code>
+<code>  "type": [</code>
+<code>    "Update"</code>
+<code>  ],</code>
+<code>  "actor": [</code>
+<code>    "&lt;WebID&gt;"</code>
+<code>  ],</code>
+<code>  "object": {</code>
+<code>    "id":"https://pod.inrupt.com/&lt;user&gt;/some-container/",</code>
+<code>     "type": [</code>
+<code>      "http://www.w3.org/ns/ldp#BasicContainer",</code>
+<code>      "http://www.w3.org/ns/ldp#Resource",</code>
+<code>      "http://example.com/SomeType"</code>
+<code>    ]</code>
+<code>  },</code>
+<code>  "state": "1234-5678-90ab-cdef-12345678",</code>
+<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
+<code>}</code></pre>
+
+              <div class="note" id="solid-notification-json-ld-context" inlist="" rel="schema:hasPart" resource="#solid-notification-json-ld-context">
+                <h3 property="schema:name"><span>Note</span>: Solid Notification JSON-LD Context</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The Solid JSON-LD context resource does not currently exist. An implementation may choose to augment the context definition.</p>
+                </div>
+              </div>
+
+              <p>The content of these serialized notifications may be extended, but the example here provides a minimal baseline that clients can expect.</p>
             </div>
           </section>
 
