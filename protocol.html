@@ -364,11 +364,11 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p><em>This section is non-normative.</em></p>
 
-              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">Much of the Solid Protocol is built on a RESTful API. This allows Solid to make use of well-understood interactions with resources on the Web, and this satisfies many use cases for client applications in the Solid ecosystem. However, for interactive client applications with multiple participants, chat-apps being just one such example, a RESTful API is too limited, as clients need to rely on polling in order to discover changes in the underlying data.</span></p>
+              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">Much of the <cite><a href="https://solidprojec.org/TR/protocol" rel="cito:describes">Solid Protocol</a></cite> is built on a RESTful API. This allows Solid to make use of well-understood interactions with resources on the Web, and this satisfies many use cases for client applications in the Solid ecosystem. However, for interactive client applications with multiple participants, chat-apps being just one such example, a RESTful API is too limited, as clients need to rely on polling in order to discover changes in the underlying data.</span></p>
 
               <p>A notification API for Solid would complement the core RESTful API so that clients can listen for updates to particular resources. In addition, a notification-based mechanism may reduce latency and load on a Pod server.</p>
 
-              <p>One challenge with (near) real-time notifications on the Web involves the diversity of technologies available. WebSockets and EventSource APIs are two options that are widely supported by browsers; ReadableStreams are becoming more widely supported. Furthermore, there are other, more asynchronous models that are relevant in certain cases: WebHooks, WebSub and Linked Data Notifications are three examples. A major goal of the model described in this document is to make it possible for client applications to navigate the diversity of these technologies while also being open to new notification mechanisms as they emerge.</p>
+              <p>One challenge with (near) real-time notifications on the Web involves the diversity of technologies available. WebSockets and EventSource APIs are two options that are widely supported by browsers; ReadableStreams are becoming more widely supported. Furthermore, there are other, more asynchronous models that are relevant in certain cases: <cite>WebHooks</cite>, <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> and <cite><a href="https://www.w3.org/TR/ldn/">Linked Data Notifications</a></cite> are three examples. A major goal of the model described in this document is to make it possible for client applications to navigate the diversity of these technologies while also being open to new notification mechanisms as they emerge.</p>
 
               <p>Finally, a critically important part of this model is security. Any notification-based API not only needs the same level of security that is found in the RESTful API but also the authorization mechanism needs to be consistent across these endpoints.</p>
 
@@ -410,7 +410,7 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification, including <q>data pod</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q>topic</q>.</p>
+                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification, including <q cite="https://solidproject.org/TR/protocol#data-pod">data pod</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q cite="https://www.w3.org/TR/websub/#dfn-topic">topic</q>.</p>
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
@@ -418,13 +418,13 @@ content: "";
 
                   <dl>
                     <dt about="#solid-server-metadata-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="solid-server-metadata-resource">Solid Server Metadata Resource</dfn></dt>
-                    <dd about="#solid-server-metadata-resource" property="skos:definition">An RDF document that includes metadata about the Solid server.</dd>
+                    <dd about="#solid-server-metadata-resource" property="skos:definition">An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes metadata about the Solid server.</dd>
 
                     <dt about="#notification-gateway-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-gateway-api">Notification Gateway API</dfn></dt>
-                    <dd about="#notification-gateway-api" property="skos:definition">An HTTP endpoint at which a client can negotiate an acceptable notification subscription location.</dd>
+                    <dd about="#notification-gateway-api" property="skos:definition">An HTTP endpoint at which a client can negotiate an acceptable notification subscription location [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
 
                     <dt about="#notification-subscription-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-subscription-api">Notification Subscription API</dfn></dt>
-                    <dd about="#notification-subscription-api" property="skos:definition">An HTTP endpoint at which a client can initiate a subscription to notification events for a particular set of resources.</dd>
+                    <dd about="#notification-subscription-api" property="skos:definition">An HTTP endpoint at which a client can initiate a subscription to notification events for a particular set of resources [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
                   </dl>
                 </div>
               </section>
@@ -484,12 +484,12 @@ content: "";
           <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
             <h2 property="schema:name">Protocol</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The notification protocol involves the Discovery of the Notification Gateway service to negotiate subscription channels and the Notification Subscription endpoint to listen to updates from particular resources. A server MUST support JSON-LD in these interactions.</p>
+              <p>The notification protocol involves the <cite><a href="#discovery" rel="cito:discusses">Discovery</a></cite> of the <cite><a href="#notification-gateway" rel="cito:discusses">Notification Gateway</a></cite> service to negotiate subscription channels and the <cite><a href="#notification-subscription" rel="cito:discusses">Notification Subscription</a></cite> endpoint to listen to updates from particular resources. A server MUST support JSON-LD in these interactions.</p>
 
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>For any resource in a data pod, a client can discover the associated notification gateway API by fetching the Solid Server Metadata Resource. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
+                  <p>For any resource in a data pod, a client can discover the associated notification gateway API by fetching the <a href="#solid-server-metadata-resource">Solid Server Metadata Resource</a>. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
 
                   <figure id="solid-server-metadata-resource-request" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-request">
                     <p class="example-h"><span>Example</span>: Retrieve Solid Server Metadata Resource.</p>
@@ -501,7 +501,7 @@ content: "";
 
                   <p class="advisement">The use of a <em>well-known</em> resource is based on suggestions to avoid too many HTTP <code>Link</code> headers, but that is not a settled issue.</p>
 
-                  <p>The server MUST be capable of serializing this resource as Turtle or JSON-LD.</p>
+                  <p>The server MUST be capable of serializing the <cite>Solid Server Metadata Resource</cite> as Turtle or JSON-LD [<cite><a class="bibref" href="#bib-turtle">TURTLE</a></cite>] [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].</p>
 
                   <p>A sample representation of this resource might include the following:</p>
 
@@ -651,7 +651,7 @@ content: "";
           <section id="authentication-authorization" inlist="" rel="schema:hasPart" resource="#authentication-authorization">
             <h2 property="schema:name">Authentication and Authorization</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The Subscription API requires authorization. This document does not define the specific technology used to authorize requests; rather, it defers to the Solid Protocol sections on Authentication and Authorization. It is out of scope for this document to describe how a client fetches an authorization token. Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications.</p>
+              <p>The Subscription API requires authorization. This document does not define the specific technology used to authorize requests; rather, it defers to the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>]. It is out of scope for this document to describe how a client fetches an authorization token. <cite><a href="https://solid.github.io/solid-oidc/" rel="cito:discusses">Solid-OIDC</a></cite> is one example of an authentication mechanism that could be used with Solid Notifications [<cite><a class="bibref" href="#bib-solid-oidc">SOLID-OIDC</a></cite>].</p>
 
               <p>Resource-based Access controls MUST be enforced for every subscription. A client MUST be permitted to read the resource to which it subscribes.</p>
             </div>
@@ -766,9 +766,9 @@ content: "";
           <section id="notification-data-model" inlist="" rel="schema:hasPart" resource="#notification-data-model">
             <h2 property="schema:name">Notification Data Model</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The content of a Solid Notification is defined in terms of a W3C Activity Streams 2.0 document. As such, JSON-LD 1.0 is a required baseline serialization format, though other formats are not prohibited. JSON-LD version 1.1 is recommended when using JSON-LD serializations.</p>
+              <p>The content of a Solid Notification is defined in terms of a <cite><a href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0</a></cite> [<cite><a class="bibref" href="#bib-activitystreams-core">ACTIVITYSTREAMS-CORE</a></cite>]. As such, JSON-LD 1.0 is a required baseline serialization format, though other formats are not prohibited [<cite><a class="bibref" href="#bib-json-ld">JSON-LD</a></cite>]. JSON-LD version 1.1 is recommended when using JSON-LD serializations [<cite><a class="bibref" href="#bib-json-ld">JSON-LD11</a></cite>].</p>
 
-                    <pre about="#solid-server-metadata-resource-request" property="schema:description" typeof="fabio:Script"><code>{</code>
+              <pre about="#notification-data-model-activity" property="schema:description" typeof="fabio:Script"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
@@ -781,7 +781,7 @@ content: "";
 <code>    "&lt;WebID&gt;"</code>
 <code>  ],</code>
 <code>  "object": {</code>
-<code>    "id":"https://pod.inrupt.com/&lt;user&gt;/some-container/",</code>
+<code>    "id":"https://example.org/&lt;user&gt;/some-container/",</code>
 <code>     "type": [</code>
 <code>      "http://www.w3.org/ns/ldp#BasicContainer",</code>
 <code>      "http://www.w3.org/ns/ldp#Resource",</code>
@@ -932,8 +932,8 @@ content: "";
                   <dl class="bibliography" resource="">
                     <dt id="bib-activitystreams-core">[ACTIVITYSTREAMS-CORE]</dt>
                     <dd><a href="https://www.w3.org/TR/activitystreams-core/" rel="cito:citesAsAuthority"><cite>Activity Streams 2.0</cite></a>. James Snell; Evan Prodromou.  W3C. 23 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/activitystreams-core/">https://www.w3.org/TR/activitystreams-core/</a></dd>
-                    <dt id="bib-fetch">[FETCH]</dt>
-                    <dd><a href="https://fetch.spec.whatwg.org/" rel="cito:citesAsAuthority"><cite>Fetch Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a></dd>
+                    <dt id="bib-json-ld">[JSON-LD]</dt>
+                    <dd><a href="https://www.w3.org/TR/json-ld/"><cite>JSON-LD 1.0</cite></a>. Manu Sporny; Gregg Kellogg; Markus Lanthaler.  W3C. 3 November 2020. W3C Recommendation. URL: <a href="https://www.w3.org/TR/json-ld/">https://www.w3.org/TR/json-ld/</a></dd>
                     <dt id="bib-json-ld11">[JSON-LD11]</dt>
                     <dd><a href="https://www.w3.org/TR/json-ld11/" rel="cito:citesAsAuthority"><cite>JSON-LD 1.1</cite></a>. Gregg Kellogg; Pierre-Antoine Champin; Dave Longley.  W3C. 16 July 2020. W3C Recommendation. URL: <a href="https://www.w3.org/TR/json-ld11/">https://www.w3.org/TR/json-ld11/</a></dd>
                     <dt id="bib-ldn">[LDN]</dt>
@@ -962,7 +962,7 @@ content: "";
                     <dd><a href="https://solid.github.io/solid-oidc/" rel="cito:citesAsAuthority"><cite>SOLID-OIDC</cite></a>. Aaron Coburn; elf Pavlik; Dmitri Zagidulin.  W3C Solid Community Group. W3C Editor's Draft. URL: <a href="https://solid.github.io/solid-oidc/">https://solid.github.io/solid-oidc/</a></dd>
                     <dt id="bib-solid-protocol">[SOLID-PROTOCOL]</dt>
                     <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo; Justin Bingham; Dmitri Zagidulin.  W3C Solid Community Group. W3C Editor’s Draft. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
-                    <dt id="bib-turtle">[Turtle]</dt>
+                    <dt id="bib-turtle">[TURTLE]</dt>
                     <dd><a href="https://www.w3.org/TR/turtle/" rel="cito:citesAsAuthority"><cite>RDF 1.1 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers.  W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/turtle/">https://www.w3.org/TR/turtle/</a></dd>
                     <dt id="bib-websockets">[WEBSOCKETS]</dt>
                     <dd><a href="https://www.w3.org/TR/websockets/"><cite>The WebSocket API</cite></a>. Ian Hickson.  W3C. 28 January 2021. W3C Note. URL: <a href="https://www.w3.org/TR/websockets/">https://www.w3.org/TR/websockets/</a></dd>
