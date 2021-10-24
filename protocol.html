@@ -292,10 +292,11 @@ content: "";
                 <li class="tocline">
                   <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
                   <ol>
-                    <li><a href="#terminology"><span class="secno">1.1</span> <span class="content">Terminology</span></a></li>
-                    <li><a href="#overview"><span class="secno">1.2</span> <span class="content">Overview</span></a></li>
-                    <li><a href="#namespaces"><span class="secno">1.3</span> <span class="content">Namespaces</span></a></li>
-                    <li><a href="#conformance"><span class="secno">1.4</span> <span class="content">Conformance</span></a></li>
+                    <li><a href="#use-cases"><span class="secno">1.1</span> <span class="content">Use Cases</span></a></li>
+                    <li><a href="#terminology"><span class="secno">1.2</span> <span class="content">Terminology</span></a></li>
+                    <li><a href="#overview"><span class="secno">1.3</span> <span class="content">Overview</span></a></li>
+                    <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.5</span> <span class="content">Conformance</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -374,6 +375,32 @@ content: "";
                 <li><a href="http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135">Resource server developers</a> that want to enable clients to listen for updates to particular resources.</li>
                 <li><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who want to implement a client to listen for updates to particular resources.</li>
               </ul>
+
+              <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases" typeof="skos:Collection">
+                <h3 property="schema:name skos:prefLabel">Use Cases</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+
+                  <span rel="skos:member"><span resource="#use-case-immediate-notification-data-changes"></span><span resource="#use-case-change-frequency"></span><span resource="#use-case-filtered-notifications"></span><span resource="#use-case-time-bound-subscriptions"></span><span resource="#use-case-avoid-missing-updates"></span><span resource="#use-case-protocol-negotiation"></span><span resource="#use-case-security"></span></span>
+
+                  <dl>
+                    <dt about="#use-case-immediate-notification-data-changes" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-immediate-notification-data-changes">Immediate notification of data changes</dfn></dt>
+                    <dd about="#use-case-immediate-notification-data-changes" property="skos:definition">For many clients, it is important to know when a resource state changes. This includes collaborative editing apps, chat apps or any client that expects the underlying data to change frequently based on updates made by others.</dd>
+                    <dt about="#use-case-change-frequency" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-change-frequency">Change frequency</dfn></dt>
+                    <dd about="#use-case-change-frequency" property="skos:definition">Sometimes a client doesn't need to be alerted for every change. If a client only needs infrequent updates, for example, every 5 minutes, it should be possible to avoid floods of data that might otherwise place a higher burden on the client application. Ideally, a client should be able to define what that aggregation window would be: for some clients, 10 seconds might be appropriate; for others, several minutes might be more appropriate.</dd>
+                    <dt about="#use-case-filtered-notifications" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-filtered-notifications">Filtered notifications</dfn></dt>
+                    <dd about="#use-case-filtered-notifications" property="skos:definition">Certain categories of notifications may be more or less interesting to clients. For example, a client may not care about UPDATE operations or may only care about notifications for resources of certain types.</dd>
+                    <dt about="#use-case-time-bound-subscriptions" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-time-bound-subscriptions">Time-bound subscriptions</dfn></dt>
+                    <dd about="#use-case-time-bound-subscriptions" property="skos:definition">Occasionally, a client only needs a subscription to be in effect for a limited period of time. While a client may easily close a WebSocket itself, subscriptions for other, more asynchronous forms of notifications, such as LDN alerts or WebHook operations, may be more difficult to terminate.</dd>
+                    <dt about="#use-case-avoid-missing-updates" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-avoid-missing-updates">Avoid missing updates</dfn></dt>
+                    <dd about="#use-case-avoid-missing-updates" property="skos:definition">For WebSockets and protocols that rely on an active, live connection to a notification server, the notification protocol needs to make sure that clients do not miss notifications in the event of a dropped connection.</dd>
+                    <dt about="#use-case-protocol-negotiation" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-protocol-negotiation">Protocol negotiation</dfn></dt>
+                    <dd about="#use-case-protocol-negotiation" property="skos:definition">a given Solid Notification server may support certain technologies (e.g. WebSockets and LDN) but not others (e.g. EventSource and WebSub). Likewise, a client may not support the same set of protocols that are implemented by a server. As such, there needs to be a mechanism for clients and servers to agree on a mutually supported protocol. In addition to simply determining the set of protocols that work for client and server, there may be particular features (e.g. notification aggregation, notification filtering) that are required for the client. This could be used to further filter the protocol selection.</dd>
+                    <dt about="#use-case-security" property="skos:prefLabel" typeof="skos:Concept"><dfn id="use-case-security">Security</dfn></dt>
+                    <dd about="#use-case-security" property="skos:definition">A client should not be able to subscribe to resources to which it does not have read access.</dd>
+                  </dl>
+                </div>
+              </section>
 
               <section id="terminology" inlist="" rel="schema:hasPart" resource="#terminology" typeof="skos:ConceptScheme">
                 <h3 property="schema:name skos:prefLabel">Terminology</h3>
