@@ -354,21 +354,21 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification, including <q>data pod</q>. This document also uses terms from the <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">OAuth2</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q>topic</q>.</p>
+                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification, including <q>data pod</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q>topic</q>.</p>
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#notification-gateway-api"></span><span resource="#notification-subscription-api"></span><span resource="#solid-server-metadata-resource"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#solid-server-metadata-resource"></span><span resource="#notification-gateway-api"></span><span resource="#notification-subscription-api"></span></span>
 
                   <dl>
+                    <dt about="#solid-server-metadata-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="solid-server-metadata-resource">Solid Server Metadata Resource</dfn></dt>
+                    <dd about="#solid-server-metadata-resource" property="skos:definition">An RDF document that includes metadata about the Solid server.</dd>
+
                     <dt about="#notification-gateway-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-gateway-api">Notification Gateway API</dfn></dt>
                     <dd about="#notification-gateway-api" property="skos:definition">An HTTP endpoint at which a client can negotiate an acceptable notification subscription location.</dd>
 
                     <dt about="#notification-subscription-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-subscription-api">Notification Subscription API</dfn></dt>
                     <dd about="#notification-subscription-api" property="skos:definition">An HTTP endpoint at which a client can initiate a subscription to notification events for a particular set of resources.</dd>
-
-                    <dt about="#solid-server-metadata-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="solid-server-metadata-resource">Solid Server Metadata Resource</dfn></dt>
-                    <dd about="#solid-server-metadata-resource" property="skos:definition">An RDF document that includes metadata about the Solid server</dd>
                   </dl>
                 </div>
               </section>
