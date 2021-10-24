@@ -325,10 +325,13 @@ content: "";
                   </ol>
                 </li>
                 <li class="tocline">
+                  <a class="tocxref" href="#notification-features"><span class="secno">5</span> <span class="content">Notification Features</span></a>
+                </li>
+                <li class="tocline">
                   <a class="tocxref" href="#extensions"><span class="secno">7</span> <span class="content">Extensions</span></a>
                   <ol>
-                    <li><a href="#extension-subscription-types"><span class="secno">7.1</span> <span class="content">Subscription Types</span></a></li>
-                    <li><a href="#extension-notification-features"><span class="secno">7.2</span> <span class="content">Notification Features</span></a></li>
+                    <li><a href="#subscription-types-extension"><span class="secno">7.1</span> <span class="content">Subscription Types Extension</span></a></li>
+                    <li><a href="#notification-features-extension"><span class="secno">7.2</span> <span class="content">Notification Features Extension</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -702,6 +705,27 @@ content: "";
                   </dl>
                 </div>
               </section>
+            </div>
+          </section>
+
+
+          <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:ConceptScheme">
+            <h2 property="schema:name">Notification Features</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p property="skos:definition">Features allow clients to customize the details of a subscription. Some features are specific to particular subscription types while others may be used across all types. These shared features are listed as an initial baseline, though not all subscription types are required to implement these. Individual subscription types may define type-specific features. The list of common, shared features is not intended to be exhaustive.</p>
+
+              <span rel="skos:hasTopConcept"><span resource="#feature-expiration"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
+
+              <dl>
+                <dt about="#feature-expiration" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-expiration">expiration</dfn></dt>
+                <dd about="#feature-expiration" property="skos:definition">An ISO 8601 datetime value indicating a proposed expiration point for a subscription. A server may choose another value.</dd>
+                <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
+                <dd about="#feature-state" property="skos:definition">An opaque value representing the last known state of a resource. If the resource state is known to have changed when the client establishes a subscription, an initial notification must be sent to the client. This value should correspond to a resource's <code>ETag</code> header value.</dd>
+                <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
+                <dd about="#feature-rate" property="skos:definition">An ISO 8601 duration value indicating the minimum amount of time to elapse between notifications sent to the client</dd>
+                <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
+                <dd about="#feature-accept" property="skos:definition">A MIME-Type value that indicates the desired serialization of the notification. For instance, <code>text/turtle</code> may be acceptable.</dd>
+              </dl>
             </div>
           </section>
 
