@@ -708,7 +708,6 @@ content: "";
             </div>
           </section>
 
-
           <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:ConceptScheme">
             <h2 property="schema:name">Notification Features</h2>
             <div datatype="rdf:HTML" property="schema:description">
@@ -726,6 +725,27 @@ content: "";
                 <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
                 <dd about="#feature-accept" property="skos:definition">A MIME-Type value that indicates the desired serialization of the notification. For instance, <code>text/turtle</code> may be acceptable.</dd>
               </dl>
+            </div>
+          </section>
+
+          <section id="extensions" inlist="" rel="schema:hasPart" resource="#extensions">
+            <h2 property="schema:name">Extensions</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>Extensions incorporate additional features beyond what is defined in this specification. Extensions MUST NOT contradict nor cause the non-conformance of functionality defined in this specification.</p>
+
+              <section id="subscription-types-extension" inlist="" rel="schema:hasPart" resource="#subscription-types">
+                <h3 property="schema:name">Subscription Types Extension</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+                </div>
+              </section>
+
+              <section id="notification-features-extension" inlist="" rel="schema:hasPart" resource="#notification-features">
+                <h3 property="schema:name">Notification Features Extension</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+                </div>
+              </section>
             </div>
           </section>
 
