@@ -316,10 +316,19 @@ content: "";
                   <a class="tocxref" href="#authentication-authorization"><span class="secno">3</span> <span class="content">Authentication and Authorization</span></a>
                 </li>
                 <li class="tocline">
+                  <a class="tocxref" href="#subscription-types"><span class="secno">4</span> <span class="content">Subscription Types</span></a>
+                  <ol>
+                    <li><a href="#websocketsubscription2021"><span class="secno">4.1</span> <span class="content">WebSocketSubscriptionType2021</span></a></li>
+                    <li><a href="#eventsourcesubscription2021"><span class="secno">4.2</span> <span class="content">EventSourceSubscription2021</span></a></li>
+                    <li><a href="#linkeddatanotificationsubscription2021"><span class="secno">4.3</span> <span class="content">LinkedDataNotification2021</span></a></li>
+                    <li><a href="#webhooksubscription2021"><span class="secno">4.4</span> <span class="content">WebHookSubscriptionType2021</span></a></li>
+                  </ol>
+                </li>
+                <li class="tocline">
                   <a class="tocxref" href="#extensions"><span class="secno">7</span> <span class="content">Extensions</span></a>
                   <ol>
-                    <li><a href="#subscription-types"><span class="secno">7.1</span> <span class="content">Subscription Types</span></a></li>
-                    <li><a href="#notification-features"><span class="secno">7.2</span> <span class="content">Notification Features</span></a></li>
+                    <li><a href="#extension-subscription-types"><span class="secno">7.1</span> <span class="content">Subscription Types</span></a></li>
+                    <li><a href="#extension-notification-features"><span class="secno">7.2</span> <span class="content">Notification Features</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -612,6 +621,87 @@ content: "";
               <p>The Subscription API requires authorization. This document does not define the specific technology used to authorize requests; rather, it defers to the Solid Protocol sections on Authentication and Authorization. It is out of scope for this document to describe how a client fetches an authorization token. Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications.</p>
 
               <p>Resource-based Access controls MUST be enforced for every subscription. A client MUST be permitted to read the resource to which it subscribes.</p>
+            </div>
+          </section>
+
+          <section id="subscription-types" inlist="" rel="schema:hasPart" resource="#subscription-types">
+            <h2 property="schema:name">Subscription Types</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>This document defines four initial subscription types:</p>
+
+              <nav>
+                <ul>
+                  <li><a href="#websocketsubscription2021">WebSocketSubscription2021</a></li>
+                  <li><a href="#eventsourcesubscription2021">EventSourceSubscription2021</a></li>
+                  <li><a href="#linkeddatanotificationsubscription2021">LinkedDataNotification2021</a></li>
+                  <li><a href="#webhooksubscription2021">WebHookSubscription2021</a></li>
+                </ul>
+              </nav>
+
+              <div class="note" id="subscription-type-naming-convention" inlist="" rel="schema:hasPart" resource="#subscription-type-naming-convention">
+                <h3 property="schema:name"><span>Note</span>: Subscription Type Naming Convention</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The naming convention used here follows a pattern used by the Verifiable Credentials community, making it possible to distinguish between different versions of these subscription types. Other naming conventions can achieve the same end.</p>
+                </div>
+              </div>
+
+              <section id="websocketsubscription2021" inlist="" rel="schema:hasPart" resource="#websocketsubscription2021" typeof="skos:ConceptScheme">
+                <h3 property="schema:name">WebSocketSubscription2021</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p property="skos:definition">The <code>WebSocketSubscription2021</code> type defines the following properties:</p>
+
+                  <span rel="skos:hasTopConcept"><span resource="#websocketsubscription2021-endpoint"></span></span>
+
+                  <dl>
+                    <dt about="#websocketsubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="websocketsubscription2021-endpoint">endpoint</dfn></dt>
+                    <dd about="#websocketsubscription2021-endpoint" property="skos:definition">The <code>endpoint</code> property is used in the body of the subscription response. The value of this property MUST be a URI, using the <code>wss</code> scheme. A JavaScript client would use the entire value as input to the WebSocket constructor.</dd>
+                  </dl>
+                </div>
+              </section>
+
+              <section id="eventsourcesubscription2021" inlist="" rel="schema:hasPart" resource="#eventsourcesubscription2021" typeof="skos:ConceptScheme">
+                <h3 property="schema:name">EventSourceSubscription2021</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p property="skos:definition">The <code>EventSourceSubscription2021</code> type defines the following properties:</p>
+
+                  <span rel="skos:hasTopConcept"><span resource="#eventsourcesubscription2021-endpoint"></span></span>
+
+                  <dl>
+                    <dt about="#eventsourcesubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="eventsourcesubscription2021-endpoint">endpoint</dfn></dt>
+                    <dd about="#eventsourcesubscription2021-endpoint" property="skos:definition">The <code>endpoint</code> property is used in the body of the subscription response. The value of this property MUST be a URI, using the https scheme. A JavaScript client would use the entire value as input to the EventSource constructor.</dd>
+                  </dl>
+                </div>
+              </section>
+
+              <section id="linkeddatanotificationsubscription2021" inlist="" rel="schema:hasPart" resource="#linkeddatanotificationsubscription2021" typeof="skos:ConceptScheme">
+                <h3 property="schema:name">LinkedDataNotificationSubscription2021</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p property="skos:definition">The <code>LinkedDataNotificationSubscription2021</code> type defines the following properties:</p>
+
+                  <span rel="skos:hasTopConcept"><span resource="#linkeddatanotificationsubscription2021-inbox"></span><span resource="#linkeddatanotificationsubscription2021-webid"></span></span>
+
+                  <dl>
+                    <dt about="#linkeddatanotificationsubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationsubscription2021-endpoint">endpoint</dfn></dt>
+                    <dd about="#linkeddatanotificationsubscription2021-endpoint" property="skos:definition">The <code>endpoint</code> property is used in the body of the subscription request. The value of this property MUST be a URI, using the https scheme. The inbox URI MUST conform to the receiver portion of the Linked Data Notification specification.</dd>
+                    <dt about="#linkeddatanotificationsubscription2021-webid" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationsubscription2021-webid">webid</dfn></dt>
+                    <dd about="#linkeddatanotificationsubscription2021-webid" property="skos:definition">The <code>webid</code> property is used in the body of the subscription response. The value of this property MUST be an HTTPS URI conforming to the WebID draft specification. All LDN notifications will be sent to the defined inbox using the agent identity specified by this WebID. A resource owner should ensure that the agent identified in this property is permitted to send authenticated HTTP requests to the defined inbox.</dd>
+                  </dl>
+                </div>
+              </section>
+
+              <section id="webhooksubscription2021" inlist="" rel="schema:hasPart" resource="#webhooksubscription2021" typeof="skos:ConceptScheme">
+                <h3 property="schema:name">WebHookSubscription2021</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p property="skos:definition">The <code>WebHookSubscription2021</code> type defines the following properties:</p>
+
+                  <span rel="skos:hasTopConcept"><span resource="#webhooksubscription2021-target"></span></span>
+
+                  <dl>
+                    <dt about="#webhooksubscription2021-target" property="skos:prefLabel" typeof="skos:Concept"><dfn id="webhooksubscription2021-target">target</dfn></dt>
+                    <dd about="#webhooksubscription2021-target" property="skos:definition">The <code>target</code> property is used in the body of the subscription request. The value of this property MUST be a URI, using the https scheme.</dd>
+                  </dl>
+                </div>
+              </section>
             </div>
           </section>
 
