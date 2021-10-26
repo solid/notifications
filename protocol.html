@@ -455,7 +455,9 @@ content: "";
           <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
             <h2 property="schema:name">Protocol</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The notification protocol involves the <cite><a href="#discovery" rel="cito:discusses">Discovery</a></cite> of the <cite><a href="#notification-gateway" rel="cito:discusses">Notification Gateway</a></cite> service to negotiate subscription channels and the <cite><a href="#notification-subscription" rel="cito:discusses">Notification Subscription</a></cite> endpoint to listen to updates from particular resources. A server MUST support JSON-LD in these interactions.</p>
+              <p>The notification protocol involves the <cite><a href="#discovery" rel="cito:discusses">Discovery</a></cite> of the <cite><a href="#notification-gateway" rel="cito:discusses">Notification Gateway</a></cite> service to negotiate subscription channels and the <cite><a href="#notification-subscription" rel="cito:discusses">Notification Subscription</a></cite> endpoint to listen to updates from particular resources.</p>
+
+              <p><span about="" id="server-representation-jsonld" rel="spec:requirement" resource="#server-representation-jsonld"><span property="spec:statement">A <span rel="spec:requirementSubject" resource="spec:Server">server</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support JSON-LD in these interactions.</span></span></p>
 
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
@@ -472,7 +474,7 @@ content: "";
 
                   <p class="advisement">The use of a <em>well-known</em> resource is based on suggestions to avoid too many HTTP <code>Link</code> headers, but that is not a settled issue.</p>
 
-                  <p>The server MUST be capable of serializing the <cite>Solid Server Metadata Resource</cite> as Turtle or JSON-LD [<cite><a class="bibref" href="#bib-turtle">TURTLE</a></cite>] [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].</p>
+                  <p><span about="" id="server-metadata-resource-turtle-jsonld" rel="spec:requirement" resource="#server-metadata-resource-turtle-jsonld"><span property="spec:statement">The <span rel="spec:requirementSubject" resource="spec:Server">server</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be capable of serializing the <cite>Solid Server Metadata Resource</cite> as Turtle or JSON-LD [<cite><a class="bibref" href="#bib-turtle">TURTLE</a></cite>] [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].</span></span></p>
 
                   <p>A sample representation of this resource might include the following:</p>
 
@@ -551,7 +553,7 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p>The details of subscribing to a particular endpoint depend on the technology used, but all will follow a similar pattern. For WebSockets, this involves sending an authenticated subscription request to the endpoint retrieved from the gateway service.</p>
 
-                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. The <code>type</code> field MUST contain the type of subscription being requested. The <code>topic</code> field MUST contain the URL of the resource a client wishes to subscribe to changes.</p>
+                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
 
                   <p>All other fields are defined by the particular subscription type. Some common features are described in the Features section of this document.</p>
 
@@ -624,7 +626,7 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p>The Subscription API requires authorization. This document does not define the specific technology used to authorize requests; rather, it defers to the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>]. It is out of scope for this document to describe how a client fetches an authorization token. <cite><a href="https://solid.github.io/solid-oidc/" rel="cito:discusses">Solid-OIDC</a></cite> is one example of an authentication mechanism that could be used with Solid Notifications [<cite><a class="bibref" href="#bib-solid-oidc">SOLID-OIDC</a></cite>].</p>
 
-              <p>Resource-based Access controls MUST be enforced for every subscription. A client MUST be permitted to read the resource to which it subscribes.</p>
+              <p>Resource-based Access controls <span about="" id="server-subscription-access-controls" rel="spec:requirement" resource="#server-subscription-access-controls"><span property="spec:statement"><span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be enforced for every subscription.</span></span> <span about="" id="server-subscription-access-read" rel="spec:requirement" resource="#server-subscription-access-read"><span property="spec:statement">A client <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be permitted to read the resource to which it subscribes.</span></span></p>
             </div>
           </section>
 
@@ -660,7 +662,7 @@ content: "";
 
                   <dl>
                     <dt about="#websocketsubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="websocketsubscription2021-endpoint">endpoint</dfn></dt>
-                    <dd about="#websocketsubscription2021-endpoint" property="skos:definition">The <code>endpoint</code> property is used in the body of the subscription response. The value of this property MUST be a URI, using the <code>wss</code> scheme. A JavaScript client would use the entire value as input to the WebSocket constructor.</dd>
+                    <dd about="#websocketsubscription2021-endpoint" property="skos:definition"><span about="" id="websocketsubscription2021-endpoint-wss" rel="spec:requirement" resource="#websocketsubscription2021-endpoint-wss"><span property="spec:statement">The <code>endpoint</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>wss</code> scheme.</span></span> A JavaScript client would use the entire value as input to the WebSocket constructor.</dd>
                   </dl>
                 </div>
               </section>
@@ -674,7 +676,7 @@ content: "";
 
                   <dl>
                     <dt about="#eventsourcesubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="eventsourcesubscription2021-endpoint">endpoint</dfn></dt>
-                    <dd about="#eventsourcesubscription2021-endpoint" property="skos:definition">The <code>endpoint</code> property is used in the body of the subscription response. The value of this property MUST be a URI, using the https scheme. A JavaScript client would use the entire value as input to the EventSource constructor.</dd>
+                    <dd about="#eventsourcesubscription2021-endpoint" property="skos:definition"><span about="" id="eventsourcesubscription2021-endpoint-https" rel="spec:requirement" resource="#eventsourcesubscription2021-endpoint-https"><span property="spec:statement">The <code>endpoint</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the https scheme.</span></span> A JavaScript client would use the entire value as input to the EventSource constructor.</dd>
                   </dl>
                 </div>
               </section>
@@ -688,9 +690,9 @@ content: "";
 
                   <dl>
                     <dt about="#linkeddatanotificationsubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationsubscription2021-endpoint">endpoint</dfn></dt>
-                    <dd about="#linkeddatanotificationsubscription2021-endpoint" property="skos:definition">The <code>endpoint</code> property is used in the body of the subscription request. The value of this property MUST be a URI, using the <code>https</code> scheme. The inbox URI MUST conform to the receiver portion of the Linked Data Notification specification.</dd>
+                    <dd about="#linkeddatanotificationsubscription2021-endpoint" property="skos:definition"><span about="" id="linkeddatanotificationsubscription2021-endpoint-https" rel="spec:requirement" resource="#linkeddatanotificationsubscription2021-endpoint-https"><span property="spec:statement">The <code>endpoint</code> property is used in the body of the subscription request. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> <span about="" id="linkeddatanotificationsubscription2021-endpoint-ldn-receiver" rel="spec:requirement" resource="#linkeddatanotificationsubscription2021-endpoint-ldn-receiver"><span property="spec:statement">The inbox URI <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> conform to the <a href="https://www.w3.org/TR/ldn/#receiver" rel="cito:citesAsAuthority">receiver</a> portion of the Linked Data Notification specification.</span></span></dd>
                     <dt about="#linkeddatanotificationsubscription2021-webid" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationsubscription2021-webid">webid</dfn></dt>
-                    <dd about="#linkeddatanotificationsubscription2021-webid" property="skos:definition">The <code>webid</code> property is used in the body of the subscription response. The value of this property MUST be an HTTPS URI conforming to the WebID draft specification. All LDN notifications will be sent to the defined inbox using the agent identity specified by this WebID. A resource owner should ensure that the agent identified in this property is permitted to send authenticated HTTP requests to the defined inbox.</dd>
+                    <dd about="#linkeddatanotificationsubscription2021-webid" property="skos:definition"><span about="" id="linkeddatanotificationsubscription2021-webid-https" rel="spec:requirement" resource="#linkeddatanotificationsubscription2021-webid-https"><span property="spec:statement">The <code>webid</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be an HTTPS URI conforming to the WebID draft specification. All LDN notifications will be sent to the defined inbox using the agent identity specified by this WebID. A resource owner should ensure that the agent identified in this property is permitted to send authenticated HTTP requests to the defined inbox.</span></span></dd>
                   </dl>
                 </div>
               </section>
@@ -704,7 +706,7 @@ content: "";
 
                   <dl>
                     <dt about="#webhooksubscription2021-target" property="skos:prefLabel" typeof="skos:Concept"><dfn id="webhooksubscription2021-target">target</dfn></dt>
-                    <dd about="#webhooksubscription2021-target" property="skos:definition">The <code>target</code> property is used in the body of the subscription request. The value of this property MUST be a URI, using the https scheme.</dd>
+                    <dd about="#webhooksubscription2021-target" property="skos:definition"><span about="" id="webhooksubscription2021-target-https" rel="spec:requirement" resource="#webhooksubscription2021-target-https"><span property="spec:statement">The <code>target</code> property is used in the body of the subscription request. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the https scheme.</span></span></dd>
                   </dl>
                 </div>
               </section>
