@@ -138,7 +138,7 @@ content: "";
     <main>
       <article about="" typeof="schema:Article doap:Specification">
         <h1 property="schema:name">Solid Notifications Protocol</h1>
-        <h2>Editor’s Draft, 2021-10-24</h2>
+        <h2>Editor’s Draft, 2021-10-26</h2>
 
         <dl id="document-identifier">
           <dt>This version</dt>
@@ -170,7 +170,7 @@ content: "";
 
         <dl id="document-modified">
           <dt>Modified</dt>
-          <dd><time content="2021-10-24T00:00:00Z" datatype="xsd:dateTime" datetime="2021-10-24T00:00:00Z" property="schema:dateModified">2021-10-24</time></dd>
+          <dd><time content="2021-10-26T00:00:00Z" datatype="xsd:dateTime" datetime="2021-10-26T00:00:00Z" property="schema:dateModified">2021-10-26</time></dd>
         </dl>
 
         <dl id="document-repository">
@@ -321,7 +321,7 @@ content: "";
                   <ol>
                     <li><a href="#websocketsubscription2021"><span class="secno">4.1</span> <span class="content">WebSocketSubscriptionType2021</span></a></li>
                     <li><a href="#eventsourcesubscription2021"><span class="secno">4.2</span> <span class="content">EventSourceSubscription2021</span></a></li>
-                    <li><a href="#linkeddatanotificationsubscription2021"><span class="secno">4.3</span> <span class="content">LinkedDataNotification2021</span></a></li>
+                    <li><a href="#linkeddatanotificationssubscription2021"><span class="secno">4.3</span> <span class="content">linkeddatanotifications2021</span></a></li>
                     <li><a href="#webhooksubscription2021"><span class="secno">4.4</span> <span class="content">WebHookSubscriptionType2021</span></a></li>
                   </ol>
                 </li>
@@ -640,7 +640,7 @@ content: "";
                 <ul>
                   <li><a href="#websocketsubscription2021">WebSocketSubscription2021</a></li>
                   <li><a href="#eventsourcesubscription2021">EventSourceSubscription2021</a></li>
-                  <li><a href="#linkeddatanotificationsubscription2021">LinkedDataNotification2021</a></li>
+                  <li><a href="#linkeddatanotificationssubscription2021">linkeddatanotifications2021</a></li>
                   <li><a href="#webhooksubscription2021">WebHookSubscription2021</a></li>
                 </ul>
               </nav>
@@ -682,18 +682,18 @@ content: "";
                 </div>
               </section>
 
-              <section id="linkeddatanotificationsubscription2021" inlist="" rel="schema:hasPart" resource="#linkeddatanotificationsubscription2021" typeof="skos:ConceptScheme">
-                <h3 property="schema:name">LinkedDataNotificationSubscription2021</h3>
+              <section id="linkeddatanotificationssubscription2021" inlist="" rel="schema:hasPart" resource="#linkeddatanotificationssubscription2021" typeof="skos:ConceptScheme">
+                <h3 property="schema:name">linkeddatanotificationsSubscription2021</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p property="skos:definition">The <code>LinkedDataNotificationSubscription2021</code> type defines the following properties:</p>
+                  <p property="skos:definition">The <code>linkeddatanotificationsSubscription2021</code> type defines the following properties:</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#linkeddatanotificationsubscription2021-inbox"></span><span resource="#linkeddatanotificationsubscription2021-webid"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#linkeddatanotificationssubscription2021-inbox"></span><span resource="#linkeddatanotificationssubscription2021-webid"></span></span>
 
                   <dl>
-                    <dt about="#linkeddatanotificationsubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationsubscription2021-endpoint">endpoint</dfn></dt>
-                    <dd about="#linkeddatanotificationsubscription2021-endpoint" property="skos:definition"><span about="" id="linkeddatanotificationsubscription2021-endpoint-https" rel="spec:requirement" resource="#linkeddatanotificationsubscription2021-endpoint-https"><span property="spec:statement">The <code>endpoint</code> property is used in the body of the subscription request. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> <span about="" id="linkeddatanotificationsubscription2021-endpoint-ldn-receiver" rel="spec:requirement" resource="#linkeddatanotificationsubscription2021-endpoint-ldn-receiver"><span property="spec:statement">The inbox URI <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> conform to the <a href="https://www.w3.org/TR/ldn/#receiver" rel="cito:citesAsAuthority">receiver</a> portion of the Linked Data Notification specification.</span></span></dd>
-                    <dt about="#linkeddatanotificationsubscription2021-webid" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationsubscription2021-webid">webid</dfn></dt>
-                    <dd about="#linkeddatanotificationsubscription2021-webid" property="skos:definition"><span about="" id="linkeddatanotificationsubscription2021-webid-https" rel="spec:requirement" resource="#linkeddatanotificationsubscription2021-webid-https"><span property="spec:statement">The <code>webid</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be an HTTPS URI conforming to the WebID draft specification. All LDN notifications will be sent to the defined inbox using the agent identity specified by this WebID. A resource owner should ensure that the agent identified in this property is permitted to send authenticated HTTP requests to the defined inbox.</span></span></dd>
+                    <dt about="#linkeddatanotificationssubscription2021-endpoint" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationssubscription2021-endpoint">endpoint</dfn></dt>
+                    <dd about="#linkeddatanotificationssubscription2021-endpoint" property="skos:definition"><span about="" id="linkeddatanotificationssubscription2021-endpoint-https" rel="spec:requirement" resource="#linkeddatanotificationssubscription2021-endpoint-https"><span property="spec:statement">The <code>endpoint</code> property is used in the body of the subscription request. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> <span about="" id="linkeddatanotificationssubscription2021-endpoint-ldn-receiver" rel="spec:requirement" resource="#linkeddatanotificationssubscription2021-endpoint-ldn-receiver"><span property="spec:statement">The inbox URI <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> conform to the <a href="https://www.w3.org/TR/ldn/#receiver" rel="cito:citesAsAuthority">receiver</a> portion of the Linked Data Notifications specification.</span></span></dd>
+                    <dt about="#linkeddatanotificationssubscription2021-webid" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationssubscription2021-webid">webid</dfn></dt>
+                    <dd about="#linkeddatanotificationssubscription2021-webid" property="skos:definition"><span about="" id="linkeddatanotificationssubscription2021-webid-https" rel="spec:requirement" resource="#linkeddatanotificationssubscription2021-webid-https"><span property="spec:statement">The <code>webid</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be an HTTPS URI conforming to the WebID draft specification. All LDN notifications will be sent to the defined inbox using the agent identity specified by this WebID. A resource owner should ensure that the agent identified in this property is permitted to send authenticated HTTP requests to the defined inbox.</span></span></dd>
                   </dl>
                 </div>
               </section>
