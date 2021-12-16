@@ -1,0 +1,17 @@
+Title: Notification Flow in Solid (WebHook)
+Subscribing Server -> Solid Metadata Resource: 1. Discovery
+Solid Metadata Resource -> Subscribing Server: 2. Receive (cache) server metadata resouce
+Subscribing Server -> Gateway API: 3. Negotiate for the WebHook protocol
+Gateway API -> Subscribing Server: 4. Receive (cache) protocol location and metadata
+Subscribing Server -> Subscription API: 5. Request a new WebHook subscription (with access token)
+Subscription API -> Authorization Server: 6. Verify Authorization
+Authorization Server -> Subscription API: 7. Receive capabilities
+Subscription API -> Subscribing Server: 8. Receive subscription URL and metadata
+Note over Topic Resource: 9. Action happens on Topic Resource
+Topic Resource -> Subscribing Server: 10. Webhook Request (With token signed by the Pod Key)
+Subscribing Server -> Solid Metadata Resource: 11. Discovery
+Solid Metadata Resource -> Subscribing Server: 12. Receive (cache) server metadata resouce
+Subscribing Server -> Pod JWKS: 13. JWKS Discovery
+Pod JWKS -> Subscribing Server: 14. Receive (cache) JWKS resouce
+Note over Subscribing Server: 15. Validate Webhook Token
+Subscribing Server -> Unsubscribe Endpoint: 16. Unsubscribe from the WebHook
