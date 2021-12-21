@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Solid Notifications Protocol</title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" media="all" rel="stylesheet" title="W3C-ED" />
+    <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" media="all" rel="stylesheet" title="W3C-ED" />
 <style>
 body {
 counter-reset:section;
@@ -140,122 +140,126 @@ content: "";
         <h1 property="schema:name">Solid Notifications Protocol</h1>
         <h2>Editor’s Draft, 2021-12-16</h2>
 
-        <dl id="document-identifier">
-          <dt>This version</dt>
-          <dd><a href="https://solid.github.io/notifications/protocol" rel="owl:sameAs">https://solid.github.io/notifications/protocol</a></dd>
-        </dl>
+        <details open="">
+          <summary>More details about this document</summary>
 
-        <dl id="document-latest-version">
-          <dt>Latest version</dt>
-          <dd><a href="https://solid.github.io/notifications/protocol" rel="rel:latest-version">https://solid.github.io/notifications/protocol</a></dd>
-        </dl>
-
-        <div id="authors">
-          <dl id="author-name">
-            <dt>Editors</dt>
-            <dd id="Aaron-Coburn"><span about="" rel="schema:editor schema:author"><span about="https://people.apache.org/~acoburn/#i" typeof="schema:Person"><a rel="schema:url" href="https://people.apache.org/~acoburn/"><span about="https://people.apache.org/~acoburn/#i" property="schema:name"><span property="schema:givenName">Aaron</span> <span property="schema:familyName">Coburn</span></span></a></span></span></dd>
-            <dd id="Sarven-Capadisli"><span about="" rel="schema:creator schema:editor"><span about="https://csarven.ca/#i" typeof="schema:Person"><a rel="schema:url" href="https://csarven.ca/"><span about="https://csarven.ca/#i" property="schema:name"><span property="schema:givenName">Sarven</span> <span property="schema:familyName">Capadisli</span></span></a></span></span></dd>
+          <dl id="document-identifier">
+            <dt>This version</dt>
+            <dd><a href="https://solid.github.io/notifications/protocol" rel="owl:sameAs">https://solid.github.io/notifications/protocol</a></dd>
           </dl>
-        </div>
 
-        <dl id="document-created">
-          <dt>Created</dt>
-          <dd><time content="2021-10-21T00:00:00Z" datatype="xsd:dateTime" datetime="2021-10-21T00:00:00Z" property="schema:dateCreated">2021-10-21</time></dd>
-        </dl>
+          <dl id="document-latest-version">
+            <dt>Latest version</dt>
+            <dd><a href="https://solid.github.io/notifications/protocol" rel="rel:latest-version">https://solid.github.io/notifications/protocol</a></dd>
+          </dl>
 
-        <dl id="document-published">
-          <dt>Published</dt>
-          <dd><time content="2021-10-22T00:00:00Z" datatype="xsd:dateTime" datetime="2021-10-22T00:00:00Z" property="schema:datePublished">2021-10-22</time></dd>
-        </dl>
-
-        <dl id="document-modified">
-          <dt>Modified</dt>
-          <dd><time content="2021-12-16T00:00:00Z" datatype="xsd:dateTime" datetime="2021-12-16T00:00:00Z" property="schema:dateModified">2021-12-16</time></dd>
-        </dl>
-
-        <dl id="document-repository">
-          <dt>Repository</dt>
-          <dd><a href="https://github.com/solid/notifications" rel="doap:repository">GitHub</a></dd>
-          <dd><a href="https://github.com/solid/notifications/issues" rel="doap:bug-database">Issues</a></dd>
-        </dl>
-
-        <dl id="document-derived-from">
-          <dt>Derived From</dt>
-          <dd>
-            <ul>
-              <li><cite><a data-versiondate="2021-10-14T13:02:16Z" data-versionurl="https://web.archive.org/web/20211014130216/https://github.com/solid/notifications-panel/blob/3fdc8057d88d6c2e38055557fe62cc3f9c1ba752/proposals/solid-notifications.md" href="https://github.com/solid/notifications-panel/blob/3fdc8057d88d6c2e38055557fe62cc3f9c1ba752/proposals/solid-notifications.md" rel="prov:wasDerivedFrom">notifications-panel/proposals/solid-notifications.md</a></cite></li>
-            </ul>
-          </dd>
-        </dl>
-
-        <dl id="document-language">
-          <dt>Language</dt>
-          <dd><span content="en" lang="" property="dcterms:language" xml:lang="">English</span></dd>
-        </dl>
-
-        <dl id="document-license">
-          <dt>License</dt>
-          <dd><a href="http://purl.org/NET/rdflicense/MIT1.0" rel="schema:license">MIT License</a></dd>
-        </dl>
-
-        <dl id="document-status">
-          <dt>Document Status</dt>
-          <dd prefix="pso: http://purl.org/spar/pso/" rel="pso:holdsStatusInTime" resource="#d2a849bc-3259-11ec-8cee-4ff1341c9be5"><span rel="pso:withStatus" resource="http://purl.org/spar/pso/draft" typeof="pso:PublicationStatus">Editor’s Draft</span></dd>
-        </dl>
-
-        <dl id="document-in-reply-to">
-          <dt>In Reply To</dt>
-          <dd><a href="https://solidproject.org/origin" rel="as:inReplyTo">Solid Origin</a></dd>
-          <dd><a href="https://github.com/solid/process/blob/main/notifications-panel-charter.md" rel="as:inReplyTo">Notifications Panel Charter</a></dd>
-        </dl>
-
-        <dl id="document-policy">
-          <dt>Policy</dt>
-          <dd>
-            <dl id="document-policy-offer" rel="odrl:hasPolicy" resource="#document-policy-offer" typeof="odrl:Policy">
-              <dt>Rule</dt>
-              <dd><a about="#document-policy-offer" href="https://www.w3.org/TR/odrl-vocab/#term-Offer" typeof="odrl:Offer">Offer</a></dd>
-              <dt>Unique Identifier</dt>
-              <dd><a href="https://solid.github.io/notifications/protocol#document-policy-offer" rel="odrl:uid">https://solid.github.io/notifications/protocol#document-policy-offer</a></dd>
-              <dt>Target</dt>
-              <dd><a href="https://solid.github.io/notifications/protocol" rel="odrl:target">https://solid.github.io/notifications/protocol</a></dd>
-              <dt>Permission</dt>
-              <dd>
-                <dl id="document-permission" rel="odrl:permission" resource="#document-permission" typeof="odrl:Permission">
-                  <dt>Assigner</dt>
-                  <dd><a rel="odrl:assigner" href="https://www.w3.org/community/solid/">W3C Solid Community Group</a></dd>
-                  <dt>Action</dt>
-                  <dd>
-                    <ul rel="odrl:action">
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-aggregate" resource="odrl:aggregate">Aggregate</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-archive" resource="odrl:archive">Archive</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-concurrentUse" resource="odrl:concurrentUse">Concurrent Use</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-DerivativeWorks" resource="http://creativecommons.org/ns#DerivativeWorks">Derivative Works</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-derive" resource="odrl:derive">Derive</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-digitize" resource="odrl:digitize">Digitize</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-display" resource="odrl:display">Display</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Distribution" resource="http://creativecommons.org/ns#Distribution">Distribution</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-index" resource="odrl:index">Index</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-inform" resource="odrl:inform">Inform</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-install" resource="odrl:install">Install</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Notice" resource="http://creativecommons.org/ns#Notice">Notice</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-present" resource="odrl:present">Present</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-print" resource="odrl:print">Print</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-read" resource="odrl:read">Read</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-reproduce" resource="odrl:reproduce">Reproduce</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Reproduction" resource="http://creativecommons.org/ns#Reproduction">Reproduction</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-stream" resource="odrl:stream">Stream</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-synchronize" resource="odrl:synchronize">Synchronize</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-textToSpeech" resource="odrl:textToSpeech">Text-to-speech</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-transform" resource="odrl:transform">Transform</a></li>
-                      <li><a href="https://www.w3.org/TR/odrl-vocab/#term-translate" resource="odrl:translate">Translate</a></li>
-                    </ul>
-                  </dd>
-                </dl>
-              </dd>
+          <div id="authors">
+            <dl id="author-name">
+              <dt>Editors</dt>
+              <dd id="Aaron-Coburn"><span about="" rel="schema:editor schema:author"><span about="https://people.apache.org/~acoburn/#i" typeof="schema:Person"><a rel="schema:url" href="https://people.apache.org/~acoburn/"><span about="https://people.apache.org/~acoburn/#i" property="schema:name"><span property="schema:givenName">Aaron</span> <span property="schema:familyName">Coburn</span></span></a></span></span></dd>
+              <dd id="Sarven-Capadisli"><span about="" rel="schema:creator schema:editor"><span about="https://csarven.ca/#i" typeof="schema:Person"><a rel="schema:url" href="https://csarven.ca/"><span about="https://csarven.ca/#i" property="schema:name"><span property="schema:givenName">Sarven</span> <span property="schema:familyName">Capadisli</span></span></a></span></span></dd>
             </dl>
-          </dd>
-        </dl>
+          </div>
+
+          <dl id="document-created">
+            <dt>Created</dt>
+            <dd><time content="2021-10-21T00:00:00Z" datatype="xsd:dateTime" datetime="2021-10-21T00:00:00Z" property="schema:dateCreated">2021-10-21</time></dd>
+          </dl>
+
+          <dl id="document-published">
+            <dt>Published</dt>
+            <dd><time content="2021-10-22T00:00:00Z" datatype="xsd:dateTime" datetime="2021-10-22T00:00:00Z" property="schema:datePublished">2021-10-22</time></dd>
+          </dl>
+
+          <dl id="document-modified">
+            <dt>Modified</dt>
+            <dd><time content="2021-12-16T00:00:00Z" datatype="xsd:dateTime" datetime="2021-12-16T00:00:00Z" property="schema:dateModified">2021-12-16</time></dd>
+          </dl>
+
+          <dl id="document-repository">
+            <dt>Repository</dt>
+            <dd><a href="https://github.com/solid/notifications" rel="doap:repository">GitHub</a></dd>
+            <dd><a href="https://github.com/solid/notifications/issues" rel="doap:bug-database">Issues</a></dd>
+          </dl>
+
+          <dl id="document-derived-from">
+            <dt>Derived From</dt>
+            <dd>
+              <ul>
+                <li><cite><a data-versiondate="2021-10-14T13:02:16Z" data-versionurl="https://web.archive.org/web/20211014130216/https://github.com/solid/notifications-panel/blob/3fdc8057d88d6c2e38055557fe62cc3f9c1ba752/proposals/solid-notifications.md" href="https://github.com/solid/notifications-panel/blob/3fdc8057d88d6c2e38055557fe62cc3f9c1ba752/proposals/solid-notifications.md" rel="prov:wasDerivedFrom">notifications-panel/proposals/solid-notifications.md</a></cite></li>
+              </ul>
+            </dd>
+          </dl>
+
+          <dl id="document-language">
+            <dt>Language</dt>
+            <dd><span content="en" lang="" property="dcterms:language" xml:lang="">English</span></dd>
+          </dl>
+
+          <dl id="document-license">
+            <dt>License</dt>
+            <dd><a href="http://purl.org/NET/rdflicense/MIT1.0" rel="schema:license">MIT License</a></dd>
+          </dl>
+
+          <dl id="document-status">
+            <dt>Document Status</dt>
+            <dd prefix="pso: http://purl.org/spar/pso/" rel="pso:holdsStatusInTime" resource="#d2a849bc-3259-11ec-8cee-4ff1341c9be5"><span rel="pso:withStatus" resource="http://purl.org/spar/pso/draft" typeof="pso:PublicationStatus">Editor’s Draft</span></dd>
+          </dl>
+
+          <dl id="document-in-reply-to">
+            <dt>In Reply To</dt>
+            <dd><a href="https://solidproject.org/origin" rel="as:inReplyTo">Solid Origin</a></dd>
+            <dd><a href="https://github.com/solid/process/blob/main/notifications-panel-charter.md" rel="as:inReplyTo">Notifications Panel Charter</a></dd>
+          </dl>
+
+          <dl id="document-policy">
+            <dt>Policy</dt>
+            <dd>
+              <dl id="document-policy-offer" rel="odrl:hasPolicy" resource="#document-policy-offer" typeof="odrl:Policy">
+                <dt>Rule</dt>
+                <dd><a about="#document-policy-offer" href="https://www.w3.org/TR/odrl-vocab/#term-Offer" typeof="odrl:Offer">Offer</a></dd>
+                <dt>Unique Identifier</dt>
+                <dd><a href="https://solid.github.io/notifications/protocol#document-policy-offer" rel="odrl:uid">https://solid.github.io/notifications/protocol#document-policy-offer</a></dd>
+                <dt>Target</dt>
+                <dd><a href="https://solid.github.io/notifications/protocol" rel="odrl:target">https://solid.github.io/notifications/protocol</a></dd>
+                <dt>Permission</dt>
+                <dd>
+                  <dl id="document-permission" rel="odrl:permission" resource="#document-permission" typeof="odrl:Permission">
+                    <dt>Assigner</dt>
+                    <dd><a rel="odrl:assigner" href="https://www.w3.org/community/solid/">W3C Solid Community Group</a></dd>
+                    <dt>Action</dt>
+                    <dd>
+                      <ul rel="odrl:action">
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-aggregate" resource="odrl:aggregate">Aggregate</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-archive" resource="odrl:archive">Archive</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-concurrentUse" resource="odrl:concurrentUse">Concurrent Use</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-DerivativeWorks" resource="http://creativecommons.org/ns#DerivativeWorks">Derivative Works</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-derive" resource="odrl:derive">Derive</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-digitize" resource="odrl:digitize">Digitize</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-display" resource="odrl:display">Display</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Distribution" resource="http://creativecommons.org/ns#Distribution">Distribution</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-index" resource="odrl:index">Index</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-inform" resource="odrl:inform">Inform</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-install" resource="odrl:install">Install</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Notice" resource="http://creativecommons.org/ns#Notice">Notice</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-present" resource="odrl:present">Present</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-print" resource="odrl:print">Print</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-read" resource="odrl:read">Read</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-reproduce" resource="odrl:reproduce">Reproduce</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Reproduction" resource="http://creativecommons.org/ns#Reproduction">Reproduction</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-stream" resource="odrl:stream">Stream</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-synchronize" resource="odrl:synchronize">Synchronize</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-textToSpeech" resource="odrl:textToSpeech">Text-to-speech</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-transform" resource="odrl:transform">Transform</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-translate" resource="odrl:translate">Translate</a></li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+        </details>
 
         <p class="copyright">Copyright © 2021 <a href="http://www.w3.org/community/solid/">W3C Solid Community Group</a>.</p>
 
@@ -970,6 +974,6 @@ content: "";
 
     <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to top">↑</abbr></a></p>
 
-    <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+    <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   </body>
 </html>
