@@ -297,10 +297,11 @@ content: "";
                 <li class="tocline">
                   <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
                   <ol>
-                    <li><a href="#use-cases"><span class="secno">1.1</span> <span class="content">Use Cases</span></a></li>
-                    <li><a href="#terminology"><span class="secno">1.2</span> <span class="content">Terminology</span></a></li>
-                    <li><a href="#overview"><span class="secno">1.3</span> <span class="content">Overview</span></a></li>
-                    <li><a href="#conformance"><span class="secno">1.4</span> <span class="content">Conformance</span></a></li>
+                    <li><a href="#overview"><span class="secno">1.1</span> <span class="content">Overview</span></a></li>
+                    <li><a href="#use-cases"><span class="secno">1.2</span> <span class="content">Use Cases</span></a></li>
+                    <li><a href="#terminology"><span class="secno">1.3</span> <span class="content">Terminology</span></a></li>
+                    <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.5</span> <span class="content">Conformance</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -380,6 +381,21 @@ content: "";
                 <li><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who want to implement a client to listen for updates to particular resources.</li>
               </ul>
 
+              <section id="overview" inlist="" rel="schema:hasPart" resource="#overview">
+                <h3 property="schema:name">Overview</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+
+                  <p>The following diagram shows the high-level interactions involved in this flow. How a client retrieves an access token for step 5 is outside the scope of this document.</p>
+
+                  <figure id="solid-notifications-flow" rel="schema:hasPart" resource="#solid-notifications-flow">
+                    <img src="solid-notifications-flow.png" height="318" rel="schema:image" width="640" />
+
+                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
+                  </figure>
+                </div>
+              </section>
+
               <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases" typeof="skos:Collection">
                 <h3 property="schema:name skos:prefLabel">Use Cases</h3>
                 <div datatype="rdf:HTML" property="schema:description">
@@ -427,16 +443,36 @@ content: "";
                 </div>
               </section>
 
-              <section id="overview" inlist="" rel="schema:hasPart" resource="#overview">
-                <h3 property="schema:name">Overview</h3>
+              <section id="namespaces" inlist="" rel="schema:hasPart" resource="#namespaces" typeof="skos:ConceptScheme">
+                <h3 property="schema:name skos:prefLabel">Namespaces</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>The following diagram shows the high level interactions involved in this high-level flow. How a client retrieves an access token for step 5 is outside the scope of this document.</p>
-
-                  <figure id="solid-notifications-flow" rel="schema:hasPart" resource="#solid-notifications-flow">
-                    <img src="solid-notifications-flow.png" height="318" rel="schema:image" width="640" />
-
-                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
-                  </figure>
+                  <table>
+                    <caption>Prefixes and Namespaces</caption>
+                    <thead>
+                      <tr>
+                        <th>Prefix</th>
+                        <th>Namespace</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>rdf</td>
+                        <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+                        <td>[<cite><a class="bibref" href="#bib-rdf-schema">rdf-schema</a></cite>]</td>
+                      </tr>
+                      <tr>
+                        <td>solid</td>
+                        <td>http://www.w3.org/ns/solid/terms#</td>
+                        <td>Solid Terms</td>
+                      </tr>
+                      <tr>
+                        <td>notify</td>
+                        <td>http://www.w3.org/ns/solid/notifications#</td>
+                        <td>Solid Notifications</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </section>
 
@@ -487,25 +523,27 @@ content: "";
 <code></code>
 <code>&lt;&gt;</code>
 <code>    a solid:StorageMetadata ;</code>
-<code>    notify:hasWebSocketNotification &lt;#websocketNotification&gt; ;</code>
-<code>    notify:hasWebHookNotification &lt;#webhookNotification&gt; ;</code>
-<code>    notify:hasLinkedDataNotification &lt;https://ldn.example/Metadata&gt; .</code>
+<code>    notify:hasNotificationChannel &lt;#websocketNotification&gt; , &lt;#webhookNotification&gt;</code>
+<code>.</code>
 <code>&lt;#websocketNotification&gt;</code>
 <code>    a notify:WebSocketSubscription2021 ;</code>
 <code>    notify:endpoint &lt;https://websocket.example/subscription&gt; ;</code>
-<code>    notify:features notify:state, notify:rate, notify:expiration .</code>
+<code>    notify:features notify:state, notify:rate, notify:expiration</code>
+<code>.</code>
 <code>&lt;#webhookNotification&gt;</code>
 <code>    a notify:WebHookSubscription2021 ;</code>
 <code>    notify:endpoint &lt;https://webhook.example/subscription&gt; ;</code>
-<code>    notify:features notify:rate, notify:expiration, notify:webookAuth .</code>
+<code>    notify:features notify:rate, notify:expiration, notify:webookAuth</code>
+<code>.</code>
 </pre>
 
                     <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Solid Server Metadata Resource</figcaption>
                   </figure>
 
                   <p class="advisement">The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite> will need to define a notification vocabulary to support this feature.</p>
-                  <p>As shown in the example above, the notification subscription metadata may reside in the Solid Server Metadata Resource itself or in external resources. The <code>WebSocketSubscription2021</code> description is included in-line while the description for Linked Data Notifications is part of an external resource.</p>
-                  <p>A client will use the provided <code>rdf:type</code>, <code>notify:endpoint</code>, and <code>notify:features</code> data to determine which API to use, given its preference for and/or support of the advertised notification protocols.</p>
+                  <p about="" id="discovery-channel-type" rel="spec:requirement" resource="#discovery-channel-type">For every <code>notify:hasNotificationChannel</code> triple, the Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> materialize an <code>rdf:type</code> triple, indicating the channel type.</p>
+                  <p about="" id="discovery-channel-uri" rel="spec:requirement" resource="#discovery-channel-uri">For every <code>notify:hasNotificationChannel</code> triple, the Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> materialize a <code>notify:endpoint</code> triple, indicating the channel subscription URI.</p>
+                  <p>A client will use the provided <code>rdf:type</code>, <code>notify:endpoint</code>, and any <code>notify:features</code> triples from the Solid Server Metadata Resource to determine which API to use, given its preference for and/or support of the advertised notification protocols.</p>
                 </div>
               </section>
 
@@ -514,7 +552,7 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p>The details of subscribing to a particular endpoint depend on the technology used, but all will follow a similar pattern. For WebSockets, this involves sending an authenticated subscription request to the endpoint retrieved as part of the discovery stage.</p>
 
-                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
+                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subscription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
 
                   <p>All other fields are defined by the particular subscription type. Some common features are described in the Features section of this document.</p>
 
