@@ -457,17 +457,17 @@ content: "";
                     </thead>
                     <tbody>
                       <tr>
-                        <td>rdf</td>
+                        <td><code>rdf</code></td>
                         <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
                         <td>[<cite><a class="bibref" href="#bib-rdf-schema">rdf-schema</a></cite>]</td>
                       </tr>
                       <tr>
-                        <td>solid</td>
+                        <td><code>solid</code></td>
                         <td>http://www.w3.org/ns/solid/terms#</td>
                         <td>Solid Terms</td>
                       </tr>
                       <tr>
-                        <td>notify</td>
+                        <td><code>notify</code></td>
                         <td>http://www.w3.org/ns/solid/notifications#</td>
                         <td>Solid Notifications</td>
                       </tr>
@@ -522,20 +522,18 @@ content: "";
 <code>@prefix notify: &lt;http://www.w3.org/ns/solid/notifications#&gt; .</code>
 <code></code>
 <code>&lt;&gt;</code>
-<code>    a solid:StorageMetadata ;</code>
-<code>    notify:hasNotificationChannel &lt;#websocketNotification&gt; , &lt;#webhookNotification&gt;</code>
-<code>.</code>
+<code>  a solid:StorageMetadata ;</code>
+<code>  notify:hasNotificationChannel &lt;#websocketNotification&gt;, &lt;#webhookNotification&gt; .</code>
+<code></code>
 <code>&lt;#websocketNotification&gt;</code>
-<code>    a notify:WebSocketSubscription2021 ;</code>
-<code>    notify:endpoint &lt;https://websocket.example/subscription&gt; ;</code>
-<code>    notify:features notify:state, notify:rate, notify:expiration</code>
-<code>.</code>
+<code>  a notify:WebSocketSubscription2021 ;</code>
+<code>  notify:endpoint &lt;https://websocket.example/subscription&gt; ;</code>
+<code>  notify:features notify:state, notify:rate, notify:expiration .</code>
+<code></code>
 <code>&lt;#webhookNotification&gt;</code>
-<code>    a notify:WebHookSubscription2021 ;</code>
-<code>    notify:endpoint &lt;https://webhook.example/subscription&gt; ;</code>
-<code>    notify:features notify:rate, notify:expiration, notify:webookAuth</code>
-<code>.</code>
-</pre>
+<code>  a notify:WebHookSubscription2021 ;</code>
+<code>  notify:endpoint &lt;https://webhook.example/subscription&gt; ;</code>
+<code>  notify:features notify:rate, notify:expiration, notify:webhookAuth .</code></pre>
 
                     <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Solid Server Metadata Resource</figcaption>
                   </figure>
