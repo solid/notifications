@@ -109,7 +109,7 @@ And define how to handle notifications
 ```js
  (async function () {
         const request = await fetch('https://fetch.example/?auth=Ys3KiUq')
-        const reader = foo.body.getReader()
+        const reader = request.body.getReader()
         const decoder = new TextDecoder()
         reader.read().then(function handle({done, value}) {
             console.log(decoder.decode(value))
