@@ -297,10 +297,11 @@ content: "";
                 <li class="tocline">
                   <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
                   <ol>
-                    <li><a href="#use-cases"><span class="secno">1.1</span> <span class="content">Use Cases</span></a></li>
-                    <li><a href="#terminology"><span class="secno">1.2</span> <span class="content">Terminology</span></a></li>
-                    <li><a href="#overview"><span class="secno">1.3</span> <span class="content">Overview</span></a></li>
-                    <li><a href="#conformance"><span class="secno">1.4</span> <span class="content">Conformance</span></a></li>
+                    <li><a href="#overview"><span class="secno">1.1</span> <span class="content">Overview</span></a></li>
+                    <li><a href="#use-cases"><span class="secno">1.2</span> <span class="content">Use Cases</span></a></li>
+                    <li><a href="#terminology"><span class="secno">1.3</span> <span class="content">Terminology</span></a></li>
+                    <li><a href="#namespaces"><span class="secno">1.4</span> <span class="content">Namespaces</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.5</span> <span class="content">Conformance</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -310,10 +311,7 @@ content: "";
                       <a class="tocxref" href="#discovery"><span class="secno">2.1</span> Discovery</a>
                     </li>
                     <li class="tocline">
-                      <a class="tocxref" href="#notification-gateway"><span class="secno">2.2</span> Notification Gateway</a>
-                    </li>
-                    <li class="tocline">
-                      <a class="tocxref" href="#notification-subscription"><span class="secno">2.3</span> Notification Subscription</a>
+                      <a class="tocxref" href="#notification-subscription"><span class="secno">2.2</span> Notification Subscription</a>
                     </li>
                   </ol>
                 </li>
@@ -383,6 +381,21 @@ content: "";
                 <li><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who want to implement a client to listen for updates to particular resources.</li>
               </ul>
 
+              <section id="overview" inlist="" rel="schema:hasPart" resource="#overview">
+                <h3 property="schema:name">Overview</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+
+                  <p>The following diagram shows the high-level interactions involved in this flow. How a client retrieves an access token for step 5 is outside the scope of this document.</p>
+
+                  <figure id="solid-notifications-flow" rel="schema:hasPart" resource="#solid-notifications-flow">
+                    <img src="solid-notifications-flow.png" height="318" rel="schema:image" width="640" />
+
+                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
+                  </figure>
+                </div>
+              </section>
+
               <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases" typeof="skos:Collection">
                 <h3 property="schema:name skos:prefLabel">Use Cases</h3>
                 <div datatype="rdf:HTML" property="schema:description">
@@ -418,14 +431,11 @@ content: "";
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#solid-server-metadata-resource"></span><span resource="#notification-gateway-api"></span><span resource="#notification-subscription-api"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#solid-server-metadata-resource"></span><span resource="#notification-subscription-api"></span></span>
 
                   <dl>
                     <dt about="#solid-server-metadata-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="solid-server-metadata-resource">Solid Server Metadata Resource</dfn></dt>
                     <dd about="#solid-server-metadata-resource" property="skos:definition">An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes metadata about the Solid server.</dd>
-
-                    <dt about="#notification-gateway-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-gateway-api">Notification Gateway API</dfn></dt>
-                    <dd about="#notification-gateway-api" property="skos:definition">An HTTP endpoint at which a client can negotiate an acceptable notification subscription location [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
 
                     <dt about="#notification-subscription-api" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-subscription-api">Notification Subscription API</dfn></dt>
                     <dd about="#notification-subscription-api" property="skos:definition">An HTTP endpoint at which a client can initiate a subscription to notification events for a particular set of resources [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
@@ -433,16 +443,36 @@ content: "";
                 </div>
               </section>
 
-              <section id="overview" inlist="" rel="schema:hasPart" resource="#overview">
-                <h3 property="schema:name">Overview</h3>
+              <section id="namespaces" inlist="" rel="schema:hasPart" resource="#namespaces" typeof="skos:ConceptScheme">
+                <h3 property="schema:name skos:prefLabel">Namespaces</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>The following diagram shows the high level interactions involved in this high-level flow. How a client retrieves an access token for step 5 is outside the scope of this document.</p>
-
-                  <figure id="solid-notifications-flow" rel="schema:hasPart" resource="#solid-notifications-flow">
-                    <img src="solid-notifications-flow.png" height="318" rel="schema:image" width="640" />
-
-                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
-                  </figure>
+                  <table>
+                    <caption>Prefixes and Namespaces</caption>
+                    <thead>
+                      <tr>
+                        <th>Prefix</th>
+                        <th>Namespace</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>rdf</code></td>
+                        <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+                        <td>[<cite><a class="bibref" href="#bib-rdf-schema">rdf-schema</a></cite>]</td>
+                      </tr>
+                      <tr>
+                        <td><code>solid</code></td>
+                        <td>http://www.w3.org/ns/solid/terms#</td>
+                        <td>Solid Terms</td>
+                      </tr>
+                      <tr>
+                        <td><code>notify</code></td>
+                        <td>http://www.w3.org/ns/solid/notifications#</td>
+                        <td>Solid Notifications</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </section>
 
@@ -460,14 +490,14 @@ content: "";
           <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
             <h2 property="schema:name">Protocol</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The notification protocol involves the <cite><a href="#discovery" rel="cito:discusses">Discovery</a></cite> of the <cite><a href="#notification-gateway" rel="cito:discusses">Notification Gateway</a></cite> service to negotiate subscription channels and the <cite><a href="#notification-subscription" rel="cito:discusses">Notification Subscription</a></cite> endpoint to listen to updates from particular resources.</p>
+              <p>The notification protocol involves the <cite><a href="#discovery" rel="cito:discusses">Discovery</a></cite> of the notification capabilities of a Solid Storage and the <cite><a href="#notification-subscription" rel="cito:discusses">Notification Subscription</a></cite> endpoint to listen to updates from particular resources.</p>
 
               <p><span about="" id="server-representation-jsonld" rel="spec:requirement" resource="#server-representation-jsonld"><span property="spec:statement">A <span rel="spec:requirementSubject" resource="spec:Server">server</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support JSON-LD in these interactions.</span></span></p>
 
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>For any resource in a data pod, a client can discover the associated notification gateway API by fetching the <a href="#solid-server-metadata-resource">Solid Server Metadata Resource</a>. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
+                  <p>For any resource in a data pod, a client can discover the associated notification capabilities by fetching the <a href="#solid-server-metadata-resource">Solid Server Metadata Resource</a>. This resource can be retrieved by appending <code>/.well-known/solid</code> to the base URL of the data pod.</p>
 
                   <figure id="solid-server-metadata-resource-request" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-request">
                     <p class="example-h"><span>Example</span>: Retrieve Solid Server Metadata Resource.</p>
@@ -486,81 +516,41 @@ content: "";
                   <figure id="solid-server-metadata-resource-response" class="example listing" rel="schema:hasPart" resource="#solid-server-metadata-resource-response">
                     <p class="example-h"><span>Example</span>: Representation of Solid Server Metadata Resource.</p>
 
-                    <pre about="#solid-server-metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+                    <pre about="#solid-server-metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: text/turtle</code>
 <code></code>
-<code>{</code>
-<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
-<code>  "notification_endpoint": "https://gateway.example",</code>
-<code>  ...</code>
-<code>}</code></pre>
+<code>@prefix solid: &lt;http://www.w3.org/ns/solid/terms#&gt; .</code>
+<code>@prefix notify: &lt;http://www.w3.org/ns/solid/notifications#&gt; .</code>
+<code></code>
+<code>&lt;&gt;</code>
+<code>  a solid:StorageMetadata ;</code>
+<code>  notify:hasNotificationChannel &lt;#websocketNotification&gt;, &lt;#webhookNotification&gt; .</code>
+<code></code>
+<code>&lt;#websocketNotification&gt;</code>
+<code>  a notify:WebSocketSubscription2021 ;</code>
+<code>  notify:endpoint &lt;https://websocket.example/subscription&gt; ;</code>
+<code>  notify:features notify:state, notify:rate, notify:expiration .</code>
+<code></code>
+<code>&lt;#webhookNotification&gt;</code>
+<code>  a notify:WebHookSubscription2021 ;</code>
+<code>  notify:endpoint &lt;https://webhook.example/subscription&gt; ;</code>
+<code>  notify:features notify:rate, notify:expiration, notify:webhookAuth .</code></pre>
 
                     <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Solid Server Metadata Resource</figcaption>
                   </figure>
 
-                  <p class="advisement">The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite> should define a particular JSON-LD <code>@context</code> for use with JSON-LD serializations.</p>
-                </div>
-              </section>
-
-
-              <section id="notification-gateway" inlist="" rel="schema:hasPart" resource="#notification-gateway">
-                <h3 property="schema:name">Notification Gateway</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p>Once the location of a notification gateway is discovered, an application will negotiate for a particular notification channel, based on acceptable features and protocols.</p>
-
-                  <p>The <code>type</code> array advertises which subscription channels a client is able to understand. The <code>features</code> array advertises which notification features are required by the client. The server selects one of the proposed subscription types and responds with a JSON-LD document that includes the selected protocol, the endpoint for negotiating a subscription and the supported features offered by that protocol.</p>
-
-                  <p>Authentication is not required at this endpoint.</p>
-
-                  <p class="advisement">This definition of a gateway API is <em>at risk</em> and will likely be changed in a future version of this document.</p>
-
-                  <p>A sample interaction is described below. The type and feature names are included as examples.</p>
-
-                  <figure id="notification-gateway-request" class="example listing" rel="schema:hasPart" resource="#notification-gateway-request">
-                    <p class="example-h"><span>Example</span>: Requesting subscription types and features from the Notification Gateway.</p>
-
-                    <pre about="#notification-gateway-request" property="schema:description" typeof="fabio:Script"><code>POST /gateway</code>
-<code>Content-Type: application/ld+json</code>
-<code></code>
-<code>{</code>
-<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
-<code>  "type": ["WebSocketSubscription2021", "WebHookSubscription2021"],</code>
-<code>  "features": ["state", "rate"]</code>
-<code>}</code></pre>
-
-                    <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>features</code> targeting the Notifications Gateway.</figcaption>
-                  </figure>
-
-                  <figure id="notification-gateway-response" class="example listing" rel="schema:hasPart" resource="#notification-gateway-response">
-                    <p class="example-h"><span>Example</span>: Response from the Notification Gateway including a type of subscription endpoint with available features.</p>
-
-                    <pre about="#notification-gateway-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
-<code>Content-Type: application/ld+json</code>
-<code></code>
-<code>{</code>
-<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
-<code>  "type": "WebSocketSubscription2021",</code>
-<code>  "endpoint": "https://websocket.example/subscription",</code>
-<code>  "features": ["state", "rate", "expiration", "feature1", "feature2"]</code>
-<code>}</code></pre>
-
-                    <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code>, <code>endpoint</code> and <code>features</code>.</figcaption>
-                  </figure>
-
-                  <div class="note" id="features-negotiation" inlist="" rel="schema:hasPart" resource="#features-negotiation">
-                    <h4 property="schema:name"><span>Note</span>: Features Negotiation May Not Be Needed</h4>
-                    <div datatype="rdf:HTML" property="schema:description">
-                      <p>The <code>features</code> array may not be needed as part of this negotiation.</p>
-                    </div>
-                  </div>
+                  <p class="advisement">The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite> will need to define a notification vocabulary to support this feature.</p>
+                  <p about="" id="discovery-channel-type" rel="spec:requirement" resource="#discovery-channel-type">For every <code>notify:hasNotificationChannel</code> triple, the Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> materialize an <code>rdf:type</code> triple, indicating the channel type.</p>
+                  <p about="" id="discovery-channel-uri" rel="spec:requirement" resource="#discovery-channel-uri">For every <code>notify:hasNotificationChannel</code> triple, the Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> materialize a <code>notify:endpoint</code> triple, indicating the channel subscription URI.</p>
+                  <p>A client will use the provided <code>rdf:type</code>, <code>notify:endpoint</code>, and any <code>notify:features</code> triples from the Solid Server Metadata Resource to determine which API to use, given its preference for and/or support of the advertised notification protocols.</p>
                 </div>
               </section>
 
               <section id="notification-subscription" inlist="" rel="schema:hasPart" resource="#notification-subscription">
                 <h3 property="schema:name">Notification Subscription</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>The details of subscribing to a particular endpoint depend on the technology used, but all will follow a similar pattern. For WebSockets, this involves sending an authenticated subscription request to the endpoint retrieved from the gateway service.</p>
+                  <p>The details of subscribing to a particular endpoint depend on the technology used, but all will follow a similar pattern. For WebSockets, this involves sending an authenticated subscription request to the endpoint retrieved as part of the discovery stage.</p>
 
-                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
+                  <p>The client sends a JSON-LD payload to this endpoint via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subscription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
 
                   <p>All other fields are defined by the particular subscription type. Some common features are described in the Features section of this document.</p>
 
