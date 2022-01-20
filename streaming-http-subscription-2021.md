@@ -121,9 +121,9 @@ And define how to handle notifications
 
 ## Authentication and Authorization
 
-Streaming HTTP Subscription has advantage of being able to authenticate with notification endpoint
-not only subscription endpoint. Same *access token* can be used with both endpoints.
-This doesn't just rely on notification endpoint being a [Capability URL](https://www.w3.org/TR/capability-urls/)
+Streaming HTTP Subscription has the advantage of being able to authenticate with the notification endpoint
+not only the subscription endpoint. The same *access token* can be used with both endpoints.
+This doesn't just rely on the notification endpoint being a [Capability URL](https://www.w3.org/TR/capability-urls/)
 
 As described by the Solid Notifications Protocol section on Authorization,
 the Streaming HTTP subscription API requires authorization and follows the guidance of the Solid Protocol
