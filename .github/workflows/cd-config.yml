@@ -16,6 +16,10 @@ jobs:
       - name: Generate SVG
         run: for diagram in ./*.mmd; do docker run --rm -v "$PWD:/data" minlag/mermaid-cli -i /data/$diagram; done
 
+      - name: Keep files that get published
+        run: rm -rf .gitignore .github
+
+
       - name: Publish to GitHub pages
         uses: peaceiris/actions-gh-pages@v3
         with:
