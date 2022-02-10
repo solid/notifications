@@ -1,0 +1,23 @@
+# Workflow for processing and publishing bikeshed documents to github pages
+
+name: Publish documents
+on:
+  push:
+    # only concerned with changes in the main branch
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate SVG
+        run: for diagram in ./*.mmd; do docker run --rm -v "$PWD:/data" minlag/mermaid-cli -i /data/$diagram; done
+
+      - name: Publish to GitHub pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: .
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
