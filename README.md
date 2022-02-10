@@ -13,7 +13,7 @@ These reports are incubated by the [Solid Notifications Panel](https://github.co
 
 Sequence diagrams use [Mermaid](https://mermaid-js.github.io/mermaid/) as source syntax.
 Github workflow generates them automatically before deplying github pages.
-Any file ending with `.mmd` will be bere rendered into file ending with `.mmd.svg`.
+Any file ending with `.mmd` will be rendered into file ending with `.mmd.svg`.
 For exmple `source-flow.mmd` results in `source-flow.mmd.svg` which can be referenced from the spec.
 
 To preview diagrams locally following tools are available:
