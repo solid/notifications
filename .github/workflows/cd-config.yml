@@ -13,12 +13,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+
+      - name: Upgrade pip
+        run: python3 -m pip install --upgrade pip
+
+      - name: Install Bikeshed
+        run: |
+          python3 -m pip install --upgrade bikeshed
+          bikeshed update
+
+      - name: Generate HTML
+        run: for bsdoc in ./*.bs; do bikeshed spec $bsdoc; done
+
       - name: Generate SVG
         run: for diagram in ./*.mmd; do docker run --rm -v "$PWD:/data" minlag/mermaid-cli -i /data/$diagram; done
 
       - name: Keep files that get published
-        run: rm -rf .gitignore .github
-
+        run: rm -rf .gitignore .github *.bs
 
       - name: Publish to GitHub pages
         uses: peaceiris/actions-gh-pages@v3

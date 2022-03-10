@@ -1,0 +1,192 @@
+<pre class='metadata'>
+Title: Solid StreamingHTTPSubscription2021
+Boilerplate: issues-index no
+Local Boilerplate: logo yes
+Shortname: solid-streaming-http-subscription-2021
+Level: 1
+Status: w3c/ED
+Group: Solid Community Group
+Favicon: https://solidproject.org/TR/solid.svg
+ED: https://solid.github.io/notifications/streaming-http-subscription-2021
+Repository: https://github.com/solid/notifications
+Inline Github Issues: title
+Markup Shorthands: markdown yes
+Max ToC Depth: 2
+Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
+Abstract:
+  The [[!Solid.Notifications]](https://solid.github.io/notifications/protocol)
+  defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
+
+  This specification defines a subscription type that applies these patterns to the Fetch API.
+Status Text:
+  This section describes the status of this document at the time of its publication.
+
+  This document was published by the [Solid Community Group](https://www.w3.org/community/solid/) as
+  an Editor’s Draft. The sections that have been incorporated have been reviewed following the
+  [Solid process](https://github.com/solid/process). However, the information in this document is
+  still subject to change. You are invited to [contribute](https://github.com/solid/solid-oidc/issues)
+  any feedback, comments, or questions you might have.
+
+  Publication as an Editor’s Draft does not imply endorsement by the W3C Membership. This is a draft
+  document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
+  to cite this document as other than work in progress.
+
+  This document was produced by a group operating under the [W3C Community Contributor License Agreement
+  (CLA)](https://www.w3.org/community/about/process/cla/). A human-readable
+  [summary](https://www.w3.org/community/about/process/cla-deed/) is available.
+</pre>
+
+# Introduction # {#introduction}
+
+*This section is non-normative.*
+
+The [[!Solid.Notifications]] describes a general pattern by which agents can be notified when a Solid Resource changes.
+In the context of a Web Browser, the Streaming HTTP API provides a convenient mechanism for a Solid Storage
+to alert a subscribing client of these changes.
+
+This document describes a Solid Notifications subscription type that makes use of the Fetch API.
+
+This specification is for:
+
+* Resource server developers who wish to enable clients to listen for updates to particular resources.
+* Application developers who wish to implement a client to listen for updates to particular resources.
+
+## Terminology ## {#terminology}
+
+**This section is non-normative.**
+
+This document uses terminology from the Solid Notification Protocol, including "subscription API", "gateway API".
+This document also uses terms from The OAuth 2.0 Authorization Framework specification,
+including "resource server", "authorization server", "access token", and "client",
+as well as terms from the WebSub specification, including "topic".
+
+
+# StreamingHTTPSubscription2021 Type # {#subscription-type}
+
+This specification defines the StreamingHTTPSubscription2021 type for use with Solid Notifications subscriptions.
+that use the Fetch API.
+
+An StreamingHTTPSubscription2021 API MUST conform to the [Solid Notifications Protocol]
+(https://solid.github.io/notifications/protocol#discovery).
+
+An StreamingHTTPSubscription2021 API SHOULD support the [Solid Notifications Features]
+(https://solid.github.io/notifications/protocol#notification-features).
+
+The StreamingHTTPSubscription2021 type defines the following properties:
+
+: endpoint
+:: The endpoint property is used in the body of the subscription response.
+    The value of this property MUST be a URI, using the `https` scheme.
+    A JavaScript client would use the entire value as input to the `fetch` function.
+
+A client establishes a subscription using the StreamingHTTPSubscription2021 type by sending an authenticated
+subscription request to the hypermedia API retrieved via Solid Notifications discovery.
+
+For StreamingHTTPSubscription2021 interactions, the client sends a JSON-LD payload to the appropriate
+hypermedia API via POST. The only required fields in this interaction are type and topic.
+The type field MUST contain the type of subscription being requested.
+The topic field MUST contain the URL of the resource a client wishes to subscribe to changes.
+
+## Subscription Example ## {#example}
+
+*This section is non-normative.*
+
+An example `POST` request using a `DPoP` bound access token is below:
+
+```http
+POST /subscription
+Authorization: DPoP <token>
+DPoP: <proof>
+Content-Type: application/ld+json
+```
+```jsonld
+{
+  "@context": ["https://www.w3.org/ns/solid/notification/v1"],
+  "type": "StreamingHTTPSubscription2021",
+  "topic": "https://storage.example/resource",
+  "state": "opaque-state",
+  "expiration": "2021-12-23T12:37:15Z",
+  "rate": "PT10s"
+}
+```
+> POST request including type and topic targeting the Notification Subscription API.
+
+A successful response will contain a URL to the subscription API that can be used directly with a JavaScript client.
+
+```http
+Content-Type: application/ld+json
+```
+```jsonld
+{
+  "@context": "https://www.w3.org/ns/solid/notification/v1",
+  "type": "StreamingHTTPSubscription2021",
+  "endpoint": "https://fetch.example/?auth=Ys3KiUq"
+}
+```
+> Response to the POST request, including type and endpoint.
+
+In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
+And define how to handle notifications
+
+```js
+ (async function () {
+        const request = await fetch('https://fetch.example/?auth=Ys3KiUq')
+        const reader = request.body.getReader()
+        const decoder = new TextDecoder()
+        reader.read().then(function handle({done, value}) {
+            console.log(decoder.decode(value))
+            return reader.read().then(handle)
+        })
+      })()
+
+```
+
+# Authentication and Authorization # {#auth}
+
+Streaming HTTP Subscription has the advantage of being able to authenticate with the notification endpoint
+not only the subscription endpoint. The same *access token* can be used with both endpoints.
+This doesn't just rely on the notification endpoint being a [Capability URL](https://www.w3.org/TR/capability-urls/)
+
+As described by the Solid Notifications Protocol section on Authorization,
+the Streaming HTTP subscription API requires authorization and follows the guidance of the Solid Protocol
+sections on Authentication and Authorization [[!Solid.Protocol]].
+
+It is beyond the scope of this document to describe how a client fetches an access token.
+Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications [[!Solid.OIDC]].
+
+<pre class=biblio>
+{
+    "Solid.Protocol": {
+        "authors": [
+            "Sarven Capadisli",
+            "Tim Berners-Lee",
+            "Ruben Verborgh",
+            "Kjetil Kjernsmo",
+            "Justin Bingham",
+            "Dmitri Zagidulin"
+        ],
+        "href": "https://solidproject.org/TR/protocol",
+        "title": "Solid Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.Notifications": {
+        "authors": [
+            "Aaron Coburn",
+            "Sarven Capadisli"
+        ],
+        "href": "https://solid.github.io/notifications/protocol",
+        "title": "Solid Notifications Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.OIDC": {
+        "authors": [
+            "Aaron Coburn",
+            "elf Pavlik",
+            "Dmitri Zagidulin"
+        ],
+        "href": "https://solid.github.io/solid-oidc",
+        "title": "Solid-OIDC",
+        "publisher": "W3C Solid Community Group"
+    }
+}
+</pre>
