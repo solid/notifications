@@ -14,8 +14,7 @@ Markup Shorthands: markdown yes
 Max ToC Depth: 2
 Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
 Abstract:
-  The [[!Solid.Notifications]](https://solid.github.io/notifications/protocol)
-  defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
+  The [[!Solid.Notifications]] defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
 
   This specification defines a subscription type that applies these patterns to the Fetch API.
 Status Text:
