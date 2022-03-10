@@ -160,9 +160,7 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
             "Sarven Capadisli",
             "Tim Berners-Lee",
             "Ruben Verborgh",
-            "Kjetil Kjernsmo",
-            "Justin Bingham",
-            "Dmitri Zagidulin"
+            "Kjetil Kjernsmo"
         ],
         "href": "https://solidproject.org/TR/protocol",
         "title": "Solid Protocol",
