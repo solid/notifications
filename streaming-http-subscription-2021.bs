@@ -65,11 +65,9 @@ as well as terms from the WebSub specification, including "topic".
 This specification defines the StreamingHTTPSubscription2021 type for use with Solid Notifications subscriptions.
 that use the Fetch API.
 
-An StreamingHTTPSubscription2021 API MUST conform to the [Solid Notifications Protocol]
-(https://solid.github.io/notifications/protocol#discovery).
+An StreamingHTTPSubscription2021 API MUST conform to the [Solid Notifications Protocol](https://solid.github.io/notifications/protocol#discovery).
 
-An StreamingHTTPSubscription2021 API SHOULD support the [Solid Notifications Features]
-(https://solid.github.io/notifications/protocol#notification-features).
+An StreamingHTTPSubscription2021 API SHOULD support the [Solid Notifications Features](https://solid.github.io/notifications/protocol#notification-features).
 
 The StreamingHTTPSubscription2021 type defines the following properties:
 
