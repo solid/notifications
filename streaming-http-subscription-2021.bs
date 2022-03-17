@@ -117,10 +117,10 @@ Content-Type: application/ld+json
 {
   "@context": "https://www.w3.org/ns/solid/notification/v1",
   "type": "StreamingHTTPSubscription2021",
-  "subscription": "https://fetch.example/?auth=Ys3KiUq"
+  "source": "https://fetch.example/?auth=Ys3KiUq"
 }
 ```
-> Response to the POST request, including type and subscription.
+> Response to the POST request, including subscription type and the notifications source.
 
 In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
 And define how to handle notifications
@@ -140,9 +140,9 @@ And define how to handle notifications
 
 # Authentication and Authorization # {#auth}
 
-Streaming HTTP Subscription has the advantage of being able to authenticate with the notification API
-as well as the subscription API. The same *access token* can be used with both resources.
-This doesn't just rely on the notification API being a [Capability URL](https://www.w3.org/TR/capability-urls/)
+Streaming HTTP Subscription has the advantage of being able to authenticate with the Subscription API
+as well as the notifications source. The same *access token* can be used with both resources.
+This doesn't just rely on the notifications source being a [Capability URL](https://www.w3.org/TR/capability-urls/) as many other subscriptions types do.
 
 As described by the Solid Notifications Protocol section on Authorization,
 the Streaming HTTP subscription API requires authorization and follows the guidance of the Solid Protocol

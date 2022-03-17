@@ -543,7 +543,7 @@ content: "";
                   <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
 
                   <figure id="notification-subscription-request" class="example listing" rel="schema:hasPart" resource="#notification-subscription-request">
-                    <p class="example-h"><span>Example</span>: Requesting a WebSocket subscription URI from the Notification Subscription API.</p>
+                    <p class="example-h"><span>Example</span>: Requesting a WebSocket subscription from the Subscription API.</p>
 
                     <pre about="#notification-subscription-request" property="schema:description" typeof="fabio:Script"><code>POST /subscription</code>
 <code>Authorization: DPoP &lt;token&gt;</code>
@@ -565,7 +565,7 @@ content: "";
                   <p>A successful response will contain a subscription URI that can be used directly with a JavaScript client.</p>
 
                   <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
-                    <p class="example-h"><span>Example</span>: Response from the Notification Subscription including the WebSocket subscription URI.</p>
+                    <p class="example-h"><span>Example</span>: Response from the Subscription API including the WebSocket notifications source.</p>
 
                     <pre about="#notification-subscription-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
 <code>Content-Type: application/ld+json</code>
@@ -576,15 +576,15 @@ content: "";
 <code>  "source": "wss://websocket.example/?auth=Ys3KiUq"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code> and <code>subscription</code>.</figcaption>
+                    <figcaption property="schema:name">Response to the <code>POST</code> request including subscription <code>type</code> and notifications <code>source</code>.</figcaption>
                   </figure>
 
                   <p>In JavaScript, a client can use the data in the response to establish a connection to the WebSocket server.</p>
 
                   <figure id="websocket-new" class="example listing" rel="schema:hasPart" resource="#websocket-new">
-                    <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection with a subscription URI.</p>
+                    <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection with a notifications source.</p>
 
-                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket(subscription, type)</code></pre>
+                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket(source, type)</code></pre>
 
                     <figcaption property="schema:name">JavaScript code to establish a <code>new WebSocket</code> connection</figcaption>
                   </figure>
