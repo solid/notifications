@@ -9,7 +9,7 @@
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://solid.github.io/notifications/streaming-http-subscription-2021" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="560da87c00a02a20c075cc072c7553451ced37ae" name="document-revision">
+  <meta content="3e502bea0d68fedb6b1f95d6188880aef8e1cc10" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -623,9 +623,9 @@ that use the Fetch API.</p>
    <p>An StreamingHTTPSubscription2021 API SHOULD support the <a href="https://solid.github.io/notifications/protocol#notification-features">Solid Notifications Features</a>.</p>
    <p>The StreamingHTTPSubscription2021 type defines the following properties:</p>
    <dl>
-    <dt data-md>endpoint
+    <dt data-md>source
     <dd data-md>
-     <p>The endpoint property is used in the body of the subscription response.
+     <p>The source property is used in the body of the subscription response.
 The value of this property MUST be a URI, using the <code>https</code> scheme.
 A JavaScript client would use the entire value as input to the <code>fetch</code> function.</p>
    </dl>
@@ -661,11 +661,11 @@ Content-Type: application/ld+json
 <pre class="language-jsonld highlight"><c- p>{</c->
   <c- nd>"@context"</c-><c- p>:</c-> <c- u>"https://www.w3.org/ns/solid/notification/v1"</c-><c- p>,</c->
   <c- f>"type"</c-><c- p>:</c-> <c- u>"StreamingHTTPSubscription2021"</c-><c- p>,</c->
-  <c- f>"endpoint"</c-><c- p>:</c-> <c- u>"https://fetch.example/?auth=Ys3KiUq"</c->
+  <c- f>"source"</c-><c- p>:</c-> <c- u>"https://fetch.example/?auth=Ys3KiUq"</c->
 <c- p>}</c->
 </pre>
    <blockquote>
-    <p>Response to the POST request, including type and endpoint.</p>
+    <p>Response to the POST request, including subscription type and the notifications source.</p>
    </blockquote>
    <p>In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
 And define how to handle notifications</p>
@@ -676,9 +676,9 @@ And define how to handle notifications</p>
 <c- p>}</c->
 </pre>
    <h2 class="heading settled" data-level="3" id="auth"><span class="secno">3. </span><span class="content">Authentication and Authorization</span><a class="self-link" href="#auth"></a></h2>
-   <p>Streaming HTTP Subscription has the advantage of being able to authenticate with the notification endpoint
-not only the subscription endpoint. The same <em>access token</em> can be used with both endpoints.
-This doesn’t just rely on the notification endpoint being a <a href="https://www.w3.org/TR/capability-urls/">Capability URL</a></p>
+   <p>Streaming HTTP Subscription has the advantage of being able to authenticate with the Subscription API
+as well as the notifications source. The same <em>access token</em> can be used with both resources.
+This doesn’t just rely on the notifications source being a <a href="https://www.w3.org/TR/capability-urls/">Capability URL</a> as many other subscriptions types do.</p>
    <p>As described by the Solid Notifications Protocol section on Authorization,
 the Streaming HTTP subscription API requires authorization and follows the guidance of the Solid Protocol
 sections on Authentication and Authorization <a data-link-type="biblio" href="#biblio-solidprotocol">[Solid.Protocol]</a>.</p>
