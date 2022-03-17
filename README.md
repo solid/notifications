@@ -7,6 +7,13 @@ These reports are incubated by the [Solid Notifications Panel](https://github.co
 ## Technical Reports
 * [Solid Notifications Protocol](https://solid.github.io/notifications/protocol) Editor's Draft.
 
+### Subscription Types
+* [WebSocketSubscription2021](https://solid.github.io/notifications/websocket-subscription-2021) Editor's Draft.
+* [StreamingHTTPSubscription2021](https://solid.github.io/notifications/streaming-http-subscription-2021) Editor's Draft.
+* [EventSourceSubscription2021](https://solid.github.io/notifications/eventsource-subscription-2021) Editor's Draft.
+* [LinkedDataNotificationsSubscription2021](https://solid.github.io/notifications/linkeddatanotifications-subscription-2021) Editor's Draft.
+* [WebHookSubscription2021](https://github.com/solid/notifications/blob/main/webhook-subscription.md) Editor's Draft.
+
 ## Diagrams
 
 ### Mermaid
