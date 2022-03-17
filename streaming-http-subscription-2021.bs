@@ -71,8 +71,8 @@ An StreamingHTTPSubscription2021 API SHOULD support the [Solid Notifications Fea
 
 The StreamingHTTPSubscription2021 type defines the following properties:
 
-: subscription
-:: The subscription property is used in the body of the subscription response.
+: source
+:: The source property is used in the body of the subscription response.
     The value of this property MUST be a URI, using the `https` scheme.
     A JavaScript client would use the entire value as input to the `fetch` function.
 
