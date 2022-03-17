@@ -71,8 +71,8 @@ An StreamingHTTPSubscription2021 API SHOULD support the [Solid Notifications Fea
 
 The StreamingHTTPSubscription2021 type defines the following properties:
 
-: endpoint
-:: The endpoint property is used in the body of the subscription response.
+: source
+:: The source property is used in the body of the subscription response.
     The value of this property MUST be a URI, using the `https` scheme.
     A JavaScript client would use the entire value as input to the `fetch` function.
 
@@ -117,10 +117,10 @@ Content-Type: application/ld+json
 {
   "@context": "https://www.w3.org/ns/solid/notification/v1",
   "type": "StreamingHTTPSubscription2021",
-  "endpoint": "https://fetch.example/?auth=Ys3KiUq"
+  "source": "https://fetch.example/?auth=Ys3KiUq"
 }
 ```
-> Response to the POST request, including type and endpoint.
+> Response to the POST request, including subscription type and the notifications source.
 
 In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
 And define how to handle notifications
@@ -135,9 +135,9 @@ for await (const notificationText of textStream) {
 
 # Authentication and Authorization # {#auth}
 
-Streaming HTTP Subscription has the advantage of being able to authenticate with the notification endpoint
-not only the subscription endpoint. The same *access token* can be used with both endpoints.
-This doesn't just rely on the notification endpoint being a [Capability URL](https://www.w3.org/TR/capability-urls/)
+Streaming HTTP Subscription has the advantage of being able to authenticate with the Subscription API
+as well as the notifications source. The same *access token* can be used with both resources.
+This doesn't just rely on the notifications source being a [Capability URL](https://www.w3.org/TR/capability-urls/) as many other subscriptions types do.
 
 As described by the Solid Notifications Protocol section on Authorization,
 the Streaming HTTP subscription API requires authorization and follows the guidance of the Solid Protocol
