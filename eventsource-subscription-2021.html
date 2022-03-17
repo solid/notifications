@@ -377,11 +377,11 @@ content: "";
 
               <p property="skos:definition">The <code>EventSourceSubscription2021</code> type defines the following properties:</p>
 
-              <span rel="skos:hasTopConcept"><span resource="#eventsourcesubscription2021-subscription"></span></span>
+              <span rel="skos:hasTopConcept"><span resource="#eventsourcesubscription2021-source"></span></span>
 
               <dl>
-                <dt about="#eventsourcesubscription2021-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="eventsourcesubscription2021-subscription">subscription</dfn></dt>
-                <dd about="#eventsourcesubscription2021-subscription" property="skos:definition"><span about="" id="eventsourcesubscription2021-subscription-https" rel="spec:requirement" resource="#eventsourcesubscription2021-subscription-https"><span property="spec:statement">The <code>subscription</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> A JavaScript client would use the entire value as input to the EventSource constructor.</dd>
+                <dt about="#eventsourcesubscription2021-source" property="skos:prefLabel" typeof="skos:Concept"><dfn id="eventsourcesubscription2021-source">source</dfn></dt>
+                <dd about="#eventsourcesubscription2021-source" property="skos:definition"><span about="" id="eventsourcesubscription2021-source-https" rel="spec:requirement" resource="#eventsourcesubscription2021-source-https"><span property="spec:statement">The <code>source</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> A JavaScript client would use the entire value as input to the EventSource constructor.</dd>
               </dl>
 
               <p>A client establishes a subscription using the <code>EventSourceSubscription2021</code> type by sending an authenticated subscription request to the hypermedia API retrieved via <cite><a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications discovery</a></cite>.</p>
@@ -426,10 +426,10 @@ content: "";
 <code>{</code>
 <code>  "@context": "https://www.w3.org/ns/solid/notification/v1",</code>
 <code>  "type": "EventSourceSubscription2021",</code>
-<code>  "subscription": "https://eventsource.example/?auth=Ys3KiUq"</code>
+<code>  "source": "https://eventsource.example/?auth=Ys3KiUq"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code> and <code>subscription</code>.</figcaption>
+                    <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code> and <code>source</code>.</figcaption>
                   </figure>
 
                   <p>In JavaScript, a client can use the data in the response to establish a connection to the EventSource hypermedia API.</p>

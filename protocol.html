@@ -573,7 +573,7 @@ content: "";
 <code>{</code>
 <code>  "@context": "https://www.w3.org/ns/solid/notification/v1",</code>
 <code>  "type": "WebSocketSubscription2021",</code>
-<code>  "subscription": "wss://websocket.example/?auth=Ys3KiUq"</code>
+<code>  "source": "wss://websocket.example/?auth=Ys3KiUq"</code>
 <code>}</code></pre>
 
                     <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code> and <code>subscription</code>.</figcaption>
@@ -641,11 +641,11 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p property="skos:definition">The <code>WebSocketSubscription2021</code> type defines the following properties:</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#websocketsubscription2021-subscription"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#websocketsubscription2021-source"></span></span>
 
                   <dl>
-                    <dt about="#websocketsubscription2021-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="websocketsubscription2021-subscription">subscription</dfn></dt>
-                    <dd about="#websocketsubscription2021-subscription" property="skos:definition"><span about="" id="websocketsubscription2021-subscription-wss" rel="spec:requirement" resource="#websocketsubscription2021-subscription-wss"><span property="spec:statement">The <code>subscription</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>wss</code> scheme.</span></span> A JavaScript client would use the entire value as input to the WebSocket constructor.</dd>
+                    <dt about="#websocketsubscription2021-source" property="skos:prefLabel" typeof="skos:Concept"><dfn id="websocketsubscription2021-subscription">source</dfn></dt>
+                    <dd about="#websocketsubscription2021-source" property="skos:definition"><span about="" id="websocketsubscription2021-source-wss" rel="spec:requirement" resource="#websocketsubscription2021-source-wss"><span property="spec:statement">The <code>source</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>wss</code> scheme.</span></span> A JavaScript client would use the entire value as input to the WebSocket constructor.</dd>
                   </dl>
                 </div>
               </section>
