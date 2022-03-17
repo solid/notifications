@@ -9,7 +9,7 @@
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://solid.github.io/notifications/streaming-http-subscription-2021" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="1199e65f0455733d1a52a090563256235ac781f2" name="document-revision">
+  <meta content="713c5d10a5280f9e2bfe28eff5c411985b211525" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -669,15 +669,11 @@ Content-Type: application/ld+json
    </blockquote>
    <p>In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
 And define how to handle notifications</p>
-<pre class="language-js highlight"><c- p>(</c-><c- k>async</c-> <c- a>function</c-> <c- p>()</c-> <c- p>{</c->
-       <c- a>const</c-> request <c- o>=</c-> <c- k>await</c-> fetch<c- p>(</c-><c- t>'https://fetch.example/?auth=Ys3KiUq'</c-><c- p>)</c->
-       <c- a>const</c-> reader <c- o>=</c-> request<c- p>.</c->body<c- p>.</c->getReader<c- p>()</c->
-       <c- a>const</c-> decoder <c- o>=</c-> <c- ow>new</c-> TextDecoder<c- p>()</c->
-       reader<c- p>.</c->read<c- p>().</c->then<c- p>(</c-><c- a>function</c-> handle<c- p>({</c->done<c- p>,</c-> value<c- p>})</c-> <c- p>{</c->
-           console<c- p>.</c->log<c- p>(</c->decoder<c- p>.</c->decode<c- p>(</c->value<c- p>))</c->
-           <c- k>return</c-> reader<c- p>.</c->read<c- p>().</c->then<c- p>(</c->handle<c- p>)</c->
-       <c- p>})</c->
-     <c- p>})()</c->
+<pre class="language-js highlight"><c- a>const</c-> response <c- o>=</c-> <c- k>await</c-> fetch<c- p>(</c-><c- t>'https://fetch.example/?auth=Ys3KiUq'</c-><c- p>)</c->
+<c- a>const</c-> textStream <c- o>=</c-> response<c- p>.</c->body<c- p>.</c->pipeThrough<c- p>(</c-><c- ow>new</c-> TextDecoderStream<c- p>());</c->
+<c- k>for</c-> <c- k>await</c-> <c- p>(</c-><c- a>const</c-> notificationText <c- k>of</c-> textStream<c- p>)</c-> <c- p>{</c->
+  parseAndHandle<c- p>(</c->notificationText<c- p>)</c->
+<c- p>}</c->
 </pre>
    <h2 class="heading settled" data-level="3" id="auth"><span class="secno">3. </span><span class="content">Authentication and Authorization</span><a class="self-link" href="#auth"></a></h2>
    <p>Streaming HTTP Subscription has the advantage of being able to authenticate with the notification endpoint
