@@ -126,16 +126,11 @@ In JavaScript, a client can use the data in the response to establish a connecti
 And define how to handle notifications
 
 ```js
- (async function () {
-        const request = await fetch('https://fetch.example/?auth=Ys3KiUq')
-        const reader = request.body.getReader()
-        const decoder = new TextDecoder()
-        reader.read().then(function handle({done, value}) {
-            console.log(decoder.decode(value))
-            return reader.read().then(handle)
-        })
-      })()
-
+const response = await fetch('https://fetch.example/?auth=Ys3KiUq')
+const textStream = response.body.pipeThrough(new TextDecoderStream());
+for await (const notificationText of textStream) {
+  parseAndHandle(notificationText)
+}
 ```
 
 # Authentication and Authorization # {#auth}
