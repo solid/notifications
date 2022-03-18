@@ -1,0 +1,11 @@
+Title: Notification Flow in Solid (WebHook)
+Subscribing Server -> Solid Metadata Resource: 1. Discovery
+Solid Metadata Resource -> Subscribing Server: 2. Receive (cache) server metadata resouce
+Subscribing Server -> Notification Sever: 3. Request a new WebHook subscription (with access token)
+Notification Sever -> Authorization Server: 4. Verify Authorization
+Authorization Server -> Notification Sever: 5. Receive capabilities
+Notification Sever -> Subscribing Server: 6. Receive subscription URL and metadata
+Note over Notification Sever: 7. Action happens on Notification Sever
+Notification Sever -> Subscribing Server: 8. Webhook Request (With signed token)
+Note over Subscribing Server: 9. Validate Webhook Token
+Subscribing Server -> Unsubscribe Endpoint: 10. Unsubscribe from the WebHook
