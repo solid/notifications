@@ -90,7 +90,7 @@ Content-Type: text/turtle
   notify:features notify:rate, notify:expiration, notify:webhookAuth .
 ```
 
-Note the `nofify:subscription` and `notify:webid`. We'll be using those in future steps.
+Note the use of `nofify:subscription` and `notify:webid`. We'll be using those in future steps.
 
 #### 3. Request a new WebHook subscription (with access token)
 
