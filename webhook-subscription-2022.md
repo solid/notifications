@@ -247,7 +247,7 @@ This section details the additional features built for `WebHookSubscription2021`
 ### 6.1 webhook-auth
 The `webhook-auth` feature allows subscribing servers to verify that a request came from a certain Pod.
 
-Pods that implement the `webhook-auth` feature `MUST` create an Access Token and DPoP token in accordance with the Solid OIDC specification and embed those tokens in the headers of all webhook requests.
+Pods that implement the `webhook-auth` feature `MUST` create an Access Token and DPoP proof in accordance with the Solid OIDC specification and include those tokens in the headers of all webhook requests.
 
 ## Further Considerations
  - Using DPoP authentication in the webhook request does coincide with the common use case for Solid-OIDC, but it is overkill. There is no need for a security model that has two separate tokens (DPoP Token and the Auth token). Instead, we should consider using one token with the combined features (identity + htm and htu) of the two tokens.
