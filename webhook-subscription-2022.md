@@ -159,7 +159,7 @@ A request is made to the subscribing server's registered webhook.
 ```http
 POST https://api.liqid.chat/webhook
 Authorization: DPoP <authToken>
-Dpop: <dpopToken>
+Dpop: <dpopProof>
 Content-Type: application/ld+json
 
 {
