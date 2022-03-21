@@ -184,7 +184,7 @@ Content-Type: application/ld+json
 
 The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/webhooks/card.ttl#i`. Each token corr
 
-`<dpopToken>` is a dpop token with an `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`. Both tokens correspond to the authentication method outlined in Solid OIDC.
+`<dpopProof>` is a dpop proof containing the claims `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
 The subscribing server should check the `iss` field and confirm that it matches the URL used in the discovery stage.
 
