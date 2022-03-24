@@ -9,7 +9,7 @@
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://solid.github.io/notifications/streaming-http-subscription-2021" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="3e502bea0d68fedb6b1f95d6188880aef8e1cc10" name="document-revision">
+  <meta content="dcb4eec8a900407a7d92cac6622f97287e7978c0" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -529,7 +529,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid StreamingHTTPSubscription2021</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-03-17">17 March 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-03-24">24 March 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -655,6 +655,7 @@ Content-Type: application/ld+json
    <blockquote>
     <p>POST request including type and topic targeting the Notification Subscription API.</p>
    </blockquote>
+   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription resource as a container</a></div>
    <p>A successful response will contain a URL to the subscription API that can be used directly with a JavaScript client.</p>
 <pre class="language-http highlight">Content-Type: application/ld+json
 </pre>
@@ -675,6 +676,7 @@ And define how to handle notifications</p>
   parseAndHandle<c- p>(</c->notificationText<c- p>)</c->
 <c- p>}</c->
 </pre>
+   <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/notifications/issues/46" style="text-transform:none">solid/notifications/46</a><a href="https://github.com/solid/notifications/issues/46">Specify that each chunk must include one full notification.</a></div>
    <h2 class="heading settled" data-level="3" id="auth"><span class="secno">3. </span><span class="content">Authentication and Authorization</span><a class="self-link" href="#auth"></a></h2>
    <p>Streaming HTTP Subscription has the advantage of being able to authenticate with the Subscription API
 as well as the notifications source. The same <em>access token</em> can be used with both resources.
