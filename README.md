@@ -8,6 +8,13 @@ These reports are incubated by the [Solid Notifications Panel](https://github.co
 * [Solid Notifications Protocol](https://solid.github.io/notifications/protocol) Editor's Draft.
 
 ### Subscription Types
+
+The Solid Notification Protocol makes it possible to define any number of subscription types.
+The list of subscription types below does not intend to be comprehensive. This list is intended
+to be useful to application developers looking for existing subscription types as well as to
+authors of new subscription types. New subscription types may be added here, but there is no
+requirement to do so.
+
 * [WebSocketSubscription2021](https://solid.github.io/notifications/websocket-subscription-2021) Editor's Draft.
 * [StreamingHTTPSubscription2021](https://solid.github.io/notifications/streaming-http-subscription-2021) Editor's Draft.
 * [EventSourceSubscription2021](https://solid.github.io/notifications/eventsource-subscription-2021) Editor's Draft.
