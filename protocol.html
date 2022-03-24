@@ -319,12 +319,6 @@ content: "";
                 </li>
                 <li class="tocline">
                   <a class="tocxref" href="#subscription-types"><span class="secno">4</span> <span class="content">Subscription Types</span></a>
-                  <ol>
-                    <li><a href="#websocketsubscription2021"><span class="secno">4.1</span> <span class="content">WebSocketSubscription2021</span></a></li>
-                    <li><a href="#eventsourcesubscription2021"><span class="secno">4.2</span> <span class="content">EventSourceSubscription2021</span></a></li>
-                    <li><a href="#linkeddatanotificationssubscription2021"><span class="secno">4.3</span> <span class="content">LinkedDataNotificationsSubscription2021</span></a></li>
-                    <li><a href="#webhooksubscription2021"><span class="secno">4.4</span> <span class="content">WebHookSubscription2021</span></a></li>
-                  </ol>
                 </li>
                 <li class="tocline">
                   <a class="tocxref" href="#notification-features"><span class="secno">5</span> <span class="content">Notification Features</span></a>
@@ -530,75 +524,77 @@ content: "";
               <section id="notification-subscription" inlist="" rel="schema:hasPart" resource="#notification-subscription">
                 <h3 property="schema:name">Notification Subscription</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can hold any information, typically used by clients to find available features (see <a href="#notification-features">Notification Features</a>).</p>
+                  <p>A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can hold any information, typically used by clients to discover available features and capabilities (see <a href="#notification-features">Notification Features</a>).</p>
 
                   <p><span about="" id="server-subscription-resource-safe-methods" rel="spec:requirement" resource="#server-subscription-resource-safe-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> requests targeting the subscription resource.</span></span></p>
 
-                  <p>The details of initiating a particular subscription depend on the technology used, but all will follow a similar pattern. For WebSockets, this involves sending an authenticated request to the subscription URL, retrieved as part of the discovery stage.</p>
+                  <p>
+                    <span id="server-subscription-creation" rel="spec:requirement" resource="#server-subscription-creation">
+                      <span property="spec:statement">
+                        <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept
+                        authorized <code>POST</code> requests targeting the subscription resource
+                        with a well-formed payload serialized as JSON-LD.
+                      </span>
+                    </span>
+                  </p>
 
-                  <p>The client sends a JSON-LD payload to this URL via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subscription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
+                  <p>
+                    <span id="server-subscription-payload" rel="spec:requirement" resource="#server-subscription-payload">
+                      <span property="spec:statement">
+                        <span rel="spec:requirementSubject" resource="spec:Server">
+                          The JSON-LD payload received by a server in a <code>POST</code> request
+                          <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain
+                          at least three fields: <code>@context</code>, <code>type</code> and <code>topic</code>.
+                          All other data requirements are defined by the individual subscription types.
+                          Some common feature properties are described in the Features section of this document.
+                        </span>
+                      </span>
+                    </span>
+                  </p>
 
-                  <p>All other fields are defined by the particular subscription type. Some common features are described in the Features section of this document.</p>
+                  <dl>
+                    <dt property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="server-subscription-request-context">@context</dfn>
+                    </dt>
+                    <dd property="skos:definition">
+                      <span id="server-subscription-context-value" rel="spec:requirement" resource="#server-subscription-context-value">
+                        <span property="spec:statement">
+                          The <code>@context</code> property is <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
+                          be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
+                          Other values <span property="spec:requirementLevel" resource="spec:MAY">MAY</span> also be present.
+                        </span>
+                      </span>
+                    </dd>
+                  </dl>
 
-                  <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
+                  <dl>
+                    <dt property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="server-subscription-request-type">type</dfn>
+                    </dt>
+                    <dd property="skos:definition">
+                      <span id="server-subscription-type-value" rel="spec:requirement" resource="#server-subscription-type-value">
+                        <span property="spec:statement">
+                          The <code>type</code> property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
+                          indicate the subscription type to be created.
+                        </span>
+                      </span>
+                    </dd>
+                  </dl>
 
-                  <figure id="notification-subscription-request" class="example listing" rel="schema:hasPart" resource="#notification-subscription-request">
-                    <p class="example-h"><span>Example</span>: Requesting a WebSocket subscription from the Subscription API.</p>
-
-                    <pre about="#notification-subscription-request" property="schema:description" typeof="fabio:Script"><code>POST /subscription</code>
-<code>Authorization: DPoP &lt;token&gt;</code>
-<code>DPoP: &lt;proof&gt;</code>
-<code>Content-Type: application/ld+json</code>
-<code></code>
-<code>{</code>
-<code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
-<code>  "type": "WebSocketSubscription2021",</code>
-<code>  "topic": "https://pod.example/resource",</code>
-<code>  "state": "opaque-state",</code>
-<code>  "expiration": "2021-09-21T12:37:15Z",</code>
-<code>  "rate": "PT10s"</code>
-<code>}</code></pre>
-
-                    <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>topic</code> targeting the Notification Subscription.</figcaption>
-                  </figure>
-
-                  <p>A successful response will contain a subscription URI that can be used directly with a JavaScript client.</p>
-
-                  <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
-                    <p class="example-h"><span>Example</span>: Response from the Subscription API including the WebSocket notifications source.</p>
-
-                    <pre about="#notification-subscription-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
-<code>Content-Type: application/ld+json</code>
-<code></code>
-<code>{</code>
-<code>  "@context": "https://www.w3.org/ns/solid/notification/v1",</code>
-<code>  "type": "WebSocketSubscription2021",</code>
-<code>  "source": "wss://websocket.example/?auth=Ys3KiUq"</code>
-<code>}</code></pre>
-
-                    <figcaption property="schema:name">Response to the <code>POST</code> request including subscription <code>type</code> and notifications <code>source</code>.</figcaption>
-                  </figure>
-
-                  <p>In JavaScript, a client can use the data in the response to establish a connection to the WebSocket server.</p>
-
-                  <figure id="websocket-new" class="example listing" rel="schema:hasPart" resource="#websocket-new">
-                    <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection with a notifications source.</p>
-
-                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket(source, type)</code></pre>
-
-                    <figcaption property="schema:name">JavaScript code to establish a <code>new WebSocket</code> connection</figcaption>
-                  </figure>
-
-                  <p>A client will define how to handle events, especially the <code>onclose</code> and <code>onmessage</code> events.</p>
-
-                  <figure id="websocket-onclose-onmessage" class="example listing" rel="schema:hasPart" resource="#websocket-onclose-onmessage">
-                    <p class="example-h"><span>Example</span>: Handling WebSocket events after the connection.</p>
-
-                    <pre about="#websocket-onclose-onmessage" property="schema:description" typeof="fabio:Script"><code>ws.onclose(evt => reconnect(evt));</code>
-<code>ws.onmessage(evt => console.log("Message received: ", evt))</code></pre>
-
-                    <figcaption property="schema:name">JavaScript code to handle <code>onclose</code> and <code>onmessage</code> events</figcaption>
-                  </figure>
+                  <dl>
+                    <dt property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="server-subscription-request-topic">topic</dfn>
+                    </dt>
+                    <dd property="skos:definition">
+                      <span id="server-subscription-topic-value" rel="spec:requirement" resource="#server-subscription-topic-value">
+                        <span property="spec:statement">
+                          The <code>topic</code> property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
+                          indicate the IRI(s) of the resources about which the client would like to receive notifications.
+                        </span>
+                      </span>
+                    </dd>
+                  </dl>
                 </div>
               </section>
             </div>
@@ -616,83 +612,18 @@ content: "";
           <section id="subscription-types" inlist="" rel="schema:hasPart" resource="#subscription-types">
             <h2 property="schema:name">Subscription Types</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>This document defines four initial subscription types:</p>
+              <p>
+                This document makes it possible to define new subscription types.
+                A list of known subscription types is available in the
+                <a href="https://github.com/solid/notifications#subscription-types">Solid
+                  Notifications source repository</a>.
+              </p>
 
-              <nav>
-                <ul>
-                  <li><a href="#websocketsubscription2021">WebSocketSubscription2021</a></li>
-                  <li><a href="#eventsourcesubscription2021">EventSourceSubscription2021</a></li>
-                  <li><a href="#linkeddatanotificationssubscription2021">LinkedDataNotificationsSubscription2021</a></li>
-                  <li><a href="#webhooksubscription2021">WebHookSubscription2021</a></li>
-                </ul>
-              </nav>
+              <p>
+                Guidelines for defining new subscription types are included in the
+                <cite><a href="#subscription-types-extension" rel="rdfs:seeAlso">Subscription Types Extension</a></cite> section.
+              </p>
 
-              <div class="note" id="subscription-type-naming-convention" inlist="" rel="schema:hasPart" resource="#subscription-type-naming-convention">
-                <h3 property="schema:name"><span>Note</span>: Subscription Type Naming Convention</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p>The naming convention used here follows a pattern used by the Verifiable Credentials community, making it possible to distinguish between different versions of these subscription types. Other naming conventions can achieve the same end.</p>
-                </div>
-              </div>
-
-              <p>The requirements for new subscription types is explained in the <cite><a href="#subscription-types-extension" rel="rdfs:seeAlso">Subscription Types Extension</a></cite> section.</p>
-
-              <section id="websocketsubscription2021" inlist="" rel="schema:hasPart" resource="#websocketsubscription2021" typeof="skos:ConceptScheme">
-                <h3 property="schema:name">WebSocketSubscription2021</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p property="skos:definition">The <code>WebSocketSubscription2021</code> type defines the following properties:</p>
-
-                  <span rel="skos:hasTopConcept"><span resource="#websocketsubscription2021-source"></span></span>
-
-                  <dl>
-                    <dt about="#websocketsubscription2021-source" property="skos:prefLabel" typeof="skos:Concept"><dfn id="websocketsubscription2021-subscription">source</dfn></dt>
-                    <dd about="#websocketsubscription2021-source" property="skos:definition"><span about="" id="websocketsubscription2021-source-wss" rel="spec:requirement" resource="#websocketsubscription2021-source-wss"><span property="spec:statement">The <code>source</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>wss</code> scheme.</span></span> A JavaScript client would use the entire value as input to the WebSocket constructor.</dd>
-                  </dl>
-                </div>
-              </section>
-
-              <section id="eventsourcesubscription2021" inlist="" rel="schema:hasPart" resource="#eventsourcesubscription2021" typeof="skos:ConceptScheme">
-                <h3 property="schema:name">EventSourceSubscription2021</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p property="skos:definition">The <code>EventSourceSubscription2021</code> type defines the following properties:</p>
-
-                  <span rel="skos:hasTopConcept"><span resource="#eventsourcesubscription2021-subscription"></span></span>
-
-                  <dl>
-                    <dt about="#eventsourcesubscription2021-source" property="skos:prefLabel" typeof="skos:Concept"><dfn id="eventsourcesubscription2021-source">source</dfn></dt>
-                    <dd about="#eventsourcesubscription2021-source" property="skos:definition"><span about="" id="eventsourcesubscription2021-subscription-https" rel="spec:requirement" resource="#eventsourcesubscription2021-source-https"><span property="spec:statement">The <code>source</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> A JavaScript client would use the entire value as input to the EventSource constructor.</dd>
-                  </dl>
-                </div>
-              </section>
-
-              <section id="linkeddatanotificationssubscription2021" inlist="" rel="schema:hasPart" resource="#linkeddatanotificationssubscription2021" typeof="skos:ConceptScheme">
-                <h3 property="schema:name">LinkedDataNotificationsSubscription2021</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p property="skos:definition">The <code>LinkedDataNotificationsSubscription2021</code> type defines the following properties:</p>
-
-                  <span rel="skos:hasTopConcept"><span resource="#linkeddatanotificationssubscription2021-inbox"></span><span resource="#linkeddatanotificationssubscription2021-webid"></span></span>
-
-                  <dl>
-                    <dt about="#linkeddatanotificationssubscription2021-inbox" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationssubscription2021-inbox">inbox</dfn></dt>
-                    <dd about="#linkeddatanotificationssubscription2021-inbox" property="skos:definition"><span about="" id="linkeddatanotificationssubscription2021-inbox-https" rel="spec:requirement" resource="#linkeddatanotificationssubscription2021-inbox-https"><span property="spec:statement">The <code>inbox</code> property is used in the body of the subscription request. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the <code>https</code> scheme.</span></span> <span about="" id="linkeddatanotificationssubscription2021-subscription-ldn-receiver" rel="spec:requirement" resource="#linkeddatanotificationssubscription2021-subscription-ldn-receiver"><span property="spec:statement">The inbox URI <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> conform to the <a href="https://www.w3.org/TR/ldn/#receiver" rel="cito:citesAsAuthority">receiver</a> portion of the Linked Data Notifications specification.</span></span></dd>
-                    <dt about="#linkeddatanotificationssubscription2021-webid" property="skos:prefLabel" typeof="skos:Concept"><dfn id="linkeddatanotificationssubscription2021-webid">webid</dfn></dt>
-                    <dd about="#linkeddatanotificationssubscription2021-webid" property="skos:definition"><span about="" id="linkeddatanotificationssubscription2021-webid-https" rel="spec:requirement" resource="#linkeddatanotificationssubscription2021-webid-https"><span property="spec:statement">The <code>webid</code> property is used in the body of the subscription response. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be an HTTPS URI conforming to the WebID draft specification. All LDN notifications will be sent to the defined inbox using the agent identity specified by this WebID. A resource owner should ensure that the agent identified in this property is permitted to send authenticated HTTP requests to the defined inbox.</span></span></dd>
-                  </dl>
-                </div>
-              </section>
-
-              <section id="webhooksubscription2021" inlist="" rel="schema:hasPart" resource="#webhooksubscription2021" typeof="skos:ConceptScheme">
-                <h3 property="schema:name">WebHookSubscription2021</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p property="skos:definition">The <code>WebHookSubscription2021</code> type defines the following properties:</p>
-
-                  <span rel="skos:hasTopConcept"><span resource="#webhooksubscription2021-target"></span></span>
-
-                  <dl>
-                    <dt about="#webhooksubscription2021-target" property="skos:prefLabel" typeof="skos:Concept"><dfn id="webhooksubscription2021-target">target</dfn></dt>
-                    <dd about="#webhooksubscription2021-target" property="skos:definition"><span about="" id="webhooksubscription2021-target-https" rel="spec:requirement" resource="#webhooksubscription2021-target-https"><span property="spec:statement">The <code>target</code> property is used in the body of the subscription request. The value of this property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be a URI, using the https scheme.</span></span></dd>
-                  </dl>
-                </div>
-              </section>
             </div>
           </section>
 
@@ -768,6 +699,44 @@ content: "";
                 <h3 property="schema:name">Subscription Types Extension</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
+
+                  <p>
+                    New subscription types may be defined and published independently of this document.
+                    This section describes some guidelines and recommendations for publishing new subscription types.
+                  </p>
+
+                  <p>
+                    Each new subscription type will declare a unique IRI for use with
+                    both discovery and with the establishment of new subscription connections.
+                  </p>
+
+                  <p>
+                    When defining IRIs for use with a subscription type, it is considered
+                    best practice to publish vocabulary and JSON-LD context documents
+                    in public locations.
+                  </p>
+
+                  <p>
+                    An example subscription request with a custom <code>@context</code> is below:
+                  </p>
+
+                  <figure id="example-subscription-request" class="example listing" rel="schema:hasPart" resource="#example-subscription-request">
+                    <p class="example-h">
+                      <span>Example</span>: Establishing a subscription with a custom type.
+                    </p>
+
+                    <pre about="#example-subscription-request" property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1",</code>
+<code>    "https://notification.example/subscription/v1"</code>
+<code>  ],</code>
+<code>  "type": "ExampleSubscription2021",</code>
+<code>  "topic": "https://storage.example/resource",</code>
+<code>  "custom-property": "custom-value"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">Subscription request with a custom subscription type.</figcaption>
+                  </figure>
                 </div>
               </section>
 
