@@ -108,6 +108,8 @@ Content-Type: application/ld+json
 ```
 > POST request including type and topic targeting the Notification Subscription API.
 
+Issue(36):
+
 A successful response will contain a URL to the subscription API that can be used directly with a JavaScript client.
 
 ```http
@@ -132,6 +134,8 @@ for await (const notificationText of textStream) {
   parseAndHandle(notificationText)
 }
 ```
+
+Issue(46):
 
 # Authentication and Authorization # {#auth}
 
