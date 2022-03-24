@@ -511,7 +511,7 @@ content: "";
 
                   <p id="discovery-channel-type-turtle" rel="spec:requirement" resource="#discovery-channel-type-turtle">
                     When serializing the Notification Subscription Metadata Resource as Turtle,
-                    every <code>notify:hasNotificationChannel</code> definition
+                    every <code>notify:notificationChannel</code> definition
                     <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                     materialize an <code>rdf:type</code> triple, indicating the channel type.
                   </p>
@@ -530,7 +530,7 @@ content: "";
 <code>@prefix notify: &lt;http://www.w3.org/ns/solid/notifications#&gt; .</code>
 <code></code>
 <code>&lt;&gt;</code>
-<code>  notify:hasNotificationChannel &lt;#websocketNotification&gt; .</code>
+<code>  notify:notificationChannel &lt;#websocketNotification&gt; .</code>
 <code></code>
 <code>&lt;#websocketNotification&gt;</code>
 <code>  a notify:WebSocketSubscription2021 ;</code>
@@ -552,7 +552,7 @@ content: "";
                     When serializing the Notification Subscription Metadata Resource as JSON-LD,
                     the <code>@context</code>field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                     be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
-                    In addition, for every <code>hasNotificationChannel</code> definition,
+                    In addition, for every <code>notificationChannel</code> definition,
                     the Subscription Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                     materialize a <code>type</code> field, indicating the channel type.
                   </p>
@@ -568,7 +568,7 @@ content: "";
   <code>  "@context": [</code>
   <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
   <code>  ],</code>
-  <code>  "hasNotificationChannel": [{</code>
+  <code>  "notificationChannel": [{</code>
   <code>    "id": "websocketNotification",</code>
   <code>    "type": ["WebSocketSubscription2021"],</code>
   <code>    "subscription": "https://websocket.example/subscription",</code>
