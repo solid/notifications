@@ -1,4 +1,4 @@
-# WebHookSubscription2022
+# WebHookSubscription2021
 
 ## Abstract
 The [Solid Notification Protocol](https://solid.github.io/notifications/protocol) defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
@@ -11,11 +11,11 @@ TODO
 ## 1. Introduction
 _This section is non-normative._
 
-The [Solid Notifications Protocol](https://solid.github.io/notifications/protocol) allows for many methods by which a client is notified of actions being performed on a resource. One such method of notification is webhooks. Webhooks allow servers to register a target URL with a Solid Pod. When that server needs to be notified of an action, that target URL will be called by the Solid Pod.
+The [Solid Notifications Protocol](https://solid.github.io/notifications/protocol) allows for many methods by which a client is notified of actions being performed on a resource. One such method of notification is webhooks. Webhooks allow servers to register a target URL with a Solid Storage. When that server needs to be notified of an action, that target URL will be called by the Solid Storage.
 
 Webhooks are an alternative to websockets that are more useful for server-based use cases. While a websocket solution would require a server to maintain a constant websocket connection with a Pod as long as it wants notifications, webhooks only require one registration.
 
-This document proposes an implementation for the `WebHookSubscription2022` Solid Notification protocol.
+This document proposes an implementation for the `WebHookSubscription2021` Solid Notification protocol.
 
 ### 1.1. Specification Goals:
 
@@ -46,18 +46,18 @@ The following is an example flow for the solid webhook notification flow with th
 
 ### 2.1. Actors
 
- - **Authenticated User**: The user authenticated with the client server. In this case, our authenticated user is Bob, with the WebId `https://bob.pod.example/profile/card#me`.
+ - **Authenticated User**: The user authenticated with the client server. In this case, our authenticated user is Bob, with the WebID `https://bob.pod.example/profile/card#me`.
  - **Subscribing Server**: A server interestest in a webhook alert. In this example it is "Liqid Chat," a chat app API hosted at `https://api.liqid.chat`.
  - **Solid Metadata Resouce**: A metadata resource compliant with the Solid Specification. In this example, it is hosted at `https://pod.example/.well-known/solid`.
  - **Subscription API**: an HTTP API at which a client can initiate a subscription to notification events for a particular set of resources. In this example, it is hosted at `https://pod.example/subscription`
  - **Authorization Server**: a Solid OIDC compliant identity server. In this example, it is hosted at `https://idp.example`
  - **Topic Resource**: A resource on a Pod that is being tracked for webhooks. In this example, it is hosted at `https://bob.pod.example/chat1.ttl`.
  - **Notification Server**: A server responsible for delivering a webhook notification. This may or may not be the same server as the resource server. In this example, the notification server is `https://pod.example/notifications/webhook/subscription`.
- - **Notification Server WebId**: A notification server has its own webId known as the `Notification Server WebId`. In this example the Notification Server WebId is `https://pod.example/notifications/webhook/card.ttl#i`.
+ - **Notification Server WebID**: A notification server has its own WebID known as the `Notification Server WebID`. In this example the Notification Server WebID is `https://pod.example/notifications/webhook/card.ttl#i`.
 
 ### 2.2. Flow Diagram
 
-![High level flow diagram](webhook-subscription-2022-flow.svg)
+![High level flow diagram](webhook-subscription-2021-flow.svg)
 
 ### 2.3. Steps
 
@@ -84,7 +84,7 @@ Content-Type: text/turtle
   notify:hasNotificationChannel <#webhookNotification> .
 
 <#webhookNotification>
-  a notify:WebHookSubscription2022 ;
+  a notify:WebHookSubscription2021 ;
   notify:subscription <https://pod.example/notifications/webhook/subscription> ;
   notify:webid <https://pod.example/notifications/webhook/card.ttl#i> ;
   notify:features notify:rate, notify:expiration, notify:webhookAuth .
@@ -106,7 +106,7 @@ Content-Type: application/ld+json
 
 {
     "@context": ["https://www.w3.org/ns/solid/notification/v1"],
-    "type": "WebHookSubscription2022",
+    "type": "WebHookSubscription2021",
     "topic": "https://bob.pod.example/chat1",
     "target": "https://api.liqid.chat/webhook",
     "state": "opaque-state",
@@ -140,7 +140,7 @@ Content-Type: application/ld+json
 
 {
     "@context": "https://www.w3.org/ns/solid/notification/v1",
-    "type": "WebHookSubscription2022",
+    "type": "WebHookSubscription2021",
     "target": "https://api.liqid.chat/webhook",
     "unsubscribe_endpoint": "https://pod.example/notifications/webhook/subscription/a59e24ba-8231-4b51-b60a-c0e04740f617"
 }
@@ -182,9 +182,9 @@ Content-Type: application/ld+json
 }
 ```
 
-The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/webhooks/card.ttl#i`. Each token corr
+The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/webhooks/card.ttl#i`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
-`<dpopToken>` is a dpop token with an `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`. Both tokens correspond to the authentication method outlined in Solid OIDC.
+`<dpopToken>` is a dpop token with an `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`.
 
 The subscribing server should check the `iss` field and confirm that it matches the URL used in the discovery stage.
 
@@ -199,7 +199,7 @@ DELETE https://pod.example/notifications/webhook/subscription/a59e24ba-8231-4b51
 ```
 
 ## 3. Subscription API
-The request body of the notification server's subscription url `MUST` have the `type` field set to `"WebHookSubscription2022"`. If it is not, the server `MUST` either use a different corresponding potocol or reject the request.
+The request body of the notification server's subscription url `MUST` have the `type` field set to `"WebHookSubscription2021"`. If it is not, the server `MUST` either use a different corresponding potocol or reject the request.
 
 The request body of the notification server's subscription url `MUST` include a `target` field, the value of which `MUST` be a URI with an `https` scheme. If it is not, the server `MUST` reject the request.
 
@@ -219,7 +219,7 @@ The body of the webhook request `MUST` include a `unsubscribe_endpoint` field th
 
 ### 4.1. Notification Types
 
-All servers implementing the `WebHookSubscription2022` protocol `MUST` implement the following Notifications Types.
+All servers implementing the `WebHookSubscription2021` protocol `MUST` implement the following Notifications Types.
 
 #### 4.1.1. Update
 
@@ -235,11 +235,11 @@ The webhook request `MUST` follow the standard outlined in the [Acivity Pub Dele
 
 ## 5. Unsubscribe API
 
-All servers implementing the `WebHookSubscription2022` protocol `MUST` provide a unique resource for each subscription. This will be called the "Unsubscribe Endpoint."
+All servers implementing the `WebHookSubscription2021` protocol `MUST` provide a unique resource for each subscription. This will be called the "Unsubscribe Endpoint."
 
 If a `DELETE` request is received at the unsubscribe endpoint, the Pod `MUST` forget that subscription and any subsequent actions should not trigger a webhook request.
 
-If a request is received at the unsubscribe endpoint and it does not include an Authorization or DPoP header, the Authorization or DPoP Headers are invalid, or the WebId in the authorization header does not correspond with the WebId that made the subscription, the Pod `MUST` reject the request.
+If a request is received at the unsubscribe endpoint and it does not include an Authorization or DPoP header, the Authorization or DPoP Headers are invalid, or the WebID in the authorization header does not correspond with the WebID that made the subscription, the Pod `MUST` reject the request.
 
 ## 6. Features
 This section details the additional features built for `WebHookSubscription2021`.
