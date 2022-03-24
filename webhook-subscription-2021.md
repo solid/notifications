@@ -90,7 +90,7 @@ Content-Type: text/turtle
   notify:features notify:rate, notify:expiration, notify:webhookAuth .
 ```
 
-Note the `nofify:subscription` and `notify:webid`. We'll be using those in future steps.
+Note the use of `nofify:subscription` and `notify:webid`. We'll be using those in future steps.
 
 #### 3. Request a new WebHook subscription (with access token)
 
@@ -159,7 +159,7 @@ A request is made to the subscribing server's registered webhook.
 ```http
 POST https://api.liqid.chat/webhook
 Authorization: DPoP <authToken>
-Dpop: <dpopToken>
+Dpop: <dpopProof>
 Content-Type: application/ld+json
 
 {
@@ -184,7 +184,8 @@ Content-Type: application/ld+json
 
 The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/webhooks/card.ttl#i`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
-`<dpopToken>` is a dpop token with an `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`.
+
+`<dpopProof>` is a dpop proof containing the claims `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
 The subscribing server should check the `iss` field and confirm that it matches the URL used in the discovery stage.
 
@@ -247,7 +248,7 @@ This section details the additional features built for `WebHookSubscription2021`
 ### 6.1 webhook-auth
 The `webhook-auth` feature allows subscribing servers to verify that a request came from a certain Pod.
 
-Pods that implement the `webhook-auth` feature `MUST` create an Access Token and DPoP token in accordance with the Solid OIDC specification and embed those tokens in the headers of all webhook requests.
+Pods that implement the `webhook-auth` feature `MUST` create an Access Token and DPoP proof in accordance with the Solid OIDC specification and include those tokens in the headers of all webhook requests.
 
 ## Further Considerations
  - Using DPoP authentication in the webhook request does coincide with the common use case for Solid-OIDC, but it is overkill. There is no need for a security model that has two separate tokens (DPoP Token and the Auth token). Instead, we should consider using one token with the combined features (identity + htm and htu) of the two tokens.
