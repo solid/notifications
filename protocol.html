@@ -138,7 +138,7 @@ content: "";
     <main>
       <article about="" typeof="schema:Article doap:Specification">
         <h1 property="schema:name">Solid Notifications Protocol</h1>
-        <h2>Editor’s Draft, 2022-03-24</h2>
+        <h2>Editor’s Draft, 2022-04-01</h2>
 
         <details open="">
           <summary>More details about this document</summary>
@@ -173,7 +173,7 @@ content: "";
 
           <dl id="document-modified">
             <dt>Modified</dt>
-            <dd><time content="2022-03-24T00:00:00Z" datatype="xsd:dateTime" datetime="2022-03-24T00:00:00Z" property="schema:dateModified">2022-03-24</time></dd>
+            <dd><time content="2022-04-01T00:00:00Z" datatype="xsd:dateTime" datetime="2022-04-01T00:00:00Z" property="schema:dateModified">2022-04-01</time></dd>
           </dl>
 
           <dl id="document-repository">
@@ -494,6 +494,13 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
+                  <div class="issue" id="discovery-subscription-metadata" rel="schema:hasPart" resource="#discovery-subscription-metadata">
+                    <h4 property="schema:name"><span>Issue</span>: Notification Subscription Metadata Discovery</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p>The specific mechanism defining the discovery of the <a href="#notification-subscription-metadata-resource">Notification Subscription Metadata Resource</a> is under consideration: <a href="https://github.com/solid/notifications/issues/58" rel="cito:citesAsRelated">issues/58</a>.</p>
+                    </div>
+                  </div>
+
                   <p>
                     <span id="discovery-serialization" rel="spec:requirement" resource="#discovery-serialization">
                       <span property="spec:statement">
