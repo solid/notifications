@@ -515,14 +515,14 @@ content: "";
                     </span>
                   </p>
 
-                  <h4 property="schema:name">Turtle Serialization</h4>
+                  <h4 id="discovery-serialization-turtle">Turtle Serialization</h4>
 
                   <p about="" id="discovery-channel-type-turtle" rel="spec:requirement" resource="#discovery-channel-type-turtle">
                     <span property="spec:statement">
-                    When serializing the Notification Subscription Metadata Resource as Turtle,
-                    every <code>notify:notificationChannel</code> definition
-                    <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                    materialize an <code>rdf:type</code> triple, indicating the channel type.
+                      When serializing the Notification Subscription Metadata Resource as Turtle,
+                      every <code>notify:notificationChannel</code> definition
+                      <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
+                      materialize an <code>rdf:type</code> triple, indicating the channel type.
                     </span>
                   </p>
 
@@ -556,16 +556,16 @@ content: "";
                     will need to define a notification vocabulary to support this feature.
                   </p>
 
-                  <h4 property="schema:name">JSON-LD Serialization</h4>
+                  <h4 id="discovery-serialization-jsonld">JSON-LD Serialization</h4>
 
                   <p about="" id="discovery-channel-type-jsonld" rel="spec:requirement" resource="#discovery-channel-type-jsonld">
                     <span property="spec:statement">
-                    When serializing the Notification Subscription Metadata Resource as JSON-LD,
-                    the <code>@context</code>field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                    be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
-                    In addition, for every <code>notificationChannel</code> definition,
-                    the Subscription Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                    materialize a <code>type</code> field, indicating the channel type.
+                      When serializing the Notification Subscription Metadata Resource as JSON-LD,
+                      the <code>@context</code>field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
+                      be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
+                      In addition, for every <code>notificationChannel</code> definition,
+                      the Subscription Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
+                      materialize a <code>type</code> field, indicating the channel type.
                     </span>
                   </p>
 
