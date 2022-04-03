@@ -412,6 +412,8 @@ content: "";
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
+                  <span rel="skos:hasTopConcept"><span resource="#notification-subscription-api"></span><span resource="#notification-subscription-metadata-resource"></span></span>
+
                   <dl>
                     <dt about="#notification-subscription-api" property="skos:prefLabel" typeof="skos:Concept">
                       <dfn id="notification-subscription-api">Notification Subscription API</dfn>
@@ -502,7 +504,7 @@ content: "";
                   </div>
 
                   <p>
-                    <span id="discovery-serialization" rel="spec:requirement" resource="#discovery-serialization">
+                    <span about="" id="discovery-serialization" rel="spec:requirement" resource="#discovery-serialization">
                       <span property="spec:statement">
                         The <span rel="spec:requirementSubject" resource="spec:Server">server</span>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be capable of serializing the
@@ -515,11 +517,13 @@ content: "";
 
                   <h4 property="schema:name">Turtle Serialization</h4>
 
-                  <p id="discovery-channel-type-turtle" rel="spec:requirement" resource="#discovery-channel-type-turtle">
+                  <p about="" id="discovery-channel-type-turtle" rel="spec:requirement" resource="#discovery-channel-type-turtle">
+                    <span property="spec:statement">
                     When serializing the Notification Subscription Metadata Resource as Turtle,
                     every <code>notify:notificationChannel</code> definition
                     <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                     materialize an <code>rdf:type</code> triple, indicating the channel type.
+                    </span>
                   </p>
 
                   <p>
@@ -554,13 +558,15 @@ content: "";
 
                   <h4 property="schema:name">JSON-LD Serialization</h4>
 
-                  <p id="discovery-channel-type-jsonld" rel="spec:requirement" resource="#discovery-channel-type-jsonld">
+                  <p about="" id="discovery-channel-type-jsonld" rel="spec:requirement" resource="#discovery-channel-type-jsonld">
+                    <span property="spec:statement">
                     When serializing the Notification Subscription Metadata Resource as JSON-LD,
                     the <code>@context</code>field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                     be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
                     In addition, for every <code>notificationChannel</code> definition,
                     the Subscription Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                     materialize a <code>type</code> field, indicating the channel type.
+                    </span>
                   </p>
 
                   <figure id="metadata-resource-response-jsonld" class="example listing" rel="schema:hasPart" resource="#metadata-resource-response-jsonld">
@@ -569,18 +575,18 @@ content: "";
                     </p>
 
                     <pre about="#metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
-  <code></code>
-  <code>{</code>
-  <code>  "@context": [</code>
-  <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
-  <code>  ],</code>
-  <code>  "notificationChannel": [{</code>
-  <code>    "id": "websocketNotification",</code>
-  <code>    "type": ["WebSocketSubscription2021"],</code>
-  <code>    "subscription": "https://websocket.example/subscription",</code>
-  <code>    "features": ["state", "rate", "expiration"]</code>
-  <code>  }]</code>
-  <code>}</code></pre>
+<code></code>
+<code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "notificationChannel": [{</code>
+<code>    "id": "websocketNotification",</code>
+<code>    "type": ["WebSocketSubscription2021"],</code>
+<code>    "subscription": "https://websocket.example/subscription",</code>
+<code>    "features": ["state", "rate", "expiration"]</code>
+<code>  }]</code>
+<code>}</code></pre>
 
                     <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Notification Subscription Metadata Resource</figcaption>
                   </figure>
@@ -589,7 +595,6 @@ content: "";
                     The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite>
                     will need to define a JSON-LD context resource to support this feature.
                   </p>
-
                 </div>
               </section>
 
@@ -601,7 +606,7 @@ content: "";
                   <p><span about="" id="server-subscription-resource-safe-methods" rel="spec:requirement" resource="#server-subscription-resource-safe-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> requests targeting the subscription resource.</span></span></p>
 
                   <p>
-                    <span id="server-subscription-creation" rel="spec:requirement" resource="#server-subscription-creation">
+                    <span about="" id="server-subscription-creation" rel="spec:requirement" resource="#server-subscription-creation">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept
@@ -612,7 +617,7 @@ content: "";
                   </p>
 
                   <p>
-                    <span id="server-subscription-payload" rel="spec:requirement" resource="#server-subscription-payload">
+                    <span about="" id="server-subscription-payload" rel="spec:requirement" resource="#server-subscription-payload">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Server">
                           The JSON-LD payload received by a server in a <code>POST</code> request
@@ -626,11 +631,11 @@ content: "";
                   </p>
 
                   <dl>
-                    <dt property="skos:prefLabel" typeof="skos:Concept">
+                    <dt about="#server-subscription-request-context" property="skos:prefLabel" typeof="skos:Concept">
                       <dfn id="server-subscription-request-context">@context</dfn>
                     </dt>
-                    <dd property="skos:definition">
-                      <span id="server-subscription-context-value" rel="spec:requirement" resource="#server-subscription-context-value">
+                    <dd about="#server-subscription-request-context" property="skos:definition">
+                      <span about="" id="server-subscription-context-value" rel="spec:requirement" resource="#server-subscription-context-value">
                         <span property="spec:statement">
                           The <code>@context</code> property is <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                           be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
@@ -638,28 +643,24 @@ content: "";
                         </span>
                       </span>
                     </dd>
-                  </dl>
 
-                  <dl>
-                    <dt property="skos:prefLabel" typeof="skos:Concept">
+                    <dt about="server-subscription-request-type" property="skos:prefLabel" typeof="skos:Concept">
                       <dfn id="server-subscription-request-type">type</dfn>
                     </dt>
                     <dd property="skos:definition">
-                      <span id="server-subscription-type-value" rel="spec:requirement" resource="#server-subscription-type-value">
+                      <span about="" id="server-subscription-type-value" rel="spec:requirement" resource="#server-subscription-type-value">
                         <span property="spec:statement">
                           The <code>type</code> property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                           indicate the subscription type to be created.
                         </span>
                       </span>
                     </dd>
-                  </dl>
 
-                  <dl>
-                    <dt property="skos:prefLabel" typeof="skos:Concept">
+                    <dt about="#server-subscription-request-topic" property="skos:prefLabel" typeof="skos:Concept">
                       <dfn id="server-subscription-request-topic">topic</dfn>
                     </dt>
                     <dd property="skos:definition">
-                      <span id="server-subscription-topic-value" rel="spec:requirement" resource="#server-subscription-topic-value">
+                      <span about="" id="server-subscription-topic-value" rel="spec:requirement" resource="#server-subscription-topic-value">
                         <span property="spec:statement">
                           The <code>topic</code> property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
                           indicate the IRI(s) of the resources about which the client would like to receive notifications.
