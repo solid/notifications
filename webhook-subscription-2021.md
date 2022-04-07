@@ -1,22 +1,30 @@
-# Solid Webhook Notifications
+# WebHookSubscription2021
 
-Status: Proposal
+## Abstract
+The [Solid Notification Protocol](https://solid.github.io/notifications/protocol) defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
 
-## Introduction
+This specification defines a subscription type that applies these patterns to WebHooks.
 
-The Solid Notifications Specification allows for many methods by which a client is notified of actions being performed on a resource. One such method of notification is webhooks. Webhooks allow servers to register a target URL with a Solid Pod. When that server needs to be notified of an action, that target URL will be called by the Solid Pod.
+## Status of This Document
+TODO
+
+## 1. Introduction
+_This section is non-normative._
+
+The [Solid Notifications Protocol](https://solid.github.io/notifications/protocol) allows for many methods by which a client is notified of actions being performed on a resource. One such method of notification is webhooks. Webhooks allow servers to register a target URL with a Solid Storage. When that server needs to be notified of an action, that target URL will be called by the Solid Storage.
 
 Webhooks are an alternative to websockets that are more useful for server-based use cases. While a websocket solution would require a server to maintain a constant websocket connection with a Pod as long as it wants notifications, webhooks only require one registration.
 
 This document proposes an implementation for the `WebHookSubscription2021` Solid Notification protocol.
 
-## Use Cases
+### 1.1. Specification Goals:
 
- 1. All use cases from the [general notifications API](solid-notifications.md#Use%20Cases) are still applicable.
- 2. **Verifiable requests to a subscribing server** - a subscribing server must be able to confirm if a request truly came from a specific Pod.
- 3. **Unsubscribing from a WebHook** - Unlike websockets, where sockets can simply be closed by the client, if a subscribing server wants to unsubscribe from a webhook, it must alert a Pod.
+In addition to the goals set forth by the Solid Notifications Protocol, this specification has goals required by the WebHooks use case:
 
-## Terminology
+ 1. **Verifiable requests to a subscribing server** - a subscribing server must be able to confirm if a request truly came from a specific Pod.
+ 2. **Unsubscribing from a WebHook** - Unlike websockets, where sockets can simply be closed by the client, if a subscribing server wants to unsubscribe from a webhook, it must alert a Pod.
+
+### 1.2. Terminology
 
 This document uses terms from the Solid Protocol specification, including "data pod". This document also uses terms from the OAuth2 specification, including "resource server", "authorization server", and "client", as well as terms from the WebSub specification, including "topic". Terms from the General Solid Notifications specification are also used, including “Notification Gateway API”, “Notification Subscription API”, and “Solid Server Metadata Resource.”
 
@@ -26,28 +34,32 @@ In addition, the following terms are defined:
 
 **Pod (Private/Public) Key** -- A private public keypair associated with a specific data Pod.
 
-## High-level Flow
+### 1.3. Conformance
+All assertions, diagrams, examples, and notes are non-normative, as are all sections explicitly marked non-normative. Everything else is normative.
 
-This section is non-normative.
+The key words “MUST” and “MUST NOT” are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) [RFC2119] [RFC8174] when, and only when, they appear in all capitals, as shown here.
+
+## 2. General Overview
+_This section is non-normative._
 
 The following is an example flow for the solid webhook notification flow with the `webhook-auth` feature enabled. We follow an example subscribing server chat app called "Liqid Chat." It wants to subscribe to a resource at `https://bob.pod.example/chat1.ttl`.
 
-### Actors
+### 2.1. Actors
 
- - **Authenticated User**: The user authenticated with the client server. In this case, our authenticated user is Bob, with the WebId `https://bob.pod.example/profile/card#me`.
+ - **Authenticated User**: The user authenticated with the client server. In this case, our authenticated user is Bob, with the WebID `https://bob.pod.example/profile/card#me`.
  - **Subscribing Server**: A server interestest in a webhook alert. In this example it is "Liqid Chat," a chat app API hosted at `https://api.liqid.chat`.
  - **Solid Metadata Resouce**: A metadata resource compliant with the Solid Specification. In this example, it is hosted at `https://pod.example/.well-known/solid`.
- - **Gateway API**: An HTTP API at which a client can negotiate an acceptable notification subscription location. In this example, it is hosted at `https://pod.example/gateway`.
  - **Subscription API**: an HTTP API at which a client can initiate a subscription to notification events for a particular set of resources. In this example, it is hosted at `https://pod.example/subscription`
  - **Authorization Server**: a Solid OIDC compliant identity server. In this example, it is hosted at `https://idp.example`
  - **Topic Resource**: A resource on a Pod that is being tracked for webhooks. In this example, it is hosted at `https://bob.pod.example/chat1.ttl`.
- - **Pod JWKS**: An HTTP resource that delivers a JSON Web Key Set for the `webhook-auth` feature. In this example, it's hosted at `https://pod.example/jwks`.
+ - **Notification Server**: A server responsible for delivering a webhook notification. This may or may not be the same server as the resource server. In this example, the notification server is `https://pod.example/notifications/webhook/subscription`.
+ - **Notification Server WebID**: A notification server has its own WebID known as the `Notification Server WebID`. In this example the Notification Server WebID is `https://pod.example/notifications/webhook/card.ttl#i`.
 
-### Flow Diagram
+### 2.2. Flow Diagram
 
-![High level flow](webhook-subscription-flow.svg)
+![High level flow diagram](webhook-subscription-2021-flow.svg)
 
-### Steps
+### 2.3. Steps
 
 #### 1. Discovery
 
@@ -62,56 +74,32 @@ GET https://pod.example/.well-known/solid
 The following metadata document is returned:
 
 ```http
-Content-Type: application/ld+json
+Content-Type: text/turtle
 
-{
-    "@context": ["https://www.w3.org/ns/solid/notification/v1"],
-    "notification_endpoint": "https://pod.example/gateway",
-    "jwks_endpoint": "https://pod.example/jwks"
-    ...
-}
+@prefix solid: <http://www.w3.org/ns/solid/terms#> .
+@prefix notify: <http://www.w3.org/ns/solid/notifications#> .
+
+<>
+  a solid:StorageMetadata ;
+  notify:hasNotificationChannel <#webhookNotification> .
+
+<#webhookNotification>
+  a notify:WebHookSubscription2021 ;
+  notify:subscription <https://pod.example/notifications/webhook/subscription> ;
+  notify:webid <https://pod.example/notifications/webhook/card.ttl#i> ;
+  notify:features notify:rate, notify:expiration, notify:webhookAuth .
 ```
 
-**NOTE:** the extra field called `jwks_endpoint`. This will be required later for the `webhook-auth` feature.
+Note the use of `nofify:subscription` and `notify:webid`. We'll be using those in future steps.
 
-#### 3. Negotiate for the WebHook protocol
-
-The subscribing server makes a request to the `notification_endpoint` provided in the metadata resource. It includes `WebHookSubscription2021` as the desired type and `state`, `rate`, and `webhook-auth` as the desired features.
-
-```http
-POST https://pod.example/gateway
-Content-Type: application/ld+json
-
-{
-    "@context": ["https://www.w3.org/ns/solid/notification/v1"],
-    "type": ["WebHookSubscription2021"],
-    "features": ["state", "rate", "webhook-auth"]
-}
-```
-
-#### 4. Receive (cache) protocol location and metadata
-
-Protocol metadata is returned if the server supports the requested data. If the server does not support the requested data **WHAT HAPPENS? I DON'T KNOW.**
-
-```http
-Content-Type: application/ld+json
-
-{
-    "@context": ["https://www.w3.org/ns/solid/notification/v1"],
-    "type": "WebHookSubscription2021",
-    "subscription": "https://pod.example/subscription",
-    "features": ["state", "rate", "expiration", "webhook-auth"]
-}
-```
-
-#### 5. Request a new WebHook subscription (with access token)
+#### 3. Request a new WebHook subscription (with access token)
 
 This non-normative example assumes that we are authenticating using Solid-OIDC. Other authentication
 
 Assuming the subscribing server already went through one of the Solid OIDC authentication flows, an Auth Token a DPoP Proof can be provided to the subscription resource.
 
 ```http
-POST https://pod.example/subscription
+POST https://pod.example/notifications/webhook/subscription
 Authorization: DPoP <token>
 DPoP: <proof>
 Content-Type: application/ld+json
@@ -129,7 +117,7 @@ Content-Type: application/ld+json
 
 If a token is not provided Pod will return 401.
 
-#### 6. Verify Authorization
+#### 4. Verify Authorization
 
 The Pod makes a request to the auth server to retrieve the Auth server's JWKS.
 
@@ -138,13 +126,13 @@ GET https://idp.example/.well-known/openid-configuration
 GET https://idp.example/jwks
 ```
 
-#### 7. Receive capabilities
+#### 5. Receive capabilities
 
 The auth server returns the JWKS.
 
 If the token is not valid or the user does not have READ access to the resource, the Pod will return 403 to the server client.
 
-#### 8. Receive subscription URL and metadata
+#### 6. Receive subscription URL and metadata
 The Pod returns a subscription URL to the subscribing server.
 
 ```http
@@ -154,7 +142,7 @@ Content-Type: application/ld+json
     "@context": "https://www.w3.org/ns/solid/notification/v1",
     "type": "WebHookSubscription2021",
     "target": "https://api.liqid.chat/webhook",
-    "unsubscribe_endpoint": "https://pod.example/webhooks/a59e24ba-8231-4b51-b60a-c0e04740f617"
+    "unsubscribe_endpoint": "https://pod.example/notifications/webhook/subscription/a59e24ba-8231-4b51-b60a-c0e04740f617"
 }
 ```
 
@@ -162,16 +150,16 @@ Note the "unsubscribe_endpoint." We'll use that later when we unsubscribe from t
 
 At this point, the webhook has been successfully registered.
 
-#### 9. Action happens on Topic Resource
+#### 7. Action happens on Topic Resource
 Some action (either an update to the resource or a deletion of that resource) has taken place on the topic resource.
 
-
-#### 10. Webhook Request (With token signed by the Pod Key)
+#### 8. Webhook Request (With token signed by the Pod Key)
 A request is made to the subscribing server's registered webhook.
 
 ```http
 POST https://api.liqid.chat/webhook
-Authorization: <token>
+Authorization: DPoP <authToken>
+Dpop: <dpopProof>
 Content-Type: application/ld+json
 
 {
@@ -190,135 +178,80 @@ Content-Type: application/ld+json
    },
    "state": "1234-5678-90ab-cdef-12345678",
    "published":"2021-08-05T01:01:49.550044Z"
-   "unsubscribe_endpoint": "https://pod.example/webhooks/a59e24ba-8231-4b51-b60a-c0e04740f617"
+   "unsubscribe_endpoint": "https://pod.example/webhooks/subscription/a59e24ba-8231-4b51-b60a-c0e04740f617"
 }
 ```
 
-The value of `<token>` is a JSON Web Token signed by the Pod's Key. The unencoded token is below:
+The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/webhooks/card.ttl#i`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
-```javascript
-JWTSign({
-  htu: "https://api.liqid.chat/webhook",
-  htm: "POST",
-  iss: "https://pod.example"
-  iat: 1516239022
-  exp: 1515239482
-}, POD_PRIVATE_KEY)
-```
+
+`<dpopProof>` is a dpop proof containing the claims `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
 The subscribing server should check the `iss` field and confirm that it matches the URL used in the discovery stage.
 
-#### 11. Discovery
-
-If not already cached, the subscribing server should retrieve the Pod, metadata document.
-
-```http
-GET https://pod.example/.well-known/solid
-```
-
-#### 12. Receive (cache) server metadata resouce
-
-The metadata document will be returned.
-
-```http
-Content-Type: application/ld+json
-
-{
-    "@context": ["https://www.w3.org/ns/solid/notification/v1"],
-    "notification_endpoint": "https://pod.example/gateway",
-    "jwks_endpoint": "https://pod.example/jwks"
-    ...
-}
-```
-
-#### 13. JWKS Discovery
-The `jwks_endpoint` can be used to get the Pod's JSON Web Key Store
-
-```http
-GET https://pod.example/jwks
-```
-
-#### 14. Receive (cache) JWKS resouce
-The Pod returns its JWKS
-
-```http
-Content-Type: application/json
-
-{"keys":[...]}
-```
-
-#### 15. Validate Webhook Token
-Using the JWKS the subscribing server should validate the token provided in the authorization header. If the token is invalid, the subscribing server should reject the request.
+#### 9. Validate Webhook Token
+The client validates the tokens it received in the request headers as defined in the Solid OIDC specification
 
 #### 16. Unsubscribe from the webhook
 If the client wishes to unsubscribe from the webhook, it can make a DELETE request to the provided `unsubscribe_endpoint`.
 
 ```http
-DELETE https://pod.example/webhooks/a59e24ba-8231-4b51-b60a-c0e04740f617
+DELETE https://pod.example/notifications/webhook/subscription/a59e24ba-8231-4b51-b60a-c0e04740f617
 ```
 
-## Subscription API
-The request body of the subscription API `MUST` have the `type` field set to `"WebHookSubscription2021"`. If it is not, the server `MUST` either use a different corresponding potocol or reject the request.
+## 3. Subscription API
+The request body of the notification server's subscription url `MUST` have the `type` field set to `"WebHookSubscription2021"`. If it is not, the server `MUST` either use a different corresponding potocol or reject the request.
 
-The request body of the subscription API `MUST` include a `target` field, the value of which `MUST` be a URI with an `https` scheme. If it is not, the server `MUST` reject the request.
+The request body of the notification server's subscription url `MUST` include a `target` field, the value of which `MUST` be a URI with an `https` scheme. If it is not, the server `MUST` reject the request.
 
-If a request is received at the subscription API and it is not authenticated in some way, the Pod `MUST` reject the request.
+If a request is received at the notification server's subscription url and it is not authenticated in some way, the Pod `MUST` reject the request.
 
 The authenticated user during the subscribe request must have READ access to the topic resource. If it does not, the server `MUST` reject.
 
-The response body of the subscription API `MUST` include the `target` field, the value of which corresponds to the provided `target` field.
+The response body of the notification server's subscription url `MUST` include the `target` field, the value of which corresponds to the provided `target` field.
 
-The response body of the subscription API `MUST` include the `unsubscribe_endpoint` field. The value is a URI that will close the subscription (See Unsubscribe API)
+The response body of the notification server's subscription url `MUST` include the `unsubscribe_endpoint` field. The value is a URI that will close the subscription (See Unsubscribe API)
 
-## Webhook API
+## 4. Webhook API
 
-When a subscribed resource is updated or removed, the Pod `MUST` send a request to the registered target URI (the webhook request).
+When a subscribed resource is updated or removed, the notification server `MUST` send a request to the registered target URI (the webhook request).
 
 The body of the webhook request `MUST` include a `unsubscribe_endpoint` field that corresponds with a URI that will close the subscription (See Unsubscribe API)
 
-### Notification Types
+### 4.1. Notification Types
 
 All servers implementing the `WebHookSubscription2021` protocol `MUST` implement the following Notifications Types.
 
-#### Update
+#### 4.1.1. Update
 
 If a resource is updated (triples are added or removed from a Linked Data Resource or any bytes are changed in binary), the Pod `MUST` send a webhook request to all subscribed targets.
 
 The webhook request `MUST` follow the standard outlined in the [Acivity Pub Update Type](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update)
 
-#### Delete
+#### 4.1.2 Delete
 
 If a resource is deleted, the Pod `MUST` send a webhook request to all subscribed targets.
 
 The webhook request `MUST` follow the standard outlined in the [Acivity Pub Delete Type](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete)
 
-## Unsubscribe API
+## 5. Unsubscribe API
 
 All servers implementing the `WebHookSubscription2021` protocol `MUST` provide a unique resource for each subscription. This will be called the "Unsubscribe Endpoint."
 
 If a `DELETE` request is received at the unsubscribe endpoint, the Pod `MUST` forget that subscription and any subsequent actions should not trigger a webhook request.
 
-If a request is received at the unsubscribe endpoint and it does not include an Authorization or DPoP header, the Authorization or DPoP Headers are invalid, or the WebId in the authorization header does not correspond with the WebId that made the subscription, the Pod `MUST` reject the request.
+If a request is received at the unsubscribe endpoint and it does not include an Authorization or DPoP header, the Authorization or DPoP Headers are invalid, or the WebID in the authorization header does not correspond with the WebID that made the subscription, the Pod `MUST` reject the request.
 
-## Features
-
+## 6. Features
 This section details the additional features built for `WebHookSubscription2021`.
 
-### webhook-auth
+### 6.1 webhook-auth
 The `webhook-auth` feature allows subscribing servers to verify that a request came from a certain Pod.
 
-Pods that implement the `webhook-auth` feature `MUST` include an HTTP URL that produces a JSON Web Key Set.
-
-Pods that implement the `webhook-auth` feature `SHOULD` rotate keys on its JSON Web Key Set.
-
-Pods that implement the `webhook-auth` feature `MUST` include the `jwks_endpoint` field in the Solid Metadata document. The value of this field is the Pod's JWKS URI.
-
-When a webhook is triggered, compliant Pods `MUST` include an `authorization` header with a token signed by a key in its JSON Web Key Set. The token `MUST` include the following fields:
- - exp: A number indicating the expiration of the token
- - htu: The url of the webhook target
- - htm: The method of the webhook request. Because all webhook request use the `POST` method, this value will always be `POST`.
+Pods that implement the `webhook-auth` feature `MUST` create an Access Token and DPoP proof in accordance with the Solid OIDC specification and include those tokens in the headers of all webhook requests.
 
 ## Further Considerations
+ - Using DPoP authentication in the webhook request does coincide with the common use case for Solid-OIDC, but it is overkill. There is no need for a security model that has two separate tokens (DPoP Token and the Auth token). Instead, we should consider using one token with the combined features (identity + htm and htu) of the two tokens.
  - The fact that the Pod allows any URI to be submitted as a `target` might lead to distributed denial of service attacks originating from Pods. A malicious actor could create an app and trick many users to join it. The malicious app would then create a webhook targeting its desired target. It may be a good idea to build in an automated verification process to confirm that the entity sending the subscription request also owns the target webhook endpoint.
  - The examples in this specification assume that the base domain `https://bob.pod.example` are interchangable with `https://pod.example`. This is not always the case and could lead to security vulnerabilities.
  - Defining a feature that includes the resource or the delta of the changes in the request are beyond the scope of this document, but it's something that should be considered.
