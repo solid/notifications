@@ -73,7 +73,7 @@ The StreamingHTTPSubscription2021 type defines the following properties:
 
 : source
 :: The source property is used in the body of the subscription response.
-    The value of this property MUST be a URI, using the `https` scheme.
+    The value of source property MUST be a URI, using the `https` scheme.
     A JavaScript client would use the entire value as input to the `fetch` function.
 
 A client establishes a subscription using the StreamingHTTPSubscription2021 type by sending an authenticated
@@ -83,6 +83,31 @@ For StreamingHTTPSubscription2021 interactions, the client sends a JSON-LD paylo
 hypermedia API via POST. The only required fields in this interaction are type and topic.
 The type field MUST contain the type of subscription being requested.
 The topic field MUST contain the URL of the resource a client wishes to subscribe to changes.
+
+<script type="text/turtle">
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX spec: <http://www.w3.org/ns/spec#>
+
+<>
+  a doap:Specification ;
+  spec:requirement
+        <#req1> ,
+        <#req2> ,
+        <#req3> .
+<#req1>
+  spec:requirementSubject <#subscription-request> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The type field MUST contain the type of subscription being requested."@en .
+<#req2>
+  spec:requirementSubject <#subscription-request> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The topic field MUST contain the URL of the resource a client wishes to subscribe to changes."@en .
+<#req3>
+  spec:requirementSubject <#subscription-response> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The value of source property MUST be a URI, using the https scheme."@en .
+
+</script>
 
 ## Subscription Example ## {#example}
 
