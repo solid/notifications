@@ -9,7 +9,7 @@
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://solid.github.io/notifications/streaming-http-subscription-2021" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="fb866c16d3df4d1549492a705fa32173261d9e4f" name="document-revision">
+  <meta content="7f7af221b4bb6deb37819e9f3685fd55aa3fa966" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -626,7 +626,7 @@ that use the Fetch API.</p>
     <dt data-md>source
     <dd data-md>
      <p>The source property is used in the body of the subscription response.
-The value of this property MUST be a URI, using the <code>https</code> scheme.
+The value of source property MUST be a URI, using the <code>https</code> scheme.
 A JavaScript client would use the entire value as input to the <code>fetch</code> function.</p>
    </dl>
    <p>A client establishes a subscription using the StreamingHTTPSubscription2021 type by sending an authenticated
@@ -635,6 +635,30 @@ subscription request to the hypermedia API retrieved via Solid Notifications dis
 hypermedia API via POST. The only required fields in this interaction are type and topic.
 The type field MUST contain the type of subscription being requested.
 The topic field MUST contain the URL of the resource a client wishes to subscribe to changes.</p>
+<script type="text/turtle">
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX spec: <http://www.w3.org/ns/spec#>
+
+<>
+  a doap:Specification ;
+  spec:requirement
+        <#req1> ,
+        <#req2> ,
+        <#req3> .
+<#req1>
+  spec:requirementSubject <#subscription-request> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The type field MUST contain the type of subscription being requested."@en .
+<#req2>
+  spec:requirementSubject <#subscription-request> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The topic field MUST contain the URL of the resource a client wishes to subscribe to changes."@en .
+<#req3>
+  spec:requirementSubject <#subscription-response> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The value of source property MUST be a URI, using the https scheme."@en .
+
+</script>
    <h3 class="heading settled" data-level="2.1" id="example"><span class="secno">2.1. </span><span class="content">Subscription Example</span><a class="self-link" href="#example"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
