@@ -144,9 +144,9 @@ Option (2): HTTP DELETE on a subscription.
 This specification defines the WebPushSubscription2022 type for use with Solid Notifications subscriptions.
 The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#WebPushSubscription2022&gt;.
 
-An WebPushSubscription2022 API MUST conform to the [Solid Notifications Protocol](https://solid.github.io/notifications/protocol#discovery).
+A WebPushSubscription2022 API MUST conform to the [Solid Notifications Protocol](https://solid.github.io/notifications/protocol#discovery).
 
-An WebPushSubscription2022 API SHOULD support the [Solid Notifications Features](https://solid.github.io/notifications/protocol#notification-features).
+A WebPushSubscription2022 API SHOULD support the [Solid Notifications Features](https://solid.github.io/notifications/protocol#notification-features).
 
 Note: Let the class `WebPushSubscription2022` be an `rdfs:subClassOf` of `as:Follow`?
 
@@ -204,7 +204,7 @@ Content-Type: text/turtle
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix as: <https://www.w3.org/ns/activitystreams#> .
 @prefix push: <https://purl.org/solid-web-push/vocab#> .
-@prefix notify: <https://www.w3.org/ns/solid/notification> .
+@prefix notify: <https://www.w3.org/ns/solid/notification#> .
 
 <>  a notify:WebPushSubscription2022;
     notify:topic <https://uvdsl.solid.aifb.kit.edu/inbox/>;
