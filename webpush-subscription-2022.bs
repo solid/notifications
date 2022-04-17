@@ -62,7 +62,9 @@ This specification is for:
 *This section is non-normative.*
 
 This document uses terminology from the [[!SOLID-NOTIFICATIONS]] protocol, 
-  including "topic".
+  including "Notification Subscription API".
+The document uses terms from the [[!WEBSUB]] specification, 
+ including "topic".
 
 Issue(62):
 
@@ -70,7 +72,7 @@ Note: Let the predicate `topic` be an `rdfs:subClassOf` of `as:object`?
 
 
 
-The document uses terms from [[!PUSH-API]] specification, 
+The document further uses terms from [[!PUSH-API]] specification, 
   including "push endpoint", "push service" and "authentication secret".
 It also uses terms from [[!OAUTH-2.0]] specification,
   including  "authorization server" and "access token".
@@ -80,7 +82,7 @@ In addition, the document uses terms from the [[!WEBARCH]] specification,
 This document uses the following terms as defined below:
 : subscription service
 :: A `subscription service` is a service, which handles and manages subscriptions for resources stored on the corresponding Solid Storage. 
-:: The `subscription service` is identified by a URI. Dereferencing this URI yields the `subscription service`'s representation, a discription of the service. By this representation, information may be provided such as subscription endpoints where subscriptions can be submitted for the service to process.
+:: The `subscription service` is identified by a URI. Dereferencing this URI yields the `subscription service`'s representation, a discription of the service. By this representation, information may be provided such as Notification Subscription APIs where subscriptions can be submitted for the service to process.
 
 Issue(63):
 
@@ -104,13 +106,13 @@ How a client retrieves an access token is outside the scope of this document.
 <li> 
 **Discovery:**
 The *subscriber* discovers from the *storage metadata* a suitable *subscription service*.
-It further discovers from the *subscription service*'s representation a suitable subscription endpoint to submit subscription requests to and the `vapidPublicKey` of the *subscription service*.
+It further discovers from the *subscription service*'s representation a suitable Notification Subscription API to submit subscription requests to and the `vapidPublicKey` of the *subscription service*.
 </li>
 <li> 
 **Establish Subscription:**
 The *subscriber* subscribes to the *browser messaging service* to receive Web Push notifications using the `vapidPublicKey` of the *subscription service*.
 In return, the *subscriber* retrieves the `endpoint`, `auth` and `p256dh` values. 
-A corresponding subscription is submitted to the subscription endpoint.
+A corresponding subscription is submitted to the Notification Subscription API.
 The *subscription service* authenticates the *subscriber* with the *Authorization Server*, checks authorization of the *subscriber* and registers the subscription.
 </li>
 <li>
@@ -131,7 +133,7 @@ It is not yet specified by [[!SOLID-NOTIFICATIONS]], how unsubscription works. D
 </b>
 <ul>
 <li>
-Option (1): `as:Undo` via HTTP POST to subscription endpoint.
+Option (1): `as:Undo` via HTTP POST to Notification Subscription API.
 </li>
 <li>
 Option (2): HTTP DELETE on a subscription.
@@ -177,8 +179,8 @@ The WebPushSubscription2022 type defines the following properties:
 
 
 A client establishes a subscription using the `WebPushSubscription2022` type 
-by sending an authenticated subscription request to the `subscriptions service`'s subscription endpoint retrieved via [[!SOLID-NOTIFICATIONS]] discovery.
-The client sends a `HTTP POST` request with a request body to the appropriate `subscription resource`'s subscription endpoint.
+by sending an authenticated subscription request to the `subscriptions service`'s Notification Subscription API retrieved via [[!SOLID-NOTIFICATIONS]] discovery.
+The client sends a `HTTP POST` request with a request body to the appropriate `subscription resource`'s Notification Subscription API.
 Required information in the request are `type`, `topic`, `endpoint`, `keys` with `auth` and `p256dh`.
 
 If the subscription has been created successfully, the server responds to a client's subscription request with HTTP status code `201 Created` 
@@ -220,7 +222,7 @@ Example: POST request creating a `WebPushSubscription2022` subscription.
 
 A successful response will have a HTTP status code of `201 Created` and no (meaningful) response body.
 
-The subscription endpoint, in our example `/subscribe/`, where the POST request is submitted to, is discovered from the *subscription service*'s representation:
+The Notification Subscription API, in our example `/subscribe/`, where the POST request is submitted to, is discovered from the *subscription service*'s representation:
 <div class=example>
 ```turtle
 # available at <https://solid.aifb.kit.edu/web-push/service>
@@ -247,7 +249,7 @@ The subscription endpoint, in our example `/subscribe/`, where the POST request 
 Example: Representation of a *subscription service*.
 </div>
 
-Note: The representation includes the subscription endpoint where subscriptions can be submitted via POST using `ldp:inbox`.
+Note: The representation includes the Notification Subscription API where subscriptions can be submitted via POST using `ldp:inbox`.
 Currently, it is not yet specified by [[!SOLID-NOTIFICATIONS]] how the subscription service is modelled.
 To this end, the example is my suggestion.
 
@@ -260,7 +262,7 @@ It is not yet specified by [[!SOLID-NOTIFICATIONS]], how unsubscription works. D
 </b>
 <ul>
 <li>
-Option (1): `as:Undo` via HTTP POST to subscription endpoint.
+Option (1): `as:Undo` via HTTP POST to Notification Subscription API.
 </li>
 <li>
 Option (2): HTTP DELETE on a subscription.
@@ -329,6 +331,15 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
         "href": "https://www.ietf.org/rfc/rfc6749.txt",
         "title": "The OAuth 2.0 Authorization Framework",
         "publisher": "Internet Engineering Task Force (IETF)"
+    },
+    "WEBSUB": {
+        "authors": [
+          "Julien Genestoux", 
+          "Aaron Parecki"
+        ],
+        "href": "https://www.w3.org/TR/websub/",
+        "title": "WebSub",
+        "publisher": "W3C Social Web Working Group"
     },
       "WEBARCH": {
         "authors": [
