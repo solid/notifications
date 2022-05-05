@@ -20,7 +20,7 @@ authors of new subscription types.
 * [LinkedDataNotificationsSubscription2021](https://solid.github.io/notifications/linkeddatanotifications-subscription-2021) Editor's Draft.
 * [WebHookSubscription2021](https://github.com/solid/notifications/blob/main/webhook-subscription-2021.md) Editor's Draft.
 
-New subscription types may be added here, but there is no requirement to do so. Adding a subscription type to the list above aids in its discoverability by the solid community. We request authors of new subscription types to open a PR with this repository, so that the subscription type they have authored can be included in the list above.
+To add a new subscription type to the list, please create a PR including the name and the URL of the document describing the subscription type. The W3C Solid CG reserves the right to maintain the list.
 
 ## Diagrams
 
