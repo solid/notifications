@@ -133,7 +133,7 @@ content: "";
     <main>
       <article about="" typeof="schema:Article doap:Specification">
         <h1 property="schema:name">Solid Notifications Protocol</h1>
-        <h2>Editor’s Draft, 2022-05-05</h2>
+        <h2>Editor’s Draft, 2022-05-09</h2>
 
         <details open="">
           <summary>More details about this document</summary>
@@ -168,7 +168,7 @@ content: "";
 
           <dl id="document-modified">
             <dt>Modified</dt>
-            <dd><time content="2022-05-05T00:00:00Z" datatype="xsd:dateTime" datetime="2022-05-05T00:00:00Z" property="schema:dateModified">2022-05-05</time></dd>
+            <dd><time content="2022-05-09T00:00:00Z" datatype="xsd:dateTime" datetime="2022-05-09T00:00:00Z" property="schema:dateModified">2022-05-09</time></dd>
           </dl>
 
           <dl id="document-repository">
@@ -359,13 +359,13 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p><em>This section is non-normative.</em></p>
 
-              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">Much of the <cite><a href="https://solidproject.org/TR/protocol" rel="cito:describes">Solid Protocol</a></cite> is built on a RESTful API. This allows Solid to make use of well-understood interactions with resources on the Web, and this satisfies many use cases for client applications in the Solid ecosystem. However, for interactive client applications with multiple participants, chat-apps being just one such example, a RESTful API is too limited, as clients need to rely on polling in order to discover changes in the underlying data.</span></p>
+              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">The <cite><a href="https://solidproject.org/TR/protocol" rel="cito:describes">Solid Protocol</a></cite> enables HTTP interactions with resources on the Web, and this satisfies many use cases for client applications in the Solid ecosystem. However, for interactive client applications with multiple participants, chat-apps being just one such example, clients often need to rely on polling in order to discover changes in the underlying data.</span></p>
 
-              <p>A notification API for Solid would complement the core RESTful API so that clients can listen for updates to particular resources. In addition, a notification-based mechanism may reduce latency and load on a Pod server.</p>
+              <p>A notification API for would complement the Solid Protocol where clients can listen for updates to particular resources. In addition, a notification-based mechanism may reduce latency and load on a resource server.</p>
 
               <p>One challenge with (near) real-time notifications on the Web involves the diversity of technologies available. WebSockets and EventSource APIs are two options that are widely supported by browsers; ReadableStreams are becoming more widely supported. Furthermore, there are other, more asynchronous models that are relevant in certain cases: <cite>WebHooks</cite>, <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> and <cite><a href="https://www.w3.org/TR/ldn/">Linked Data Notifications</a></cite> are three examples. A major goal of the model described in this document is to make it possible for client applications to navigate the diversity of these technologies while also being open to new notification mechanisms as they emerge.</p>
 
-              <p>Finally, a critically important part of this model is security. Any notification-based API not only needs the same level of security that is found in the RESTful API but also the authorization mechanism needs to be consistent.</p>
+              <p>Finally, a critically important part of this model is security. Any notification-based API not only needs the same level of security that is found in the Solid Protocol but also the authorization mechanism needs to be consistent.</p>
 
               <p>This specification is for:</p>
 
