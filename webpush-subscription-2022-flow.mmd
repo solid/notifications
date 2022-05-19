@@ -1,0 +1,36 @@
+sequenceDiagram
+  autonumber
+  participant Subscribing PWA as Subscriber
+  participant Browser Messaging Service
+  participant Storage Metadata
+  participant Subscription Service
+  participant Authorization Server
+
+
+    Note over Subscribing PWA, Subscription Service: Discovery
+  Subscribing PWA ->>+ Storage Metadata: GET 
+  Storage Metadata -->>- Subscribing PWA: 200 OK with Storage Metadata Representation
+  Subscribing PWA ->>+ Subscription Service: GET 
+  Subscription Service -->>- Subscribing PWA: 200 OK with Subscription Service Representation
+
+    Note over Subscribing PWA, Authorization Server: Establish Subscription
+  Subscribing PWA ->>+ Browser Messaging Service: Subscribe to Web Push Service
+  Browser Messaging Service -->>- Subscribing PWA: Web Push Subscription data 
+
+  Subscribing PWA ->>+ Subscription Service: Submit subscription to discovered subscription endpoint via POST
+  Subscription Service ->>+ Authorization Server: Verify authorization
+  Authorization Server -->>- Subscription Service: capabilities
+  Subscription Service -->>- Subscribing PWA: 201 CREATED
+
+  Note over Subscribing PWA, Authorization Server: Deliver Notifications for Subscription
+  loop for each notification
+    Subscription Service ->>+ Authorization Server: Verify authorization
+    Authorization Server -->>- Subscription Service: capabilities
+    Subscription Service -) Browser Messaging Service: Deliver notification
+    Browser Messaging Service -) Subscribing PWA: Deliver notification
+  end
+
+  Note over Subscribing PWA, Authorization Server: Cancel Subscription
+  Subscribing PWA ->>+ Browser Messaging Service: Unsubscribe (delete subscription)
+  Subscribing PWA ->>+ Subscription Service: Unsubscribe (delete subscription)
+  Subscription Service -->>- Subscribing PWA: 204 No Content
