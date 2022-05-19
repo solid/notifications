@@ -19,6 +19,7 @@ authors of new subscription types.
 * [EventSourceSubscription2021](https://solid.github.io/notifications/eventsource-subscription-2021) Editor's Draft.
 * [LinkedDataNotificationsSubscription2021](https://solid.github.io/notifications/linkeddatanotifications-subscription-2021) Editor's Draft.
 * [WebHookSubscription2021](https://github.com/solid/notifications/blob/main/webhook-subscription-2021.md) Editor's Draft.
+* [WebPushSubscription2022](https://solid.github.io/notifications/webpush-subscription-2022) Editor's Draft.
 
 To add a new subscription type to the list, please create a PR including the name and the URL of the document describing the subscription type. The W3C Solid CG reserves the right to maintain the list.
 
