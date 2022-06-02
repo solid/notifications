@@ -682,18 +682,17 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p>Subscription types define particular interaction patterns for agents to establish and make use of subscription to resources.</p>
 
-              <p>
-                This document makes it possible to define new subscription types.
-                A list of known subscription types is available in the
-                <a href="https://github.com/solid/notifications#subscription-types">Solid
-                  Notifications source repository</a>.
-              </p>
+              <div class="note" id="subscription-types-index" inlist="" rel="schema:hasPart" resource="#subscription-types-index">
+                <h3 property="schema:name"><span>Note</span>: Subscription Types Index</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>An index of subscription types that are work in progress can be found at the repository hosting this document. The index of subscription types that are published as a <cite><a href="https://solidproject.org/TR/">Solid Technical Report</a></cite> can be found at <cite><a href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite>.</p>
+                </div>
+              </div>
 
               <p>
                 Guidelines for defining new subscription types are included in the
                 <cite><a href="#subscription-types-extension" rel="rdfs:seeAlso">Subscription Types Extension</a></cite> section.
               </p>
-
             </div>
           </section>
 
@@ -807,13 +806,6 @@ content: "";
 
                     <figcaption property="schema:name">Subscription request with a custom subscription type.</figcaption>
                   </figure>
-
-                  <div class="note" id="subscription-types-index" inlist="" rel="schema:hasPart" resource="#subscription-types-index">
-                    <h3 property="schema:name"><span>Note</span>: Subscription Types Index</h3>
-                    <div datatype="rdf:HTML" property="schema:description">
-                      <p>An index of subscription types that are work in progress can be found at the repository hosting this document. The index of subscription types that are published as a <cite><a href="https://solidproject.org/TR/">Solid Technical Report</a></cite> can be found at <cite><a href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite>.</p>
-                    </div>
-                  </div>
 
                   <p>
                     To help with the discovery of subscription types that can be used with this specification, it is encouraged to register them by following the procedure given in <cite><a href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite> [<cite><a class="bibref" href="bib-notification-subscription-types">NOTIFICATION-SUBSCRIPTION-TYPES</a></cite>].
