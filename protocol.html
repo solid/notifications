@@ -723,30 +723,6 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p>The content of a Solid Notification is defined in terms of a <cite><a href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0</a></cite> [<cite><a class="bibref" href="#bib-activitystreams-core">ACTIVITYSTREAMS-CORE</a></cite>]. As such, JSON-LD 1.0 is a required baseline serialization format, though other formats are not prohibited [<cite><a class="bibref" href="#bib-json-ld">JSON-LD</a></cite>]. JSON-LD version 1.1 is recommended when using JSON-LD serializations [<cite><a class="bibref" href="#bib-json-ld">JSON-LD11</a></cite>].</p>
 
-              <pre about="#notification-data-model-activity" property="schema:description" typeof="fabio:Script"><code>{</code>
-<code>  "@context": [</code>
-<code>    "https://www.w3.org/ns/activitystreams",</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
-<code>  ],</code>
-<code>  "id":"urn:uuid:&lt;uuid&gt;",</code>
-<code>  "type": [</code>
-<code>    "Update"</code>
-<code>  ],</code>
-<code>  "actor": [</code>
-<code>    "&lt;WebID&gt;"</code>
-<code>  ],</code>
-<code>  "object": {</code>
-<code>    "id":"https://example.org/&lt;user&gt;/some-container/",</code>
-<code>     "type": [</code>
-<code>      "http://www.w3.org/ns/ldp#BasicContainer",</code>
-<code>      "http://www.w3.org/ns/ldp#Resource",</code>
-<code>      "http://example.com/SomeType"</code>
-<code>    ]</code>
-<code>  },</code>
-<code>  "state": "1234-5678-90ab-cdef-12345678",</code>
-<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
-<code>}</code></pre>
-
               <div class="note" id="solid-notification-json-ld-context" inlist="" rel="schema:hasPart" resource="#solid-notification-json-ld-context">
                 <h3 property="schema:name"><span>Note</span>: Solid Notification JSON-LD Context</h3>
                 <div datatype="rdf:HTML" property="schema:description">
@@ -754,7 +730,117 @@ content: "";
                 </div>
               </div>
 
-              <p>The content of these serialized notifications may be extended, but the example here provides a minimal baseline that clients can expect.</p>
+              <p>Each time an event happens on a storage server, one or more notifications will be sent to the subscribing client in the following formats.</p>
+
+              <p>A notification activity MUST include a <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-type">type</a> field.</p>
+
+              <p>A notification activity SHOULD include an <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-id">id</a> field.</p>
+
+              <p>A notification activity MUST include an <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-actor">actor</a> field mapped to the URI of the authenticated agent that created the subscription. If an authenticated agent did not create the subscription, the actor field is not required.</p>
+
+              <p>A notification activity MUST include an <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object">object</a> field mapped to a summary of the resource or container for which the notification was triggered. That summary MUST include an <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-id">id</a> field containing the URI of the resource or container, and a <a href="https://www.w3.org/TR/activitystreams-vocabulary/#types">type</a>(https://www.w3.org/TR/activitystreams-vocabulary/#types) field containing the types for the resource or container.</p>
+
+              <p>A notification activity MUST have a <a href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-published">published</a> field.</p>
+
+              <p>A notification activity MAY have additional fields, especially if the storage server supports other notification features.</p>
+
+              <h3 property="schema:name">6.1. Resource is Created</h3>
+              <p>When a resource is created in a storage server's container, a notification MUST be sent to all clients that subscribe to the resource's container. The activity's type MUST be "Update."</p>
+
+              <pre property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id":"urn:uuid:<uuid>",</code>
+<code>  "type": [</code>
+<code>    "Update"</code>
+<code>  ],</code>
+<code>  "actor": [</code>
+<code>    "<WebID>"</code>
+<code>  ],</code>
+<code>  "object": {</code>
+<code>    "id":"https://example.org/<user>/some-container/",</code>
+<code>     "type": [</code>
+<code>      "http://www.w3.org/ns/ldp#BasicContainer",</code>
+<code>      "http://www.w3.org/ns/ldp#Resource"</code>
+<code>    ]</code>
+<code>  },</code>
+<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
+<code>}</code></pre>
+
+              <h3 property="schema:name">6.2. Resource is Removed</h3>
+              <p>When a resource is removed in a storage server's container, a notification MUST be sent to all clients that subscribe to the resource's container. The activity's type MUST be "Update."</p>
+
+              <pre property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id":"urn:uuid:<uuid>",</code>
+<code>  "type": [</code>
+<code>    "Update"</code>
+<code>  ],</code>
+<code>  "actor": [</code>
+<code>    "<WebID>"</code>
+<code>  ],</code>
+<code>  "object": {</code>
+<code>    "id":"https://example.org/<user>/some-container/",</code>
+<code>     "type": [</code>
+<code>      "http://www.w3.org/ns/ldp#BasicContainer",</code>
+<code>      "http://www.w3.org/ns/ldp#Resource"</code>
+<code>    ]</code>
+<code>  },</code>
+<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
+<code>}</code></pre>
+
+              <p>A notification MUST also be sent to all clients that subscribe to the resource itself. The activity's type MUST be "Delete."</p>
+
+              <pre property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id":"urn:uuid:<uuid>",</code>
+<code>  "type": [</code>
+<code>    "Delete"</code>
+<code>  ],</code>
+<code>  "actor": [</code>
+<code>    "<WebID>"</code>
+<code>  ],</code>
+<code>  "object": {</code>
+<code>    "id":"https://example.org/<user>/some-container/resource1.ttl",</code>
+<code>    "type": [</code>
+<code>      "http://www.w3.org/ns/ldp#Resource"</code>
+<code>    ]</code>
+<code>  },</code>
+<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
+<code>}</code></pre>
+
+              <h3 property="schema:name">6.3. Resource is Updated</h3>
+              <p>When a resource is updated on a storage server, a notification MUST be sent to all clients that subscribe to the resource. The activity's type MUST be `Update`.</p>
+
+              <pre property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id":"urn:uuid:<uuid>",</code>
+<code>  "type": [</code>
+<code>    "Update"</code>
+<code>  ],</code>
+<code>  "actor": [</code>
+<code>    "<WebID>"</code>
+<code>  ],</code>
+<code>  "object": {</code>
+<code>    "id":"https://example.org/<user>/some-container/resource1.ttl",</code>
+<code>    "type": [</code>
+<code>      "http://www.w3.org/ns/ldp#Resource"</code>
+<code>    ]</code>
+<code>  },</code>
+<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
+<code>}</code></pre>
+
             </div>
           </section>
 
