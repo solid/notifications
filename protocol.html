@@ -494,6 +494,19 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
+                  <p>The following properties are used for the discovery of a notification channel and its capabilities:</p>
+
+                  <dl>
+                    <dt about="#notify-feature" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-feature">feature</dfn></dt>
+                    <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a <code>notificationChannel</code> (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
+                    <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
+                    <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has notification channel.</dd>
+                    <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
+                    <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a <code>notification channel</code> (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
+                    <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
+                    <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the subscription type (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
+                  </dl>
+
                   <div class="issue" id="discovery-subscription-metadata" rel="schema:hasPart" resource="#discovery-subscription-metadata">
                     <h4 property="schema:name"><span>Issue</span>: Notification Subscription Metadata Discovery</h4>
                     <div datatype="rdf:HTML" property="schema:description">
@@ -543,7 +556,7 @@ content: "";
 <code>&lt;#websocketNotification&gt;</code>
 <code>  a notify:WebSocketSubscription2021 ;</code>
 <code>  notify:subscription &lt;https://websocket.example/subscription&gt; ;</code>
-<code>  notify:features notify:state, notify:rate, notify:expiration .</code>
+<code>  notify:feature notify:state, notify:rate, notify:expiration .</code>
 <code></code></pre>
 
                     <figcaption property="schema:name"><code>TURTLE</code> serialization of a Notification Subscription Metadata Resource</figcaption>
@@ -582,7 +595,7 @@ content: "";
 <code>    "id": "websocketNotification",</code>
 <code>    "type": ["WebSocketSubscription2021"],</code>
 <code>    "subscription": "https://websocket.example/subscription",</code>
-<code>    "features": ["state", "rate", "expiration"]</code>
+<code>    "feature": ["state", "rate", "expiration"]</code>
 <code>  }]</code>
 <code>}</code></pre>
 
