@@ -612,23 +612,39 @@ content: "";
               <section id="subscription" inlist="" rel="schema:hasPart" resource="#subscription">
                 <h3 property="schema:name">Subscription</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can hold any information, typically used by clients to discover available features and capabilities (see <a href="#notification-features">Notification Features</a>).</p>
+                  <dl id="subscription-resource-request-response">
+                    <dt about="#subscription-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-resource">subscription resource</dfn></dt>
+                    <dd about="#subscription-resource" property="skos:definition">A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can hold any information, typically used by clients to discover available features and capabilities (see <a href="#notification-features">Notification Features</a>).</dd>
 
-                  <p><span about="" id="server-subscription-resource-safe-methods" rel="spec:requirement" resource="#server-subscription-resource-safe-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> requests targeting the subscription resource.</span></span></p>
+                    <dt about="#subscription-request" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request">subscription request</dfn></dt>
+                    <dd about="#subscription-request" property="skos:definition">A <em>subscription request</em> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> made by a subscriber indicating interest to receive updates about a particular resource.</dd>
+
+                    <dt about="#subscription-response" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request">subscription response</dfn></dt>
+                    <dd about="#subscription-response" property="skos:definition">A <em>subscription response</em> is an HTTP response to a <a href="#subscription-request">subscription request</a>. The payload of the subscription response are specialised by <a href="#subscription-types">subscription types</a>.</dd>
+                  </dl>
+
+                  <p><span about="" id="server-subscription-request-methods" rel="spec:requirement" resource="#server-subscription-request-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the subscription resource.</span></span></p>
 
                   <p>
-                    <span about="" id="server-subscription-creation" rel="spec:requirement" resource="#server-subscription-creation">
+                    <span about="" id="server-subscription-request-accept" rel="spec:requirement" resource="#server-subscription-request-accept">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept
-                        authorized <code>POST</code> requests targeting the subscription resource
-                        with a well-formed payload serialized as JSON-LD.
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the subscription resource when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
                       </span>
                     </span>
                   </p>
 
                   <p>
-                    <span about="" id="server-subscription-payload" rel="spec:requirement" resource="#server-subscription-payload">
+                    <span about="" id="server-subscription-request-content-type" rel="spec:requirement" resource="#server-subscription-request-content-type">
+                      <span property="spec:statement">
+                        <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the subscription resource when the value of the <code>Content-Type</code> header indicates the payload's media type in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
+                      </span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span about="" id="server-subscription-request-payload" rel="spec:requirement" resource="#server-subscription-request-payload">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Server">
                           The JSON-LD payload received by a server in a <code>POST</code> request
@@ -679,6 +695,8 @@ content: "";
                       </span>
                     </dd>
                   </dl>
+
+                  <p><span about="" id="server-subscription-request-response" rel="spec:requirement" resource="#server-subscription-request-response"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> and <code>type</code> fields, in addition to other fields described by specific <a href="#subscription-types" rel="rdfs:seeAlso">subscription types</a>, in the payload of a JSON-LD response when responding to a successful subscription.</span></span></p>
                 </div>
               </section>
             </div>
