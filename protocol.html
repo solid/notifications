@@ -607,21 +607,28 @@ content: "";
                     <dd about="#subscription-response" property="skos:definition">A <em>subscription response</em> is an HTTP response to a <a href="#subscription-request">subscription request</a>. The payload of the subscription response are specialised by <a href="#subscription-types">subscription types</a>.</dd>
                   </dl>
 
-                  <p><span about="" id="server-subscription-resource-safe-methods" rel="spec:requirement" resource="#server-subscription-resource-safe-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> requests targeting the subscription resource.</span></span></p>
+                  <p><span about="" id="server-subscription-request-methods" rel="spec:requirement" resource="#server-subscription-request-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the subscription resource.</span></span></p>
 
                   <p>
-                    <span about="" id="server-subscription-creation" rel="spec:requirement" resource="#server-subscription-creation">
+                    <span about="" id="server-subscription-request-accept" rel="spec:requirement" resource="#server-subscription-request-accept">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept
-                        authorized <code>POST</code> requests targeting the subscription resource
-                        with a well-formed payload serialized as JSON-LD.
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the subscription resource when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
                       </span>
                     </span>
                   </p>
 
                   <p>
-                    <span about="" id="server-subscription-payload" rel="spec:requirement" resource="#server-subscription-payload">
+                    <span about="" id="server-subscription-request-content-type" rel="spec:requirement" resource="#server-subscription-request-content-type">
+                      <span property="spec:statement">
+                        <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the subscription resource when the value of the <code>Content-Type</code> header indicates the payload's media type in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
+                      </span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span about="" id="server-subscription-request-payload" rel="spec:requirement" resource="#server-subscription-request-payload">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Server">
                           The JSON-LD payload received by a server in a <code>POST</code> request
@@ -673,7 +680,7 @@ content: "";
                     </dd>
                   </dl>
 
-                  <p><span about="" id="server-subscription-request-response" rel="spec:requirement" resource="#server-subscription-request-response"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond to a successful subscription with a JSON-LD payload including the fields: <code>@context</code>, <code>type</code>, in addition to other fields described by specific subscription types.</span></span></p>
+                  <p><span about="" id="server-subscription-request-response" rel="spec:requirement" resource="#server-subscription-request-response"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> and <code>type</code> fields, in addition to other fields described by specific <a href="#subscription-types" rel="rdfs:seeAlso">subscription types</a>, in the payload of a JSON-LD response when responding to a successful subscription.</span></span></p>
                 </div>
               </section>
             </div>
