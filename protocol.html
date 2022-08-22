@@ -644,57 +644,34 @@ content: "";
                   </p>
 
                   <p>
-                    <span about="" id="server-subscription-request-payload" rel="spec:requirement" resource="#server-subscription-request-payload">
+                    <span about="" id="client-subscription-request-statements" rel="spec:requirement" resource="#client-subscription-request-statements">
                       <span property="spec:statement">
-                        <span rel="spec:requirementSubject" resource="spec:Server">
-                          The JSON-LD payload received by a server in a <code>POST</code> request
-                          <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain
-                          at least three fields: <code>@context</code>, <code>type</code> and <code>topic</code>.
-                          All other data requirements are defined by the individual subscription types.
-                          Some common feature properties are described in the <cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite> section.
-                        </span>
+                        <span rel="spec:requirementSubject" resource="spec:Client">Clients</span>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include <a href="#subscription-request-statements">statements about the subscription</a>, in addition to other fields described by specific <a href="#subscription-types" rel="rdfs:seeAlso">subscription types</a>, as part of the request payload.
                       </span>
                     </span>
                   </p>
 
-                  <dl>
-                    <dt about="#server-subscription-request-context" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="server-subscription-request-context">@context</dfn>
-                    </dt>
-                    <dd about="#server-subscription-request-context" property="skos:definition">
-                      <span about="" id="server-subscription-context-value" rel="spec:requirement" resource="#server-subscription-context-value">
-                        <span property="spec:statement">
-                          The <code>@context</code> property is <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                          be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
-                          Other values <span property="spec:requirementLevel" resource="spec:MAY">MAY</span> also be present.
-                        </span>
-                      </span>
-                    </dd>
+                  <p id="subscription-request-statements" about="#subscription-request-statements" typeof="skos:Collection"><span property="skos:prefLabel">Subscription request statements</span> include the properties:</p>
 
-                    <dt about="server-subscription-request-type" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="server-subscription-request-type">type</dfn>
+                  <dl about="#subscription-request-statements" rel="skos:member">
+                    <dt about="#subscription-request-context" property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="subscription-request-context">@context</dfn>
                     </dt>
-                    <dd property="skos:definition">
-                      <span about="" id="server-subscription-type-value" rel="spec:requirement" resource="#server-subscription-type-value">
-                        <span property="spec:statement">
-                          The <code>type</code> property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                          indicate the subscription type to be created.
-                        </span>
-                      </span>
-                    </dd>
+                    <dd about="#subscription-request-context" property="skos:definition">An array containing at least the value <code>https://www.w3.org/ns/solid/notification/v1</code> in a JSON-LD payload.</dd>
 
-                    <dt about="#server-subscription-request-topic" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="server-subscription-request-topic">topic</dfn>
+                    <dt about="#subscription-request-type" property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="subscription-request-type">type</dfn>
                     </dt>
-                    <dd property="skos:definition">
-                      <span about="" id="server-subscription-topic-value" rel="spec:requirement" resource="#server-subscription-topic-value">
-                        <span property="spec:statement">
-                          The <code>topic</code> property <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                          indicate the IRI(s) of the resources about which the client would like to receive notifications.
-                        </span>
-                      </span>
-                    </dd>
+                    <dd about="#subscription-request-type" property="skos:definition">A class whose URI indicating the subscription type to be created.</dd>
+
+                    <dt about="#subscription-request-topic" property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="subscription-request-topic">topic</dfn>
+                    </dt>
+                    <dd about="#subscription-request-topic" property="skos:definition">The IRI(s) of the resources about which the client would like to receive notifications.</dd>
                   </dl>
+
+                  <p><span about="" id="server-subscription-request-payload-invalid" rel="spec:requirement" resource="#server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] if a subscription request does not satisfy the payload constraints.</span></span></p>
 
                   <p><span about="" id="server-subscription-request-response" rel="spec:requirement" resource="#server-subscription-request-response"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> and <code>type</code> fields, in addition to other fields described by specific <a href="#subscription-types" rel="rdfs:seeAlso">subscription types</a>, in the payload of a JSON-LD response when responding to a successful subscription.</span></span></p>
                 </div>
@@ -1009,6 +986,8 @@ content: "";
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc2119" rel="cito:citesAsAuthority"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a></dd>
                     <dt id="bib-rfc3986">[RFC3986]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc3986" rel="cito:citesAsAuthority"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a></dd>
+                    <dt id="bib-rfc4918">[RFC4918]</dt>
+                    <dd><a href="https://datatracker.ietf.org/doc/html/rfc4918" rel="cito:citesAsAuthority"><cite>HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)</cite></a>. L. Dusseault, Ed.  IETF. June 2007. Proposed Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc4918">https://datatracker.ietf.org/doc/html/rfc4918</a></dd>
                     <dt id="bib-rfc6454">[RFC6454]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc6454" rel="cito:citesAsAuthority"><cite>The Web Origin Concept</cite></a>. A. Barth.  IETF. December 2011. Proposed Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc6454">https://datatracker.ietf.org/doc/html/rfc6454</a></dd>
                     <dt id="bib-rfc6749">[RFC6749]</dt>
