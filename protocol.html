@@ -420,20 +420,12 @@ content: "";
                       A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
                     </dd>
 
-                    <dt about="#notification-subscription-api" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-subscription-api">Notification Subscription API</dfn>
-                    </dt>
-                    <dd about="#notification-subscription-api" property="skos:definition">
-                      An HTTP URI at which a client can initiate a subscription to notification events
-                      for a particular set of resources [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].
-                    </dd>
-
                     <dt about="#notification-subscription-metadata-resource" property="skos:prefLabel" typeof="skos:Concept">
                       <dfn id="notification-subscription-metadata-resource">Notification Subscription Metadata Resource</dfn>
                     </dt>
                     <dd about="#notification-subscription-metadata-resource" property="skos:definition">
                       An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>]
-                      that includes metadata about the capabilities of a Notification Subscription API.
+                      that includes metadata about the capabilities of a notification channel.
                     </dd>
 
                     <dt about="#subscription-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-resource">subscription resource</dfn></dt>
@@ -518,7 +510,7 @@ content: "";
                     <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
                     <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has notification channel.</dd>
                     <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
-                    <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a <code>notification channel</code> (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
+                    <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
                     <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
                     <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the subscription type (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
                   </dl>
@@ -710,7 +702,7 @@ content: "";
           <section id="authentication-authorization" inlist="" rel="schema:hasPart" resource="#authentication-authorization">
             <h2 property="schema:name">Authentication and Authorization</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The Subscription API requires authorization. This document does not define the specific technology used to authorize requests; rather, it defers to the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>]. It is out of scope for this document to describe how a client fetches an authorization token. <cite><a href="https://solid.github.io/solid-oidc/" rel="cito:discusses">Solid-OIDC</a></cite> is one example of an authentication mechanism that could be used with Solid Notifications [<cite><a class="bibref" href="#bib-solid-oidc">SOLID-OIDC</a></cite>].</p>
+              <p>This document does not define the specific technology used to authorize requests; rather, it defers to the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>]. It is out of scope for this document to describe how a client fetches an authorization token. <cite><a href="https://solid.github.io/solid-oidc/" rel="cito:discusses">Solid-OIDC</a></cite> is one example of an authentication mechanism that could be used with Solid Notifications [<cite><a class="bibref" href="#bib-solid-oidc">SOLID-OIDC</a></cite>].</p>
 
               <p>Resource-based Access controls <span about="" id="server-subscription-access-controls" rel="spec:requirement" resource="#server-subscription-access-controls"><span property="spec:statement"><span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be enforced for every subscription.</span></span> <span about="" id="server-subscription-access-read" rel="spec:requirement" resource="#server-subscription-access-read"><span property="spec:statement">A client <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be permitted to read the resource to which it subscribes.</span></span></p>
             </div>
