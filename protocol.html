@@ -410,22 +410,22 @@ content: "";
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#notification-subscription-metadata-resource"></span><span resource="#subscription-resource"></span><span resource="#subscription-request"></span><span resource="#subscription-response"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#notification-channel"></span><span resource="#notification-channel-resource"></span><span resource="#subscription-resource"></span><span resource="#subscription-request"></span><span resource="#subscription-response"></span></span>
 
                   <dl>
                     <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-channel">Notification Channel</dfn>
+                      <dfn id="notification-channel">notification channel</dfn>
                     </dt>
                     <dd about="#notification-channel" property="skos:definition">
-                      A <em>Notification Channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
+                      A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
                     </dd>
 
-                    <dt about="#notification-subscription-metadata-resource" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-subscription-metadata-resource">Notification Subscription Metadata Resource</dfn>
+                    <dt about="#notification-channel-resource" property="skos:prefLabel" typeof="skos:Concept">
+                      <dfn id="notification-channel-resource">notification channel resource</dfn>
                     </dt>
-                    <dd about="#notification-subscription-metadata-resource" property="skos:definition">
+                    <dd about="#notification-channel-resource" property="skos:definition">
                       An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>]
-                      that includes metadata about the capabilities of a notification channel.
+                      that includes information about the capabilities of a notification channel.
                     </dd>
 
                     <dt about="#subscription-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-resource">subscription resource</dfn></dt>
@@ -519,46 +519,51 @@ content: "";
                     <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
                     <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
                     <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
-                    <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the subscription type (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
+                    <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the notification channel type (<a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a>).</dd>
                   </dl>
 
-                  <div class="issue" id="discovery-subscription-metadata" rel="schema:hasPart" resource="#discovery-subscription-metadata">
-                    <h4 property="schema:name"><span>Issue</span>: Notification Subscription Metadata Discovery</h4>
+                  <section id="notification-channel-discovery" inlist="" rel="schema:hasPart" resource="#notification-channel-discovery">
+                    <h4 property="schema:name">Notification Channel Discovery</h4>
                     <div datatype="rdf:HTML" property="schema:description">
-                      <p>The specific mechanism defining the discovery of the <a href="#notification-subscription-metadata-resource">Notification Subscription Metadata Resource</a> is under consideration: <a href="https://github.com/solid/notifications/issues/58" rel="cito:citesAsRelated">issues/58</a>.</p>
+                      <p about="" id="server-link-resource-notification-channel" rel="spec:requirement" resource="#server-link-resource-notification-channel"><span property="spec:statement">When a server wants to enable applications to discover <a href="#notification-channel">Notification Channels</a> available to a given <a href="https://solidproject.org/TR/protocol#resource">resource</a>, the <span rel="spec:requirementSubject" resource="spec:Server">server</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> advertise the associated resources describing the channel information by responding to an HTTP request including a <code>Link</code> header with the <code>rel</code> value of <code>describedby</code> [<cite><a class="bibref" href="#bib-powder-dr">POWDER-DR</a></cite>] and the Description Resource as link target [<cite><a class="bibref" href="#bib-rfc8288">RFC8288</a></cite>].</span></p>
+
+                      <p about="" id="server-link-storage-notification-channel" rel="spec:requirement" resource="#server-link-storage-notification-channel"><span property="spec:statement">When a server wants to enable applications to discover <a href="#notification-channel">Notification Channels</a> available to a <a href="https://solidproject.org/TR/protocol#storage">storage</a> in which a given <a href="https://solidproject.org/TR/protocol#resource">resource</a> is in, the <span rel="spec:requirementSubject" resource="spec:Server">server</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> advertise the associated resources describing the channel information by responding to an HTTP request including a <code>Link</code> header with the <code>rel</code> value of <code>http://www.w3.org/ns/solid#storageDescription</code> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>] and the Description Resource as link target [<cite><a class="bibref" href="#bib-rfc8288">RFC8288</a></cite>].</span></p>
+
+                      <p>
+                        <span about="" id="server-notification-channel-resource-accept" rel="spec:requirement" resource="#server-notification-channel-resource-accept">
+                          <span property="spec:statement">
+                            <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
+                            <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the Notification Channel Resource when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
+                          </span>
+                        </span>
+                      </p>
                     </div>
-                  </div>
+                  </section>
+
+                  <section id="notification-channel-conformance" inlist="" rel="schema:hasPart" resource="#notification-channel-conformance">
+                    <h4 property="schema:name">Notification Channel Conformance</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+
+                      <p>A Notification Channel has the following properties:</p>
+
+                      <ul>
+                        <li>At least one <code>notify:notificationChannel</code> property whose object describes a notification channel.</li>
+                        <li>At least one <code>rdf:type</code> property whose object is <code>notify:NotificationChannel</code>.</li>
+                        <li>Zero or more <code>notify:feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                        <li>Zero or one <code>notify:subscription</code> property value (<cite><a href="#notification-subscription" rel="rdfs:seeAlso">Notification Subscription</a></cite>).</li>
+                      </ul>
+                    </div>
+                  </section>
+
+                  <p><span about="" id="server-notification-channel-resource-jsonld-context" rel="spec:requirement" resource="#server-notification-channel-resource-jsonld-context"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> field as an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code> in the JSON-LD representation of a Notification Channel Resource.</span></span></p>
 
                   <p>
-                    <span about="" id="discovery-serialization" rel="spec:requirement" resource="#discovery-serialization">
-                      <span property="spec:statement">
-                        The <span rel="spec:requirementSubject" resource="spec:Server">server</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be capable of serializing the
-                        <cite>Notification Subscription Metadata Resource</cite> as
-                        Turtle [<cite><a class="bibref" href="#bib-turtle">TURTLE</a></cite>]
-                        or JSON-LD [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
-                      </span>
-                    </span>
-                  </p>
-
-                  <h4 id="discovery-serialization-turtle">Turtle Serialization</h4>
-
-                  <p about="" id="discovery-channel-type-turtle" rel="spec:requirement" resource="#discovery-channel-type-turtle">
-                    <span property="spec:statement">
-                      When serializing the Notification Subscription Metadata Resource as Turtle,
-                      every <code>notify:notificationChannel</code> definition
-                      <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                      materialize an <code>rdf:type</code> triple, indicating the channel type.
-                    </span>
-                  </p>
-
-                  <p>
-                    A sample representation of this resource might include the following:
+                    Sample representations of the Notification Channel Resource might include the following:
                   </p>
 
                   <figure id="metadata-resource-response-turtle" class="example listing" rel="schema:hasPart" resource="#metadata-resource-response-turtle">
                     <p class="example-h">
-                      <span>Example</span>: Representation of a Notification Subscription Metadata Resource.
+                      <span>Example</span>: Representation of a Notification Channel Resource.
                     </p>
 
                     <pre about="#metadata-resource-response-turtle" property="schema:description" typeof="fabio:Script"><code>Content-Type: text/turtle</code>
@@ -574,25 +579,12 @@ content: "";
 <code>  notify:feature notify:state, notify:rate, notify:expiration .</code>
 <code></code></pre>
 
-                    <figcaption property="schema:name"><code>TURTLE</code> serialization of a Notification Subscription Metadata Resource</figcaption>
+                    <figcaption property="schema:name"><code>Turtle</code> serialization of a resource including notification channel information.</figcaption>
                   </figure>
 
-                  <h4 id="discovery-serialization-jsonld">JSON-LD Serialization</h4>
-
-                  <p about="" id="discovery-channel-type-jsonld" rel="spec:requirement" resource="#discovery-channel-type-jsonld">
-                    <span property="spec:statement">
-                      When serializing the Notification Subscription Metadata Resource as JSON-LD,
-                      the <code>@context</code>field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                      be an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code>.
-                      In addition, for every <code>notificationChannel</code> definition,
-                      the Subscription Metadata Resource <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span>
-                      materialize a <code>type</code> field, indicating the channel type.
-                    </span>
-                  </p>
-
-                  <figure id="metadata-resource-response-jsonld" class="example listing" rel="schema:hasPart" resource="#metadata-resource-response-jsonld">
+                  <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
                     <p class="example-h">
-                      <span>Example</span>: Representation of a Notification Subscription Metadata Resource.
+                      <span>Example</span>: Representation of a Notification Channel Resource.
                     </p>
 
                     <pre about="#metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
@@ -609,7 +601,7 @@ content: "";
 <code>  }]</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Notification Subscription Metadata Resource</figcaption>
+                    <figcaption property="schema:name"><code>JSON-LD</code> serialization of resource including notification channel information.</figcaption>
                   </figure>
                 </div>
               </section>
@@ -960,6 +952,8 @@ content: "";
                     <dd><a href="https://www.w3.org/TR/ldn/" rel="cito:citesAsAuthority"><cite>Linked Data Notifications</cite></a>. Sarven Capadisli; Amy Guy.  W3C. 2 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a></dd>
                     <dt id="bib-oauth-pop-key-distribution">[OAUTH-POP-KEY-DISTRIBUTION]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-pop-key-distribution/" rel="cito:citesAsAuthority"><cite>OAuth 2.0 Proof-of-Possession: Authorization Server to Client Key Distribution</cite></a>. J. Bradley; P. Hunt; M. Jones; H. Tschofenig.  IETF. 5 March 2015. Internet Draft (work in progress). URL: <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-pop-key-distribution/">https://datatracker.ietf.org/doc/draft-ietf-oauth-pop-key-distribution/</a></dd>
+                    <dt id="bib-powder-dr">[POWDER-DR]</dt>
+                    <dd><a href="https://www.w3.org/TR/powder-dr/" rel="cito:citesAsAuthority"><cite>Protocol for Web Description Resources (POWDER): Description Resources</cite></a>. Phil Archer; Kevin Smith; Andrea Perego.  W3C. 1 September 2009. W3C Recommendation. URL: <a href="https://www.w3.org/TR/powder-dr/">https://www.w3.org/TR/powder-dr/</a></dd>
                     <dt id="bib-rdf-schema">[RDF-SCHEMA]</dt>
                     <dd><a href="https://www.w3.org/TR/rdf-schema/" rel="cito:citesAsAuthority"><cite>RDF Schema 1.1</cite></a>. Dan Brickley; Ramanathan Guha.  W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf-schema/">https://www.w3.org/TR/rdf-schema/</a></dd>
                     <dt id="bib-rdf11-concepts">[RDF11-CONCEPTS]</dt>
