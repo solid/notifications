@@ -410,14 +410,14 @@ content: "";
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#notification-subscription-api"></span><span resource="#notification-subscription-metadata-resource"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#notification-subscription-metadata-resource"></span><span resource="#subscription-resource"></span><span resource="#subscription-request"></span><span resource="#subscription-response"></span></span>
 
                   <dl>
                     <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-channel">notification channel</dfn>
+                      <dfn id="notification-channel">Notification Channel</dfn>
                     </dt>
                     <dd about="#notification-channel" property="skos:definition">
-                      A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
+                      A <em>Notification Channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
                     </dd>
 
                     <dt about="#notification-subscription-metadata-resource" property="skos:prefLabel" typeof="skos:Concept">
@@ -513,9 +513,9 @@ content: "";
 
                   <dl>
                     <dt about="#notify-feature" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-feature">feature</dfn></dt>
-                    <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a <code>notificationChannel</code> (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
+                    <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a notification channel (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
                     <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
-                    <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has notification channel.</dd>
+                    <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has a notification channel.</dd>
                     <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
                     <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
                     <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
