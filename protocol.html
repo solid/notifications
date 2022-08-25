@@ -509,19 +509,6 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>The following properties are used for the discovery of a notification channel and its capabilities:</p>
-
-                  <dl>
-                    <dt about="#notify-feature" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-feature">feature</dfn></dt>
-                    <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a notification channel (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
-                    <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
-                    <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has a notification channel.</dd>
-                    <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
-                    <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
-                    <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
-                    <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the notification channel type (<a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a>).</dd>
-                  </dl>
-
                   <section id="notification-channel-discovery" inlist="" rel="schema:hasPart" resource="#notification-channel-discovery">
                     <h4 property="schema:name">Notification Channel Discovery</h4>
                     <div datatype="rdf:HTML" property="schema:description">
@@ -537,6 +524,21 @@ content: "";
                           </span>
                         </span>
                       </p>
+
+                      <p>The following properties are used for the discovery of a notification channel and its capabilities:</p>
+
+                      <dl>
+                        <dt about="#notify-feature" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-feature">feature</dfn></dt>
+                        <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a notification channel (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
+                        <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
+                        <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has a notification channel.</dd>
+                        <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
+                        <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
+                        <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
+                        <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the notification channel type (<a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a>).</dd>
+                      </dl>
+
+                      <p><span about="" id="server-notification-channel-resource-jsonld-context" rel="spec:requirement" resource="#server-notification-channel-resource-jsonld-context"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> field as an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code> in the JSON-LD representation of a Notification Channel Resource.</span></span></p>
                     </div>
                   </section>
 
@@ -552,21 +554,17 @@ content: "";
                         <li>Zero or more <code>notify:feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                         <li>Zero or one <code>notify:subscription</code> property value (<cite><a href="#notification-subscription" rel="rdfs:seeAlso">Notification Subscription</a></cite>).</li>
                       </ul>
-                    </div>
-                  </section>
 
-                  <p><span about="" id="server-notification-channel-resource-jsonld-context" rel="spec:requirement" resource="#server-notification-channel-resource-jsonld-context"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> field as an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code> in the JSON-LD representation of a Notification Channel Resource.</span></span></p>
+                      <p>
+                        Sample representations of the Notification Channel Resource might include the following:
+                      </p>
 
-                  <p>
-                    Sample representations of the Notification Channel Resource might include the following:
-                  </p>
+                      <figure id="notification-channel-resource-turtle" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-response-turtle">
+                        <p class="example-h">
+                          <span>Example</span>: Representation of a Notification Channel Resource.
+                        </p>
 
-                  <figure id="metadata-resource-response-turtle" class="example listing" rel="schema:hasPart" resource="#metadata-resource-response-turtle">
-                    <p class="example-h">
-                      <span>Example</span>: Representation of a Notification Channel Resource.
-                    </p>
-
-                    <pre about="#metadata-resource-response-turtle" property="schema:description" typeof="fabio:Script"><code>Content-Type: text/turtle</code>
+                        <pre about="#notification-channel-resource-turtle" property="schema:description" typeof="fabio:Script"><code>Content-Type: text/turtle</code>
 <code></code>
 <code>@prefix notify: &lt;http://www.w3.org/ns/solid/notifications#&gt; .</code>
 <code></code>
@@ -579,15 +577,15 @@ content: "";
 <code>  notify:feature notify:state, notify:rate, notify:expiration .</code>
 <code></code></pre>
 
-                    <figcaption property="schema:name"><code>Turtle</code> serialization of a resource including notification channel information.</figcaption>
-                  </figure>
+                        <figcaption property="schema:name"><code>Turtle</code> serialization of a resource including notification channel information.</figcaption>
+                      </figure>
 
-                  <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
-                    <p class="example-h">
-                      <span>Example</span>: Representation of a Notification Channel Resource.
-                    </p>
+                      <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
+                        <p class="example-h">
+                          <span>Example</span>: Representation of a Notification Channel Resource.
+                        </p>
 
-                    <pre about="#metadata-resource-response" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+                        <pre about="#notification-channel-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
 <code></code>
 <code>{</code>
 <code>  "@context": [</code>
@@ -601,8 +599,10 @@ content: "";
 <code>  }]</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name"><code>JSON-LD</code> serialization of resource including notification channel information.</figcaption>
-                  </figure>
+                        <figcaption property="schema:name"><code>JSON-LD</code> serialization of resource including notification channel information.</figcaption>
+                      </figure>
+                    </div>
+                  </section>
                 </div>
               </section>
 
