@@ -406,18 +406,18 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification, including <q cite="https://solidproject.org/TR/protocol#data-pod">data pod</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q cite="https://www.w3.org/TR/websub/#dfn-topic">topic</q>.</p>
+                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/protocol">Solid Protocol</a></cite> specification. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q> and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q cite="https://www.w3.org/TR/websub/#dfn-topic">topic</q>.</p>
 
                   <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
 
-                  <span rel="skos:hasTopConcept"><span resource="#notification-subscription-api"></span><span resource="#notification-subscription-metadata-resource"></span></span>
+                  <span rel="skos:hasTopConcept"><span resource="#notification-subscription-metadata-resource"></span><span resource="#subscription-resource"></span><span resource="#subscription-request"></span><span resource="#subscription-response"></span></span>
 
                   <dl>
                     <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-channel">notification channel</dfn>
+                      <dfn id="notification-channel">Notification Channel</dfn>
                     </dt>
                     <dd about="#notification-channel" property="skos:definition">
-                      A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
+                      A <em>Notification Channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
                     </dd>
 
                     <dt about="#notification-subscription-metadata-resource" property="skos:prefLabel" typeof="skos:Concept">
@@ -499,6 +499,13 @@ content: "";
                 subscription requirements of the notification protocol.
               </p>
 
+              <div class="issue" id="solid-notification-vocabulary-context" inlist="" rel="schema:hasPart" resource="#solid-notification-vocabulary-context">
+                <h3 property="schema:name"><span>Issue</span>: Solid Notification Vocabulary and Context</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The Solid Notification vocabulary and JSON-LD context is under development: <a href="https://github.com/solid/vocab/pull/62" rel="cito:citesAsRelated">pull/62</a>.</p>
+                </div>
+              </div>
+
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
@@ -506,9 +513,9 @@ content: "";
 
                   <dl>
                     <dt about="#notify-feature" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-feature">feature</dfn></dt>
-                    <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a <code>notificationChannel</code> (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
+                    <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a notification channel (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
                     <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
-                    <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has notification channel.</dd>
+                    <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has a notification channel.</dd>
                     <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
                     <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
                     <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
@@ -570,11 +577,6 @@ content: "";
                     <figcaption property="schema:name"><code>TURTLE</code> serialization of a Notification Subscription Metadata Resource</figcaption>
                   </figure>
 
-                  <p class="advisement">
-                    The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite>
-                    will need to define a notification vocabulary to support this feature.
-                  </p>
-
                   <h4 id="discovery-serialization-jsonld">JSON-LD Serialization</h4>
 
                   <p about="" id="discovery-channel-type-jsonld" rel="spec:requirement" resource="#discovery-channel-type-jsonld">
@@ -609,11 +611,6 @@ content: "";
 
                     <figcaption property="schema:name"><code>JSON-LD</code> serialization of a Notification Subscription Metadata Resource</figcaption>
                   </figure>
-
-                  <p class="advisement">
-                    The <cite><a href="https://github.com/solid/notifications-panel">Notifications Panel</a></cite>
-                    will need to define a JSON-LD context resource to support this feature.
-                  </p>
                 </div>
               </section>
 
@@ -773,13 +770,6 @@ content: "";
 <code>  "state": "1234-5678-90ab-cdef-12345678",</code>
 <code>  "published":"2021-08-05T01:01:49.550044Z"</code>
 <code>}</code></pre>
-
-              <div class="issue" id="solid-notification-json-ld-context" inlist="" rel="schema:hasPart" resource="#solid-notification-json-ld-context">
-                <h3 property="schema:name"><span>Issue</span>: Solid Notification JSON-LD Context</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p>The Solid Notification JSON-LD context resource is under development: <a href="https://github.com/solid/vocab/pull/62" rel="cito:citesAsRelated">pull/62</a>.</p>
-                </div>
-              </div>
 
               <p>Implementations can augment the JSON-LD context definition and extend the content of the notifications.</p>
             </div>
