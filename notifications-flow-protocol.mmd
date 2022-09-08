@@ -1,0 +1,10 @@
+sequenceDiagram
+  autonumber
+  participant Subscriber
+  participant Storage Description Resource
+  participant Subscription Resource
+
+  Subscriber ->> Storage Description Resource: Discovery
+  Storage Description Resource ->> Subscriber: Storage Description Resource
+  Subscriber ->> Subscription Resource: Request subscription (with access token)
+  Subscription Resource ->> Subscriber: Subscription response (with subscription information)
