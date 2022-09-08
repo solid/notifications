@@ -2,19 +2,11 @@ sequenceDiagram
   autonumber
   participant Subscriber
   participant Notifications Target
-  participant Storage Metadata Resource
-  participant Subscriptions Container
-  participant Authorization Server
+  participant Subscription Resource
   participant Notifications Source
 
-  Subscriber ->> Storage Metadata Resource: Discovery
-  Storage Metadata Resource ->> Subscriber: Storage Metadata Resource
-  Subscriber ->> Subscriptions Container: Request subscription (with access token)
-  Subscriptions Container ->> Authorization Server: Verify authorization
-  Authorization Server ->> Subscriptions Container: capabilities
-  Subscriptions Container ->> Subscriber: Subscription response (with webid & unsubscribe)
   loop for each notification
     Notifications Source ->> Notifications Target: Deliver notification
   end
-  Subscriber ->> Subscriptions Container: Unsubscribe (delete subscription)
-  Subscriptions Container ->> Subscriber: 204 No Content
+  Subscriber ->> Subscription Resource: Unsubscribe (delete subscription)
+  Subscription Resource ->> Subscriber: 204 No Content
