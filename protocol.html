@@ -407,23 +407,14 @@ content: "";
                   <span rel="skos:hasTopConcept"><span resource="#notification-channel"></span><span resource="#notification-channel-resource"></span><span resource="#subscription-resource"></span><span resource="#subscription-request"></span><span resource="#subscription-response"></span></span>
 
                   <dl>
-                    <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-channel">notification channel</dfn>
-                    </dt>
-                    <dd about="#notification-channel" property="skos:definition">
-                      A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.
-                    </dd>
+                    <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel">notification channel</dfn></dt>
+                    <dd about="#notification-channel" property="skos:definition">A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.</dd>
 
-                    <dt about="#notification-channel-resource" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="notification-channel-resource">notification channel resource</dfn>
-                    </dt>
-                    <dd about="#notification-channel-resource" property="skos:definition">
-                      An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>]
-                      that includes information about the capabilities of a notification channel.
-                    </dd>
+                    <dt about="#notification-channel-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel-resource">notification channel resource</dfn></dt>
+                    <dd about="#notification-channel-resource" property="skos:definition">An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities of a notification channel.</dd>
 
                     <dt about="#subscription-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-resource">subscription resource</dfn></dt>
-                    <dd about="#subscription-resource" property="skos:definition">A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can hold any information, typically used by clients to discover available features and capabilities (see <a href="#notification-features">Notification Features</a>).</dd>
+                    <dd about="#subscription-resource" property="skos:definition">A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>], typically used by clients to discover available features and capabilities (see <a href="#notification-features">Notification Features</a>) of a subscription as well as to request a subscription.</dd>
 
                     <dt about="#subscription-request" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request">subscription request</dfn></dt>
                     <dd about="#subscription-request" property="skos:definition">A <em>subscription request</em> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> made by a subscriber indicating interest to receive updates about a particular resource.</dd>
@@ -637,19 +628,13 @@ content: "";
                   <p id="subscription-request-statements" about="#subscription-request-statements" typeof="skos:Collection"><span property="skos:prefLabel">Subscription request statements</span> include the properties:</p>
 
                   <dl about="#subscription-request-statements" rel="skos:member">
-                    <dt about="#subscription-request-context" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="subscription-request-context">@context</dfn>
-                    </dt>
+                    <dt about="#subscription-request-context" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-context">@context</dfn></dt>
                     <dd about="#subscription-request-context" property="skos:definition">An array containing at least the value <code>https://www.w3.org/ns/solid/notification/v1</code> in a JSON-LD payload.</dd>
 
-                    <dt about="#subscription-request-type" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="subscription-request-type">type</dfn>
-                    </dt>
+                    <dt about="#subscription-request-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-type">type</dfn></dt>
                     <dd about="#subscription-request-type" property="skos:definition">A class whose URI indicating the subscription type to be created.</dd>
 
-                    <dt about="#subscription-request-topic" property="skos:prefLabel" typeof="skos:Concept">
-                      <dfn id="subscription-request-topic">topic</dfn>
-                    </dt>
+                    <dt about="#subscription-request-topic" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-topic">topic</dfn></dt>
                     <dd about="#subscription-request-topic" property="skos:definition">The IRI(s) of the resources about which the client would like to receive notifications.</dd>
                   </dl>
 
