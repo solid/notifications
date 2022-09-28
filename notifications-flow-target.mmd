@@ -12,7 +12,7 @@ sequenceDiagram
   Subscriber ->> Subscriptions Container: Request subscription (with access token)
   Subscriptions Container ->> Authorization Server: Verify authorization
   Authorization Server ->> Subscriptions Container: capabilities
-  Subscriptions Container ->> Subscriber: Subscription response (with webid & unsubsribe)
+  Subscriptions Container ->> Subscriber: Subscription response (with webid & unsubscribe)
   loop for each notification
     Notifications Source ->> Notifications Target: Deliver notification
   end
