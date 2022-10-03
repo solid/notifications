@@ -30,9 +30,7 @@ This document uses terms from the Solid Protocol specification, including "data 
 
 In addition, the following terms are defined:
 
-**Subscribing Server** -- A server with some HTTP resource that will receive webhook requests from the Pod. For the case of the example, it can also be the server that initiates the subscription.
-
-**Pod (Private/Public) Key** -- A private public keypair associated with a specific data Pod.
+**Subscribing Server** -- A server with some HTTP resource (notifications target) that will receive webhook requests from the Pod. For the case of the example, it can also be the server that initiates the subscription.
 
 ### 1.3. Conformance
 All assertions, diagrams, examples, and notes are non-normative, as are all sections explicitly marked non-normative. Everything else is normative.
@@ -132,8 +130,8 @@ The auth server returns the JWKS.
 
 If the token is not valid or the user does not have READ access to the resource, the Pod will return 403 to the server client.
 
-#### 6. Receive subscription URL and metadata
-The Pod returns a subscription URL to the subscribing server.
+#### 6. Receive subscription response
+The Pod returns a subscription resopnse the subscribing server.
 
 ```http
 Content-Type: application/ld+json
@@ -142,6 +140,7 @@ Content-Type: application/ld+json
     "@context": "https://www.w3.org/ns/solid/notification/v1",
     "type": "WebHookSubscription2021",
     "target": "https://api.liqid.chat/webhook",
+    "webid": "https://pod.example/notifications/webhook/card.ttl#i",
     "unsubscribe_endpoint": "https://pod.example/notifications/webhook/subscription/a59e24ba-8231-4b51-b60a-c0e04740f617"
 }
 ```
@@ -153,7 +152,7 @@ At this point, the webhook has been successfully registered.
 #### 7. Action happens on Topic Resource
 Some action (either an update to the resource or a deletion of that resource) has taken place on the topic resource.
 
-#### 8. Webhook Request (With token signed by the Pod Key)
+#### 8. Webhook Request (authorized with WebID from subscription response)
 A request is made to the subscribing server's registered webhook.
 
 ```http
@@ -182,7 +181,7 @@ Content-Type: application/ld+json
 }
 ```
 
-The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/webhooks/card.ttl#i`. Both tokens correspond to the authentication method outlined in Solid OIDC.
+The value of `<authToken>` is a DPoP bound JSON Web Token representing `https://pod.example/notifications/webhook/card.ttl#i`. Both tokens correspond to the authentication method outlined in Solid OIDC.
 
 
 `<dpopProof>` is a dpop proof containing the claims `{ htu: "https://api.liqid.chat/webhook", htm: "POST" }`. Both tokens correspond to the authentication method outlined in Solid OIDC.
@@ -209,6 +208,8 @@ If a request is received at the notification server's subscription url and it is
 The authenticated user during the subscribe request must have READ access to the topic resource. If it does not, the server `MUST` reject.
 
 The response body of the notification server's subscription url `MUST` include the `target` field, the value of which corresponds to the provided `target` field.
+
+The response body of the notification server's subscription url `MUST` include the `webid` field, the value of which denotes WebID which will be used for the delivery of notifications.
 
 The response body of the notification server's subscription url `MUST` include the `unsubscribe_endpoint` field. The value is a URI that will close the subscription (See Unsubscribe API)
 
@@ -245,10 +246,6 @@ If a request is received at the unsubscribe endpoint and it does not include an 
 ## 6. Features
 This section details the additional features built for `WebHookSubscription2021`.
 
-### 6.1 webhook-auth
-The `webhook-auth` feature allows subscribing servers to verify that a request came from a certain Pod.
-
-Pods that implement the `webhook-auth` feature `MUST` create an Access Token and DPoP proof in accordance with the Solid OIDC specification and include those tokens in the headers of all webhook requests.
 
 ## Further Considerations
  - Using DPoP authentication in the webhook request does coincide with the common use case for Solid-OIDC, but it is overkill. There is no need for a security model that has two separate tokens (DPoP Token and the Auth token). Instead, we should consider using one token with the combined features (identity + htm and htu) of the two tokens.
