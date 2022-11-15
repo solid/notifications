@@ -1,12 +1,9 @@
 sequenceDiagram
   autonumber
-  participant Subscriber
+  participant Notifications Publisher
   participant Notifications Target
-  participant Subscription Resource
-  participant Notifications Source
 
   loop for each notification
-    Notifications Source ->> Notifications Target: Deliver notification
+    Notifications Publisher ->> Notifications Target: Deliver notification
+    Notifications Target ->> Notifications Publisher: 200 OK
   end
-  Subscriber ->> Subscription Resource: Unsubscribe (delete subscription)
-  Subscription Resource ->> Subscriber: 204 No Content
