@@ -4,6 +4,6 @@ sequenceDiagram
   participant Notifications Target
 
   loop for each notification
-    Notifications Publisher ->> Notifications Target: Deliver notification
-    Notifications Target ->> Notifications Publisher: 200 OK
+    Notifications Sender ->> Notifications Target: Deliver notification
+    Notifications Target ->> Notifications Sender: 200 OK
   end
