@@ -500,6 +500,8 @@ content: "";
                 subscription requirements of the notification protocol.
               </p>
 
+              <p id="json-ld-context">In JSON-LD representations, <code>https://www.w3.org/ns/solid/notification/v1</code> can be used as the <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD Context</a>.</p>
+
               <div class="issue" id="solid-notification-vocabulary-context" inlist="" rel="schema:hasPart" resource="#solid-notification-vocabulary-context">
                 <h3 property="schema:name"><span>Issue</span>: Solid Notification Vocabulary and Context</h3>
                 <div datatype="rdf:HTML" property="schema:description">
@@ -540,8 +542,6 @@ content: "";
                         <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
                         <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the notification channel type (<a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a>).</dd>
                       </dl>
-
-                      <p><span about="" id="server-notification-channel-resource-jsonld-context" rel="spec:requirement" resource="#server-notification-channel-resource-jsonld-context"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> field as an array containing the value <code>https://www.w3.org/ns/solid/notification/v1</code> in the JSON-LD representation of a Notification Channel Resource.</span></span></p>
                     </div>
                   </section>
 
@@ -644,9 +644,6 @@ content: "";
                   <p id="subscription-request-statements" about="#subscription-request-statements" typeof="skos:Collection"><span property="skos:prefLabel">Subscription request statements</span> include the properties:</p>
 
                   <dl about="#subscription-request-statements" rel="skos:member">
-                    <dt about="#subscription-request-context" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-context">@context</dfn></dt>
-                    <dd about="#subscription-request-context" property="skos:definition">An array containing at least the value <code>https://www.w3.org/ns/solid/notification/v1</code> in a JSON-LD payload.</dd>
-
                     <dt about="#subscription-request-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-type">type</dfn></dt>
                     <dd about="#subscription-request-type" property="skos:definition">A class whose URI indicating the subscription type to be created.</dd>
 
@@ -655,8 +652,6 @@ content: "";
                   </dl>
 
                   <p><span about="" id="server-subscription-request-payload-invalid" rel="spec:requirement" resource="#server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] if a subscription request does not satisfy the payload constraints.</span></span></p>
-
-                  <p><span about="" id="server-subscription-request-response" rel="spec:requirement" resource="#server-subscription-request-response"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include the <code>@context</code> and <code>type</code> fields, in addition to other fields described by specific <a href="#subscription-types" rel="rdfs:seeAlso">subscription types</a>, in the payload of a JSON-LD response when responding to a successful subscription.</span></span></p>
                 </div>
               </section>
             </div>
