@@ -385,19 +385,28 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>The following diagrams show the high-level interactions involved in <em>source</em> and <em>target</em> flows.
-                     How a client retrieves an access token for step 3 is outside the scope of this document.</p>
+                  <p>The following diagram shows the high-level interactions involved discovering and establishing a notification subscription.</p>
+
+                  <figure id="solid-notifications-flow-protocol" rel="schema:hasPart" resource="#solid-notifications-flow-protocol">
+                    <img src="notifications-flow-protocol.mmd.svg" rel="schema:image" width="800" />
+
+                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
+                  </figure>
+
+                  <p>Subscription types in which a client establishes a subscription and then maintains a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
 
                   <figure id="solid-notifications-flow-source" rel="schema:hasPart" resource="#solid-notifications-flow-source">
                     <img src="notifications-flow-source.mmd.svg" rel="schema:image" width="800" />
 
-                    <figcaption property="schema:name">Solid Notifications Flow (source)</figcaption>
+                    <figcaption property="schema:name">Solid Subscription Flow, where the subscriber connects to the notification source</figcaption>
                   </figure>
+
+                  <p>Subscription types in which a client establishes a subscription and does not maintain a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
 
                   <figure id="solid-notifications-flow-target" rel="schema:hasPart" resource="#solid-notifications-flow-target">
                     <img src="notifications-flow-target.mmd.svg" rel="schema:image" width="800" />
 
-                    <figcaption property="schema:name">Solid Notifications Flow (target)</figcaption>
+                    <figcaption property="schema:name">Solid Notifications Flow, where the sender delivers to the notification target</figcaption>
                   </figure>
                 </div>
               </section>
@@ -806,6 +815,8 @@ content: "";
                 <h3 property="schema:name">Security Considerations</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
+
+                  <p id="consider-exposing-information">Servers are strongly discouraged from exposing information beyond the minimum amount necessary to enable a feature. Clients are strongly discouraged from exposing information beyond the minimum amount necessary to subscribe to updates about particular resources.</p>
 
                   <p id="consider-subscription-resource-trust">Clients are discouraged from sending subscription requests to untrusted subscription resources, including localhost or any other loopback IP address, in order to avoid making arbitrary requests.</p>
                 </div>
