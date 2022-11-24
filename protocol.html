@@ -817,6 +817,8 @@ content: "";
                   <p><em>This section is non-normative.</em></p>
 
                   <p id="consider-exposing-information">Servers are strongly discouraged from exposing information beyond the minimum amount necessary to enable a feature. Clients are strongly discouraged from exposing information beyond the minimum amount necessary to subscribe to updates about particular resources.</p>
+
+                  <p id="consider-subscription-resource-trust">Clients are discouraged from sending subscription requests to untrusted subscription resources, including localhost or any other loopback IP address, in order to avoid making arbitrary requests.</p>
                 </div>
               </section>
 
