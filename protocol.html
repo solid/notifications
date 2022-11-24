@@ -716,28 +716,56 @@ content: "";
           <section id="notification-data-model" inlist="" rel="schema:hasPart" resource="#notification-data-model">
             <h2 property="schema:name">Notification Data Model</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The content of a Solid Notification is defined in terms of a <cite><a href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0</a></cite> [<cite><a class="bibref" href="#bib-activitystreams-core">ACTIVITYSTREAMS-CORE</a></cite>]. As such, JSON-LD 1.0 is a required baseline serialization format, though other formats are not prohibited [<cite><a class="bibref" href="#bib-json-ld">JSON-LD</a></cite>]. JSON-LD version 1.1 is recommended when using JSON-LD serializations [<cite><a class="bibref" href="#bib-json-ld">JSON-LD11</a></cite>].</p>
+              <p>A sender is triggered by a process to deliver a notification about a resource to the attention of the receiver. The core notification data is expressed with the <cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/">Activity Streams</a></cite> [<cite><a class="bibref" href="#bib-activitystreams-vocabulary">ACTIVITYSTREAMS-VOCABULARY</a></cite>] and <cite><a href="http://www.w3.org/ns/solid/notifications">Solid Notifications</a></cite> vocabularies.</p>
 
-              <pre about="#notification-data-model-activity" property="schema:description" typeof="fabio:Script"><code>{</code>
+              <p>A notification has the following properties:</p>
+
+              <ul>
+                <li>At least one <code>type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
+                <li>One <code>id</code> property to identify the notification.</li>
+                <li>One <code>object</code> property to identify the resource that the notification is about.</li>
+                <li>One <code>published</code> property to indicate the date and time of the notification.</li>
+                <li>None, one, or many <code>target</code> properties to identify the resource to which the activity is directed.</li>
+                <li>None or one <code>state</code> property to indicate the last known state of the resource.</li>
+              </ul>
+
+              <p>Implementations can augment the <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD Context</a> definition and extend the content of the notifications. See for <a href="https://www.w3.org/TR/activitystreams-core/#example-using-multiple-vocabularies">example using multiple vocabularies</a>. The following examples use JSON-LD serializations with <code>https://www.w3.org/ns/activitystreams</code> and <code>https://www.w3.org/ns/solid/notification/v1</code> as the JSON-LD Context.</p>
+
+              <figure id="notification-update" class="example listing" rel="schema:hasPart" resource="#notification-update">
+                <p class="example-h"><span>Example</span>: An update activity</p>
+
+                <pre about="#notification-update" property="schema:description" typeof="fabio:Script"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
-<code>  "id":"urn:uuid:&lt;uuid&gt;",</code>
-<code>  "type": [</code>
-<code>    "Update"</code>
-<code>  ],</code>
-<code>  "object": {</code>
-<code>    "id":"https://example.org/&lt;user&gt;/inbox/",</code>
-<code>     "type": [</code>
-<code>      "http://www.w3.org/ns/ldp#BasicContainer"</code>
-<code>    ]</code>
-<code>  },</code>
+<code>  "id": "urn:uuid:fc8b5af4-bd7e-4fd1-a649-afcbd0e1c083",</code>
+<code>  "type": "Update",</code>
+<code>  "object": "https://example.org/guinan/profile",</code>
 <code>  "state": "1234-5678-90ab-cdef-12345678",</code>
-<code>  "published":"2021-08-05T01:01:49.550044Z"</code>
+<code>  "published": "2021-08-05T01:01:49.550Z"</code>
 <code>}</code></pre>
 
-              <p>Implementations can augment the JSON-LD context definition and extend the content of the notifications.</p>
+                <figcaption property="schema:name">An activity indicating that an object (profile) was updated.</figcaption>
+              </figure>
+
+              <figure id="notification-add" class="example listing" rel="schema:hasPart" resource="#notification-add">
+                <p class="example-h"><span>Example</span>: An add activity</p>
+
+                <pre about="#notification-add" property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id": "urn:uuid:a4da6738-6be0-11ed-90bd-1be4ba6b6b33",</code>
+<code>  "type": "Add",</code>
+<code>  "object": "https://example.org/guinan/inbox/notification",</code>
+<code>  "target": "https://example.org/guinan/inbox/",</code>
+<code>  "published": "2022-11-24T11:55:31.483Z"</code>
+<code>}</code></pre>
+
+                <figcaption property="schema:name">An activity indicating that an object (notification) was added to the target (inbox).</figcaption>
+              </figure>
             </div>
           </section>
 
@@ -946,10 +974,8 @@ content: "";
                 <h3 property="schema:name">Normative References</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <dl class="bibliography" resource="">
-                    <dt id="bib-activitystreams-core">[ACTIVITYSTREAMS-CORE]</dt>
-                    <dd><a href="https://www.w3.org/TR/activitystreams-core/" rel="cito:citesAsAuthority"><cite>Activity Streams 2.0</cite></a>. James Snell; Evan Prodromou.  W3C. 23 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/activitystreams-core/">https://www.w3.org/TR/activitystreams-core/</a></dd>
-                    <dt id="bib-json-ld">[JSON-LD]</dt>
-                    <dd><a href="https://www.w3.org/TR/json-ld/"><cite>JSON-LD 1.0</cite></a>. Manu Sporny; Gregg Kellogg; Markus Lanthaler.  W3C. 3 November 2020. W3C Recommendation. URL: <a href="https://www.w3.org/TR/json-ld/">https://www.w3.org/TR/json-ld/</a></dd>
+                    <dt id="bib-activitystreams-vocabulary">[ACTIVITYSTREAMS-VOCABULARY]</dt>
+                    <dd><a href="https://www.w3.org/TR/activitystreams-vocabulary/" rel="cito:citesAsAuthority"><cite>Activity Streams</cite></a>. James Snell; Evan Prodromou.  W3C. 23 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/activitystreams-vocabulary/">https://www.w3.org/TR/activitystreams-vocabulary/</a></dd>
                     <dt id="bib-json-ld11">[JSON-LD11]</dt>
                     <dd><a href="https://www.w3.org/TR/json-ld11/" rel="cito:citesAsAuthority"><cite>JSON-LD 1.1</cite></a>. Gregg Kellogg; Pierre-Antoine Champin; Dave Longley.  W3C. 16 July 2020. W3C Recommendation. URL: <a href="https://www.w3.org/TR/json-ld11/">https://www.w3.org/TR/json-ld11/</a></dd>
                     <dt id="bib-ldn">[LDN]</dt>
