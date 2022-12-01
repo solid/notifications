@@ -6,7 +6,8 @@ The [Solid Notification Protocol](https://solid.github.io/notifications/protocol
 This specification defines a subscription type that applies these patterns to WebHooks.
 
 ## Status of This Document
-TODO
+
+Version: 0.1
 
 ## 1. Introduction
 _This section is non-normative._
