@@ -1,16 +1,13 @@
 sequenceDiagram
   autonumber
   participant Subscriber
-  participant Storage Metadata Resource
-  participant Subscriptions Container
-  participant Authorization Server
+  participant Discovery Resource
+  participant Subscription Resource
   participant Notifications Source
 
-  Subscriber ->> Storage Metadata Resource: Discovery
-  Storage Metadata Resource ->> Subscriber: Storage Metadata Resource
-  Subscriber ->> Subscriptions Container: Request WebSocketsSubscription2021 (with access token)
-  Subscriptions Container ->> Authorization Server: Verify authorization
-  Authorization Server ->> Subscriptions Container: capabilities
-  Subscriptions Container ->> Subscriber: Subscription response (with wss: notifications source)
+  Subscriber ->> Discovery Resource: Discovery
+  Discovery Resource ->> Subscriber: Discovery response
+  Subscriber ->> Subscription Resource: Request WebSocketsSubscription2021 (with authentication)
+  Subscription Resource ->> Subscriber: Subscription response (with wss: notifications source)
   Subscriber ->> Notifications Source: Establish WebSockets connection
   Notifications Source -->> Subscriber: Stream notifications
