@@ -592,31 +592,6 @@ content: "";
                         <li id="notify-subscription">None or one <code>subscription</code> property value to indicate a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
                       </ul>
 
-                      <p>
-                        Sample representations of the Notification Channel Resource might include the following:
-                      </p>
-
-                      <figure id="notification-channel-resource-turtle" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-response-turtle">
-                        <p class="example-h">
-                          <span>Example</span>: Representation of a Notification Channel Resource.
-                        </p>
-
-                        <pre about="#notification-channel-resource-turtle" property="schema:description" typeof="fabio:Script"><code>Content-Type: text/turtle</code>
-<code></code>
-<code>@prefix notify: &lt;http://www.w3.org/ns/solid/notifications#&gt; .</code>
-<code></code>
-<code>&lt;&gt;</code>
-<code>  notify:notificationChannel &lt;#websocketNotification&gt; .</code>
-<code></code>
-<code>&lt;#websocketNotification&gt;</code>
-<code>  a notify:WebSocketSubscription2021 ;</code>
-<code>  notify:subscription &lt;https://websocket.example/subscription&gt; ;</code>
-<code>  notify:feature notify:state, notify:rate, notify:expiration .</code>
-<code></code></pre>
-
-                        <figcaption property="schema:name"><code>Turtle</code> serialization of a resource including notification channel information.</figcaption>
-                      </figure>
-
                       <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
                         <p class="example-h">
                           <span>Example</span>: Representation of a Notification Channel Resource.
