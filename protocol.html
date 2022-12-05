@@ -575,18 +575,7 @@ content: "";
                         </span>
                       </p>
 
-                      <p>The following properties are used for the discovery of a notification channel and its capabilities:</p>
-
-                      <dl>
-                        <dt about="#notify-feature" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-feature">feature</dfn></dt>
-                        <dd about="#notify-feature" property="skos:definition"><code>feature</code> predicate denotes a particular feature of a notification channel (<a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a>).</dd>
-                        <dt about="#notify-notificationChannel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-notificationChannel">notificationChannel</dfn></dt>
-                        <dd about="#notify-notificationChannel" property="skos:definition"><code>notificationChannel</code> predicate denotes that a resource has a notification channel.</dd>
-                        <dt about="#notify-subscription" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-subscription">subscription</dfn></dt>
-                        <dd about="#notify-subscription" property="skos:definition"><code>subscription</code> predicate denotes a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</dd>
-                        <dt about="#notify-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notify-type">type</dfn></dt>
-                        <dd about="#notify-type" property="skos:definition"><code>type</code> predicate (<code>rdf:type</code>) denotes the notification channel type (<a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a>).</dd>
-                      </dl>
+                      <p>The data model of the notification channel and its capabilities is defined in <cite><a href="#notification-channel-conformance" rel="rdfs:seeAlso">Notification Channel Conformance</a></cite>.</p>
                     </div>
                   </section>
 
@@ -597,36 +586,11 @@ content: "";
                       <p>A Notification Channel has the following properties:</p>
 
                       <ul>
-                        <li>At least one <code>notify:notificationChannel</code> property whose object describes a notification channel.</li>
-                        <li>At least one <code>rdf:type</code> property whose object is <code>notify:NotificationChannel</code>.</li>
-                        <li>Zero or more <code>notify:feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
-                        <li>Zero or one <code>notify:subscription</code> property value (<cite><a href="#subscription" rel="rdfs:seeAlso">Subscription</a></cite>).</li>
+                        <li id="notify-notificationChannel">At least one <code>notificationChannel</code> property whose object describes a notification channel.</li>
+                        <li id="notify-type">At least one <code>type</code> property to indicate the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
+                        <li id="notify-feature">None, one or many <code>feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>) to indicate particular features of a notification channel.</li>
+                        <li id="notify-subscription">None or one <code>subscription</code> property value to indicate a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
                       </ul>
-
-                      <p>
-                        Sample representations of the Notification Channel Resource might include the following:
-                      </p>
-
-                      <figure id="notification-channel-resource-turtle" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-response-turtle">
-                        <p class="example-h">
-                          <span>Example</span>: Representation of a Notification Channel Resource.
-                        </p>
-
-                        <pre about="#notification-channel-resource-turtle" property="schema:description" typeof="fabio:Script"><code>Content-Type: text/turtle</code>
-<code></code>
-<code>@prefix notify: &lt;http://www.w3.org/ns/solid/notifications#&gt; .</code>
-<code></code>
-<code>&lt;&gt;</code>
-<code>  notify:notificationChannel &lt;#websocketNotification&gt; .</code>
-<code></code>
-<code>&lt;#websocketNotification&gt;</code>
-<code>  a notify:WebSocketSubscription2021 ;</code>
-<code>  notify:subscription &lt;https://websocket.example/subscription&gt; ;</code>
-<code>  notify:feature notify:state, notify:rate, notify:expiration .</code>
-<code></code></pre>
-
-                        <figcaption property="schema:name"><code>Turtle</code> serialization of a resource including notification channel information.</figcaption>
-                      </figure>
 
                       <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
                         <p class="example-h">
