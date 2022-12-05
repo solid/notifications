@@ -6,7 +6,8 @@ The [Solid Notification Protocol](https://solid.github.io/notifications/protocol
 This specification defines a subscription type that applies these patterns to WebHooks.
 
 ## Status of This Document
-TODO
+
+Version: 0.1
 
 ## 1. Introduction
 _This section is non-normative._
@@ -256,3 +257,4 @@ Pods that implement the `webhook-auth` feature `MUST` create an Access Token and
  - The examples in this specification assume that the base domain `https://bob.pod.example` are interchangable with `https://pod.example`. This is not always the case and could lead to security vulnerabilities.
  - Defining a feature that includes the resource or the delta of the changes in the request are beyond the scope of this document, but it's something that should be considered.
  - What is the UUID in the webhook body?
+ 
