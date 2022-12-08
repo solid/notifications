@@ -594,8 +594,8 @@ content: "";
                       <ul>
                         <li id="notify-notificationChannel">At least one <code>notificationChannel</code> property whose object describes a notification channel.</li>
                         <li id="notify-type">At least one <code>type</code> property to indicate the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
-                        <li id="notify-feature">None, one or many <code>feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>) to indicate particular features of a notification channel.</li>
-                        <li id="notify-subscription">None or one <code>subscription</code> property value to indicate a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
+                        <li id="notify-feature">Zero, one or many <code>feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>) to indicate particular features of a notification channel.</li>
+                        <li id="notify-subscription">Zero or one <code>subscription</code> property value to indicate a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
                       </ul>
 
                       <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
@@ -661,8 +661,8 @@ content: "";
                   <ul about="#subscription-request-data-model" property="skos:definition">
                     <li>One <code>type</code> property to indicate the requested subscription type.</li>
                     <li>At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
-                    <li>None or one <code>target</code> property to identify the resource that can accept notifications.</li>
-                    <li>None, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                    <li>Zero or one <code>target</code> property to identify the resource that can accept notifications.</li>
+                    <li>Zero, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                   </ul>
 
                   <p><span about="" id="server-subscription-request-payload-invalid" rel="spec:requirement" resource="#server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] if a subscription request does not satisfy the payload constraints.</span></span></p>
@@ -681,9 +681,9 @@ content: "";
                   <ul about="#subscription-response-data-model" property="skos:definition">
                     <li>One <code>type</code> property to indicate the approved subscription type.</li>
                     <li>At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
-                    <li>None or one <code>source</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
-                    <li>None or one <code>sender</code> property to identify the party that sends notifications.</li>
-                    <li>None, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                    <li>Zero or one <code>source</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
+                    <li>Zero or one <code>sender</code> property to identify the party that sends notifications.</li>
+                    <li>Zero, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                   </ul>
                 </div>
               </section>
@@ -755,8 +755,8 @@ content: "";
                 <li>One <code>id</code> property to identify the notification.</li>
                 <li>One <code>object</code> property to identify the resource that the notification is about (<cite><a href="#subscription-request-topic">topic</a></cite>).</li>
                 <li>One <code>published</code> property to indicate the date and time of the notification.</li>
-                <li>None, one, or many <code>target</code> properties to identify the resource to which the activity is directed.</li>
-                <li>None or one <code>state</code> property to indicate the last known state of the resource.</li>
+                <li>Zero, one, or many <code>target</code> properties to identify the resource to which the activity is directed.</li>
+                <li>Zero or one <code>state</code> property to indicate the last known state of the resource.</li>
               </ul>
 
               <p>Implementations can augment the <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD Context</a> definition and extend the content of the notifications. See for <a href="https://www.w3.org/TR/activitystreams-core/#example-using-multiple-vocabularies">example using multiple vocabularies</a>. The following examples use JSON-LD serializations with <code>https://www.w3.org/ns/activitystreams</code> and <code>https://www.w3.org/ns/solid/notification/v1</code> as the JSON-LD Context.</p>
