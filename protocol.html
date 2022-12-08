@@ -422,7 +422,7 @@ content: "";
 
                   <dl>
                     <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel">notification channel</dfn></dt>
-                    <dd about="#notification-channel" property="skos:definition">A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.</dd>
+                    <dd about="#notification-channel" property="skos:definition">A <em>notification channel</em> is an abstract thing whose properties describe the available communication interface and features.</dd>
 
                     <dt about="#notification-channel-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel-resource">notification channel resource</dfn></dt>
                     <dd about="#notification-channel-resource" property="skos:definition">An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a notification channel.</dd>
@@ -592,10 +592,10 @@ content: "";
                       <p>A Notification Channel has the following properties:</p>
 
                       <ul>
-                        <li id="notify-notificationChannel">At least one <code>notificationChannel</code> property whose object describes a notification channel.</li>
-                        <li id="notify-type">At least one <code>type</code> property to indicate the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
-                        <li id="notify-feature">None, one or many <code>feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>) to indicate particular features of a notification channel.</li>
-                        <li id="notify-subscription">None or one <code>subscription</code> property value to indicate a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
+                        <li id="notify-notificationChannel">At least one <code>notificationChannel</code> property whose object describes a <a href="#notification-channel" rel="rdfs:seeAlso">notification channel</a>.</li>
+                        <li id="notify-subscriptionType">One <code>subscriptionType</code> property to indicate the subscription type (<cite><a href="#subscription-types" rel="rdfs:seeAlso">Subscription Type</a></cite>) a <a href="#notification-channel" rel="rdfs:seeAlso">notification channel</a>.</li>
+                        <li id="notify-subscription">One <code>subscription</code> property value to indicate a <a href="#subscription-resource" rel="rdfs:seeAlso">subscription resource</a> associated with a <a href="#notification-channel" rel="rdfs:seeAlso">notification channel</a> (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
+                        <li id="notify-feature">Zero, one or many <code>feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>) to indicate particular features of a <a href="#notification-channel" rel="rdfs:seeAlso">notification channel</a>.</li>
                       </ul>
 
                       <figure id="notification-channel-resource-jsonld" class="example listing" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
@@ -610,8 +610,7 @@ content: "";
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
 <code>  "notificationChannel": [{</code>
-<code>    "id": "websocketNotification",</code>
-<code>    "type": ["WebSocketSubscription2021"],</code>
+<code>    "subscriptionType": "WebSocketSubscription2021",</code>
 <code>    "subscription": "https://websocket.example/subscription",</code>
 <code>    "feature": ["state", "rate", "endTime"]</code>
 <code>  }]</code>
