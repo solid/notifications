@@ -613,7 +613,7 @@ content: "";
 <code>    "id": "websocketNotification",</code>
 <code>    "type": ["WebSocketSubscription2021"],</code>
 <code>    "subscription": "https://websocket.example/subscription",</code>
-<code>    "feature": ["state", "rate", "expiration"]</code>
+<code>    "feature": ["state", "rate", "endTime"]</code>
 <code>  }]</code>
 <code>}</code></pre>
 
@@ -648,25 +648,43 @@ content: "";
                   </p>
 
                   <p>
-                    <span about="" id="client-subscription-request-statements" rel="spec:requirement" resource="#client-subscription-request-statements">
+                    <span about="" id="client-subscription-request" rel="spec:requirement" resource="#client-subscription-request">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="spec:Client">Clients</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include <a href="#subscription-request-statements">statements about the subscription</a>, in addition to other fields described by specific <a href="#subscription-types" rel="rdfs:seeAlso">subscription types</a>, as part of the request payload.
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#subscription-request-data-model" rel="rdfs:seeAlso">subscription request data model</a>, in addition to conforming to a particular <a href="#subscription-types" rel="rdfs:seeAlso">subscription type</a>, in the request payload.
                       </span>
                     </span>
                   </p>
 
-                  <p id="subscription-request-statements" about="#subscription-request-statements" typeof="skos:Collection"><span property="skos:prefLabel">Subscription request statements</span> include the properties:</p>
+                  <p about="#subscription-request-data-model" id="subscription-request-data-model">The <span property="skos:prefLabel">subscription request data model</span> is defined as follows:</p>
 
-                  <dl about="#subscription-request-statements" rel="skos:member">
-                    <dt about="#subscription-request-type" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-type">type</dfn></dt>
-                    <dd about="#subscription-request-type" property="skos:definition">A class whose URI indicating the subscription type to be created.</dd>
-
-                    <dt about="#subscription-request-topic" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request-topic">topic</dfn></dt>
-                    <dd about="#subscription-request-topic" property="skos:definition">The IRI(s) of the resources about which the client would like to receive notifications.</dd>
-                  </dl>
+                  <ul about="#subscription-request-data-model" property="skos:definition">
+                    <li>One <code>type</code> property to indicate the requested subscription type.</li>
+                    <li>At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
+                    <li>None or one <code>target</code> property to identify the resource that can accept notifications.</li>
+                    <li>None, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                  </ul>
 
                   <p><span about="" id="server-subscription-request-payload-invalid" rel="spec:requirement" resource="#server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="spec:Server">Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] if a subscription request does not satisfy the payload constraints.</span></span></p>
+
+                  <p>
+                    <span about="" id="server-subscription-response" rel="spec:requirement" resource="#server-subscription-response">
+                      <span property="spec:statement">
+                        <span rel="spec:requirementSubject" resource="spec:Server">Servers</span>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use <a href="#subscription-response-data-model" rel="rdfs:seeAlso">subscription response data model</a>, in addition to conforming to a particular <a href="#subscription-types" rel="rdfs:seeAlso">subscription type</a>, in the response payload.
+                      </span>
+                    </span>
+                  </p>
+
+                  <p about="#subscription-response-data-model" id="subscription-response-data-model">The <span property="skos:prefLabel">subscription response data model</span> is defined as follows:</p>
+
+                  <ul about="#subscription-response-data-model" property="skos:definition">
+                    <li>One <code>type</code> property to indicate the approved subscription type.</li>
+                    <li>At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
+                    <li>None or one <code>source</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
+                    <li>None or one <code>sender</code> property to identify the party that sends notifications.</li>
+                    <li>None, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                  </ul>
                 </div>
               </section>
             </div>
@@ -708,15 +726,17 @@ content: "";
 
               <p>The requirements for new notification features is explained in the <cite><a href="#notification-features-extension" rel="rdfs:seeAlso">Notification Features Extension</a></cite> section.</p>
 
-              <span rel="skos:hasTopConcept"><span resource="#feature-expiration"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
+              <span rel="skos:hasTopConcept"><span resource="#feature-startTime"></span><span resource="#feature-endTime"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
 
               <dl>
-                <dt about="#feature-expiration" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-expiration">expiration</dfn></dt>
-                <dd about="#feature-expiration" property="skos:definition">An ISO 8601 datetime value indicating a proposed expiration point for a subscription. A server may choose another value.</dd>
+                <dt about="#feature-startTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startTime">startTime</dfn></dt>
+                <dd about="#feature-startTime" property="skos:definition">An ISO 8601 datetime value indicating proposed or actual starting time of a subscription.</dd>
+                <dt about="#feature-endTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endTime">endTime</dfn></dt>
+                <dd about="#feature-endTime" property="skos:definition">An ISO 8601 datetime value indicating proposed or actual ending time of a subscription.</dd>
                 <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
                 <dd about="#feature-state" property="skos:definition">An opaque value representing the last known state of a resource. If the resource state is known to have changed when the client establishes a subscription, an initial notification must be sent to the client. This value should correspond to a resource's <code>ETag</code> header value.</dd>
                 <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
-                <dd about="#feature-rate" property="skos:definition">An ISO 8601 duration value indicating the minimum amount of time to elapse between notifications sent to the client</dd>
+                <dd about="#feature-rate" property="skos:definition">An ISO 8601 duration value indicating the minimum amount of time to elapse between notifications sent to the client.</dd>
                 <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
                 <dd about="#feature-accept" property="skos:definition">A MIME-Type value that indicates the desired serialization of the notification. For instance, <code>text/turtle</code> may be acceptable.</dd>
               </dl>
