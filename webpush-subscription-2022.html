@@ -6,10 +6,10 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
+  <meta content="Bikeshed version 26e85e599, updated Thu Dec 8 15:29:31 2022 -0800" name="generator">
   <link href="https://solid.github.io/notifications/webpush-subscription-2022" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="304f1d6e868c8cda65c9849b02ed1e0677e4e690" name="document-revision">
+  <meta content="df9b47c25b8cc289fb1242108886f2f43d80f25b" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -537,7 +537,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid WebPushSubscription2022</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-08">8 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-09">9 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -627,17 +627,17 @@ to cite this document as other than work in progress.</p>
    </ul>
    <h3 class="heading settled" data-level="1.1" id="terminology"><span class="secno">1.1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h3>
    <p><em>This section is non-normative.</em></p>
-   <p>This document uses terminology from the <a data-link-type="biblio" href="#biblio-solid-notifications">[SOLID-NOTIFICATIONS]</a> protocol,
+   <p>This document uses terminology from the <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> protocol,
   including "Notification Subscription API".
-The document uses terms from the <a data-link-type="biblio" href="#biblio-websub">[WEBSUB]</a> specification, 
+The document uses terms from the <a data-link-type="biblio" href="#biblio-websub" title="WebSub">[WEBSUB]</a> specification, 
  including "topic".</p>
    <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/notifications/issues/62" style="text-transform:none">solid/notifications/62</a><a href="https://github.com/solid/notifications/issues/62">:bike: shed: Use `object` (closely aligned with AS) instead of `topic` to receive notifications about a resource</a></div>
    <p class="note" role="note"><span>Note:</span> Let the predicate <code>topic</code> be an <code>rdfs:subClassOf</code> of <code>as:object</code>?</p>
-   <p>The document further uses terms from <a data-link-type="biblio" href="#biblio-push-api">[PUSH-API]</a> specification,
+   <p>The document further uses terms from <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> specification,
   including "push endpoint", "push service" and "authentication secret".
-It also uses terms from <a data-link-type="biblio" href="#biblio-oauth-20">[OAUTH-2.0]</a> specification,
+It also uses terms from <a data-link-type="biblio" href="#biblio-oauth-20" title="The OAuth 2.0 Authorization Framework">[OAUTH-2.0]</a> specification,
   including  "authorization server" and "access token".
-In addition, the document uses terms from the <a data-link-type="biblio" href="#biblio-webarch">[WEBARCH]</a> specification, 
+In addition, the document uses terms from the <a data-link-type="biblio" href="#biblio-webarch" title="Architecture of the World Wide Web, Volume One">[WEBARCH]</a> specification, 
   including "information resource".</p>
    <p>This document uses the following terms as defined below:</p>
    <dl>
@@ -652,7 +652,7 @@ In addition, the document uses terms from the <a data-link-type="biblio" href="#
    <dl>
     <dt data-md>browser messaging service
     <dd data-md>
-     <p>Refers to the implementation of a "push service" <a data-link-type="biblio" href="#biblio-push-api">[PUSH-API]</a> in a browser.</p>
+     <p>Refers to the implementation of a "push service" <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> in a browser.</p>
    </dl>
    <h3 class="heading settled" data-level="1.2" id="overview"><span class="secno">1.2. </span><span class="content">Overview</span><a class="self-link" href="#overview"></a></h3>
    <p>The following diagram shows the high-level interactions involved in this flow.
@@ -674,7 +674,7 @@ For each notification, the <em>subscription service</em> checks the authorizatio
 Additionally, it sends an unsubscription request to the <em>subscription service</em>. 
    </ul>
    <div class="advisement">
-     <b> It is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications">[SOLID-NOTIFICATIONS]</a>, how unsubscription works. Depends on #36. </b> 
+     <b> It is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a>, how unsubscription works. Depends on #36. </b> 
     <ul>
      <li> Option (1): <code>as:Undo</code> via HTTP POST to Notification Subscription API. 
      <li> Option (2): HTTP DELETE on a subscription. 
@@ -690,7 +690,7 @@ The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#
    <dl>
     <dt data-md>vapidPublicKey
     <dd data-md>
-     <p>The <code>vapidPublicKey</code> property indicates the notification server’s public key as defined by <a data-link-type="biblio" href="#biblio-rfc8292">[RFC8292]</a>, which can be used by the client for the Voluntary Application Server Identification (VAPID).</p>
+     <p>The <code>vapidPublicKey</code> property indicates the notification server’s public key as defined by <a data-link-type="biblio" href="#biblio-rfc8292" title="Voluntary Application Server Identification (VAPID) for Web Push">[RFC8292]</a>, which can be used by the client for the Voluntary Application Server Identification (VAPID).</p>
    </dl>
    <p>%% : object
 %% :: The <code>object</code> property indicates the information resource which the client would like to receive notifications about. 
@@ -700,19 +700,19 @@ The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#
    <dl>
     <dt data-md>endpoint
     <dd data-md>
-     <p>The <code>endpoint</code> property indicates the "Push Endpoint" as defined in the <a data-link-type="biblio" href="#biblio-push-api">[PUSH-API]</a> specification.</p>
+     <p>The <code>endpoint</code> property indicates the "Push Endpoint" as defined in the <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> specification.</p>
     <dt data-md>keys
     <dd data-md>
      <p>The <code>keys</code> property indicates a "cryptographic keys object" that has the properties of <code>auth</code> and <code>p256dh</code>.</p>
     <dt data-md>auth
     <dd data-md>
-     <p>The <code>auth</code> property indicates the "authentication secret" as defined in the <a data-link-type="biblio" href="#biblio-rfc8291">[RFC8291]</a> specifications.</p>
+     <p>The <code>auth</code> property indicates the "authentication secret" as defined in the <a data-link-type="biblio" href="#biblio-rfc8291" title="Message Encryption for Web Push">[RFC8291]</a> specifications.</p>
     <dt data-md>p256dh
     <dd data-md>
-     <p>The <code>p256dh</code> property indicates the elliptic curve Diffie-Hellman (ECDH) public key as defined by <a data-link-type="biblio" href="#biblio-rfc8291">[RFC8291]</a>.</p>
+     <p>The <code>p256dh</code> property indicates the elliptic curve Diffie-Hellman (ECDH) public key as defined by <a data-link-type="biblio" href="#biblio-rfc8291" title="Message Encryption for Web Push">[RFC8291]</a>.</p>
    </dl>
    <p>A client establishes a subscription using the <code>WebPushSubscription2022</code> type
-by sending an authenticated subscription request to the <code>subscriptions service</code>'s Notification Subscription API retrieved via <a data-link-type="biblio" href="#biblio-solid-notifications">[SOLID-NOTIFICATIONS]</a> discovery.
+by sending an authenticated subscription request to the <code>subscriptions service</code>'s Notification Subscription API retrieved via <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> discovery.
 The client sends a <code>HTTP POST</code> request with a request body to the appropriate <code>subscription resource</code>'s Notification Subscription API.
 Required information in the request are <code>type</code>, <code>topic</code>, <code>endpoint</code>, <code>keys</code> with <code>auth</code> and <code>p256dh</code>.</p>
    <p>If the subscription has been created successfully, the server responds to a client’s subscription request with HTTP status code <code>201 Created</code></p>
@@ -771,11 +771,11 @@ Content-Type: text/turtle
     Example: Representation of a <em>subscription service</em>. 
    </div>
    <p class="note" role="note"><span>Note:</span> The representation includes the Notification Subscription API where subscriptions can be submitted via POST using <code>ldp:inbox</code>.
-Currently, it is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications">[SOLID-NOTIFICATIONS]</a> how the subscription service is modelled.
+Currently, it is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> how the subscription service is modelled.
 To this end, the example is my suggestion.</p>
    <p>For Unsubscription,</p>
    <div class="advisement">
-     <b> It is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications">[SOLID-NOTIFICATIONS]</a>, how unsubscription works. Depends on #36. </b> 
+     <b> It is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a>, how unsubscription works. Depends on #36. </b> 
     <ul>
      <li> Option (1): <code>as:Undo</code> via HTTP POST to Notification Subscription API. 
      <li> Option (2): HTTP DELETE on a subscription. 
@@ -785,9 +785,9 @@ To this end, the example is my suggestion.</p>
    <h2 class="heading settled" data-level="3" id="auth"><span class="secno">3. </span><span class="content">Authentication and Authorization</span><a class="self-link" href="#auth"></a></h2>
    <p>As described by the Solid Notifications Protocol section on Authorization,
 the WebPush subscription API requires authorization and follows the guidance of the Solid Protocol
-sections on Authentication and Authorization <a data-link-type="biblio" href="#biblio-solid-protocol">[SOLID-PROTOCOL]</a>.</p>
+sections on Authentication and Authorization <a data-link-type="biblio" href="#biblio-solid-protocol" title="Solid Protocol">[SOLID-PROTOCOL]</a>.</p>
    <p>It is beyond the scope of this document to describe how a client fetches an access token.
-Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications <a data-link-type="biblio" href="#biblio-solid-oidc">[SOLID-OIDC]</a>.</p>
+Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications <a data-link-type="biblio" href="#biblio-solid-oidc" title="Solid-OIDC">[SOLID-OIDC]</a>.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
@@ -801,7 +801,7 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
     However, for readability,
     these words do not appear in all uppercase letters in this specification. </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
