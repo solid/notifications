@@ -1,9 +1,7 @@
 sequenceDiagram
-  autonumber
-  participant Notifications Sender
-  participant Notifications Target
+  participant Notification Sender
+  participant Notification Receiver
 
-  loop for each notification
-    Notifications Sender ->> Notifications Target: Deliver notification
-    Notifications Target ->> Notifications Sender: 200 OK
+  loop while channel active
+    Notification Sender ->> Notification Receiver: Send notifications to the sendTo
   end
