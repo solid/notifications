@@ -566,7 +566,6 @@ content: "";
                   <p>This section describes the discovery of <cite><a href="#description-resource-discovery" rel="rdfs:seeAlso">Description Resource</a></cite> that includes the <cite><a href="#subscription-resource-data-model" rel="rdfs:seeAlso">Subscription Resource Data Model</a></cite> and <cite><a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a></cite>.</p>
 
                   <section id="description-resource-discovery" inlist="" rel="schema:hasPart" resource="#description-resource-discovery">
-                    <h4 property="schema:name">Description Resource Discovery</h4>
                     <div datatype="rdf:HTML" property="schema:description">
                       <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#subscription-resource">subscription resources</a> and <a href="#notification-channel">notification channels</a> that are available to a given resource or to a storage through the use of HTTP <code>Link</code> header targeting a <a href="#description-resource">description resource</a>:</p>
 
@@ -583,6 +582,7 @@ content: "";
                         </span>
                       </p>
 
+   <h4 property="schema:name">Description Resource Data Model</h4>
                       <p>The <a href="#description-resource">description resource</a> has the following properties:</p>
 
                       <ul>
@@ -666,7 +666,7 @@ content: "";
 
                       <ul>
                         <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
-                        <li id="notify-type">One <code>type</code> property to state the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
+                        <li id="notify-type">One <code>type</code> property to state the notification channel type (<cite><a href="#notification-channel-types" rel="rdfs:seeAlso">Notification Channel Types</a></cite>).</li>
                         <li id="notify-topic">At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
                         <li id="notify-feature-types">Zero, one or many property values stating a particular feature (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                       </ul>
