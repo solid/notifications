@@ -796,15 +796,15 @@ content: "";
 
               <dl>
                 <dt about="#feature-startTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startTime">startTime</dfn></dt>
-                <dd about="#feature-startTime" property="skos:definition">A <code>xsd:dataTime</code> value indicating proposed or actual starting time of a subscription.</dd>
+                <dd about="#feature-startTime" property="skos:definition">The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
                 <dt about="#feature-endTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endTime">endTime</dfn></dt>
-                <dd about="#feature-endTime" property="skos:definition">A <code>xsd:dataTime</code> value indicating proposed or actual ending time of a subscription.</dd>
+                <dd about="#feature-endTime" property="skos:definition">The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
                 <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
-                <dd about="#feature-state" property="skos:definition">A <code>xsd:string</code> value representing the last known state of a resource. If the resource state is known to have changed when the client establishes a subscription, an initial notification must be sent to the client. This opaque value should correspond to a resource's <code>ETag</code> header value.</dd>
+                <dd about="#feature-state" property="skos:definition">The last known state of a resource (topic) with value represented in the <code>xsd:string</code> datatype. <span class="issue">If the resource state is known to have changed when the client establishes a subscription, an initial notification must be sent to the receiver. This opaque value should correspond to a resource's <code>ETag</code> header value [<cite><a class="bibref" href="#bib-rfc7232">RFC7232</a></cite>].</span></dd>
                 <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
-                <dd about="#feature-rate" property="skos:definition">A <code>xsd:duration</code> value indicating the minimum amount of time to elapse between notifications sent to receiver.</dd>
+                <dd about="#feature-rate" property="skos:definition">The minimum amount of time to elapse between notifications sent to receiver with value represented in the <code>xsd:duration</code> datatype.</dd>
                 <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
-                <dd about="#feature-accept" property="skos:definition">A MIME-Type value that indicates the desired serialization of the notification. For instance, <code>text/turtle</code> may be acceptable.</dd>
+                <dd about="#feature-accept" property="skos:definition">The media types that are acceptable by the recipient of a notification with value corresponding to the HTTP <code>Accept</code> header value [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
               </dl>
             </div>
           </section>
@@ -1101,6 +1101,8 @@ content: "";
                     <dd><a href="https://www.rfc-editor.org/rfc/rfc6749" rel="cito:citesAsAuthority"><cite>The OAuth 2.0 Authorization Framework</cite></a>. D. Hardt, Ed..  IETF. October 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6749">https://www.rfc-editor.org/rfc/rfc6749</a></dd>
                     <dt id="bib-rfc7231">[RFC7231]</dt>
                     <dd><a href="https://httpwg.org/specs/rfc7231.html" rel="cito:citesAsAuthority"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a></dd>
+                    <dt id="bib-rfc7232">[RFC7232]</dt>
+                    <dd><a href="https://httpwg.org/specs/rfc7232.html" rel="cito:citesAsAuthority"><cite>Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7232.html">https://httpwg.org/specs/rfc7232.html</a></dd>
                     <dt id="bib-rfc8174">[RFC8274]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc8174" rel="cito:citesAsAuthority"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a></dd>
                     <dt id="bib-rfc8288">[RFC8288]</dt>
