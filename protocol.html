@@ -697,7 +697,10 @@ content: "";
 <code>  "type": "WebSocketsNotfications2023",</code>
 <code>  "topic": "https://example.org/guinan/profile",</code>
 <code>  "receiveFrom": "wss://websocket.example/d4cf3f19",</code>
-<code>  "rate": "P1M"</code>
+<code>  "startTime": "2023-01-01T07:00:00.000Z",</code>
+<code>  "endTime": "2023-01-01T09:00:00.000Z",</code>
+<code>  "rate": "P1M",</code>
+<code>  "state": "e75-TFJH"</code>
 <code>}</code></pre>
 
                         <figcaption property="schema:name">JSON-LD serialization of a notification channel.</figcaption>
@@ -787,8 +790,7 @@ content: "";
           <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:ConceptScheme">
             <h2 property="schema:name">Notification Features</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p property="skos:definition">Features allow subscription clients to customize the details of a subscription request. Some features are specific to a particular notification channel type while others may be used across all types. These shared features are listed as an initial baseline, though not all notification channel types are required to implement these. Individual notification channel types may define type-specific features.
-              The list of common, shared features is not intended to be exhaustive.</p>
+              <p property="skos:definition"><a href="#notification-channel">Notification channels</a> may have features describing custom properties of the channel. Features can be used by <a href="#SubscriptionClient">Subscription Clients</a> to customise the details of a requested notification channel. Subscription clients can discover available features in a <a href="#subscription-resource">subscription resource</a>. Some features are specific to a particular notification channel type while others may be used across all types. These shared features are listed as an initial baseline, though not all notification channel types are required to implement these. Individual notification channel types may define type-specific features. The list of common, shared features is not intended to be exhaustive.</p>
 
               <p>The requirements for new notification features is explained in the <cite><a href="#notification-features-extension" rel="rdfs:seeAlso">Notification Features Extension</a></cite> section.</p>
 
@@ -800,7 +802,7 @@ content: "";
                 <dt about="#feature-endTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endTime">endTime</dfn></dt>
                 <dd about="#feature-endTime" property="skos:definition">The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
                 <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
-                <dd about="#feature-state" property="skos:definition">The last known state of a resource (topic) with value represented in the <code>xsd:string</code> datatype. <span class="issue">If the resource state is known to have changed when the client establishes a subscription, an initial notification must be sent to the receiver. This opaque value should correspond to a resource's <code>ETag</code> header value [<cite><a class="bibref" href="#bib-rfc7232">RFC7232</a></cite>].</span></dd>
+                <dd about="#feature-state" property="skos:definition">The last known state of a resource (<cite><a href="#notify-topic">topic</a></cite>) with value represented in the <code>xsd:string</code> datatype, e.g., the HTTP <code>ETag</code> header value [<cite><a class="bibref" href="#bib-rfc7232">RFC7232</a></cite>].</dd>
                 <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
                 <dd about="#feature-rate" property="skos:definition">The minimum amount of time to elapse between notifications sent to receiver with value represented in the <code>xsd:duration</code> datatype.</dd>
                 <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
@@ -1116,6 +1118,8 @@ content: "";
                     <dd><a href="https://www.w3.org/TR/websockets/"><cite>The WebSocket API</cite></a>. Ian Hickson.  W3C. 28 January 2021. W3C Note. URL: <a href="https://www.w3.org/TR/websockets/">https://www.w3.org/TR/websockets/</a></dd>
                     <dt id="bib-websub">[WEBSUB]</dt>
                     <dd><a href="https://www.w3.org/TR/websub/"><cite>WebSub</cite></a>. Julien Genestoux; Aaron Parecki.  W3C. 23 January 2018. W3C Recommendation. URL: <a href="https://www.w3.org/TR/websub/">https://www.w3.org/TR/websub/</a></dd>
+                    <dt id="xmlschema11-2">[XMLSCHEMA11-2]</dt>
+                    <dd><a href="https://www.w3.org/TR/xmlschema11-2/"><cite>W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</cite></a>. David Peterson; Sandy Gao; Ashok Malhotra; Michael Sperberg-McQueen; Henry Thompson; Paul V. Biron et al.  W3C. 5 April 2012. W3C Recommendation. URL: <a href="https://www.w3.org/TR/xmlschema11-2/">https://www.w3.org/TR/xmlschema11-2/</a></dd>
                   </dl>
                 </div>
               </section>
