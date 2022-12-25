@@ -910,64 +910,63 @@ content: "";
 
                   <dl rel="schema:hasPart">
                     <dt about="#security-privacy-review-purpose" id="security-privacy-review-purpose"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#purpose" rel="cito:repliesTo">What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary?</a></dt>
-                    <dd about="#security-privacy-review-purpose" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-purpose" datatype="rdf:HTML" property="schema:description">There are no known security impacts of the features in this specification.</dd>
 
                     <dt about="#security-privacy-review-minimum-data" id="security-privacy-review-minimum-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#minimum-data" rel="cito:repliesTo">Do features in your specification expose the minimum amount of information necessary to enable their intended uses?</a></dt>
-                    <dd about="#security-privacy-review-minimum-data" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-minimum-data" datatype="rdf:HTML" property="schema:description">Yes.</dd>
 
                     <dt about="#security-privacy-review-personal-data" id="security-privacy-review-personal-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#personal-data" rel="cito:repliesTo">How do the features in your specification deal with personal information, personally-identifiable information (PII), or information derived from them?</a></dt>
-                    <dd about="#security-privacy-review-personal-data" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-personal-data" datatype="rdf:HTML" property="schema:description">Access to <cite><a href="#subscription-resource" rel="cito:discusses">subscription resource</a></cite> and <cite><a href="#notification-message-data-model" rel="cito:discusses">notification message</a></cite> are only granted to authorized access subjects. The <cite><a href="#subscription-request" rel="cito:discusses">subscription request</a></cite>, <cite><a href="#subscription-response" rel="cito:discusses">subscription response</a></cite>, and notification message payloads can contain any data (including that which identifies or refers to agents that control the <cite> <a href="#SubscriptionClient" rel="cito:discusses">Subscription Client</a></cite>  and <cite><a href="#NotificationSender" rel="cito:discusses">Notification Sender</a></cite>.) <cite><a href="https://w3ctag.github.io/design-principles/#consent" rel="cito:obtainsBackgroundFrom">Meaningful consent</a></cite> to any personal data that Subscription Clients include about agents associated with themselves or resources (<cite><a href="#notify-topic">topic</a></cite>) of interest are extended to the <cite><a href="#NotificationReceiver" rel="cito:discusses">Notification Receiver</a></cite>. Subscription Clients, <cite> <a href="#SubscriptionServer" rel="cito:discusses">Subscription Server</a></cite>, and <cite><a href="#NotificationSender" rel="cito:discusses">Notification Senders</a></cite> are discouraged from exposing information beyond the amount necessary to enable or use a feature.</dd>
 
                     <dt about="#security-privacy-review-sensitive-data" id="security-privacy-review-sensitive-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#sensitive-data" rel="cito:repliesTo">How do the features in your specification deal with sensitive information?</a></dt>
-                    <dd about="#security-privacy-review-sensitive-data" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-sensitive-data" datatype="rdf:HTML" property="schema:description">The features do not require sensitive information to obtained or exposed.</dd>
 
                     <dt about="#security-privacy-review-persistent-origin-specific-state" id="security-privacy-review-persistent-origin-specific-state"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#persistent-origin-specific-state" rel="cito:repliesTo">Do the features in your specification introduce new state for an origin that persists across browsing sessions?</a></dt>
-                    <dd about="#security-privacy-review-persistent-origin-specific-state" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-persistent-origin-specific-state" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-underlying-platform-data" id="security-privacy-review-underlying-platform-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#underlying-platform-data" rel="cito:repliesTo">Do the features in your specification expose information about the underlying platform to origins?</a></dt>
-                    <dd about="#security-privacy-review-underlying-platform-data" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-underlying-platform-data" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-send-to-platform" id="security-privacy-review-send-to-platform"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#send-to-platform" rel="cito:repliesTo">Does this specification allow an origin to send data to the underlying platform?</a></dt>
-                    <dd about="#security-privacy-review-send-to-platform" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-send-to-platform" datatype="rdf:HTML" property="schema:description">No. <cite><a href="#description-resource" rel="cito:discusses">description resources</a></cite>, <cite><a href="#subscription-resource" rel="cito:discusses">subscription resources</a></cite>, are described within the framework of HTTP as RDF documents <cite><a href="#json-ld-format" rel="cito:discusses">represented with the JSON-LD syntax</a></cite>. <cite><a href="#subscription-server" rel="cito:discusses">Subscription Servers</a></cite> and <cite><a href="#NotificationReceiver" rel="cito:discusses">Notification Receivers</a></cite> might be able to redirect to other resources, (e.g., the <code>https:</code> URLs to <code>file:</code>, <code>data:</code>, or <code>blob:</code> URLs), but no behaviour is defined by this specification.</dd>
 
                     <dt about="#security-privacy-review-sensor-data" id="security-privacy-review-sensor-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#sensor-data" rel="cito:repliesTo">Do features in this specification allow an origin access to sensors on a user’s device</a></dt>
-                    <dd about="#security-privacy-review-sensor-data" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-sensor-data" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-other-data" id="security-privacy-review-other-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#other-data" rel="cito:repliesTo">What data do the features in this specification expose to an origin? Please also document what data is identical to data exposed by other features, in the same or different contexts.</a></dt>
-                    <dd about="#security-privacy-review-other-data" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-other-data" datatype="rdf:HTML" property="schema:description">No detail about another origin’s state is exposed. As the association between a resource and its description resource is at the discretion of the resource server, they can be on different <cite><a href="https://datatracker.ietf.org/doc/html/rfc6454#section-2.3" rel="cito:citesAsAuthority">origins</a></cite> [<cite><a class="bibref" href="#bib-RFC6454">RFC6454</a></cite>]. Similarly, the origins of subscription resource and the notification channel can be different. When subscription servers, servers hosting the notification channel, and servers allowing connections to receive notifications participates in the <cite><a href="https://fetch.spec.whatwg.org/#cors-protocol" rel="cito:citesAsAuthority">CORS protocol</a></cite> [<cite><a class="bibref" href="#bib-fetch">FETCH</a></cite>], HTTP requests from different origins may be allowed. This feature does not add any new attack surface above and beyond normal <cite><a href="https://fetch.spec.whatwg.org/#cors-request" rel="cito:citesAsAuthority">CORS requests</a></cite>, so no extra mitigation is deemed necessary.</dd>
 
                     <dt about="#security-privacy-review-string-to-script" id="security-privacy-review-string-to-script"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#string-to-script" rel="cito:repliesTo">Do features in this specification enable new script execution/loading mechanisms?</a></dt>
-                    <dd about="#security-privacy-review-string-to-script" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-string-to-script" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-remote-device" id="security-privacy-review-remote-device"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#remote-device" rel="cito:repliesTo">Do features in this specification allow an origin to access other devices?</a></dt>
-                    <dd about="#security-privacy-review-remote-device" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-remote-device" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-native-ui" id="security-privacy-review-native-ui"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#native-ui" rel="cito:repliesTo">Do features in this specification allow an origin some measure of control over a user agent’s native UI?</a></dt>
-                    <dd about="#security-privacy-review-native-ui" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-native-ui" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-temporary-id" id="security-privacy-review-temporary-id"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#temporary-id" rel="cito:repliesTo">What temporary identifiers do the features in this specification create or expose to the web?</a></dt>
-                    <dd about="#security-privacy-review-temporary-id" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-temporary-id" datatype="rdf:HTML" property="schema:description">The <cite><a href="#subscription-response" rel="cito:discusses">subscription response</a></cite> payload can contain a capability URL to protect the notification channel which is only exposed to authorized <cite><a href="#SubscriptionClient" rel="cito:discusses">Subscription Clients</a></cite>.</dd>
 
                     <dt about="#security-privacy-review-first-third-party" id="security-privacy-review-first-third-party"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#first-third-party" rel="cito:repliesTo">How does this specification distinguish between behaviour in first-party and third-party contexts?</a></dt>
-                    <dd about="#security-privacy-review-first-third-party" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-first-third-party" datatype="rdf:HTML" property="schema:description">Inapplicable.</dd>
 
                     <dt about="#security-privacy-review-private-browsing" id="security-privacy-review-private-browsing"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#private-browsing" rel="cito:repliesTo">How do the features in this specification work in the context of a browser’s Private Browsing or Incognito mode?</a></dt>
-                    <dd about="#security-privacy-review-private-browsing" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-private-browsing" datatype="rdf:HTML" property="schema:description">No different than <q>browser’s 'normal' state</q>.</dd>
 
                     <dt about="#security-privacy-review-considerations" id="security-privacy-review-considerations"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#considerations" rel="cito:repliesTo">Does this specification have both "Security Considerations" and "Privacy Considerations" sections?</a></dt>
-                    <dd about="#security-privacy-review-considerations" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-considerations" datatype="rdf:HTML" property="schema:description">Yes, in <cite><a href="#security-considerations" rel="rdfs:seeAlso">Security Considerations</a></cite> and <cite><a href="#privacy-considerations" rel="rdfs:seeAlso">Privacy Considerations</a></cite>.</dd>
 
                     <dt about="#security-privacy-review-relaxed-sop" id="security-privacy-review-relaxed-sop"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#relaxed-sop" rel="cito:repliesTo">Do features in your specification enable origins to downgrade default security protections?</a></dt>
-                    <dd about="#security-privacy-review-relaxed-sop" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-relaxed-sop" datatype="rdf:HTML" property="schema:description">No.</dd>
 
                     <dt about="#security-privacy-review-non-fully-active" id="security-privacy-review-non-fully-active"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#non-fully-active" rel="cito:repliesTo">How does your feature handle non-"fully active" documents?</a></dt>
-                    <dd about="#security-privacy-review-non-fully-active" datatype="rdf:HTML" property="schema:description">..</dd>
+                    <dd about="#security-privacy-review-non-fully-active" datatype="rdf:HTML" property="schema:description">Inapplicable.</dd>
                   </dl>
                 </div>
               </section>
             </div>
           </section>
-
 
           <section id="change-log" inlist="" rel="schema:hasPart" resource="#change-log">
             <h2 property="schema:name">Change Log</h2>
