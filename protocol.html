@@ -569,9 +569,9 @@ content: "";
                     </span>
                   </p>
 
-                  <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
+                  <figure class="example listing" id="description-resource-request-response-jsonld" rel="schema:hasPart" resource="#description-resource-request-response-jsonld">
                     <p class="example-h"><span>Example</span>: Discovery of description resource.</p>
-                    <pre about="#subscription-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>HEAD https://example.org/guinan/profile</code>
+                    <pre about="#description-resource-request-response-jsonld" property="schema:description" typeof="fabio:Script"><code>HEAD https://example.org/guinan/profile</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
 <code>Link: &lt;https://example.org/guinan/profile.description&gt; rel="describedby"</code>
@@ -642,6 +642,24 @@ content: "";
                       </span>
                     </span>
                   </p>
+
+                  <figure class="example listing" id="subscription-resource-request-response-jsonld" rel="schema:hasPart" resource="#subscription-resource-request-response-jsonld">
+                    <p class="example-h"><span>Example</span>: Subscription request and response.</p>
+                    <pre about="#subscription-resource-request-response-jsonld" property="schema:description" typeof="fabio:Script"><code>GET https://websocket.example/subscription</code>
+<code>Accept: application/ld+json</code>
+<code></code>
+<code>HTTP/1.1 200 OK</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>POST https://websocket.example/subscription</code>
+<code>Accept: application/jd+json</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>HTTP/1.1 200 OK</code>
+<code>Content-Type: application/ld+json</code></pre>
+
+                    <figcaption property="schema:name">Requesting a subscription and response with a JSON-LD serialization.</figcaption>
+                  </figure>
                 </div>
               </section>
 
@@ -723,10 +741,10 @@ content: "";
                     <li id="notify-channel">Zero, one or many <code class="highlight-notify-channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
                   </ul>
 
-                  <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
+                  <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
                     <p class="example-h"><span>Example</span>: Representation of a description resource.</p>
 
-                    <pre about="#subscription-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#description-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
