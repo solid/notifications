@@ -23,6 +23,7 @@ subscription types as well as to authors of new subscription types.
   * [WebSocketSubscription2021](https://solidproject.org/TR/websocket-subscription-2021)
 * Editors Drafts:
   * [WebSocketSubscription2021](https://solid.github.io/notifications/websocket-subscription-2021)
+  * [WebSocketChannel2023](https://solid.github.io/notifications/websocket-channel-2023)
   * [StreamingHTTPSubscription2021](https://solid.github.io/notifications/streaming-http-subscription-2021)
   * [EventSourceSubscription2021](https://solid.github.io/notifications/eventsource-subscription-2021)
   * [LinkedDataNotificationsSubscription2021](https://solid.github.io/notifications/linkeddatanotifications-subscription-2021)
