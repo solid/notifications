@@ -303,9 +303,8 @@ content: "";
                   <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
                   <ol>
                     <li><a href="#overview"><span class="secno">1.1</span> <span class="content">Overview</span></a></li>
-                    <li><a href="#terminology"><span class="secno">1.2</span> <span class="content">Terminology</span></a></li>
-                    <li><a href="#namespaces"><span class="secno">1.3</span> <span class="content">Namespaces</span></a></li>
-                    <li><a href="#conformance"><span class="secno">1.4</span> <span class="content">Conformance</span></a></li>
+                    <li><a href="#namespaces"><span class="secno">1.2</span> <span class="content">Namespaces</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.3</span> <span class="content">Conformance</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -317,25 +316,37 @@ content: "";
                     <li class="tocline">
                       <a class="tocxref" href="#subscription"><span class="secno">2.2</span> Subscription</a>
                     </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-channel"><span class="secno">2.3</span> <span class="content">Notification Channel</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-message"><span class="secno">2.4</span> <span class="content">Notification Message</span></a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li class="tocline">
+                  <a class="tocxref" href="#data-model"><span class="secno">3</span> <span class="content">Data Model</span></a>
+                  <ol>
+                    <li class="tocline">
+                      <a class="tocxref" href="#description-resource-data-model"><span class="secno">3.1</span> <span class="content">Description Resource</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#subscription-resource-data-model"><span class="secno">3.2</span> <span class="content">Subscription Resource</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-channel-data-model"><span class="secno">3.3</span> <span class="content">Notification Channel</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-message-data-model"><span class="secno">3.4</span> <span class="content">Notification Message</span></a>
+                    </li>
                   </ol>
                 </li>
                 <li class="tocline">
-                  <a class="tocxref" href="#authentication-authorization"><span class="secno">3</span> <span class="content">Authentication and Authorization</span></a>
-                </li>
-                <li class="tocline">
-                  <a class="tocxref" href="#subscription-types"><span class="secno">4</span> <span class="content">Subscription Types</span></a>
-                </li>
-                <li class="tocline">
-                  <a class="tocxref" href="#notification-features"><span class="secno">5</span> <span class="content">Notification Features</span></a>
-                </li>
-                <li class="tocline">
-                  <a class="tocxref" href="#notification-data-model"><span class="secno">6</span> <span class="content">Notification Data Model</span></a>
-                </li>
-                <li class="tocline">
-                  <a class="tocxref" href="#extensions"><span class="secno">7</span> <span class="content">Extensions</span></a>
+                  <a class="tocxref" href="#extensions"><span class="secno">4</span> <span class="content">Extensions</span></a>
                   <ol>
-                    <li><a href="#subscription-types-extension"><span class="secno">7.1</span> <span class="content">Subscription Types Extension</span></a></li>
-                    <li><a href="#notification-features-extension"><span class="secno">7.2</span> <span class="content">Notification Features Extension</span></a></li>
+                    <li><a href="#notification-channel-types-extension"><span class="secno">4.1</span> <span class="content">Notification Channel Types</span></a></li>
+                    <li><a href="#notification-features-extension"><span class="secno">4.2</span> <span class="content">Notification Features</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -369,7 +380,7 @@ content: "";
 
               <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">The Solid Notification Protocol defines an extensible, HTTP-based framework by which client applications can establish and manage subscriptions to HTTP resource changes.</span></p>
 
-              <p>A goal of the protocol defined by this specification is to enable interaction patterns both for cases where an HTTP client maintains an open connection to a subscription (e.g. WebSockets) as well as for cases where a client establishes a subscription and then disconnects.</p>
+              <p>A goal of the protocol defined by this specification is to enable interaction patterns both for cases where an HTTP client maintains an open connection to a subscription as well as for cases where a client establishes a subscription and then disconnects.</p>
 
               <p>This specification is for:</p>
 
@@ -393,7 +404,7 @@ content: "";
                     <figcaption property="schema:name">Solid Notifications Flow</figcaption>
                   </figure>
 
-                  <p>Subscription types in which a client establishes a subscription and then maintains a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
+                  <p>Notification channel types in which a client establishes a subscription and then maintains a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
 
                   <figure id="solid-notifications-flow-source" rel="schema:hasPart" resource="#solid-notifications-flow-source">
                     <img rel="schema:image" src="notifications-flow-source.mmd.svg" width="800" />
@@ -401,43 +412,13 @@ content: "";
                     <figcaption property="schema:name">Solid Subscription Flow, where the subscriber connects to the notification source</figcaption>
                   </figure>
 
-                  <p>Subscription types in which a client establishes a subscription and does not maintain a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
+                  <p>Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
 
                   <figure id="solid-notifications-flow-target" rel="schema:hasPart" resource="#solid-notifications-flow-target">
                     <img rel="schema:image" src="notifications-flow-target.mmd.svg" width="800" />
 
                     <figcaption property="schema:name">Solid Notifications Flow, where the sender delivers to the notification target</figcaption>
                   </figure>
-                </div>
-              </section>
-
-              <section id="terminology" inlist="" rel="schema:hasPart" resource="#terminology" typeof="skos:ConceptScheme">
-                <h3 property="schema:name skos:prefLabel">Terminology</h3>
-                <div datatype="rdf:HTML" property="schema:description">
-                  <p><em>This section is non-normative.</em></p>
-
-                  <p property="skos:definition">This specification defines the following terms. These terms are referenced throughout this specification.</p>
-
-                  <span rel="skos:hasTopConcept"><span resource="#notification-channel"></span><span resource="#notification-channel-resource"></span><span resource="#subscription-resource"></span><span resource="#subscription-request"></span><span resource="#subscription-response"></span></span>
-
-                  <dl>
-                    <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel">notification channel</dfn></dt>
-                    <dd about="#notification-channel" property="skos:definition">A <em>notification channel</em> is an abstract thing which is identified by a URI and whose properties describe the available communication interface and features.</dd>
-
-                    <dt about="#notification-channel-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel-resource">notification channel resource</dfn></dt>
-                    <dd about="#notification-channel-resource" property="skos:definition">An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a notification channel.</dd>
-
-                    <dt about="#subscription-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-resource">subscription resource</dfn></dt>
-                    <dd about="#subscription-resource" property="skos:definition">A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can be used by <a href="#SubscriptionClient">Subscription Clients</a> to discover available features and customize the details (see <a href="#notification-features">Notification Features</a>) of a subscription request.</dd>
-
-                    <dt about="#subscription-request" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request">subscription request</dfn></dt>
-                    <dd about="#subscription-request" property="skos:definition">A <em>subscription request</em> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> by a <a href="#SubscriptionClient">Subscription Client</a> requesting to receive updates about a particular resource.</dd>
-
-                    <dt about="#subscription-response" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-response">subscription response</dfn></dt>
-                    <dd about="#subscription-response" property="skos:definition">A <em>subscription response</em> is an HTTP response to a <a href="#subscription-request">subscription request</a> by a <a href="#SubscriptionServer">Subscription Server</a>. The payload of the subscription response is specialised by <a href="#subscription-types">subscription types</a>.</dd>
-                  </dl>
-
-                  <p>In addition to the terminology above, this specification also uses terminology from the [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>] specification. When SOLID-PROTOCOL terminology is used it is linked directly to that specification.</p>
                 </div>
               </section>
 
@@ -454,16 +435,6 @@ content: "";
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><code>rdf</code></td>
-                        <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
-                        <td>[<cite><a class="bibref" href="#bib-rdf-schema">rdf-schema</a></cite>]</td>
-                      </tr>
-                      <tr>
-                        <td><code>solid</code></td>
-                        <td>http://www.w3.org/ns/solid/terms#</td>
-                        <td>Solid Terms</td>
-                      </tr>
                       <tr>
                         <td><code>notify</code></td>
                         <td>http://www.w3.org/ns/solid/notifications#</td>
@@ -502,10 +473,10 @@ content: "";
                         <dd about="#SubscriptionClient" property="skos:definition">A <em>Subscription Client</em> that builds on HTTP <cite>client</cite> [<cite><a class="bibref" href="#bib-rfc7230">RFC7230</a></cite>], [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>], and [<cite><a class="bibref" href="#bib-fetch">FETCH</a></cite>] by defining behaviour in terms of fetching across the platform.</dd>
                         <dt about="#SubscriptionServer" property="skos:prefLabel" rel="skos:relatedMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="SubscriptionServer">Subscription Server</dfn></dt>
                         <dd about="#SubscriptionServer" property="skos:definition">A <em>Subscription Server</em> that builds on HTTP <cite>server</cite> [<cite><a class="bibref" href="#bib-rfc7230">RFC7230</a></cite>] and [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
-                        <dt about="#NotificationSender" property="skos:prefLabel" rel="skos:relatedMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="NotificationServer">Notification Sender</dfn></dt>
-                        <dd about="#NotificationSender" property="skos:definition">A <em>Notification Sender</em> is the sender of a notification acting in conformance to the product class of a subscription type.</dd>
+                        <dt about="#NotificationSender" property="skos:prefLabel" rel="skos:relatedMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="NotificationSender">Notification Sender</dfn></dt>
+                        <dd about="#NotificationSender" property="skos:definition">A <em>Notification Sender</em> is the sender of a notification acting in conformance to the product class of a notification channel type.</dd>
                         <dt about="#NotificationReceiver" property="skos:prefLabel" rel="skos:relatedMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="NotificationReceiver">Notification Receiver</dfn></dt>
-                        <dd about="#NotificationReceiver" property="skos:definition">A <em>Notification Receiver</em> is the recipient of a notification acting in conformance to the product class of a subscription type.</dd>
+                        <dd about="#NotificationReceiver" property="skos:definition">A <em>Notification Receiver</em> is the recipient of a notification acting in conformance to the product class of a notification channel type.</dd>
                         <dt about="#ResourceServer" property="skos:prefLabel" rel="skos:relatedMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="ResourceServer">Resource Server</dfn></dt>
                         <dd about="#ResourceServer" property="skos:definition">A <em>resource server</em> that builds on HTTP <cite>server</cite> [<cite><a class="bibref" href="#bib-rfc7230">RFC7230</a></cite>] and [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] by defining media types, HTTP header fields, and the behaviour of resources, as identified by link relations.</dd>
                       </dl>
@@ -526,7 +497,7 @@ content: "";
 
                       <p id="interoperability-subscription-client-subscription-server">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#SubscriptionServer" rel="rdfs:seeAlso">Subscription Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to this specification.</p>
 
-                      <p id="interoperability-notification-sender-notification-receiver">Interoperability of implementations for <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Sender</a> and <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Receiver</a> is tested by evaluating an implementation’s ability to produce and consume content that adheres to the <a href="#notification-data-model" rel="rdfs:seeAlso">notification data model</a> and conforms to a particular <a href="#subscription-types" rel="rdfs:seeAlso">subscription type</a>.</p>
+                      <p id="interoperability-notification-sender-notification-receiver">Interoperability of implementations for <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Sender</a> and <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Receiver</a> is tested by evaluating an implementation’s ability to produce and consume content that adheres to the <a href="#notification-message-data-model" rel="rdfs:seeAlso">notification message data model</a> and conforms to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</p>
                     </div>
                   </section>
                 </div>
@@ -537,15 +508,10 @@ content: "";
           <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
             <h2 property="schema:name">Protocol</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>
-                The notification protocol includes both the
-                <cite><a href="#discovery" rel="cito:discusses">Discovery</a></cite>
-                of the capabilities of a subscription resource as well as the mechanism for establishing a
-                <cite><a href="#subscription" rel="cito:discusses">Subscription</a></cite>.
-              </p>
+              <p>This section specifies the discovery mechanism, capabilities of subscriptions and notification channels, and establishing a connection to a notification channel.</p>
 
               <p>
-                Individual subscription types may augment the discovery and
+                Individual <a href="#notification-channel-types">notification channel types</a> may augment the discovery and
                 subscription requirements of the notification protocol.
               </p>
 
@@ -560,80 +526,90 @@ content: "";
                 </div>
               </div>
 
+              <p>A <a href="#NotificationSender">Notification Sender</a> can augment the <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD Context</a> definition and extend the content of notifications. See for <a href="https://www.w3.org/TR/activitystreams-core/#example-using-multiple-vocabularies">example using multiple vocabularies</a>.</p>
+
+              <p id="authentication-authorization">This specification does not describe a specific authentication and authorization mechanism to use with the Notification Protocol. Implementations are strongly encouraged to use existing approaches, such as those described in the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
+
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <section id="notification-channel-discovery" inlist="" rel="schema:hasPart" resource="#notification-channel-discovery">
-                    <h4 property="schema:name">Notification Channel Discovery</h4>
-                    <div datatype="rdf:HTML" property="schema:description">
-                      <p><a href="#ResourceServer">Resource Servers</a> implement the discovery of <a href="#notification-channel">Notification Channels</a> through the use of Link headers. <a href="#SubscriptionClient">Subscription Clients</a> can discover notification channels that are available to a given resource or to a storage as follows:</p>
+                  <p>This section describes the discovery of <cite><a href="#description-resource-discovery" rel="rdfs:seeAlso">description resource</a></cite>.</p>
 
-                      <p about="" id="resource-server-link-resource-notification-channel" rel="spec:requirement" resource="#resource-server-link-resource-notification-channel"><span property="spec:statement">When a resource server wants to enable subscription clients to discover notification channels available to a given resource, the <a href="#ResourceServer" rel="spec:requirementSubject">Resource Server</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> advertise the associated resources describing the <a href="#notification-channel">Notification Channels</a> by responding to an HTTP request including a <code>Link</code> header with the <code>rel</code> value of <code>describedby</code> [<cite><a class="bibref" href="#bib-powder-dr">POWDER-DR</a></cite>] and the Description Resource as link target [<cite><a class="bibref" href="#bib-rfc8288">RFC8288</a></cite>].</span></p>
+                  <dl>
+                    <dt about="#description-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="description-resource">description resource</dfn></dt>
+                    <dd about="#description-resource" property="skos:definition">An <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a <cite><a href="#subscription-resource-data-model" rel="rdfs:seeAlso">subscription resource</a></cite> or <cite><a href="#notification-channel-data-model" rel="rdfs:seeAlso">notification channel</a></cite>.</dd>
+                  </dl>
 
-                      <p about="" id="resource-server-link-storage-notification-channel" rel="spec:requirement" resource="#resource-server-link-storage-notification-channel"><span property="spec:statement">When a resource server wants to enable subscription clients to discover notification channels available to a <a href="https://solidproject.org/TR/protocol#storage">storage</a> in which a given <a href="https://solidproject.org/TR/protocol#resource">resource</a> is in, the <span rel="spec:requirementSubject" resource="#ResourceServer">Resource Server</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> advertise the associated resources describing the <a href="#notification-channel">Notification Channels</a> by responding to an HTTP request including a <code>Link</code> header with the <code>rel</code> value of <code>http://www.w3.org/ns/solid#storageDescription</code> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>] and the Description Resource as link target [<cite><a class="bibref" href="#bib-rfc8288">RFC8288</a></cite>].</span></p>
+                  <p>Advertising <a href="#subscription-resource">subscription resources</a> can be used to create notification channels:</p>
 
-                      <p>
-                        <span about="" id="resource-server-notification-channel-resource-accept" rel="spec:requirement" resource="#resource-server-notification-channel-resource-accept">
-                          <span property="spec:statement">
-                            <span rel="spec:requirementSubject" resource="#ResourceServer">Resource Servers</span>
-                            <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests targeting the Notification Channel Resource when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
-                          </span>
-                        </span>
-                      </p>
+                  <ul>
+                    <li>for protected resources, which relies on capability URL to protect the channel;</li>
+                    <li>with specific features required by the subscribing client.</li>
+                  </ul>
 
-                      <p>The data model of the notification channel and its capabilities is defined in <cite><a href="#notification-channel-conformance" rel="rdfs:seeAlso">Notification Channel Conformance</a></cite>.</p>
-                    </div>
-                  </section>
+                  <p>Advertising existing <a href="#notification-channel">notification channels</a> can be used to provide notification channels:</p>
 
-                  <section id="notification-channel-conformance" inlist="" rel="schema:hasPart" resource="#notification-channel-conformance">
-                    <h4 property="schema:name">Notification Channel Conformance</h4>
-                    <div datatype="rdf:HTML" property="schema:description">
+                  <ul>
+                    <li>for protected resource, which does not rely on capability URL to protect the channel;</li>
+                    <li>for public read resource.</li>
+                  </ul>
 
-                      <p>A Notification Channel has the following properties:</p>
+                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#subscription-resource">subscription resources</a> and <a href="#notification-channel">notification channels</a> that are available to a given resource or to a storage through the use of HTTP <code>Link</code> header targeting a <a href="#description-resource">description resource</a>:</p>
 
-                      <ul>
-                        <li id="notify-notificationChannel">At least one <code>notificationChannel</code> property whose object describes a notification channel.</li>
-                        <li id="notify-type">At least one <code>type</code> property to indicate the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
-                        <li id="notify-feature">Zero, one or many <code>feature</code> property values (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>) to indicate particular features of a notification channel.</li>
-                        <li id="notify-subscription">Zero or one <code>subscription</code> property value to indicate a subscription resource associated with a notification channel (<a href="#subscription" rel="rdfs:seeAlso">Subscription</a>).</li>
-                      </ul>
+                  <p about="" id="resource-server-link-resource-description-resource" rel="spec:requirement" resource="#resource-server-link-resource-description-resource"><span property="spec:statement">When a resource server wants to enable <a href="#SubscriptionClient">Subscription Clients</a> to discover subscription resources and notification channels available to a given resource, the <a href="#ResourceServer" rel="spec:requirementSubject">Resource Server</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> advertise the associated resources describing the <a href="#subscription-resource">subscription resources</a> and <a href="#notification-channel">notification channels</a> by responding to an HTTP request including a <code>Link</code> header with the <code>rel</code> value of <code>describedby</code> [<cite><a class="bibref" href="#bib-powder-dr">POWDER-DR</a></cite>] and the Description Resource as link target [<cite><a class="bibref" href="#bib-rfc8288">RFC8288</a></cite>].</span></p>
 
-                      <figure class="example listing" id="notification-channel-resource-jsonld" rel="schema:hasPart" resource="#notification-channel-resource-jsonld">
-                        <p class="example-h">
-                          <span>Example</span>: Representation of a Notification Channel Resource.
-                        </p>
+                  <p about="" id="resource-server-link-storage-description-resource" rel="spec:requirement" resource="#resource-server-link-storage-description-resource"><span property="spec:statement">When a resource server wants to enable <a href="#SubscriptionClient">Subscription Clients</a> to discover subscription resources and notification channels available to a <a href="https://solidproject.org/TR/protocol#storage">storage</a> in which a given <a href="https://solidproject.org/TR/protocol#resource">resource</a> is in, the <a rel="spec:requirementSubject" resource="#ResourceServer">Resource Server</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> advertise the associated resources describing the <a href="#subscription-resource">subscription resources</a> and <a href="#notification-channel">notification channels</a> by responding to an HTTP request including a <code>Link</code> header with the <code>rel</code> value of <code>http://www.w3.org/ns/solid#storageDescription</code> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>] and the Description Resource as link target [<cite><a class="bibref" href="#bib-rfc8288">RFC8288</a></cite>].</span></p>
 
-                        <pre about="#notification-channel-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+                  <p>
+                    <span about="" id="resource-server-description-resource-accept" rel="spec:requirement" resource="#resource-server-description-resource-accept">
+                      <span property="spec:statement">
+                        <a rel="spec:requirementSubject" href="#ResourceServer">Resource Servers</a>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests targeting the <a href="#description-resource">description resource</a> when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
+                      </span>
+                    </span>
+                  </p>
+
+                  <figure class="example listing" id="description-resource-request-response-jsonld" rel="schema:hasPart" resource="#description-resource-request-response-jsonld">
+                    <p class="example-h"><span>Example</span>: Discovery of description resource.</p>
+                    <pre about="#description-resource-request-response-jsonld" property="schema:description" typeof="fabio:Script"><code>HEAD https://example.org/guinan/profile</code>
 <code></code>
-<code>{</code>
-<code>  "@context": [</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
-<code>  ],</code>
-<code>  "notificationChannel": [{</code>
-<code>    "id": "websocketNotification",</code>
-<code>    "type": ["WebSocketSubscription2021"],</code>
-<code>    "subscription": "https://websocket.example/subscription",</code>
-<code>    "feature": ["state", "rate", "endTime"]</code>
-<code>  }]</code>
-<code>}</code></pre>
+<code>HTTP/1.1 200 OK</code>
+<code>Link: &lt;https://example.org/guinan/profile.description&gt; rel="describedby"</code>
+<code></code>
+<code>GET https://example.org/guinan/profile.description</code>
+<code>Accept: application/ld+json</code>
+<code></code>
+<code>HTTP/1.1 200 OK</code>
+<code>Content-Type: application/ld+json</code></pre>
 
-                        <figcaption property="schema:name"><code>JSON-LD</code> serialization of resource including notification channel information.</figcaption>
-                      </figure>
-                    </div>
-                  </section>
+                    <figcaption property="schema:name">Discovering description resource with a JSON-LD serialization.</figcaption>
+                  </figure>
                 </div>
               </section>
 
               <section id="subscription" inlist="" rel="schema:hasPart" resource="#subscription">
                 <h3 property="schema:name">Subscription</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p><span about="" id="subscription-server-subscription-request-methods" rel="spec:requirement" resource="#subscription-server-subscription-request-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the subscription resource.</span></span></p>
+                  <p>The subscriptions mechanism enables <a href="#SubscriptionClient">Subscription Clients</a> to request updates about particular resources using a customised notification channel.</p>
+
+                  <dl>
+                    <dt about="#subscription-resource" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-resource">subscription resource</dfn></dt>
+                    <dd about="#subscription-resource" property="skos:definition">A <em>subscription resource</em> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can be used by <a href="#SubscriptionClient">Subscription Clients</a> to discover available features and customize the details (see <a href="#notification-features">Notification Features</a>) of a subscription request.</dd>
+
+                    <dt about="#subscription-request" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-request">subscription request</dfn></dt>
+                    <dd about="#subscription-request" property="skos:definition">A <em>subscription request</em> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> by a <a href="#SubscriptionClient">Subscription Client</a> requesting to receive notifications about one or more resources (<cite><a href="#notify-topic">topic</a></cite>). The payload of the subscription request describes the desired <a href="#notification-channel">notification channel</a>.</dd>
+
+                    <dt about="#subscription-response" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-response">subscription response</dfn></dt>
+                    <dd about="#subscription-response" property="skos:definition">A <em>subscription response</em> is an HTTP response to a <a href="#subscription-request">subscription request</a> by a <a href="#SubscriptionServer">Subscription Server</a>. The payload of the subscription response describes the created <a href="#notification-channel">notification channel</a>.</dd>
+                  </dl>
+
+                  <p><span about="" id="subscription-server-subscription-request-methods" rel="spec:requirement" resource="#subscription-server-subscription-request-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the <a href="#subscription-resource">subscription resource</a>.</span></span></p>
 
                   <p>
                     <span about="" id="subscription-server-subscription-request-accept" rel="spec:requirement" resource="#subscription-server-subscription-request-accept">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the subscription resource when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the <a href="#subscription-resource">subscription resource</a> when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
                       </span>
                     </span>
                   </p>
@@ -642,7 +618,7 @@ content: "";
                     <span about="" id="subscription-server-subscription-request-content-type" rel="spec:requirement" resource="#subscription-server-subscription-request-content-type">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the subscription resource when the value of the <code>Content-Type</code> header indicates the payload's media type in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the <a href="#subscription-resource">subscription resource</a> when the value of the <code>Content-Type</code> header indicates the payload's media type in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
                       </span>
                     </span>
                   </p>
@@ -651,19 +627,10 @@ content: "";
                     <span about="" id="subscription-client-subscription-request" rel="spec:requirement" resource="#subscription-client-subscription-request">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="#SubscriptionClient">Subscription Clients</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#subscription-request-data-model" rel="rdfs:seeAlso">subscription request data model</a>, in addition to conforming to a particular <a href="#subscription-types" rel="rdfs:seeAlso">subscription type</a>, in the request payload.
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, in addition to conforming to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>, in the <a href="#subscription-request">subscription request</a> payload.
                       </span>
                     </span>
                   </p>
-
-                  <p about="#subscription-request-data-model" id="subscription-request-data-model">The <span property="skos:prefLabel">subscription request data model</span> is defined as follows:</p>
-
-                  <ul about="#subscription-request-data-model" property="skos:definition">
-                    <li>One <code>type</code> property to indicate the requested subscription type.</li>
-                    <li>At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
-                    <li>Zero or one <code>target</code> property to identify the resource that can accept notifications.</li>
-                    <li>Zero, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
-                  </ul>
 
                   <p><span about="" id="subscription-server-subscription-request-payload-invalid" rel="spec:requirement" resource="#subscription-server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] when unable to process the contained instructions.</span></span></p>
 
@@ -671,100 +638,235 @@ content: "";
                     <span about="" id="subscription-server-subscription-response" rel="spec:requirement" resource="#subscription-server-subscription-response">
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use <a href="#subscription-response-data-model" rel="rdfs:seeAlso">subscription response data model</a>, in addition to conforming to a particular <a href="#subscription-types" rel="rdfs:seeAlso">subscription type</a>, in the response payload.
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, in addition to conforming to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>, in the <a href="#subscription-response">subscription response</a> payload.
                       </span>
                     </span>
                   </p>
 
-                  <p about="#subscription-response-data-model" id="subscription-response-data-model">The <span property="skos:prefLabel">subscription response data model</span> is defined as follows:</p>
+                  <figure class="example listing" id="subscription-resource-request-response-jsonld" rel="schema:hasPart" resource="#subscription-resource-request-response-jsonld">
+                    <p class="example-h"><span>Example</span>: Subscription request and response.</p>
+                    <pre about="#subscription-resource-request-response-jsonld" property="schema:description" typeof="fabio:Script"><code>GET https://websocket.example/subscription</code>
+<code>Accept: application/ld+json</code>
+<code></code>
+<code>HTTP/1.1 200 OK</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>POST https://websocket.example/subscription</code>
+<code>Accept: application/jd+json</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>HTTP/1.1 200 OK</code>
+<code>Content-Type: application/ld+json</code></pre>
 
-                  <ul about="#subscription-response-data-model" property="skos:definition">
-                    <li>One <code>type</code> property to indicate the approved subscription type.</li>
-                    <li>At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
-                    <li>Zero or one <code>source</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
-                    <li>Zero or one <code>sender</code> property to identify the party that sends notifications.</li>
-                    <li>Zero, one, or more feature properties (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
-                  </ul>
+                    <figcaption property="schema:name">Requesting a subscription and response with a JSON-LD serialization.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section id="notification-channel" inlist="" rel="schema:hasPart" resource="#notification-channel">
+                <h3 property="schema:name">Notification Channel</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <dl>
+                    <dt about="#notification-channel" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-channel">notification channel</dfn></dt>
+                    <dd about="#notification-channel" property="skos:definition">A <em>notification channel</em> is a resource whose properties describe the immediately available notification interface with established features and of specific <a href="#notification-channel-types">notification channel type</a>.</dd>
+                  </dl>
+
+                  <section id="notification-channel-types" inlist="" rel="schema:hasPart" resource="#notification-channel-types">
+                    <h4 property="schema:name">Notification Channel Types</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p>A notification channel type is a specific communication protocol that governs how systems can establish a connection and can communicate with each other, as well as the procedures and behaviours that they follow. A notification channel type also specifies the data model and format of the messages that are exchanged between the systems.</p>
+
+                      <div class="note" id="notification-channel-types-index" inlist="" rel="schema:hasPart" resource="#notification-channel-types-index">
+                        <h3 property="schema:name"><span>Note</span>: Notification Channel Types Index</h3>
+                        <div datatype="rdf:HTML" property="schema:description">
+                          <p>An index of notification channel types that are work in progress can be found at the repository hosting this document. The index of notification channel types that are published as a <cite><a href="https://solidproject.org/TR/">Solid Technical Report</a></cite> can be found at <cite><a class="issue" href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite>.</p>
+                        </div>
+                      </div>
+
+                      <p>
+                        Guidelines for defining new notification channel types are included in the
+                        <cite><a href="#notification-channel-types-extension" rel="rdfs:seeAlso">Notification Channel Types Extension</a></cite> section.
+                      </p>
+                    </div>
+                  </section>
+
+                  <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:ConceptScheme">
+                    <h4 property="schema:name">Features</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p property="skos:definition"><a href="#notification-channel">Notification channels</a> may have features describing custom properties of the channel. Features can be used by <a href="#SubscriptionClient">Subscription Clients</a> to customise the details of a requested notification channel. Subscription clients can discover available features in a <a href="#subscription-resource">subscription resource</a>. Some features are specific to a particular notification channel type while others may be used across all types. These shared features are listed as an initial baseline, though not all notification channel types are required to implement these. Individual notification channel types may define type-specific features. The list of common, shared features is not intended to be exhaustive.</p>
+
+                      <p>The requirements for new notification features is explained in the <cite><a href="#notification-features-extension" rel="rdfs:seeAlso">Notification Features Extension</a></cite> section.</p>
+
+                      <span rel="skos:hasTopConcept"><span resource="#feature-startAt"></span><span resource="#feature-endAt"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
+
+                      <dl>
+                        <dt about="#feature-startAt" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startAt">startAt</dfn></dt>
+                        <dd about="#feature-startAt" property="skos:definition">The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
+                        <dt about="#feature-endAt" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endAt">endAt</dfn></dt>
+                        <dd about="#feature-endAt" property="skos:definition">The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
+                        <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
+                        <dd about="#feature-state" property="skos:definition">The last known state of a resource (<cite><a href="#notify-topic">topic</a></cite>) with value represented in the <code>xsd:string</code> datatype, e.g., the HTTP <code>ETag</code> header value [<cite><a class="bibref" href="#bib-rfc7232">RFC7232</a></cite>].</dd>
+                        <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
+                        <dd about="#feature-rate" property="skos:definition">The minimum amount of time to elapse between notifications sent to receiver with value represented in the <code>xsd:duration</code> datatype.</dd>
+                        <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
+                        <dd about="#feature-accept" property="skos:definition">The media types that are acceptable by the recipient of a notification with value corresponding to the HTTP <code>Accept</code> header value [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
+                      </dl>
+                    </div>
+                  </section>
+                </div>
+              </section>
+
+              <section id="notification-message" inlist="" rel="schema:hasPart" resource="#notification-message">
+                <h3 property="schema:name">Notification Message</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>A <a href="#NotificationSender">Notification Sender</a> is triggered by a process to deliver a notification about a resource to the attention of the <a href="#NotificationReceiver">Notification Receiver</a>.</p>
                 </div>
               </section>
             </div>
           </section>
 
-          <section id="authentication-authorization" inlist="" rel="schema:hasPart" resource="#authentication-authorization">
-            <h2 property="schema:name">Authentication and Authorization</h2>
+          <section id="data-model" inlist="" rel="schema:hasPart" resource="#data-model">
+            <h2 property="schema:name">Data Model</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>This section is non-normative.</p>
+              <p>This section also specifies the data models that are used to send messages.</p>
 
-              <p>This specification does not describe a specific authentication and authorization mechanism to use with the Notification Protocol. Implementations are strongly encouraged to use existing approaches, such as those described in the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
-            </div>
-          </section>
-
-          <section id="subscription-types" inlist="" rel="schema:hasPart" resource="#subscription-types">
-            <h2 property="schema:name">Subscription Types</h2>
-            <div datatype="rdf:HTML" property="schema:description">
-              <p>Subscription types define particular interaction patterns for agents to establish and make use of subscription to resources.</p>
-
-              <div class="note" id="subscription-types-index" inlist="" rel="schema:hasPart" resource="#subscription-types-index">
-                <h3 property="schema:name"><span>Note</span>: Subscription Types Index</h3>
+              <section id="description-resource-data-model" inlist="" rel="schema:hasPart" resource="#description-resource-data-model">
+                <h3 property="schema:name">Description Resource</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p>An index of subscription types that are work in progress can be found at the repository hosting this document. The index of subscription types that are published as a <cite><a href="https://solidproject.org/TR/">Solid Technical Report</a></cite> can be found at <cite><a href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite>.</p>
+                  <p>The <a href="#description-resource">description resource</a> has the following properties:</p>
+
+                  <ul>
+                    <li id="notify-resource-id">One <code class="highlight-notify-service-id">id</code> property to identify the resource described by the description resource.</li>
+                    <li id="notify-subscription">Zero, one or many <code class="highlight-notify-subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
+                    <li id="notify-channel">Zero, one or many <code class="highlight-notify-channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
+                  </ul>
+
+                  <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
+                    <p class="example-h"><span>Example</span>: Representation of a description resource.</p>
+
+                    <pre about="#description-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id": "https://example.org/guinan/profile",</code>
+<code>  "<span class="highlight-notify-subscription">subscription</span>": [{</code>
+<code>    "<span class="highlight-notify-subscription-id">id</span>": "https://websocket.example/subscription",</code>
+<code>    "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
+<code>    "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
+<code>  }],</code>
+<code>  "<span class="highlight-notify-channel">channel</span>": [{</code>
+<code>    "id": "https://channel.example/guinan/profile",</code>
+<code>    "type": "WebSocketNotifications2023",</code>
+<code>    "topic": "https://example.org/guinan/profile",</code>
+<code>    "receiveFrom": "wss://websocket.example/guinan/profile",</code>
+<code>    "rate": "P5M"</code>
+<code>  }]</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">JSON-LD serialization of a description resource.</figcaption>
+                  </figure>
                 </div>
-              </div>
+              </section>
 
-              <p>
-                Guidelines for defining new subscription types are included in the
-                <cite><a href="#subscription-types-extension" rel="rdfs:seeAlso">Subscription Types Extension</a></cite> section.
-              </p>
-            </div>
-          </section>
+              <section id="subscription-resource-data-model" inlist="" rel="schema:hasPart" resource="#subscription-resource-data-model">
+                <h3 property="schema:name">Subscription Resource</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The <a href="#subscription-resource">subscription resource</a> has the following properties:</p>
 
-          <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:ConceptScheme">
-            <h2 property="schema:name">Notification Features</h2>
-            <div datatype="rdf:HTML" property="schema:description">
-              <p property="skos:definition">Features allow subscription clients to customize the details of a subscription request. Some features are specific to particular subscription types while others may be used across all types. These shared features are listed as an initial baseline, though not all subscription types are required to implement these. Individual subscription types may define type-specific features.
-              The list of common, shared features is not intended to be exhaustive.</p>
+                  <ul>
+                    <li id="notify-service-id">One <code class="highlight-notify-service-id">id</code> property to identify subscription resource.</li>
+                    <li id="notify-channelType">One <code class="highlight-notify-channelType">channelType</code> property to state the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
+                    <li id="notify-feature">Zero, one or many <code class="highlight-notify-feature">feature</code> property value(s) to state the supported features (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                  </ul>
 
-              <p>The requirements for new notification features is explained in the <cite><a href="#notification-features-extension" rel="rdfs:seeAlso">Notification Features Extension</a></cite> section.</p>
+                  <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
+                    <p class="example-h"><span>Example</span>: Representation of a subscription resource.</p>
 
-              <span rel="skos:hasTopConcept"><span resource="#feature-startTime"></span><span resource="#feature-endTime"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
+                    <pre about="#subscription-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "<span class="highlight-notify-service-id">id</span>": "https://websocket.example/subscription",</code>
+<code>  "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
+<code>  "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
+<code>}</code></pre>
 
-              <dl>
-                <dt about="#feature-startTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startTime">startTime</dfn></dt>
-                <dd about="#feature-startTime" property="skos:definition">An ISO 8601 datetime value indicating proposed or actual starting time of a subscription.</dd>
-                <dt about="#feature-endTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endTime">endTime</dfn></dt>
-                <dd about="#feature-endTime" property="skos:definition">An ISO 8601 datetime value indicating proposed or actual ending time of a subscription.</dd>
-                <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
-                <dd about="#feature-state" property="skos:definition">An opaque value representing the last known state of a resource. If the resource state is known to have changed when the client establishes a subscription, an initial notification must be sent to the client. This value should correspond to a resource's <code>ETag</code> header value.</dd>
-                <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
-                <dd about="#feature-rate" property="skos:definition">An ISO 8601 duration value indicating the minimum amount of time to elapse between notifications sent to the client.</dd>
-                <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
-                <dd about="#feature-accept" property="skos:definition">A MIME-Type value that indicates the desired serialization of the notification. For instance, <code>text/turtle</code> may be acceptable.</dd>
-              </dl>
-            </div>
-          </section>
+                    <figcaption property="schema:name">JSON-LD serialization of a subscription resource.</figcaption>
+                  </figure>
+                </div>
+              </section>
 
-          <section id="notification-data-model" inlist="" rel="schema:hasPart" resource="#notification-data-model">
-            <h2 property="schema:name">Notification Data Model</h2>
-            <div datatype="rdf:HTML" property="schema:description">
-              <p>A <a href="#NotificationSender">Notification Sender</a> is triggered by a process to deliver a notification about a resource to the attention of the <a href="#NotificationReceiver">Notification Receiver</a>. The core notification data is expressed with the <cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/">Activity Streams</a></cite> [<cite><a class="bibref" href="#bib-activitystreams-vocabulary">ACTIVITYSTREAMS-VOCABULARY</a></cite>] and <cite><a href="http://www.w3.org/ns/solid/notifications">Solid Notifications</a></cite> vocabularies.</p>
+              <section id="notification-channel-data-model" inlist="" rel="schema:hasPart" resource="#notification-channel-data-model">
+                <h3 property="schema:name">Notification Channel</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The <a href="#notification-channel">notification channel</a> has the following properties:</p>
 
-              <p>A notification has the following properties:</p>
+                  <ul>
+                    <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
+                    <li id="notify-type">One <code>type</code> property to state the notification channel type (<cite><a href="#notification-channel-types" rel="rdfs:seeAlso">Notification Channel Types</a></cite>).</li>
+                    <li id="notify-topic">At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
+                    <li id="notify-feature-types">Zero, one or many property values stating a particular feature (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                  </ul>
 
-              <ul>
-                <li>At least one <code>type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
-                <li>One <code>id</code> property to identify the notification.</li>
-                <li>One <code>object</code> property to identify the resource that the notification is about (<cite><a href="#subscription-request-topic">topic</a></cite>).</li>
-                <li>One <code>published</code> property to indicate the date and time of the notification.</li>
-                <li>Zero, one, or many <code>target</code> properties to identify the resource to which the activity is directed.</li>
-                <li>Zero or one <code>state</code> property to indicate the last known state of the resource.</li>
-              </ul>
+                  <p>Notification channel where a <a href="#NotificationReceiver">Notification Receiver</a> connects has the following property:</p>
 
-              <p>A <a href="#NotificationSender">Notification Sender</a> can augment the <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD Context</a> definition and extend the content of notifications. See for <a href="https://www.w3.org/TR/activitystreams-core/#example-using-multiple-vocabularies">example using multiple vocabularies</a>. The following examples use JSON-LD serializations with <code>https://www.w3.org/ns/activitystreams</code> and <code>https://www.w3.org/ns/solid/notification/v1</code> as the JSON-LD Context.</p>
+                  <ul>
+                    <li id="notify-receiveFrom">One <code>receiveFrom</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
+                  </ul>
 
-              <figure class="example listing" id="notification-update" rel="schema:hasPart" resource="#notification-update">
-                <p class="example-h"><span>Example</span>: An update activity</p>
+                  <p>Notification channel where a <a href="#NotificationSender">Notification Sender</a> delivers notifications has the following properties:</p>
 
-                <pre about="#notification-update" property="schema:description" typeof="fabio:Script"><code>{</code>
+                  <ul>
+                    <li id="notify-sendTo">Zero or one <code>sendTo</code> property to identify the resource that can accept notifications.</li>
+                    <li id="notify-sender">Zero or one <code>sender</code> property to identify the party that sends notifications.</li>
+                  </ul>
+
+                  <figure class="example listing" id="notification-channel-jsonld" rel="schema:hasPart" resource="#notification-channel-jsonld">
+                    <p class="example-h"><span>Example</span>: Representation of a notification channel.</p>
+
+                    <pre about="#notification-channel-jsonld" property="schema:description" typeof="fabio:Script"><code>Content-Type: application/ld+json</code>
+<code></code>
+<code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id": "https://channel.example/ac748712",</code>
+<code>  "type": "WebSocketNotifications2023",</code>
+<code>  "topic": "https://example.org/guinan/profile",</code>
+<code>  "receiveFrom": "wss://websocket.example/d4cf3f19",</code>
+<code>  "startAt": "2023-01-01T07:00:00.000Z",</code>
+<code>  "endAt": "2023-01-01T09:00:00.000Z",</code>
+<code>  "rate": "P1M",</code>
+<code>  "state": "e75-TFJH"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">JSON-LD serialization of a notification channel.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section id="notification-message-data-model" inlist="" rel="schema:hasPart" resource="#notification-message-data-model">
+                <h3 property="schema:name">Notification Message</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The core notification data is expressed with the <cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/">Activity Streams</a></cite> [<cite><a class="bibref" href="#bib-activitystreams-vocabulary">ACTIVITYSTREAMS-VOCABULARY</a></cite>] and <cite><a href="http://www.w3.org/ns/solid/notifications">Solid Notifications</a></cite> vocabularies.</p>
+
+                  <p>A notification has the following properties:</p>
+
+                  <ul>
+                    <li>One <code>id</code> property to identify the notification.</li>
+                    <li>At least one <code>type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
+                    <li>One <code>object</code> property to identify the resource that the notification is about (<cite><a href="#notify-topic">topic</a></cite>).</li>
+                    <li>One <code>published</code> property to indicate the date and time of the notification.</li>
+                    <li>Zero, one, or many <code>target</code> properties to identify the resource to which the activity is directed.</li>
+                    <li>Zero or one <code>state</code> property to indicate the last known state of the resource.</li>
+                  </ul>
+
+                  <figure class="example listing" id="notification-update" rel="schema:hasPart" resource="#notification-update">
+                    <p class="example-h"><span>Example</span>: An update activity</p>
+
+                    <pre about="#notification-update" property="schema:description" typeof="fabio:Script"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
@@ -772,17 +874,17 @@ content: "";
 <code>  "id": "urn:uuid:fc8b5af4-bd7e-4fd1-a649-afcbd0e1c083",</code>
 <code>  "type": "Update",</code>
 <code>  "object": "https://example.org/guinan/profile",</code>
-<code>  "state": "1234-5678-90ab-cdef-12345678",</code>
+<code>  "state": "128f-MtYev",</code>
 <code>  "published": "2021-08-05T01:01:49.550Z"</code>
 <code>}</code></pre>
 
-                <figcaption property="schema:name">An activity indicating that an object (profile) was updated.</figcaption>
-              </figure>
+                    <figcaption property="schema:name">An activity indicating that an object (profile) was updated.</figcaption>
+                  </figure>
 
-              <figure class="example listing" id="notification-add" rel="schema:hasPart" resource="#notification-add">
-                <p class="example-h"><span>Example</span>: An add activity</p>
+                  <figure class="example listing" id="notification-add" rel="schema:hasPart" resource="#notification-add">
+                    <p class="example-h"><span>Example</span>: An add activity</p>
 
-                <pre about="#notification-add" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#notification-add" property="schema:description" typeof="fabio:Script"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
@@ -794,8 +896,10 @@ content: "";
 <code>  "published": "2022-11-24T11:55:31.483Z"</code>
 <code>}</code></pre>
 
-                <figcaption property="schema:name">An activity indicating that an object (image) was added to the target (photos).</figcaption>
-              </figure>
+                    <figcaption property="schema:name">An activity indicating that an object (image) was added to the target (photos).</figcaption>
+                  </figure>
+                </div>
+              </section>
             </div>
           </section>
 
@@ -804,23 +908,23 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p>Extensions incorporate additional features beyond what is defined in this specification. Extensions MUST NOT contradict nor cause the non-conformance of functionality defined in this specification.</p>
 
-              <section id="subscription-types-extension" inlist="" rel="schema:hasPart" resource="#subscription-types-extension">
-                <h3 property="schema:name">Subscription Types Extension</h3>
+              <section id="notification-channel-types-extension" inlist="" rel="schema:hasPart" resource="#notification-channel-types-extension">
+                <h3 property="schema:name">Notification Channel Type</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
                   <p>
-                    New subscription types may be defined and published independently of this document.
-                    This section describes some guidelines and recommendations for publishing new subscription types.
+                    New <a href="#notification-channel-types">notification channel types</a> may be defined and published independently of this document.
+                    This section describes some guidelines and recommendations for publishing new notification channel types.
                   </p>
 
                   <p>
-                    Each new subscription type will declare a unique IRI for use with
+                    Each new notification channel type will declare a unique IRI for use with
                     both discovery and with the establishment of new subscription connections.
                   </p>
 
                   <p>
-                    When defining IRIs for use with a subscription type, it is considered
+                    When defining IRIs for use with a notification channel type, it is considered
                     best practice to publish vocabulary and JSON-LD context documents
                     that are publicly accessible.
                   </p>
@@ -839,24 +943,40 @@ content: "";
 <code>    "https://www.w3.org/ns/solid/notification/v1",</code>
 <code>    "https://notification.example/subscription/v1"</code>
 <code>  ],</code>
-<code>  "type": "ExampleSubscription2021",</code>
+<code>  "type": "ExampleNotifications2023",</code>
 <code>  "topic": "https://storage.example/resource",</code>
 <code>  "custom-property": "custom-value"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">Subscription request with a custom subscription type.</figcaption>
+                    <figcaption property="schema:name">Subscription request with a custom notification channel type.</figcaption>
                   </figure>
 
                   <p>
-                    To help with the discovery of subscription types that can be used with this specification, it is encouraged to register them by following the procedure given in <cite><a href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite> [<cite><a class="bibref" href="bib-notification-subscription-types">NOTIFICATION-SUBSCRIPTION-TYPES</a></cite>].
+                    To help with the discovery of notification channel types that can be used with this specification, it is encouraged to register them by following the procedure given in <cite><a class="issue" href="https://solidproject.org/TR/notification-subscription-types">Notification Subscription Types</a></cite> [<cite><a class="bibref" href="bib-notification-subscription-types">NOTIFICATION-SUBSCRIPTION-TYPES</a></cite>].
                   </p>
                 </div>
               </section>
 
-              <section id="notification-features-extension" inlist="" rel="schema:hasPart" resource="#notification-features">
-                <h3 property="schema:name">Notification Features Extension</h3>
+              <section id="notification-features-extension" inlist="" rel="schema:hasPart" resource="#notification-features-extension">
+                <h3 property="schema:name">Notification Features</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
+
+                  <p>
+                    New <a href="#notification-features">notification features</a> may be defined and published independently of this document.
+                    This section describes some guidelines and recommendations for publishing new notification features.
+                  </p>
+
+                  <p>
+                    Each new notification feature will declare a unique IRI for use with
+                    both discovery and with the establishment of new notification channels.
+                  </p>
+
+                  <p>
+                    When defining IRIs for use with a notification feature, it is considered
+                    best practice to publish vocabulary and JSON-LD context documents
+                    that are publicly accessible.
+                  </p>
                 </div>
               </section>
             </div>
@@ -1012,14 +1132,8 @@ content: "";
                     <dd><a href="https://www.w3.org/TR/activitystreams-vocabulary/" rel="cito:citesAsAuthority"><cite>Activity Streams</cite></a>. James Snell; Evan Prodromou.  W3C. 23 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/activitystreams-vocabulary/">https://www.w3.org/TR/activitystreams-vocabulary/</a></dd>
                     <dt id="bib-json-ld11">[JSON-LD11]</dt>
                     <dd><a href="https://www.w3.org/TR/json-ld11/" rel="cito:citesAsAuthority"><cite>JSON-LD 1.1</cite></a>. Gregg Kellogg; Pierre-Antoine Champin; Dave Longley.  W3C. 16 July 2020. W3C Recommendation. URL: <a href="https://www.w3.org/TR/json-ld11/">https://www.w3.org/TR/json-ld11/</a></dd>
-                    <dt id="bib-ldn">[LDN]</dt>
-                    <dd><a href="https://www.w3.org/TR/ldn/" rel="cito:citesAsAuthority"><cite>Linked Data Notifications</cite></a>. Sarven Capadisli; Amy Guy.  W3C. 2 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a></dd>
-                    <dt id="bib-oauth-pop-key-distribution">[OAUTH-POP-KEY-DISTRIBUTION]</dt>
-                    <dd><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-pop-key-distribution/" rel="cito:citesAsAuthority"><cite>OAuth 2.0 Proof-of-Possession: Authorization Server to Client Key Distribution</cite></a>. J. Bradley; P. Hunt; M. Jones; H. Tschofenig.  IETF. 5 March 2015. Internet Draft (work in progress). URL: <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-pop-key-distribution/">https://datatracker.ietf.org/doc/draft-ietf-oauth-pop-key-distribution/</a></dd>
                     <dt id="bib-powder-dr">[POWDER-DR]</dt>
                     <dd><a href="https://www.w3.org/TR/powder-dr/" rel="cito:citesAsAuthority"><cite>Protocol for Web Description Resources (POWDER): Description Resources</cite></a>. Phil Archer; Kevin Smith; Andrea Perego.  W3C. 1 September 2009. W3C Recommendation. URL: <a href="https://www.w3.org/TR/powder-dr/">https://www.w3.org/TR/powder-dr/</a></dd>
-                    <dt id="bib-rdf-schema">[RDF-SCHEMA]</dt>
-                    <dd><a href="https://www.w3.org/TR/rdf-schema/" rel="cito:citesAsAuthority"><cite>RDF Schema 1.1</cite></a>. Dan Brickley; Ramanathan Guha.  W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf-schema/">https://www.w3.org/TR/rdf-schema/</a></dd>
                     <dt id="bib-rdf11-concepts">[RDF11-CONCEPTS]</dt>
                     <dd><a href="https://www.w3.org/TR/rdf11-concepts/" rel="cito:citesAsAuthority"><cite>RDF 1.1 Concepts and Abstract Syntax</cite></a>. Richard Cyganiak; David Wood; Markus Lanthaler.  W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf11-concepts/">https://www.w3.org/TR/rdf11-concepts/</a></dd>
                     <dt id="bib-rfc2119">[RFC2119]</dt>
@@ -1028,26 +1142,18 @@ content: "";
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc3986" rel="cito:citesAsAuthority"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a></dd>
                     <dt id="bib-rfc4918">[RFC4918]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc4918" rel="cito:citesAsAuthority"><cite>HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)</cite></a>. L. Dusseault, Ed.  IETF. June 2007. Proposed Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc4918">https://datatracker.ietf.org/doc/html/rfc4918</a></dd>
-                    <dt id="bib-rfc6454">[RFC6454]</dt>
-                    <dd><a href="https://datatracker.ietf.org/doc/html/rfc6454" rel="cito:citesAsAuthority"><cite>The Web Origin Concept</cite></a>. A. Barth.  IETF. December 2011. Proposed Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc6454">https://datatracker.ietf.org/doc/html/rfc6454</a></dd>
-                    <dt id="bib-rfc6749">[RFC6749]</dt>
-                    <dd><a href="https://www.rfc-editor.org/rfc/rfc6749" rel="cito:citesAsAuthority"><cite>The OAuth 2.0 Authorization Framework</cite></a>. D. Hardt, Ed..  IETF. October 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6749">https://www.rfc-editor.org/rfc/rfc6749</a></dd>
                     <dt id="bib-rfc7231">[RFC7231]</dt>
                     <dd><a href="https://httpwg.org/specs/rfc7231.html" rel="cito:citesAsAuthority"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a></dd>
+                    <dt id="bib-rfc7232">[RFC7232]</dt>
+                    <dd><a href="https://httpwg.org/specs/rfc7232.html" rel="cito:citesAsAuthority"><cite>Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7232.html">https://httpwg.org/specs/rfc7232.html</a></dd>
                     <dt id="bib-rfc8174">[RFC8274]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc8174" rel="cito:citesAsAuthority"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a></dd>
                     <dt id="bib-rfc8288">[RFC8288]</dt>
                     <dd><a href="https://httpwg.org/specs/rfc8288.html" rel="cito:citesAsAuthority"><cite>Web Linking</cite></a>. M. Nottingham.  IETF. October 2017. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc8288.html">https://httpwg.org/specs/rfc8288.html</a></dd>
-                    <dt id="bib-solid-oidc">[SOLID-OIDC]</dt>
-                    <dd><a href="https://solid.github.io/solid-oidc/" rel="cito:citesAsAuthority"><cite>SOLID-OIDC</cite></a>. Aaron Coburn; elf Pavlik; Dmitri Zagidulin.  W3C Solid Community Group. W3C Editor's Draft. URL: <a href="https://solid.github.io/solid-oidc/">https://solid.github.io/solid-oidc/</a></dd>
                     <dt id="bib-solid-protocol">[SOLID-PROTOCOL]</dt>
                     <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo.  W3C Solid Community Group. W3C Editor’s Draft. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
-                    <dt id="bib-turtle">[TURTLE]</dt>
-                    <dd><a href="https://www.w3.org/TR/turtle/" rel="cito:citesAsAuthority"><cite>RDF 1.1 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers.  W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/turtle/">https://www.w3.org/TR/turtle/</a></dd>
-                    <dt id="bib-websockets">[WEBSOCKETS]</dt>
-                    <dd><a href="https://www.w3.org/TR/websockets/"><cite>The WebSocket API</cite></a>. Ian Hickson.  W3C. 28 January 2021. W3C Note. URL: <a href="https://www.w3.org/TR/websockets/">https://www.w3.org/TR/websockets/</a></dd>
-                    <dt id="bib-websub">[WEBSUB]</dt>
-                    <dd><a href="https://www.w3.org/TR/websub/"><cite>WebSub</cite></a>. Julien Genestoux; Aaron Parecki.  W3C. 23 January 2018. W3C Recommendation. URL: <a href="https://www.w3.org/TR/websub/">https://www.w3.org/TR/websub/</a></dd>
+                    <dt id="xmlschema11-2">[XMLSCHEMA11-2]</dt>
+                    <dd><a href="https://www.w3.org/TR/xmlschema11-2/"><cite>W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</cite></a>. David Peterson; Sandy Gao; Ashok Malhotra; Michael Sperberg-McQueen; Henry Thompson; Paul V. Biron et al.  W3C. 5 April 2012. W3C Recommendation. URL: <a href="https://www.w3.org/TR/xmlschema11-2/">https://www.w3.org/TR/xmlschema11-2/</a></dd>
                   </dl>
                 </div>
               </section>
@@ -1062,8 +1168,6 @@ content: "";
                     <dd><a href="https://solid.github.io/notifications-panel/notifications-ucr" rel="cito:citesAsRelated"><cite>Solid Notifications Use Cases and Requirements</cite></a>. Sarven Capadisli.  W3C. 20 January 2022. W3C Editor’s Draft. URL: <a href="https://solid.github.io/notifications-panel/notifications-ucr">https://solid.github.io/notifications-panel/notifications-ucr</a></dd>
                     <dt id="bib-security-privacy-questionnaire">[SECURITY-PRIVACY-QUESTIONNAIRE]</dt>
                     <dd><a href="https://www.w3.org/TR/security-privacy-questionnaire/" rel="cito:citesAsPotentialSolution"><cite>Self-Review Questionnaire: Security and Privacy</cite></a>. Theresa O'Connor; Peter Snyder.  W3C. 23 March 2021. W3C Note. URL: <a href="https://www.w3.org/TR/security-privacy-questionnaire/">https://www.w3.org/TR/security-privacy-questionnaire/</a></dd>
-                    <dt id="bib-webarch">[WEBARCH]</dt>
-                    <dd><a href="https://www.w3.org/TR/webarch/" rel="cito:citesAsAuthority"><cite>Architecture of the World Wide Web, Volume One</cite></a>. Ian Jacobs; Norman Walsh.  W3C. 15 December 2004. W3C Recommendation. URL: <a href="https://www.w3.org/TR/webarch/">https://www.w3.org/TR/webarch/</a></dd>
                   </dl>
                 </div>
               </section>
