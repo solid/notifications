@@ -697,13 +697,13 @@ content: "";
 
                       <p>The requirements for new notification features is explained in the <cite><a href="#notification-features-extension" rel="rdfs:seeAlso">Notification Features Extension</a></cite> section.</p>
 
-                      <span rel="skos:hasTopConcept"><span resource="#feature-startTime"></span><span resource="#feature-endTime"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
+                      <span rel="skos:hasTopConcept"><span resource="#feature-startAt"></span><span resource="#feature-endAt"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
 
                       <dl>
-                        <dt about="#feature-startTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startTime">startTime</dfn></dt>
-                        <dd about="#feature-startTime" property="skos:definition">The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
-                        <dt about="#feature-endTime" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endTime">endTime</dfn></dt>
-                        <dd about="#feature-endTime" property="skos:definition">The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
+                        <dt about="#feature-startAt" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startAt">startAt</dfn></dt>
+                        <dd about="#feature-startAt" property="skos:definition">The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
+                        <dt about="#feature-endAt" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endAt">endAt</dfn></dt>
+                        <dd about="#feature-endAt" property="skos:definition">The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
                         <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
                         <dd about="#feature-state" property="skos:definition">The last known state of a resource (<cite><a href="#notify-topic">topic</a></cite>) with value represented in the <code>xsd:string</code> datatype, e.g., the HTTP <code>ETag</code> header value [<cite><a class="bibref" href="#bib-rfc7232">RFC7232</a></cite>].</dd>
                         <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
@@ -752,7 +752,7 @@ content: "";
 <code>  "<span class="highlight-notify-subscription">subscription</span>": [{</code>
 <code>    "<span class="highlight-notify-subscription-id">id</span>": "https://websocket.example/subscription",</code>
 <code>    "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
-<code>    "<span class="highlight-notify-feature">feature</span>": ["endTime", "rate", "state"]</code>
+<code>    "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
 <code>  }],</code>
 <code>  "<span class="highlight-notify-channel">channel</span>": [{</code>
 <code>    "id": "https://channel.example/guinan/profile",</code>
@@ -790,7 +790,7 @@ content: "";
 <code>  ],</code>
 <code>  "<span class="highlight-notify-service-id">id</span>": "https://websocket.example/subscription",</code>
 <code>  "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
-<code>  "<span class="highlight-notify-feature">feature</span>": ["endTime", "rate", "state"]</code>
+<code>  "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
 <code>}</code></pre>
 
                     <figcaption property="schema:name">JSON-LD serialization of a subscription resource.</figcaption>
@@ -836,8 +836,8 @@ content: "";
 <code>  "type": "WebSocketNotifications2023",</code>
 <code>  "topic": "https://example.org/guinan/profile",</code>
 <code>  "receiveFrom": "wss://websocket.example/d4cf3f19",</code>
-<code>  "startTime": "2023-01-01T07:00:00.000Z",</code>
-<code>  "endTime": "2023-01-01T09:00:00.000Z",</code>
+<code>  "startAt": "2023-01-01T07:00:00.000Z",</code>
+<code>  "endAt": "2023-01-01T09:00:00.000Z",</code>
 <code>  "rate": "P1M",</code>
 <code>  "state": "e75-TFJH"</code>
 <code>}</code></pre>
