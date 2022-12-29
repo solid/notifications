@@ -133,7 +133,7 @@ content: "";
     <main>
       <article about="" typeof="schema:Article doap:Specification">
         <h1 property="schema:name">Solid Notifications Protocol</h1>
-        <h2>Editor’s Draft, 2022-12-28</h2>
+        <h2>Editor’s Draft, 2022-12-29</h2>
 
         <details open="">
           <summary>More details about this document</summary>
@@ -177,7 +177,7 @@ content: "";
 
           <dl id="document-modified">
             <dt>Modified</dt>
-            <dd><time content="2022-12-28T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-28T00:00:00Z" property="schema:dateModified">2022-12-28</time></dd>
+            <dd><time content="2022-12-29T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-29T00:00:00Z" property="schema:dateModified">2022-12-29</time></dd>
           </dl>
 
           <dl id="document-repository">
@@ -533,7 +533,7 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a resource, i.e., a <span id="topic">topic</span> of interest</span>.</p>
+                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a resource, i.e., a <dn id="topic">topic</dfn> of interest</span>.</p>
 
                   <p about="#description-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="description-resource" property="skos:prefLabel">description resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a <cite><a href="#subscription-resource-data-model" rel="rdfs:seeAlso">subscription resource</a></cite> or <cite><a href="#notification-channel-data-model" rel="rdfs:seeAlso">notification channel</a></cite>.</p>
 
@@ -595,6 +595,15 @@ content: "";
 
                   <p about="#subscription-response" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-response" property="skos:prefLabel">subscription response</dfn></strong> is an HTTP response to a <a href="#subscription-request">subscription request</a> by a <a href="#SubscriptionServer">Subscription Server</a>. The payload of the subscription response describes the created <a href="#notification-channel">notification channel</a>.</p>
 
+                  <p>
+                    <span about="" id="subscription-client-subscription-request" rel="spec:requirement" resource="#subscription-client-subscription-request">
+                      <span property="spec:statement">
+                        <span rel="spec:requirementSubject" resource="#SubscriptionClient">Subscription Clients</span>
+                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, in addition to conforming to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>, in the <a href="#subscription-request">subscription request</a> payload.
+                      </span>
+                    </span>
+                  </p>
+
                   <p><span about="" id="subscription-server-subscription-request-methods" rel="spec:requirement" resource="#subscription-server-subscription-request-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the <a href="#subscription-resource">subscription resource</a>.</span></span></p>
 
                   <p>
@@ -611,15 +620,6 @@ content: "";
                       <span property="spec:statement">
                         <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the <a href="#subscription-resource">subscription resource</a> when the value of the <code>Content-Type</code> header indicates the payload's media type in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
-                      </span>
-                    </span>
-                  </p>
-
-                  <p>
-                    <span about="" id="subscription-client-subscription-request" rel="spec:requirement" resource="#subscription-client-subscription-request">
-                      <span property="spec:statement">
-                        <span rel="spec:requirementSubject" resource="#SubscriptionClient">Subscription Clients</span>
-                        <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, in addition to conforming to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>, in the <a href="#subscription-request">subscription request</a> payload.
                       </span>
                     </span>
                   </p>
