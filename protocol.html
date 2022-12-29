@@ -519,8 +519,6 @@ content: "";
 
               <p id="json-ld-format">This specification uses JSON-LD [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>] as the preferred data format, and <code>https://www.w3.org/ns/solid/notification/v1</code> as a URI for the JSON-LD Context and as a value of the <code>profile</code> parameter in content negotiation.</p>
 
-              <p id="subscription-server-json-ld-context-profile-unrecognised">Subscription Servers MUST reject HTTP requests with an unrecognised JSON-LD context in representation data and values in the <code>profile</code> parameter.</p>
-
               <div class="issue" id="solid-notification-vocabulary-context" inlist="" rel="schema:hasPart" resource="#solid-notification-vocabulary-context">
                 <h3 property="schema:name"><span>Issue</span>: Solid Notification Vocabulary and Context</h3>
                 <div datatype="rdf:HTML" property="schema:description">
@@ -634,7 +632,9 @@ content: "";
                     </span>
                   </p>
 
-                  <p><span about="" id="subscription-server-subscription-request-payload-invalid" rel="spec:requirement" resource="#subscription-server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] when unable to process the contained instructions.</span></span></p>
+                  <p><span about="" id="subscription-server-subscription-request-profile-unrecognised" rel="spec:requirement" resource="#subscription-server-subscription-request-profile-unrecognised"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>415</code> status code for HTTP requests with unsupported values in the <code>profile</code> parameter.</span></span></p>
+
+                  <p><span about="" id="subscription-server-subscription-request-payload-invalid" rel="spec:requirement" resource="#subscription-server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] when unable to process the contained instructions, including unrecognised JSON-LD context in representation data.</span></span></p>
 
                   <p>
                     <span about="" id="subscription-server-subscription-response" rel="spec:requirement" resource="#subscription-server-subscription-response">
