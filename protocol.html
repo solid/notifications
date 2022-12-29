@@ -533,7 +533,7 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a resource, i.e., a <a href="#notify-topic">topic</a> of interest.</p>
+                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a resource, i.e., a <span id="topic">topic</span> of interest</span>.</p>
 
                   <p about="#description-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="description-resource" property="skos:prefLabel">description resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a <cite><a href="#subscription-resource-data-model" rel="rdfs:seeAlso">subscription resource</a></cite> or <cite><a href="#notification-channel-data-model" rel="rdfs:seeAlso">notification channel</a></cite>.</p>
 
@@ -591,7 +591,7 @@ content: "";
 
                   <p about="#subscription-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-resource" property="skos:prefLabel">subscription resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can be used by <a href="#SubscriptionClient">Subscription Clients</a> to discover available features and customize the details (see <a href="#notification-features">Notification Features</a>) of a subscription request.</p>
 
-                  <p about="#subscription-request" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-request" property="skos:prefLabel">subscription request</dfn></strong> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> by a <a href="#SubscriptionClient">Subscription Client</a> requesting to receive notifications about one or more resources (<cite><a href="#notify-topic">topic</a></cite>). The payload of the subscription request describes the desired <a href="#notification-channel">notification channel</a>.</p>
+                  <p about="#subscription-request" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-request" property="skos:prefLabel">subscription request</dfn></strong> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> by a <a href="#SubscriptionClient">Subscription Client</a> requesting to receive notifications about one or more resources (<cite><a href="#topic">topic</a></cite>). The payload of the subscription request describes the desired <a href="#notification-channel">notification channel</a>.</p>
 
                   <p about="#subscription-response" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-response" property="skos:prefLabel">subscription response</dfn></strong> is an HTTP response to a <a href="#subscription-request">subscription request</a> by a <a href="#SubscriptionServer">Subscription Server</a>. The payload of the subscription response describes the created <a href="#notification-channel">notification channel</a>.</p>
 
@@ -688,19 +688,17 @@ content: "";
 
                       <p>The requirements for new notification features is explained in the <cite><a href="#notification-features-extension" rel="rdfs:seeAlso">Notification Features Extension</a></cite> section.</p>
 
-                      <span rel="skos:hasTopConcept"><span resource="#feature-startAt"></span><span resource="#feature-endAt"></span><span resource="#feature-state"></span><span resource="#feature-rate"></span><span resource="#feature-accept"></span></span>
-
                       <dl>
-                        <dt about="#feature-startAt" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-startAt">startAt</dfn></dt>
-                        <dd about="#feature-startAt" property="skos:definition">The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
-                        <dt about="#feature-endAt" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-endAt">endAt</dfn></dt>
-                        <dd about="#feature-endAt" property="skos:definition">The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
-                        <dt about="#feature-state" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-state">state</dfn></dt>
-                        <dd about="#feature-state" property="skos:definition">The last known state of a resource (<cite><a href="#notify-topic">topic</a></cite>) with value represented in the <code>xsd:string</code> datatype, e.g., the HTTP <code>ETag</code> header value [<cite><a class="bibref" href="#bib-rfc7232">RFC7232</a></cite>].</dd>
-                        <dt about="#feature-rate" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-rate">rate</dfn></dt>
-                        <dd about="#feature-rate" property="skos:definition">The minimum amount of time to elapse between notifications sent to receiver with value represented in the <code>xsd:duration</code> datatype.</dd>
-                        <dt about="#feature-accept" property="skos:prefLabel" typeof="skos:Concept"><dfn id="feature-accept">accept</dfn></dt>
-                        <dd about="#feature-accept" property="skos:definition">The media types that are acceptable by the recipient of a notification with value corresponding to the HTTP <code>Accept</code> header value [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
+                        <dt id="notify-startAt" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#startAt">startAt</dt>
+                        <dd>The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code></a> datatype.</dd>
+                        <dt id="notify-endAt" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#endAt">endAt</dt>
+                        <dd>The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
+                        <dt id="notify-state" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#state">state</dt>
+                        <dd>The last known state of a resource (<cite><a href="#topic">topic</a></cite>) with value represented in the <code>xsd:string</code> datatype.</dd>
+                        <dt id="notify-rate" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#rate">rate</dt>
+                        <dd>The minimum amount of time to elapse between notifications sent to receiver with value represented in the <code>xsd:duration</code> datatype.</dd>
+                        <dt id="notify-accept" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#accept">accept</dt>
+                        <dd>The media types that are acceptable by the recipient of a notification with value corresponding to the HTTP <code>Accept</code> header value [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
                       </dl>
                     </div>
                   </section>
@@ -727,9 +725,9 @@ content: "";
                   <p>The <a href="#description-resource">description resource</a> has the following properties:</p>
 
                   <ul>
-                    <li id="notify-resource-id">One <code class="highlight-notify-service-id">id</code> property to identify the resource described by the description resource.</li>
-                    <li id="notify-subscription">Zero, one or many <code class="highlight-notify-subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
-                    <li id="notify-channel">Zero, one or many <code class="highlight-notify-channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
+                    <li id="notify-resource-id">One <code class="highlight-notify-resource-id">id</code> property to identify the resource described by the description resource.</li>
+                    <li id="notify-subscription">Zero, one or many <code class="highlight-notify-subscription" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
+                    <li id="notify-channel">Zero, one or many <code class="highlight-notify-channel" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
                   </ul>
 
                   <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
@@ -765,7 +763,7 @@ content: "";
                   <p>The <a href="#subscription-resource">subscription resource</a> has the following properties:</p>
 
                   <ul>
-                    <li id="notify-service-id">One <code class="highlight-notify-service-id">id</code> property to identify subscription resource.</li>
+                    <li id="notify-subscription-id">One <code class="highlight-notify-subscription-id">id</code> property to identify subscription resource.</li>
                     <li id="notify-channelType">One <code class="highlight-notify-channelType">channelType</code> property to state the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
                     <li id="notify-feature">Zero, one or many <code class="highlight-notify-feature">feature</code> property value(s) to state the supported features (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                   </ul>
@@ -779,7 +777,7 @@ content: "";
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
-<code>  "<span class="highlight-notify-service-id">id</span>": "https://websocket.example/subscription",</code>
+<code>  "<span class="highlight-notify-subscription-id">id</span>": "https://websocket.example/subscription",</code>
 <code>  "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
 <code>  "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
 <code>}</code></pre>
@@ -796,22 +794,22 @@ content: "";
 
                   <ul>
                     <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
-                    <li id="notify-type">One <code>type</code> property to state the notification channel type (<cite><a href="#notification-channel-types" rel="rdfs:seeAlso">Notification Channel Types</a></cite>).</li>
-                    <li id="notify-topic">At least one <code>topic</code> property to identify the resources that the notifications are about.</li>
+                    <li id="notify-channel-type">One <code>type</code> property to state the notification channel type (<cite><a href="#notification-channel-types" rel="rdfs:seeAlso">Notification Channel Types</a></cite>).</li>
+                    <li id="notify-topic">At least one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#topic">topic</code> property to identify the resources that the notifications are about.</li>
                     <li id="notify-feature-types">Zero, one or many property values stating a particular feature (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                   </ul>
 
                   <p>Notification channel where a <a href="#NotificationReceiver">Notification Receiver</a> connects has the following property:</p>
 
                   <ul>
-                    <li id="notify-receiveFrom">One <code>receiveFrom</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
+                    <li id="notify-receiveFrom">One <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#receiveFrom">receiveFrom</code> property to identify the resource that can be used to establish a connection to receive notifications.</li>
                   </ul>
 
                   <p>Notification channel where a <a href="#NotificationSender">Notification Sender</a> delivers notifications has the following properties:</p>
 
                   <ul>
-                    <li id="notify-sendTo">Zero or one <code>sendTo</code> property to identify the resource that can accept notifications.</li>
-                    <li id="notify-sender">Zero or one <code>sender</code> property to identify the party that sends notifications.</li>
+                    <li id="notify-sendTo">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#sendTo">sendTo</code> property to identify the resource that can accept notifications.</li>
+                    <li id="notify-sender">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#sender">sender</code> property to identify the party that sends notifications.</li>
                   </ul>
 
                   <figure class="example listing" id="notification-channel-jsonld" rel="schema:hasPart" resource="#notification-channel-jsonld">
@@ -846,12 +844,12 @@ content: "";
                   <p>A notification has the following properties:</p>
 
                   <ul>
-                    <li>One <code>id</code> property to identify the notification.</li>
-                    <li>At least one <code>type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
-                    <li>One <code>object</code> property to identify the resource that the notification is about (<cite><a href="#notify-topic">topic</a></cite>).</li>
-                    <li>One <code>published</code> property to indicate the date and time of the notification.</li>
-                    <li>Zero, one, or many <code>target</code> properties to identify the resource to which the activity is directed.</li>
-                    <li>Zero or one <code>state</code> property to indicate the last known state of the resource.</li>
+                    <li id="as-id">One <code rel="dcterms:subject" resource="https://www.w3.org/TR/activitystreams-vocabulary/#as-id">id</code> property to identify the notification.</li>
+                    <li id="as-type">At least one <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#Activity">type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
+                    <li id="as-object">One <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#object">object</code> property to identify the resource that the notification is about (<cite><a href="#topic">topic</a></cite>).</li>
+                    <li id="as-published">One <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#published">published</code> property to indicate the date and time of the notification.</li>
+                    <li id="as-target">Zero, one, or many <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#target">target</code> properties to identify the resource to which the activity is directed.</li>
+                    <li>Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#state">state</code> property to indicate the last known state of the resource.</li>
                   </ul>
 
                   <figure class="example listing" id="notification-update" rel="schema:hasPart" resource="#notification-update">
@@ -1013,7 +1011,7 @@ content: "";
                     <dd about="#security-privacy-review-minimum-data" datatype="rdf:HTML" property="schema:description">Yes.</dd>
 
                     <dt about="#security-privacy-review-personal-data" id="security-privacy-review-personal-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#personal-data" rel="cito:repliesTo">How do the features in your specification deal with personal information, personally-identifiable information (PII), or information derived from them?</a></dt>
-                    <dd about="#security-privacy-review-personal-data" datatype="rdf:HTML" property="schema:description">Access to <cite><a href="#subscription-resource" rel="cito:discusses">subscription resource</a></cite> and <cite><a href="#notification-message-data-model" rel="cito:discusses">notification message</a></cite> are only granted to authorized access subjects. The <cite><a href="#subscription-request" rel="cito:discusses">subscription request</a></cite>, <cite><a href="#subscription-response" rel="cito:discusses">subscription response</a></cite>, and notification message payloads can contain any data (including that which identifies or refers to agents that control the <cite> <a href="#SubscriptionClient" rel="cito:discusses">Subscription Client</a></cite>  and <cite><a href="#NotificationSender" rel="cito:discusses">Notification Sender</a></cite>.) <cite><a href="https://w3ctag.github.io/design-principles/#consent" rel="cito:obtainsBackgroundFrom">Meaningful consent</a></cite> to any personal data that Subscription Clients include about agents associated with themselves or resources (<cite><a href="#notify-topic">topic</a></cite>) of interest are extended to the <cite><a href="#NotificationReceiver" rel="cito:discusses">Notification Receiver</a></cite>. Subscription Clients, <cite> <a href="#SubscriptionServer" rel="cito:discusses">Subscription Server</a></cite>, and <cite><a href="#NotificationSender" rel="cito:discusses">Notification Senders</a></cite> are discouraged from exposing information beyond the amount necessary to enable or use a feature.</dd>
+                    <dd about="#security-privacy-review-personal-data" datatype="rdf:HTML" property="schema:description">Access to <cite><a href="#subscription-resource" rel="cito:discusses">subscription resource</a></cite> and <cite><a href="#notification-message-data-model" rel="cito:discusses">notification message</a></cite> are only granted to authorized access subjects. The <cite><a href="#subscription-request" rel="cito:discusses">subscription request</a></cite>, <cite><a href="#subscription-response" rel="cito:discusses">subscription response</a></cite>, and notification message payloads can contain any data (including that which identifies or refers to agents that control the <cite> <a href="#SubscriptionClient" rel="cito:discusses">Subscription Client</a></cite>  and <cite><a href="#NotificationSender" rel="cito:discusses">Notification Sender</a></cite>.) <cite><a href="https://w3ctag.github.io/design-principles/#consent" rel="cito:obtainsBackgroundFrom">Meaningful consent</a></cite> to any personal data that Subscription Clients include about agents associated with themselves or resources (<cite><a href="#topic">topic</a></cite>) of interest are extended to the <cite><a href="#NotificationReceiver" rel="cito:discusses">Notification Receiver</a></cite>. Subscription Clients, <cite> <a href="#SubscriptionServer" rel="cito:discusses">Subscription Server</a></cite>, and <cite><a href="#NotificationSender" rel="cito:discusses">Notification Senders</a></cite> are discouraged from exposing information beyond the amount necessary to enable or use a feature.</dd>
 
                     <dt about="#security-privacy-review-sensitive-data" id="security-privacy-review-sensitive-data"><a href="https://www.w3.org/TR/security-privacy-questionnaire/#sensitive-data" rel="cito:repliesTo">How do the features in your specification deal with sensitive information?</a></dt>
                     <dd about="#security-privacy-review-sensitive-data" datatype="rdf:HTML" property="schema:description">The features do not require sensitive information to obtained or exposed.</dd>
@@ -1121,8 +1119,6 @@ content: "";
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc4918" rel="cito:citesAsAuthority"><cite>HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)</cite></a>. L. Dusseault, Ed.  IETF. June 2007. Proposed Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc4918">https://datatracker.ietf.org/doc/html/rfc4918</a></dd>
                     <dt id="bib-rfc7231">[RFC7231]</dt>
                     <dd><a href="https://httpwg.org/specs/rfc7231.html" rel="cito:citesAsAuthority"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a></dd>
-                    <dt id="bib-rfc7232">[RFC7232]</dt>
-                    <dd><a href="https://httpwg.org/specs/rfc7232.html" rel="cito:citesAsAuthority"><cite>Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7232.html">https://httpwg.org/specs/rfc7232.html</a></dd>
                     <dt id="bib-rfc8174">[RFC8274]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc8174" rel="cito:citesAsAuthority"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a></dd>
                     <dt id="bib-rfc8288">[RFC8288]</dt>
