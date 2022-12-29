@@ -1,7 +1,8 @@
 sequenceDiagram
-  autonumber
-  participant Subscriber
-  participant Notifications Source
+  participant Notification Receiver
+  participant Notification Sender
 
-  Subscriber ->> Notifications Source: Establish connection
-  Notifications Source -->> Subscriber: Stream notifications
+  loop while channel active
+    Notification Receiver ->> Notification Sender: Establish connection to the receiveFrom
+    Notification Sender -->> Notification Receiver: Stream notifications
+  end
