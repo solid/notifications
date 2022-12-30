@@ -533,7 +533,7 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a resource, i.e., a <dn id="topic">topic</dfn> of interest</span>.</p>
+                  <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a resource, i.e., a <dfn id="topic">topic</dfn> of interest.</p>
 
                   <p about="#description-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="description-resource" property="skos:prefLabel">description resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a <cite><a href="#subscription-resource-data-model" rel="rdfs:seeAlso">subscription resource</a></cite> or <cite><a href="#notification-channel-data-model" rel="rdfs:seeAlso">notification channel</a></cite>.</p>
 
@@ -598,18 +598,18 @@ content: "";
                   <p>
                     <span about="" id="subscription-client-subscription-request" rel="spec:requirement" resource="#subscription-client-subscription-request">
                       <span property="spec:statement">
-                        <span rel="spec:requirementSubject" resource="#SubscriptionClient">Subscription Clients</span>
+                        <a rel="spec:requirementSubject" href="#SubscriptionClient">Subscription Clients</a>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, in addition to conforming to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>, in the <a href="#subscription-request">subscription request</a> payload.
                       </span>
                     </span>
                   </p>
 
-                  <p><span about="" id="subscription-server-subscription-request-methods" rel="spec:requirement" resource="#subscription-server-subscription-request-methods"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the <a href="#subscription-resource">subscription resource</a>.</span></span></p>
+                  <p><span about="" id="subscription-server-subscription-request-methods" rel="spec:requirement" resource="#subscription-server-subscription-request-methods"><span property="spec:statement"><a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> support the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code> and <code>POST</code> methods [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] methods on the <a href="#subscription-resource">subscription resource</a>.</span></span></p>
 
                   <p>
                     <span about="" id="subscription-server-subscription-request-accept" rel="spec:requirement" resource="#subscription-server-subscription-request-accept">
                       <span property="spec:statement">
-                        <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
+                        <a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the <a href="#subscription-resource">subscription resource</a> when the value of the <code>Accept</code> header indicates a preferred representation in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
                       </span>
                     </span>
@@ -618,20 +618,20 @@ content: "";
                   <p>
                     <span about="" id="subscription-server-subscription-request-content-type" rel="spec:requirement" resource="#subscription-server-subscription-request-content-type">
                       <span property="spec:statement">
-                        <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
+                        <a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> accept requests on the <a href="#subscription-resource">subscription resource</a> when the value of the <code>Content-Type</code> header indicates the payload's media type in <code>application/ld+json</code> [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
                       </span>
                     </span>
                   </p>
 
-                  <p><span about="" id="subscription-server-subscription-request-profile-unrecognised" rel="spec:requirement" resource="#subscription-server-subscription-request-profile-unrecognised"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>415</code> status code for HTTP requests with unsupported values in the <code>profile</code> parameter.</span></span></p>
+                  <p><span about="" id="subscription-server-subscription-request-profile-unrecognised" rel="spec:requirement" resource="#subscription-server-subscription-request-profile-unrecognised"><span property="spec:statement"><a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>415</code> status code for HTTP requests with unsupported values in the <code>profile</code> parameter.</span></span></p>
 
-                  <p><span about="" id="subscription-server-subscription-request-payload-invalid" rel="spec:requirement" resource="#subscription-server-subscription-request-payload-invalid"><span property="spec:statement"><span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] when unable to process the contained instructions, including unrecognised JSON-LD context in representation data.</span></span></p>
+                  <p><span about="" id="subscription-server-subscription-request-payload-invalid" rel="spec:requirement" resource="#subscription-server-subscription-request-payload-invalid"><span property="spec:statement"><a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> respond with a <code>422</code> status code [<cite><a class="bibref" href="#bib-rfc4918">RFC4918</a></cite>] when unable to process the contained instructions, including unrecognised JSON-LD context in representation data.</span></span></p>
 
                   <p>
                     <span about="" id="subscription-server-subscription-response" rel="spec:requirement" resource="#subscription-server-subscription-response">
                       <span property="spec:statement">
-                        <span rel="spec:requirementSubject" resource="#SubscriptionServer">Subscription Servers</span>
+                        <a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a>
                         <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, in addition to conforming to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>, in the <a href="#subscription-response">subscription response</a> payload.
                       </span>
                     </span>
@@ -708,7 +708,7 @@ content: "";
 
                       <dl>
                         <dt id="notify-startAt" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#startAt">startAt</dt>
-                        <dd>The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code></a> datatype.</dd>
+                        <dd>The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
                         <dt id="notify-endAt" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#endAt">endAt</dt>
                         <dd>The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
                         <dt id="notify-state" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#state">state</dt>
