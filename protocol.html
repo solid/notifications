@@ -680,6 +680,13 @@ content: "";
                     </span>
                   </p>
 
+                  <div class="note" id="message-verification" rel="schema:hasPart" resource="#message-verification">
+                    <h4 property="schema:name"><span>Note</span>: Message Verification</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p><a href="#NotificationReceiver">Notification Receivers</a> are encouraged to be aware that anything can be included in the notification message (depending on restrictions in place by the receiver, which are not defined by this specification but may be by a <a href="#notification-channel-types">notification channel type</a>), so when it comes to making use of notification data, receivers may want to take precautions when ascertaining the veracity of the contents.</p>
+                    </div>
+                  </div>
+
                   <section id="notification-channel-types" inlist="" rel="schema:hasPart" resource="#notification-channel-types">
                     <h4 property="schema:name">Notification Channel Types</h4>
                     <div datatype="rdf:HTML" property="schema:description">
