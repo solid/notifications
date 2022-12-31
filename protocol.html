@@ -386,28 +386,28 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>The following diagram shows the high-level interactions involved discovering and establishing a notification subscription.</p>
+                  <p>The following diagram shows the high-level interactions involved discovering notification channels and subscription resources to towards receiving notifications.</p>
 
-                  <figure id="solid-notifications-flow-protocol" rel="schema:hasPart" resource="#solid-notifications-flow-protocol">
-                    <img rel="schema:image" src="notifications-flow-protocol.mmd.svg" width="800" />
+                  <figure id="solid-notifications-flow-discovery-subscription" rel="schema:hasPart" resource="#solid-notifications-flow-discovery-subscription">
+                    <img rel="schema:image" src="notifications-flow-discovery-subscription.mmd.svg" width="800" />
 
-                    <figcaption property="schema:name">Solid Notifications Flow</figcaption>
+                    <figcaption property="schema:name">Solid Notifications Flow Discovery and Subscription</figcaption>
                   </figure>
 
-                  <p>Notification channel types in which a client establishes a subscription and then maintains a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
+                  <p>Notification channel types in which a client establishes a subscription and then maintains a persistent connection to a notifications source are illustrated by the following diagram.</p>
 
-                  <figure id="solid-notifications-flow-source" rel="schema:hasPart" resource="#solid-notifications-flow-source">
-                    <img rel="schema:image" src="notifications-flow-source.mmd.svg" width="800" />
+                  <figure id="solid-notifications-flow-receivefrom" rel="schema:hasPart" resource="#solid-notifications-flow-receivefrom">
+                    <img rel="schema:image" src="notifications-flow-receivefrom.mmd.svg" width="800" />
 
-                    <figcaption property="schema:name">Solid Subscription Flow, where the subscriber connects to the notification source</figcaption>
+                    <figcaption property="schema:name">Solid Notifications Flow Receive From, where the receiver establishes connection to sender.</figcaption>
                   </figure>
 
-                  <p>Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a Notifications Source are illustrated by the following diagram.</p>
+                  <p>Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a notifications source are illustrated by the following diagram.</p>
 
-                  <figure id="solid-notifications-flow-target" rel="schema:hasPart" resource="#solid-notifications-flow-target">
-                    <img rel="schema:image" src="notifications-flow-target.mmd.svg" width="800" />
+                  <figure id="solid-notifications-flow-sendto" rel="schema:hasPart" resource="#solid-notifications-flow-sendto">
+                    <img rel="schema:image" src="notifications-flow-sendto.mmd.svg" width="800" />
 
-                    <figcaption property="schema:name">Solid Notifications Flow, where the sender delivers to the notification target</figcaption>
+                    <figcaption property="schema:name">Solid Notifications Flow Send To, where the sender delivers notifications to receiver.</figcaption>
                   </figure>
                 </div>
               </section>
