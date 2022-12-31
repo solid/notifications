@@ -566,7 +566,7 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p>The subscriptions mechanism enables <a href="#SubscriptionClient">Subscription Clients</a> to request updates about particular resources using a customised notification channel.</p>
 
-                  <p about="#subscription-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-resource" property="skos:prefLabel">subscription resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can be used by <a href="#SubscriptionClient">Subscription Clients</a> to discover available features and customize the details (see <a href="#notification-features">Notification Features</a>) of a subscription request.</p>
+                  <p about="#subscription-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-resource" property="skos:prefLabel">subscription resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that can be used by <a href="#SubscriptionClient">Subscription Clients</a> to discover available <a href="#notification-features">features</a> and customize the details of a subscription request.</p>
 
                   <p about="#subscription-request" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-request" property="skos:prefLabel">subscription request</dfn></strong> is an HTTP request that targets a <a href="#subscription-resource">subscription resource</a> by a <a href="#SubscriptionClient">Subscription Client</a> requesting to receive notifications about one or more resources (<cite><a href="#topic">topic</a></cite>). The payload of the subscription request describes the desired <a href="#notification-channel">notification channel</a>.</p>
 
@@ -719,8 +719,8 @@ content: "";
 
                   <ul>
                     <li id="notify-subscription-id">One <code>id</code> property to identify subscription resource.</li>
-                    <li id="notify-channelType">One <code>channelType</code> property to state the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
-                    <li id="notify-feature">Zero, one or many <code>feature</code> property value(s) to state the supported features (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                    <li id="notify-channelType">One <code>channelType</code> property to state the <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</li>
+                    <li id="notify-feature">Zero, one or many <code>feature</code> property value(s) to state the supported <a href="#notification-features" rel="rdfs:seeAlso">features</a>.</li>
                   </ul>
 
                   <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
@@ -747,9 +747,9 @@ content: "";
 
                   <ul>
                     <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
-                    <li id="notify-channel-type">One <code>type</code> property to state the notification channel type (<cite><a href="#notification-channel-types" rel="rdfs:seeAlso">Notification Channel Types</a></cite>).</li>
+                    <li id="notify-channel-type">One <code>type</code> property to state the <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</li>
                     <li id="notify-topic">At least one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#topic">topic</code> property to identify the resources that the notifications are about.</li>
-                    <li id="notify-feature-types">Zero, one or many property values stating a particular feature (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                    <li id="notify-feature-types">Zero, one or many property values stating a particular <a href="#notification-features" rel="rdfs:seeAlso">feature</a>.</li>
                   </ul>
 
                   <p>Notification channel where a <a href="#NotificationReceiver">Notification Receiver</a> connects has the following property:</p>
