@@ -692,9 +692,9 @@ content: "";
                   <p>The <a href="#description-resource">description resource</a> has the following properties:</p>
 
                   <ul>
-                    <li id="notify-resource-id">One <code class="highlight-notify-resource-id">id</code> property to identify the resource described by the description resource.</li>
-                    <li id="notify-subscription">Zero, one or many <code class="highlight-notify-subscription" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
-                    <li id="notify-channel">Zero, one or many <code class="highlight-notify-channel" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
+                    <li id="notify-resource-id">One <code>id</code> property to identify the resource described by the description resource.</li>
+                    <li id="notify-subscription">Zero, one or many <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
+                    <li id="notify-channel">Zero, one or many <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
                   </ul>
 
                   <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
@@ -705,12 +705,12 @@ content: "";
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
 <code>  "id": "https://example.org/guinan/profile",</code>
-<code>  "<span class="highlight-notify-subscription">subscription</span>": [{</code>
-<code>    "<span class="highlight-notify-subscription-id">id</span>": "https://websocket.example/subscription",</code>
-<code>    "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
-<code>    "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
+<code>  "subscription": [{</code>
+<code>    "id": "https://websocket.example/subscription",</code>
+<code>    "channelType": "WebSocketNotifications2023",</code>
+<code>    "feature": ["endAt", "rate", "state"]</code>
 <code>  }],</code>
-<code>  "<span class="highlight-notify-channel">channel</span>": [{</code>
+<code>  "channel": [{</code>
 <code>    "id": "https://channel.example/guinan/profile",</code>
 <code>    "type": "WebSocketNotifications2023",</code>
 <code>    "topic": "https://example.org/guinan/profile",</code>
@@ -730,9 +730,9 @@ content: "";
                   <p>The <a href="#subscription-resource">subscription resource</a> has the following properties:</p>
 
                   <ul>
-                    <li id="notify-subscription-id">One <code class="highlight-notify-subscription-id">id</code> property to identify subscription resource.</li>
-                    <li id="notify-channelType">One <code class="highlight-notify-channelType">channelType</code> property to state the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
-                    <li id="notify-feature">Zero, one or many <code class="highlight-notify-feature">feature</code> property value(s) to state the supported features (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
+                    <li id="notify-subscription-id">One <code>id</code> property to identify subscription resource.</li>
+                    <li id="notify-channelType">One <code>channelType</code> property to state the notification channel type (<cite><a href="#notification-channel" rel="rdfs:seeAlso">Notification Channel</a></cite>).</li>
+                    <li id="notify-feature">Zero, one or many <code>feature</code> property value(s) to state the supported features (<cite><a href="#notification-features" rel="rdfs:seeAlso">Notification Features</a></cite>).</li>
                   </ul>
 
                   <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
@@ -742,9 +742,9 @@ content: "";
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
-<code>  "<span class="highlight-notify-subscription-id">id</span>": "https://websocket.example/subscription",</code>
-<code>  "<span class="highlight-notify-channelType">channelType</span>": "WebSocketNotifications2023",</code>
-<code>  "<span class="highlight-notify-feature">feature</span>": ["endAt", "rate", "state"]</code>
+<code>  "id": "https://websocket.example/subscription",</code>
+<code>  "channelType": "WebSocketNotifications2023",</code>
+<code>  "feature": ["endAt", "rate", "state"]</code>
 <code>}</code></pre>
 
                     <figcaption property="schema:name">JSON-LD serialization of a subscription resource.</figcaption>
@@ -881,8 +881,9 @@ content: "";
 <code>    "https://www.w3.org/ns/solid/notification/v1",</code>
 <code>    "https://notification.example/subscription/v1"</code>
 <code>  ],</code>
-<code>  "type": "ExampleNotifications2023",</code>
-<code>  "topic": "https://storage.example/resource",</code>
+<code>  "type": "ExampleChannel2023",</code>
+<code>  "object": "https://storage.example/resource",</code>
+<code>  "published": "2022-12-31T00:20:00.621Z",</code>
 <code>  "custom-property": "custom-value"</code>
 <code>}</code></pre>
 
