@@ -451,6 +451,13 @@ content: "";
                     </div>
                   </section>
 
+                  <section id="specification-category" inlist="" rel="schema:hasPart spec:specificationCategory" resource="#specification-category" typeof="skos:ConceptScheme">
+                    <h4 property="schema:name skos:prefLabel">Specification Category</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p property="skos:definition">The <span about="" rel="spec:specificationCategory" resource="#specification-category">Solid Notifications Protocol</span> identifies the following <cite><a href="https://www.w3.org/TR/spec-variability/#spec-cat" rel="dcterms:subject" resource="spec:SpecificationCategory">Specification Category</a></cite> to distinguish the types of conformance: <span rel="skos:hasTopConcept" resource="spec:API">API</span>, <span rel="skos:hasTopConcept" resource="spec:NotationSyntax">Notation/syntax</span>, <span rel="skos:hasTopConcept" resource="spec:SetOfEvents">Set of events</span>, <span rel="skos:hasTopConcept" resource="spec:Protocol">Protocol</span>.</p>
+                    </div>
+                  </section>
+
                   <section id="classes-of-products" inlist="" rel="schema:hasPart" resource="#classes-of-products" typeof="skos:ConceptScheme">
                     <h4 property="schema:name skos:prefLabel">Classes of Products</h4>
                     <div datatype="rdf:HTML" property="schema:description">
@@ -473,21 +480,19 @@ content: "";
                     </div>
                   </section>
 
-                  <section id="specification-category" inlist="" rel="schema:hasPart spec:specificationCategory" resource="#specification-category" typeof="skos:ConceptScheme">
-                    <h4 property="schema:name skos:prefLabel">Specification Category</h4>
-                    <div datatype="rdf:HTML" property="schema:description">
-                      <p property="skos:definition">The <span about="" rel="spec:specificationCategory" resource="#specification-category">Solid Protocol</span> identifies the following <cite><a href="https://www.w3.org/TR/spec-variability/#spec-cat" rel="dcterms:subject" resource="spec:SpecificationCategory">Specification Category</a></cite> to distinguish the types of conformance: <span rel="skos:hasTopConcept" resource="spec:API">API</span>, <span rel="skos:hasTopConcept" resource="spec:NotationSyntax">Notation/syntax</span>, <span rel="skos:hasTopConcept" resource="spec:SetOfEvents">Set of events</span>, <span rel="skos:hasTopConcept" resource="spec:Protocol">Protocol</span>.</p>
-                    </div>
-                  </section>
-
-                  <section id="interoperability" inlist="" rel="schema:hasPart" resource="#interoperability">
+                  <section id="interoperability" inlist="" rel="schema:hasPart" resource="#interoperability" typeof="skos:ConceptScheme">
                     <h4 property="schema:name skos:prefLabel">Interoperability</h4>
                     <div datatype="rdf:HTML" property="schema:description">
-                      <p id="interoperability-subscription-client-resource-server">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#ResourceServer" rel="rdfs:seeAlso">Resource Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to this specification.</p>
+                      <p property="skos:definition">Interoperability occurs between <a href="#subscription-client-resource-server-interoperability" rel="skos:hasTopConcept">Subscription Client—Resource Server</a>, <a href="#subscription-client-subscription-server-interoperability" rel="skos:hasTopConcept">Subscription Client—Subscription Server</a>, or <a href="#notification-sender-notification-receiver-interoperability" rel="skos:hasTopConcept">Notification Sender—Notification Receiver</a>, as defined by the <a href="" rel="foaf:page">Solid Notifications Protocol</a>.</p>
 
-                      <p id="interoperability-subscription-client-subscription-server">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#SubscriptionServer" rel="rdfs:seeAlso">Subscription Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to this specification.</p>
-
-                      <p id="interoperability-notification-sender-notification-receiver">Interoperability of implementations for <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Sender</a> and <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Receiver</a> is tested by evaluating an implementation’s ability to produce and consume content that adheres to the <a href="#notification-message-data-model" rel="rdfs:seeAlso">notification message data model</a> and conforms to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</p>
+                      <dl>
+                        <dt about="#subscription-client-resource-server-interoperability" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-client-resource-server-interoperability">Subscription Client—Resource Server interoperability</dfn></dt>
+                        <dd about="#subscription-client-resource-server-interoperability" property="skos:definition">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#ResourceServer" rel="rdfs:seeAlso">Resource Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to the Solid Notifications Protocol.</dd>
+                        <dt about="#subscription-client-subscription-server-interoperability" property="skos:prefLabel" typeof="skos:Concept"><dfn id="subscription-client-subscription-server-interoperability">Subscription Client—Subscription Server interoperability</dfn></dt>
+                        <dd about="#subscription-client-subscription-server-interoperability" property="skos:definition">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#SubscriptionServer" rel="rdfs:seeAlso">Subscription Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to the Solid Notifications Protocol.</dd>
+                        <dt about="#notification-sender-notification-receiver-interoperability" property="skos:prefLabel" typeof="skos:Concept"><dfn id="notification-sender-notification-receiver-interoperability">Notification Sender—Notification Receiver interoperability</dfn></dt>
+                        <dd about="#notification-sender-notification-receiver-interoperability" property="skos:definition">Interoperability of implementations for <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Sender</a> and <a href="#NotificationReceiver" rel="rdfs:seeAlso">Notification Receiver</a> is tested by evaluating an implementation’s ability to produce and consume content that adheres to the <a href="#notification-message-data-model" rel="rdfs:seeAlso">notification message data model</a> and conforms to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</dd>
+                      </dl>
                     </div>
                   </section>
                 </div>
@@ -509,7 +514,7 @@ content: "";
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
                 <div datatype="rdf:HTML" property="schema:description">
-                  <p about="#topic" id="topic" property="skos:definition" typeof="skos:Concept">The starting point for discovery is the resource which the notification is about: the <strong><dfn id="topic" property="skos:prefLabel">topic</dfn></strong>. Choosing the most appropriate topic resource from which to begin discovery is at the discretion of the <a href="#SubscriptionClient">Subscription Client</a>, since notifications may be available for any resource for authorized access subjects.</p>
+                  <p about="#topic" property="skos:definition" typeof="skos:Concept">The starting point for discovery is the resource which the notification is about: the <strong><dfn id="topic" property="skos:prefLabel">topic</dfn></strong>. Choosing the most appropriate topic resource from which to begin discovery is at the discretion of the <a href="#SubscriptionClient">Subscription Client</a>, since notifications may be available for any resource for authorized access subjects.</p>
 
                   <p><a href="#ResourceServer">Resource Servers</a> enable <a href="#SubscriptionClient">Subscription Clients</a> to discover <a href="#description-resource">description resources</a> that are associated with a topic of interest.</p>
 
