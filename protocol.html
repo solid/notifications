@@ -624,21 +624,21 @@ content: "";
                     </div>
                   </section>
 
-                  <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:ConceptScheme">
-                    <h4 property="schema:name">Features</h4>
+                  <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:Collection">
+                    <h4 property="schema:name skos:prefLabel">Features</h4>
                     <div datatype="rdf:HTML" property="schema:description">
                       <p property="skos:definition">Notification channels may have features describing custom properties of the channel. Features can be used by <a href="#SubscriptionClient">Subscription Clients</a> to customise the details of a requested notification channel. Subscription clients can discover available features in a <a href="#subscription-resource">subscription resource</a>. Some features are specific to a particular notification channel type while others may be used across all types. These shared features are listed as an initial baseline, though not all notification channel types are required to implement these. Individual notification channel types may define type-specific features. The list of common, shared features is not intended to be exhaustive.</p>
 
                       <dl>
-                        <dt id="notify-startAt" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#startAt">startAt</dt>
+                        <dt id="notify-startAt" rel="dcterms:subject skos:member" resource="http://www.w3.org/ns/solid/notifications#startAt">startAt</dt>
                         <dd>The proposed or actual starting date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
-                        <dt id="notify-endAt" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#endAt">endAt</dt>
+                        <dt id="notify-endAt" rel="dcterms:subject skos:member" resource="http://www.w3.org/ns/solid/notifications#endAt">endAt</dt>
                         <dd>The proposed or actual ending date and time of a notification channel with value represented in the <code>xsd:dateTime</code> datatype.</dd>
-                        <dt id="notify-state" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#state">state</dt>
+                        <dt id="notify-state" rel="dcterms:subject skos:member" resource="http://www.w3.org/ns/solid/notifications#state">state</dt>
                         <dd>The last known state of a resource (<cite><a href="#topic">topic</a></cite>) with value represented in the <code>xsd:string</code> datatype.</dd>
-                        <dt id="notify-rate" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#rate">rate</dt>
+                        <dt id="notify-rate" rel="dcterms:subject skos:member" resource="http://www.w3.org/ns/solid/notifications#rate">rate</dt>
                         <dd>The minimum amount of time to elapse between notifications sent to receiver with value represented in the <code>xsd:duration</code> datatype.</dd>
-                        <dt id="notify-accept" rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#accept">accept</dt>
+                        <dt id="notify-accept" rel="dcterms:subject skos:member" resource="http://www.w3.org/ns/solid/notifications#accept">accept</dt>
                         <dd>The media types that are acceptable by the recipient of a notification with value corresponding to the HTTP <code>Accept</code> header value [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>].</dd>
                       </dl>
                     </div>
