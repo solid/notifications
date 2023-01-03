@@ -403,7 +403,7 @@ content: "";
                 </div>
               </section>
 
-              <section id="namespaces" inlist="" rel="schema:hasPart" resource="#namespaces" typeof="skos:ConceptScheme">
+              <section id="namespaces" inlist="" rel="schema:hasPart" resource="#namespaces" typeof="skos:Collection">
                 <h3 property="schema:name skos:prefLabel">Namespaces</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <table>
@@ -416,10 +416,10 @@ content: "";
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr rel="skos:member" resource="http://www.w3.org/ns/solid/notifications#" typeof="owl:Ontology">
                         <td><code>notify</code></td>
                         <td>http://www.w3.org/ns/solid/notifications#</td>
-                        <td>Solid Notifications</td>
+                        <td property="skos:prefLabel">Solid Notifications</td>
                       </tr>
                     </tbody>
                   </table>
