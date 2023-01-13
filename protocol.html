@@ -123,7 +123,7 @@ content: "";
     <script async="" src="https://dokie.li/scripts/dokieli.js"></script>
   </head>
 
-  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ doap: http://usefulinc.com/ns/doap# deo: http://purl.org/spar/deo/ fabio: http://purl.org/spar/fabio/ cito: http://purl.org/spar/cito/ as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# earl: http://www.w3.org/ns/earl# spec: http://www.w3.org/ns/spec# rel: https://www.w3.org/ns/iana/link-relations/relation# odrl: http://www.w3.org/ns/odrl/2/" typeof="schema:CreativeWork prov:Entity as:Article">
+  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ doap: http://usefulinc.com/ns/doap# deo: http://purl.org/spar/deo/ cito: http://purl.org/spar/cito/ as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# earl: http://www.w3.org/ns/earl# spec: http://www.w3.org/ns/spec# rel: https://www.w3.org/ns/iana/link-relations/relation# odrl: http://www.w3.org/ns/odrl/2/" typeof="schema:CreativeWork prov:Entity as:Article">
     <header>
       <address>
         <a class="logo" href="https://solidproject.org/"><img alt="Solid Project" height="66" src="https://solidproject.org/TR/solid.svg" width="72" /></a>
@@ -535,7 +535,7 @@ content: "";
 
                   <figure class="example listing" id="description-resource-request-response-jsonld" rel="schema:hasPart" resource="#description-resource-request-response-jsonld">
                     <p class="example-h"><span>Example</span>: Discovery of description resource.</p>
-                    <pre about="#description-resource-request-response-jsonld" property="schema:description" typeof="fabio:Script"><code>HEAD https://example.org/guinan/profile</code>
+                    <pre about="#description-resource-request-response-jsonld" property="schema:description"><code>HEAD https://example.org/guinan/profile</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
 <code>Link: &lt;https://example.org/guinan/profile.description&gt;; rel="describedby"</code>
@@ -579,7 +579,7 @@ content: "";
                   <figure class="example listing" id="subscription-resource-request-response-jsonld" rel="schema:hasPart" resource="#subscription-resource-request-response-jsonld">
                     <p class="example-h"><span>Example</span>: Subscription request and response.</p>
 
-                    <pre about="#subscription-resource-request-response-jsonld" property="schema:description" typeof="fabio:Script"><code>GET https://websocket.example/subscription</code>
+                    <pre about="#subscription-resource-request-response-jsonld" property="schema:description"><code>GET https://websocket.example/subscription</code>
 <code>Accept: application/ld+json</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
@@ -678,7 +678,7 @@ content: "";
                   <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
                     <p class="example-h"><span>Example</span>: Representation of a description resource.</p>
 
-                    <pre about="#description-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#description-resource-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
@@ -716,7 +716,7 @@ content: "";
                   <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
                     <p class="example-h"><span>Example</span>: Representation of a subscription resource.</p>
 
-                    <pre about="#subscription-resource-jsonld" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#subscription-resource-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
@@ -758,7 +758,7 @@ content: "";
                   <figure class="example listing" id="notification-channel-jsonld" rel="schema:hasPart" resource="#notification-channel-jsonld">
                     <p class="example-h"><span>Example</span>: Representation of a notification channel.</p>
 
-                    <pre about="#notification-channel-jsonld" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#notification-channel-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
 <code>  ],</code>
@@ -796,7 +796,7 @@ content: "";
                   <figure class="example listing" id="notification-update" rel="schema:hasPart" resource="#notification-update">
                     <p class="example-h"><span>Example</span>: An update activity</p>
 
-                    <pre about="#notification-update" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#notification-update" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>
@@ -814,7 +814,7 @@ content: "";
                   <figure class="example listing" id="notification-add" rel="schema:hasPart" resource="#notification-add">
                     <p class="example-h"><span>Example</span>: An add activity</p>
 
-                    <pre about="#notification-add" property="schema:description" typeof="fabio:Script"><code>{</code>
+                    <pre about="#notification-add" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notification/v1"</code>

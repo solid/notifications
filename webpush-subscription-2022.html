@@ -6,10 +6,10 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 26e85e599, updated Thu Dec 8 15:29:31 2022 -0800" name="generator">
+  <meta content="Bikeshed version 2aae228dc, updated Thu Jan 12 16:52:25 2023 -0800" name="generator">
   <link href="https://solid.github.io/notifications/webpush-subscription-2022" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="9f9d4d62f71769568db495826b01cf9116bf3279" name="document-revision">
+  <meta content="0f68437c0e67ef2ffed273adf38b6ae41491911c" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -537,7 +537,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid WebPushSubscription2022</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-12">12 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-13">13 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -632,7 +632,7 @@ to cite this document as other than work in progress.</p>
 The document uses terms from the <a data-link-type="biblio" href="#biblio-websub" title="WebSub">[WEBSUB]</a> specification, 
  including "topic".</p>
    <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/notifications/issues/62" style="text-transform:none">solid/notifications/62</a><a href="https://github.com/solid/notifications/issues/62">:bike: shed: Use `object` (closely aligned with AS) instead of `topic` to receive notifications about a resource</a></div>
-   <p class="note" role="note"><span>Note:</span> Let the predicate <code>topic</code> be an <code>rdfs:subClassOf</code> of <code>as:object</code>?</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Let the predicate <code>topic</code> be an <code>rdfs:subClassOf</code> of <code>as:object</code>?</p>
    <p>The document further uses terms from <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> specification,
   including "push endpoint", "push service" and "authentication secret".
 It also uses terms from <a data-link-type="biblio" href="#biblio-oauth-20" title="The OAuth 2.0 Authorization Framework">[OAUTH-2.0]</a> specification,
@@ -685,7 +685,7 @@ Additionally, it sends an unsubscription request to the <em>subscription service
 The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#WebPushSubscription2022>.</p>
    <p>A WebPushSubscription2022 API MUST conform to the <a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications Protocol</a>.</p>
    <p>A WebPushSubscription2022 API SHOULD support the <a href="https://solid.github.io/notifications/protocol#notification-features">Solid Notifications Features</a>.</p>
-   <p class="note" role="note"><span>Note:</span> Let the class <code>WebPushSubscription2022</code> be an <code>rdfs:subClassOf</code> of <code>as:Follow</code>?</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Let the class <code>WebPushSubscription2022</code> be an <code>rdfs:subClassOf</code> of <code>as:Follow</code>?</p>
    <p>The WebPushSubscription2022 type defines the following properties:</p>
    <dl>
     <dt data-md>vapidPublicKey
@@ -770,7 +770,7 @@ Content-Type: text/turtle
 </pre>
     Example: Representation of a <em>subscription service</em>. 
    </div>
-   <p class="note" role="note"><span>Note:</span> The representation includes the Notification Subscription API where subscriptions can be submitted via POST using <code>ldp:inbox</code>.
+   <p class="note" role="note"><span class="marker">Note:</span> The representation includes the Notification Subscription API where subscriptions can be submitted via POST using <code>ldp:inbox</code>.
 Currently, it is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> how the subscription service is modelled.
 To this end, the example is my suggestion.</p>
    <p>For Unsubscription,</p>
@@ -781,7 +781,7 @@ To this end, the example is my suggestion.</p>
      <li> Option (2): HTTP DELETE on a subscription. 
     </ul>
    </div>
-   <p class="note" role="note"><span>Note:</span> When there is a decision reached, there will be an example included.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> When there is a decision reached, there will be an example included.</p>
    <h2 class="heading settled" data-level="3" id="auth"><span class="secno">3. </span><span class="content">Authentication and Authorization</span><a class="self-link" href="#auth"></a></h2>
    <p>As described by the Solid Notifications Protocol section on Authorization,
 the WebPush subscription API requires authorization and follows the guidance of the Solid Protocol
