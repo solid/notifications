@@ -376,7 +376,7 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
                   <p>The Solid Notification protocol defines a mechanism for client applications to discover notification services avaiable for any given resource.</p>
-                  <p>The following diagram shows the high-level interactions involved in discovering notification channels and subscription resources. A subscription resource allow Subscription Clients to request a customized notification channels.</p>
+                  <p>The following diagram shows the high-level interactions involved in discovering notification channels and subscription resources. A subscription resource allow Subscription Clients to request a customised notification channels.</p>
 
                   <figure id="solid-notifications-flow-discovery-subscription" rel="schema:hasPart" resource="#solid-notifications-flow-discovery-subscription">
                     <img rel="schema:image" src="notifications-flow-discovery-subscription.mmd.svg" width="800" />
@@ -385,7 +385,7 @@ content: "";
                   </figure>
 
 
-                  <p>A notification channel allows Notification Senders to send notifications to a Notifications Recievers. A notification channel builds upon one of many established web protocols to exchange data, determining its <em>type</em>.</p>
+                  <p>A notification channel allows a Notification Sender to send notifications to a Notifications Receiver. A notification channel builds upon one of many established web protocols to exchange data, determining its <em>type</em>.</p>
 
                   <p>The following diagram illustrates the flow of data for those notification channel types in which a client establishes a subscription and then maintains a persistent connection to a notifications source are illustrated by the following diagram.</p>
 
@@ -395,7 +395,7 @@ content: "";
                     <figcaption property="schema:name">Solid Notifications Flow Receive From, where the receiver establishes connection to sender.</figcaption>
                   </figure>
 
-                  <p>The following diagram illustrates  the flow of data for those Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a notifications source:</p>
+                  <p>The following diagram illustrates the flow of data for those Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a notifications source:</p>
 
                   <figure id="solid-notifications-flow-sendto" rel="schema:hasPart" resource="#solid-notifications-flow-sendto">
                     <img rel="schema:image" src="notifications-flow-sendto.mmd.svg" width="800" />
@@ -514,14 +514,14 @@ content: "";
 
                   <p about="#description-resource" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="description-resource" property="skos:prefLabel">description resource</dfn></strong> is an <em>RDF document</em> [<cite><a class="bibref" href="#bib-rdf11-concepts">RDF11-CONCEPTS</a></cite>] that includes information about the capabilities and features of a <cite><a href="#subscription-resource-data-model" rel="rdfs:seeAlso">subscription resource</a></cite> or <cite><a href="#notification-channel-data-model" rel="rdfs:seeAlso">notification channel</a></cite>.</p>
 
-                  <p>Resource Servers may advertize <a href="#subscription-resource">subscription resources</a> that can be used to create notification channels:</p>
+                  <p>Resource Servers can advertise <a href="#subscription-resource">subscription resources</a> that can be used to create notification channels:</p>
 
                   <ul>
                     <li>for protected resource, which relies on capability URL to protect the channel;</li>
                     <li>with specific features required by the subscribing client.</li>
                   </ul>
 
-                  <p>Resource Servers may advertize existing <a href="#notification-channel">notification channels</a> to provide notifications:</p>
+                  <p>Resource Servers can advertise existing <a href="#notification-channel">notification channels</a> to provide notifications:</p>
 
                   <ul>
                     <li>for protected resource, which does not rely on capability URL to protect the channel;</li>
@@ -632,10 +632,7 @@ content: "";
                   <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:Collection">
                     <h4 property="schema:name skos:prefLabel">Features</h4>
                     <div datatype="rdf:HTML" property="schema:description">
-                      <p property="skos:definition">Features describe custom properties of a notification channel.
-
-                      <p>Discription Resources may advertize a list of features that the <a href="#SubscriptionServer">Subscription Server</a> can modify.
-                      <a href="#SubscriptionClient">Subscription Clients</a> can modify these features to customise the details of a requested notification channel. Subscription clients can discover available features in a <a href="#subscription-resource">subscription resource</a>.</p>
+                      <p property="skos:definition">Features describe custom properties of a notification channel. Description Resources may advertise a list of features that the <a href="#SubscriptionServer">Subscription Server</a> can modify. <a href="#SubscriptionClient">Subscription Clients</a> can modify these features to customise the details of a requested notification channel. Subscription clients can discover available features in a <a href="#subscription-resource">subscription resource</a>.</p>
 
                       <p>Some features are specific to a particular notification channel type while others may be used across all types. These shared features are listed as an initial baseline, though not all notification channel types are required to implement these. Individual notification channel types may define type-specific features. The list of common, shared features is not intended to be exhaustive.</p>
 
@@ -752,13 +749,13 @@ content: "";
                     <li id="notify-feature-types">Zero, one or many properties stating a particular <a href="#notification-features" rel="rdfs:seeAlso">feature</a>.</li>
                   </ul>
 
-                  <p>Where a <a href="#NotificationReceiver">Notification Receiver</a> establishes the connection, the <a href="#notification-channel">Notification channel</a> has the following additional property:</p>
+                  <p>Where a <a href="#NotificationReceiver">Notification Receiver</a> establishes the connection, the <a href="#notification-channel">notification channel</a> has the following additional property:</p>
 
                   <ul>
                     <li id="notify-receiveFrom">One <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#receiveFrom">receiveFrom</code> property to identify the resource on the <a href="#NotificationSender">Notification Sender</a> that can be used to establish a connection to receive notifications.</li>
                   </ul>
 
-                  <p>Where a <a href="#NotificationSender">Notification Sender</a> pushes notifications, the <a href="#notification-channel">Notification channel</a> has the following additional properties:</p>
+                  <p>Where a <a href="#NotificationSender">Notification Sender</a> pushes notifications, the <a href="#notification-channel">notification channel</a> has the following additional properties:</p>
 
                   <ul>
                     <li id="notify-sendTo">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#sendTo">sendTo</code> property to identify the resource where the <a href="#NotificationReciever">Notification Reciever</a> can accept notifications.</li>
