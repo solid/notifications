@@ -130,7 +130,7 @@ Content-Type: application/ld+json
   "type": "StreamingHTTPChannel2023",
   "topic": "https://storage.example/resource",
   "state": "opaque-state",
-  "expiration": "2023-12-23T12:37:15Z",
+  "endAt": "2023-12-23T12:37:15Z",
   "rate": "PT10s"
 }
 ```
@@ -190,12 +190,17 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
         "title": "Solid Protocol",
         "publisher": "W3C Solid Community Group"
     },
-    "Solid.Notifications": {
+    "Solid.Notifications.Protocol": {
+        "editors": [
+            "Sarven Capadisli"
+        ],                
         "authors": [
             "Aaron Coburn",
-            "Sarven Capadisli"
+            "Sarven Capadisli",
+            "elf Pavlik",
+            "Rahul Gupta"
         ],
-        "href": "https://solid.github.io/notifications/protocol",
+        "href": "https://solidproject.org/TR/notifications-protocol",
         "title": "Solid Notifications Protocol",
         "publisher": "W3C Solid Community Group"
     },
@@ -205,7 +210,7 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
             "elf Pavlik",
             "Dmitri Zagidulin"
         ],
-        "href": "https://solid.github.io/solid-oidc",
+        "href": "https://solidproject.org/TR/oidc",
         "title": "Solid-OIDC",
         "publisher": "W3C Solid Community Group"
     }
