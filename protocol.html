@@ -676,8 +676,8 @@ content: "";
 
                   <ul>
                     <li id="notify-resource-id">One <code>id</code> property to identify the resource described by the description resource.</li>
-                    <li id="notify-subscription">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#subscription">subscription</code> property with the property value containing zero, one or many entries to specify the available <a href="#subscription-resource">subscription resources</a>.</li>
-                    <li id="notify-channel">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#channel">channel</code> property with the property value containing zero, one or many entries to specify the available <a href="#notification-channel">notification channels</a>.</li>
+                    <li id="notify-subscription">Zero, one or many <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
+                    <li id="notify-channel">Zero, one or many <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#channel">channel</code> property to identify the available <a href="#notification-channel">notification channels</a>.</li>
                   </ul>
 
                   <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
@@ -715,7 +715,7 @@ content: "";
                   <ul>
                     <li id="notify-subscription-id">One <code>id</code> property to identify subscription resource.</li>
                     <li id="notify-channelType">One <code>channelType</code> property to state the <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</li>
-                    <li id="notify-feature">Zero or one <code>feature</code> property with the property value containing zero, one or many enteries listing the supported <a href="#notification-features" rel="rdfs:seeAlso">features</a>.</li>
+                    <li id="notify-feature">Zero, one or many <code>feature</code> property value(s) to state the supported <a href="#notification-features" rel="rdfs:seeAlso">features</a>.</li>
                   </ul>
 
                   <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
@@ -743,7 +743,7 @@ content: "";
                   <ul>
                     <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
                     <li id="notify-channel-type">One <code>type</code> property to state the <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</li>
-                    <li id="notify-topic">A <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#topic">topic</code> property with the property value containing at least entry to identify the (<cite><a href="#topic-resource">topic</a></cite>) resources that the notifications are about.</li>
+                    <li id="notify-topic">At least one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#topic">topic</code> property to identify the resources that the notifications are about.</li>
                     <li id="notify-feature-types">Zero, one or many properties stating a particular <a href="#notification-features" rel="rdfs:seeAlso">feature</a>.</li>
                   </ul>
 
