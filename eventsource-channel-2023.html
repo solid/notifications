@@ -397,14 +397,14 @@ content: "";
 <code>  "type": "EventSourceChannel2023",</code>
 <code>  "topic": "https://storage.example/resource",</code>
 <code>  "state": "opaque-state",</code>
-<code>  "expiration": "2023-01-11T12:37:15Z",</code>
+<code>  "endAt": "2023-01-11T12:37:15Z",</code>
 <code>  "rate": "PT10s"</code>
 <code>}</code></pre>
 
                     <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>topic</code> targeting the subscription resource.</figcaption>
                   </figure>
 
-                  <p>A successful response will contain a URL to the subscription API that can be used directly with a JavaScript client.</p>
+                  <p>A successful response will contain a URL to the subscription API (<code>receiveFrom</code>) that can be used directly with a JavaScript client.</p>
 
                   <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
                     <p class="example-h"><span>Example</span>: Response from the Notification Subscription including the EventSource subscription URL.</p>
