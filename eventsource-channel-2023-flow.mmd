@@ -9,5 +9,5 @@ sequenceDiagram
   Description Resource ->> Subscription Client: Discovery response
   Subscription Client ->> Subscription Server: Request EventSourceChannel2023 (with authentication)
   Subscription Server ->> Subscription Client: Subscription response (with https: notifications source)
-  Subscription Client ->> Notification Sender: Establish EventSource connection
-  Notification Sender -->> Subscription Client: Stream notifications
+  Notification Receiver ->> Notification Sender: Establish EventSource connection
+  Notification Sender -->> Notification Receiver: Stream notifications
