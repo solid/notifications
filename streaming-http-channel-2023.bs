@@ -1,0 +1,218 @@
+<pre class='metadata'>
+Title: Solid StreamingHTTPChannel2023
+Boilerplate: issues-index no
+Local Boilerplate: logo yes
+Shortname: solid-streaming-http-channel-2023
+Level: 1
+Status: w3c/ED
+Group: Solid Community Group
+Favicon: https://solidproject.org/TR/solid.svg
+ED: https://solid.github.io/notifications/streaming-http-channel-2023
+Repository: https://github.com/solid/notifications
+Inline Github Issues: title
+Markup Shorthands: markdown yes
+Max ToC Depth: 2
+Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
+Abstract:
+  The [[!Solid.Notifications]] defines a set of interaction patterns for agents to receive notification
+  about changes to resources in a Solid Storage.
+
+  This specification defines a channel type that applies these patterns to the Fetch API.
+Status Text:
+  **Version: 0.1**
+  
+  This section describes the status of this document at the time of its publication.
+
+  This document was published by the [Solid Community Group](https://www.w3.org/community/solid/) as
+  an Editor’s Draft. The sections that have been incorporated have been reviewed following the
+  [Solid process](https://github.com/solid/process). However, the information in this document is
+  still subject to change. You are invited to [contribute](https://github.com/solid/solid-oidc/issues)
+  any feedback, comments, or questions you might have.
+
+  Publication as an Editor’s Draft does not imply endorsement by the W3C Membership. This is a draft
+  document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
+  to cite this document as other than work in progress.
+
+  This document was produced by a group operating under the [W3C Community Contributor License Agreement
+  (CLA)](https://www.w3.org/community/about/process/cla/). A human-readable
+  [summary](https://www.w3.org/community/about/process/cla-deed/) is available.
+</pre>
+
+# Introduction # {#introduction}
+
+*This section is non-normative.*
+
+The [[!Solid.Notifications]] describes a general pattern by which agents can be notified when a Solid Resource changes.
+In the context of a Web Browser, the Streaming HTTP Channel provides a convenient mechanism for a Solid Storage
+to alert a subscribing client of these changes.
+
+This document describes a Solid Notifications channel type that makes use of the Fetch API.
+
+This specification is for:
+
+* Resource server developers who wish to enable clients to listen for updates to particular resources.
+* Application developers who wish to implement a client to listen for updates to particular resources.
+
+## Terminology ## {#terminology}
+
+**This section is non-normative.**
+
+This document uses terminology from the Solid Notification Protocol, including "subscription API", "gateway API".
+This document also uses terms from The OAuth 2.0 Authorization Framework specification,
+including "resource server", "authorization server", "access token", and "client",
+as well as terms from the WebSub specification, including "topic".
+
+
+# StreamingHTTPChannel2023 Type # {#channel-type}
+
+This specification defines the StreamingHTTPChannel2023 type for use with Solid Notifications channels.
+that use the Fetch API.
+
+An StreamingHTTPChannel2023 MUST conform to the [Solid Notifications Protocol](https://solid.github.io/notifications/protocol#discovery).
+
+An StreamingHTTPChannel2023 SHOULD support the [Solid Notifications Features](https://solid.github.io/notifications/protocol#notification-features).
+
+The StreamingHTTPChannel2023 type further constrains following properties properties:
+
+: receiveFrom
+:: The [receiveFrom](https://solid.github.io/notifications/protocol#notify-receiveFrom) property
+    is used in the body of the subscription response.
+    The value of source property MUST be a URI, using the `https` scheme.
+
+A client establishes a subscription using the StreamingHTTPChannel2023 type by sending an authenticated
+subscription request to the Subscription Resource retrieved via Solid Notifications discovery.
+
+For StreamingHTTPChannel2023 interactions, the client sends a JSON-LD payload to the appropriate
+Subscription Resource via POST. The only required fields in this interaction are type and topic.
+The type field MUST contain the type of channel being requested: `StreamingHTTPChannel2023`
+The topic field MUST contain the URL of the resource a client wishes to subscribe to changes.
+
+<script type="text/turtle">
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX spec: <http://www.w3.org/ns/spec#>
+
+<>
+  a doap:Specification ;
+  spec:requirement
+        <#req1> ,
+        <#req2> ,
+        <#req3> .
+<#req1>
+  spec:requirementSubject <#subscription-request> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The type field MUST contain the type of channel being requested."@en .
+<#req2>
+  spec:requirementSubject <#subscription-request> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The topic field MUST contain the URL of the resource a client wishes to subscribe to changes."@en .
+<#req3>
+  spec:requirementSubject <#subscription-response> ;
+  spec:requirementLevel spec:MUST ;
+  spec:statement "The value of source property MUST be a URI, using the https scheme."@en .
+
+</script>
+
+## Subscription Example ## {#example}
+
+*This section is non-normative.*
+
+An example `POST` request using a `DPoP` bound access token is below:
+
+```http
+POST /subscription
+Authorization: DPoP <token>
+DPoP: <proof>
+Content-Type: application/ld+json
+```
+```jsonld
+{
+  "@context": ["https://www.w3.org/ns/solid/notification/v1"],
+  "type": "StreamingHTTPChannel2023",
+  "topic": "https://storage.example/resource",
+  "state": "opaque-state",
+  "endAt": "2023-12-23T12:37:15Z",
+  "rate": "PT10s"
+}
+```
+> POST request including type and topic targeting the Notification Subscription Resource.
+
+A successful response will contain a URL to the subscription Resource that can be used directly with a JavaScript client.
+
+```http
+Content-Type: application/ld+json
+```
+```jsonld
+{
+  "@context": "https://www.w3.org/ns/solid/notification/v1",
+  "type": "StreamingHTTPChannel2023",
+  "receiveFrom": "https://fetch.example/aca3cb0a-fb0a-4091-b9f8-8117d2cdb392"
+}
+```
+> Response to the POST request, including channel type and the receiveFrom URL.
+
+In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
+And define how to handle notifications
+
+```js
+const response = await fetch('https://fetch.example/aca3cb0a-fb0a-4091-b9f8-8117d2cdb392')
+const textStream = response.body.pipeThrough(new TextDecoderStream());
+for await (const notificationText of textStream) {
+  parseAndHandle(notificationText)
+}
+```
+
+Issue(46):
+
+# Authentication and Authorization # {#auth}
+
+Streaming HTTP Channel has the advantage of being able to authenticate with the Subscription Resource
+as well as the notifications `receiveFrom`. The same *access token* can be used with both resources.
+This doesn't just rely on the notifications source being a [Capability URL](https://www.w3.org/TR/capability-urls/)
+as many other channel types do.
+
+As described by the Solid Notifications Protocol section on Authorization,
+the Streaming HTTP Channel requires authorization and follows the guidance of the Solid Protocol
+sections on Authentication and Authorization [[!Solid.Protocol]].
+
+It is beyond the scope of this document to describe how a client fetches an access token.
+Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications [[!Solid.OIDC]].
+
+<pre class=biblio>
+{
+    "Solid.Protocol": {
+        "authors": [
+            "Sarven Capadisli",
+            "Tim Berners-Lee",
+            "Ruben Verborgh",
+            "Kjetil Kjernsmo"
+        ],
+        "href": "https://solidproject.org/TR/protocol",
+        "title": "Solid Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.Notifications.Protocol": {
+        "editors": [
+            "Sarven Capadisli"
+        ],                
+        "authors": [
+            "Aaron Coburn",
+            "Sarven Capadisli",
+            "elf Pavlik",
+            "Rahul Gupta"
+        ],
+        "href": "https://solidproject.org/TR/notifications-protocol",
+        "title": "Solid Notifications Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.OIDC": {
+        "authors": [
+            "Aaron Coburn",
+            "elf Pavlik",
+            "Dmitri Zagidulin"
+        ],
+        "href": "https://solidproject.org/TR/oidc",
+        "title": "Solid-OIDC",
+        "publisher": "W3C Solid Community Group"
+    }
+}
+</pre>
