@@ -19,14 +19,16 @@ The Solid Notification Protocol makes it possible to define [subscription types]
 The subscription types listed below are intended to be useful to application developers looking for existing
 subscription types as well as to authors of new subscription types.
 
-* Latest Published Version:
-  * [WebSocketSubscription2021](https://solidproject.org/TR/websocket-subscription-2021)
 * Editors Drafts:
-  * [WebSocketSubscription2021](https://solid.github.io/notifications/websocket-subscription-2021)
+  * [EventSourceChannel2023](https://solid.github.io/notifications/eventsource-channel-2023)
   * [WebSocketChannel2023](https://solid.github.io/notifications/websocket-channel-2023)
+  * [StreamingHTTPChannel2023](https://solid.github.io/notifications/streaming-http-channel-2023)
+  * [LDNChannel2023](https://solid.github.io/notifications/ldn-channel-2023)
+
+* Deprecated Editors Drafts:
+  * [WebSocketSubscription2021](https://solid.github.io/notifications/websocket-subscription-2021)
   * [StreamingHTTPSubscription2021](https://solid.github.io/notifications/streaming-http-subscription-2021)
   * [EventSourceSubscription2021](https://solid.github.io/notifications/eventsource-subscription-2021)
-  * [EventSourceChannel2023](https://solid.github.io/notifications/eventsource-channel-2023)
   * [LinkedDataNotificationsSubscription2021](https://solid.github.io/notifications/linkeddatanotifications-subscription-2021)
   * [WebHookSubscription2021](https://github.com/solid/notifications/blob/main/webhook-subscription-2021.md)
   * [WebPushSubscription2022](https://solid.github.io/notifications/webpush-subscription-2022)
