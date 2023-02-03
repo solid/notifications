@@ -14,7 +14,7 @@ Markup Shorthands: markdown yes
 Max ToC Depth: 2
 Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
 Abstract:
-  The [[!Solid.Notifications]] defines a set of interaction patterns for agents to receive notification
+  The [[!Solid.Notifications.Protocol]] defines a set of interaction patterns for agents to receive notification
   about changes to resources in a Solid Storage.
 
   This specification defines a channel type that applies these patterns to the Fetch API.
@@ -42,7 +42,7 @@ Status Text:
 
 *This section is non-normative.*
 
-The [[!Solid.Notifications]] describes a general pattern by which agents can be notified when a Solid Resource changes.
+The [[!Solid.Notifications.Protocol]] describes a general pattern by which agents can be notified when a Solid Resource changes.
 In the context of a Web Browser, the Streaming HTTP Channel provides a convenient mechanism for a Solid Storage
 to alert a subscribing client of these changes.
 
