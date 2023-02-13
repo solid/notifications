@@ -27,7 +27,7 @@ jobs:
           bikeshed update
 
       - name: Generate HTML
-        run: for bsdoc in ./*.bs; do bikeshed spec $bsdoc; done
+        run: for bsdoc in ./*.bs; do bikeshed spec --gh-token=${{ secrets.GITHUB_TOKEN }} $bsdoc; done
 
       - name: Generate SVG
         run: for diagram in ./*.mmd; do docker run --rm -v "$PWD:/data" minlag/mermaid-cli -i /data/$diagram; done
