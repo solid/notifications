@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Solid Notifications: WebSocketChannel2023</title>
+    <title>Solid Notifications: EventSourceChannel2023</title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" media="all" rel="stylesheet" title="W3C-ED" />
 <style>
@@ -105,6 +105,10 @@ content:counter(section)"." counter(sub-section) "." counter(sub-sub-section) "\
 #acknowledgements li:after { content: ", "; }
 #acknowledgements li:last-child:after { content: ""; }
 
+aside.do { overflow:inherit; }
+aside.do blockquote {
+padding: 0; border: 0; margin: 0;
+}
 dl[id^="document-"] ul {
 padding-left:0;
 list-style-type:none;
@@ -133,20 +137,20 @@ content: "";
 
     <main>
       <article about="" typeof="schema:Article doap:Specification">
-        <h1 property="schema:name">WebSocketChannel2023</h1>
-        <h2>Editor’s Draft, 2022-12-27</h2>
+        <h1 property="schema:name">EventSourceChannel2023</h1>
+        <h2>Editor’s Draft, 2023-01-11</h2>
 
         <details open="">
           <summary>More details about this document</summary>
 
           <dl id="document-identifier">
             <dt>This version</dt>
-            <dd><a href="https://solid.github.io/notifications/websocket-channel-2023" rel="owl:sameAs">https://solid.github.io/notifications/websocket-channel-2023</a></dd>
+            <dd><a href="https://solid.github.io/notifications/eventsource-channel-2023" rel="owl:sameAs">https://solid.github.io/notifications/eventsource-channel-2023</a></dd>
           </dl>
 
           <dl id="document-latest-version">
             <dt>Latest version</dt>
-            <dd><a href="https://solid.github.io/notifications/websocket-channel-2023" rel="rel:latest-version">https://solid.github.io/notifications/websocket-channel-2023</a></dd>
+            <dd><a href="https://solid.github.io/notifications/eventsource-channel-2023" rel="rel:latest-version">https://solid.github.io/notifications/eventsource-channel-2023</a></dd>
           </dl>
 
           <div id="authors">
@@ -158,17 +162,17 @@ content: "";
 
           <dl id="document-created">
             <dt>Created</dt>
-            <dd><time content="2022-12-27T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-27T00:00:00Z" property="schema:dateCreated">2022-12-27</time></dd>
+            <dd><time content="2023-01-11T00:00:00Z" datatype="xsd:dateTime" datetime="2023-01-11T00:00:00Z" property="schema:dateCreated">2023-01-11</time></dd>
           </dl>
 
           <dl id="document-published">
             <dt>Published</dt>
-            <dd><time content="2022-12-27T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-27T00:00:00Z" property="schema:datePublished">2022-12-27</time></dd>
+            <dd><time content="2023-01-11T00:00:00Z" datatype="xsd:dateTime" datetime="2023-01-11T00:00:00Z" property="schema:datePublished">2023-01-11</time></dd>
           </dl>
 
           <dl id="document-modified">
             <dt>Modified</dt>
-            <dd><time content="2022-12-27T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-27T00:00:00Z" property="schema:dateModified">2022-12-27</time></dd>
+            <dd><time content="2023-01-11T00:00:00Z" datatype="xsd:dateTime" datetime="2023-01-11T00:00:00Z" property="schema:dateModified">2023-01-11</time></dd>
           </dl>
 
           <dl id="document-repository">
@@ -189,13 +193,13 @@ content: "";
 
           <dl id="document-status">
             <dt>Document Status</dt>
-            <dd prefix="pso: http://purl.org/spar/pso/" rel="pso:holdsStatusInTime" resource="#f0e04dbe-b394-11ec-8cf3-5b3610d02d35"><span rel="pso:withStatus" resource="http://purl.org/spar/pso/draft" typeof="pso:PublicationStatus">Editor’s Draft</span></dd>
+            <dd prefix="pso: http://purl.org/spar/pso/" rel="pso:holdsStatusInTime" resource="#d2a849bc-3259-11ec-8cee-4ff1341c9be5"><span rel="pso:withStatus" resource="http://purl.org/spar/pso/draft" typeof="pso:PublicationStatus">Editor’s Draft</span></dd>
           </dl>
 
           <dl id="document-in-reply-to">
             <dt>In Reply To</dt>
             <dd><a href="https://solidproject.org/origin" rel="as:inReplyTo">Solid Origin</a></dd>
-            <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="as:inReplyTo">Solid Notifications Protocol</a></dd>
+            <dd><a href="https://solid.github.io/notifications/protocol" rel="as:inReplyTo">Solid Notifications Protocol</a></dd>
             <dd><a href="https://github.com/solid/process/blob/main/notifications-panel-charter.md" rel="as:inReplyTo">Notifications Panel Charter</a></dd>
           </dl>
 
@@ -206,9 +210,9 @@ content: "";
                 <dt>Rule</dt>
                 <dd><a about="#document-policy-offer" href="https://www.w3.org/TR/odrl-vocab/#term-Offer" typeof="odrl:Offer">Offer</a></dd>
                 <dt>Unique Identifier</dt>
-                <dd><a href="https://solid.github.io/notifications/websocket-channel-2023#document-policy-offer" rel="odrl:uid">https://solid.github.io/notifications/websocket-channel-2023#document-policy-offer</a></dd>
+                <dd><a href="https://solid.github.io/notifications/eventsource-channel-2023#document-policy-offer" rel="odrl:uid">https://solid.github.io/notifications/eventsource-channel-2023#document-policy-offer</a></dd>
                 <dt>Target</dt>
-                <dd><a href="https://solid.github.io/notifications/websocket-channel-2023" rel="odrl:target">https://solid.github.io/notifications/websocket-channel-2023</a></dd>
+                <dd><a href="https://solid.github.io/notifications/eventsource-channel-2023" rel="odrl:target">https://solid.github.io/notifications/eventsource-channel-2023</a></dd>
                 <dt>Permission</dt>
                 <dd>
                   <dl id="document-permission" rel="odrl:permission" resource="#document-permission" typeof="odrl:Permission">
@@ -248,14 +252,14 @@ content: "";
           </dl>
         </details>
 
-        <p class="copyright">MIT License. Copyright © 2022 <a href="http://www.w3.org/community/solid/">W3C Solid Community Group</a>.</p>
+        <p class="copyright">Copyright © 2023 <a href="http://www.w3.org/community/solid/">W3C Solid Community Group</a>.</p>
 
         <div datatype="rdf:HTML" id="content" property="schema:description">
           <section id="abstract">
             <h2>Abstract</h2>
             <div datatype="rdf:HTML" property="schema:abstract">
-              <p>The <cite><a href="https://solidproject.org/TR/notifications-protocol">Solid Notifications Protocol</a></cite> defines a set of interaction patterns for agents to establish subscriptions to resources.</p>
-              <p>This specification defines a subscription type that applies these patterns to the <a href="https://websockets.spec.whatwg.org/">WebSocket</a> Web API.</p>
+              <p>The <cite><a href="https://solid.github.io/notifications/protocol">Solid Notifications Protocol</a></cite> defines a set of interaction patterns for agents to establish subscriptions to resources.</p>
+              <p>This specification defines a channel type that applies these patterns to the <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html">EventSource</a> Web API.</p>
             </div>
           </section>
 
@@ -264,9 +268,9 @@ content: "";
             <div property="schema:description" datatype="rdf:HTML">
               <p>This section describes the status of this document at the time of its publication.</p>
 
-              <p>This document was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a> as an <em>Editor’s Draft</em>. The sections that have been incorporated have been reviewed following the <a href="https://github.com/solid/process">Solid process</a>. However, the information in this document is still subject to change. You are invited to <a href="https://github.com/solid/notifications/issues">contribute</a> any feedback, comments, or questions you might have.</p>
+              <p>This document was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a> as an Editor’s Draft. The sections that have been incorporated have been reviewed following the <a href="https://github.com/solid/process">Solid process</a>. However, the information in this document is still subject to change. You are invited to <a href="https://github.com/solid/notifications/issues">contribute</a> any feedback, comments, or questions you might have.</p>
 
-              <p>Publication as an <em>Editor’s Draft</em> does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
+              <p>Publication as an Editor’s Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
 
               <p>This document was produced by a group operating under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>. A human-readable <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.</p>
             </div>
@@ -285,16 +289,16 @@ content: "";
                 <li class="tocline">
                   <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
                   <ol>
-                    <li><a href="#terminology"><span class="secno">1.2</span> <span class="content">Terminology</span></a></li>
-                    <li><a href="#overview"><span class="secno">1.3</span> <span class="content">Overview</span></a></li>
-                    <li><a href="#conformance"><span class="secno">1.4</span> <span class="content">Conformance</span></a></li>
+                    <li><a href="#terminology"><span class="secno">1.1</span> <span class="content">Terminology</span></a></li>
+                    <li><a href="#overview"><span class="secno">1.2</span> <span class="content">Overview</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.3</span> <span class="content">Conformance</span></a></li>
                   </ol>
                 </li>
                 <li class="tocline">
-                  <a class="tocxref" href="#subscription-type"><span class="secno">2</span> <span class="content">WebSocketChannel2023 Type</span></a>
+                  <a class="tocxref" href="#channel-type"><span class="secno">2</span> <span class="content">EventSourceChannel2023 Type</span></a>
                   <ol>
                     <li class="tocline">
-                      <a class="tocxref" href="#websocket-subscription"><span class="secno">2.1</span> Subscription Example</a>
+                      <a class="tocxref" href="#eventsource-subscription"><span class="secno">2.1</span> Subscription Example</a>
                     </li>
                   </ol>
                 </li>
@@ -316,9 +320,9 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p><em>This section is non-normative.</em></p>
 
-              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">The <cite><a href="https://solidproject.org/TR/notifications-protocol">Solid Notifications Protocol</a></cite> describes a general pattern by which agents can be notified when a Solid Resource changes. In the context of a Web Browser, the WebSocket API provides a convenient mechanism for a Solid Storage to alert a subscribing client of these changes.</span></p>
+              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">The <cite><a href="https://solid.github.io/notifications/protocol">Solid Notifications Protocol</a></cite> describes a general pattern by which agents can be notified when a Solid Resource changes. In the context of a Web Browser, the EventSource API provides a convenient mechanism for a Solid Storage to alert a subscribing client of these changes.</span></p>
 
-              <p>This document describes a Solid Notifications subscription type that makes use of the WebSocket Web API.</p>
+              <p>This document describes a Solid Notifications channel type that makes use of the EventSource Web API.</p>
 
               <p>This specification is for:</p>
 
@@ -327,13 +331,12 @@ content: "";
                 <li><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who wish to implement a client to listen for updates to particular resources.</li>
               </ul>
 
-              <!-- TODO define terminology -->
               <section id="terminology" inlist="" rel="schema:hasPart" resource="#terminology" typeof="skos:ConceptScheme">
                 <h3 property="schema:name skos:prefLabel">Terminology</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/notifications-protocol">Solid Notification Protocol</a></cite>, including <q cite="https://solidproject.org/TR/notifications-protocol#notification-subscription-api">subscription API</q>, <q cite="https://solidproject.org/TR/notifications-protocol#notification-gateway-api">gateway API</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q>, <q>access token</q>, and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q cite="https://www.w3.org/TR/websub/#dfn-topic">topic</q>.</p>
+                  <p>This document uses terminology from the <cite><a href="https://solid.github.io/notifications/protocol">Solid Notification Protocol</a></cite>, including <q cite="https://solid.github.io/notifications/protocol#subscription">subscription request</q>, <q cite="https://solid.github.io/notifications/protocol#discovery">discovery</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>access token</q>, and <q>client</q>.</p>
                 </div>
               </section>
 
@@ -344,10 +347,10 @@ content: "";
 
                   <p>The following diagram shows the high-level interactions involved in this flow. How a client retrieves an access token for step 5 is outside the scope of this document.</p>
 
-                  <figure id="solid-websocket-flow" rel="schema:hasPart" resource="#solid-websocket-flow">
-                    <img src="websocket-channel-2023-flow.mmd.svg" rel="schema:image" width="800" />
+                  <figure id="solid-eventsource-flow" rel="schema:hasPart" resource="#solid-eventsource-flow">
+                    <img src="eventsource-channel-2023-flow.mmd.svg" rel="schema:image" width="800" />
 
-                    <figcaption property="schema:name">Solid WebSocketChannel2023 Flow</figcaption>
+                    <figcaption property="schema:name">Solid EventSourceChannel2023 Flow</figcaption>
                   </figure>
                 </div>
               </section>
@@ -363,17 +366,18 @@ content: "";
             </div>
           </section>
 
-          <section id="subscription-type" inlist="" rel="schema:hasPart" resource="#subscription-type">
-            <h2 property="schema:name">WebSocketChannel2023 Type</h2>
+          <section id="channel-type" inlist="" rel="schema:hasPart" resource="#channel-type">
+            <h2 property="schema:name">EventSourceChannel2023 Type</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>This specification defines the <code>WebSocketChannel2023</code> type for use with Solid Notifications Protocol's subscriptions that use the WebSocket Web API. The URI of the subscription type is <code>http://www.w3.org/ns/solid/notification#WebSocketChannel2023</code>.</p>
-              <p>An <code>WebSocketChannel2023</code> API MUST conform to the <cite><a href="https://solidproject.org/TR/notifications-protocol#discovery">Solid Notifications Protocol</a></cite>. [<cite><a class="bibref" href="#bib-solid-notifications">SOLID-NOTIFICATIONS</a></cite>]</p>
+              <p>This specification defines the <code>EventSourceChannel2023</code> type for use with Solid Notifications Protocol's subscriptions that use the EventSource Web API. The URI of the channel type is <code>http://www.w3.org/ns/solid/notification#EventSourceChannel2023</code>.</p>
+              <p>An <code>EventSourceChannel2023</code> API MUST conform to the <cite><a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications Protocol</a></cite>. [<cite><a class="bibref" href="#bib-solid-notifications">SOLID-NOTIFICATIONS</a></cite>]</p>
 
-              <p>A client establishes a subscription using the <code>WebSocketChannel2023</code> type by sending an authorized subscription request to the subscription resource based on <cite><a href="https://solidproject.org/TR/notifications-protocol#discovery">Solid Notifications Protocol discovery</a></cite>.</p>
 
-              <p>For <code>WebSocketChannel2023</code> interactions, the client sends a JSON-LD payload to the appropriate subscription resource via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the <code>WebSocketChannel2023</code> type.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
+              <p>A client establishes a subscription using the <code>EventSourceChannel2023</code> type by sending an authenticated subscription request to the subscription resource based on <cite><a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications Protocol discovery</a></cite>.</p>
 
-              <section id="websocket-subscription" inlist="" rel="schema:hasPart" resource="#websocket-subscription">
+              <p>For <code>EventSourceChannel2023</code> interactions, the client sends a JSON-LD payload to the appropriate subscription resource via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the <code>EventSourceChannel2023</code> type.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
+
+              <section id="eventsource-subscription" inlist="" rel="schema:hasPart" resource="#eventsource-subscription">
                 <h3 property="schema:name">Subscription Example</h3>
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
@@ -381,7 +385,7 @@ content: "";
                   <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
 
                   <figure id="notification-subscription-request" class="example listing" rel="schema:hasPart" resource="#notification-subscription-request">
-                    <p class="example-h"><span>Example</span>: Requesting an WebSocket subscription URL from the subscription resource.</p>
+                    <p class="example-h"><span>Example</span>: Requesting an EventSource subscription URL from the subscription resource.</p>
 
                     <pre about="#notification-subscription-request" property="schema:description" typeof="fabio:Script"><code>POST /subscription</code>
 <code>Authorization: DPoP &lt;token&gt;</code>
@@ -390,10 +394,10 @@ content: "";
 <code></code>
 <code>{</code>
 <code>  "@context": ["https://www.w3.org/ns/solid/notification/v1"],</code>
-<code>  "type": "WebSocketChannel2023",</code>
+<code>  "type": "EventSourceChannel2023",</code>
 <code>  "topic": "https://storage.example/resource",</code>
 <code>  "state": "opaque-state",</code>
-<code>  "endAt": "2022-12-27T12:37:15Z",</code>
+<code>  "endAt": "2023-01-11T12:37:15Z",</code>
 <code>  "rate": "PT10s"</code>
 <code>}</code></pre>
 
@@ -403,40 +407,40 @@ content: "";
                   <p>A successful response will contain a URL to the subscription API (<code>receiveFrom</code>) that can be used directly with a JavaScript client.</p>
 
                   <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
-                    <p class="example-h"><span>Example</span>: Response from the subscription resource including the WebSocket subscription URL.</p>
+                    <p class="example-h"><span>Example</span>: Response from the Notification Subscription including the EventSource subscription URL.</p>
 
                     <pre about="#notification-subscription-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
 <code>Content-Type: application/ld+json</code>
 <code></code>
 <code>{</code>
 <code>  "@context": "https://www.w3.org/ns/solid/notification/v1",</code>
-<code>  "type": "WebSocketChannel2023",</code>
+<code>  "type": "EventSourceChannel2023",</code>
 <code>  "topic": "https://storage.example/data/resource",</code>
-<code>  "receiveFrom": "wss://websocket.example/?auth=Ys3KiUq"</code>
+<code>  "receiveFrom": "https://eventsource.example/?auth=Ys3KiUq"</code>
 <code>}</code></pre>
 
                     <figcaption property="schema:name">Response to the <code>POST</code> request including <code>type</code> and <code>receiveFrom</code>.</figcaption>
                   </figure>
 
-                  <p>In JavaScript, a client can use the data in the response to establish a connection to the WebSocket hypermedia API.</p>
+                  <p>In JavaScript, a client can use the data in the response to establish a connection to the EventSource hypermedia API.</p>
 
-                  <figure id="websocket-new" class="example listing" rel="schema:hasPart" resource="#websocket-new">
-                    <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection.</p>
+                  <figure id="eventsource-new" class="example listing" rel="schema:hasPart" resource="#eventsource-new">
+                    <p class="example-h"><span>Example</span>: Establishing a new EventSource connection.</p>
 
-                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket("wss://websocket.example/?auth=Ys3KiUq", "http://www.w3.org/ns/solid/notifications#WebSocketChannel2023");</code></pre>
+                    <pre about="#eventsource-new" property="schema:description" typeof="fabio:Script"><code>const es = new EventSource("https://eventsource.example/?auth=Ys3KiUq");</code></pre>
 
-                    <figcaption property="schema:name">JavaScript code to establish a <code>new WebSocket</code> connection</figcaption>
+                    <figcaption property="schema:name">JavaScript code to establish a <code>new EventSource</code> connection</figcaption>
                   </figure>
 
-                  <p>A client will define how to handle events, especially the <code>onclose</code> and <code>onmessage</code> events.</p>
+                  <p>A client will define how to handle events, especially the <code>onerror</code> and <code>onmessage</code> events.</p>
 
-                  <figure id="websocket-onclose-onmessage" class="example listing" rel="schema:hasPart" resource="#websocket-onclose-onmessage">
-                    <p class="example-h"><span>Example</span>: Handling WebSocket events after the connection is established.</p>
+                  <figure id="eventsource-onclose-onmessage" class="example listing" rel="schema:hasPart" resource="#eventsource-onclose-onmessage">
+                    <p class="example-h"><span>Example</span>: Handling EventSource events after the connection is established.</p>
 
-                    <pre about="#websocket-onclose-onmessage" property="schema:description" typeof="fabio:Script"><code>ws.onclose(evt => reconnect(evt));</code>
-<code>ws.onmessage(evt => console.log("Message received: ", evt))</code></pre>
+                    <pre about="#eventsource-onclose-onmessage" property="schema:description" typeof="fabio:Script"><code>es.onerror(evt => reconnect(evt));</code>
+<code>es.onmessage(evt => console.log("Message received: ", evt))</code></pre>
 
-                    <figcaption property="schema:name">JavaScript code to handle <code>onclose</code> and <code>onmessage</code> events</figcaption>
+                    <figcaption property="schema:name">JavaScript code to handle <code>onerror</code> and <code>onmessage</code> events</figcaption>
                   </figure>
                 </div>
               </section>
@@ -446,7 +450,7 @@ content: "";
           <section id="authentication-authorization" inlist="" rel="schema:hasPart" resource="#authentication-authorization">
             <h2 property="schema:name">Authentication and Authorization</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>As described by the Solid Notifications Protocol section on <cite><a href="https://solidproject.org/TR/notifications-protocol#authentication-authorization" rel="cito:discusses">Authorization</a></cite>, the WebSocket subscription API requires authorization and follows the guidance of the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
+              <p>As described by the Solid Notifications Protocol section on <cite><a href="https://solid.github.io/notifications/protocol#authentication-authorization" rel="cito:discusses">Authorization</a></cite>, the EventSource subscription request requires authorization and follows the guidance of the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
 
             </div>
           </section>
@@ -463,11 +467,11 @@ content: "";
                     <dt id="bib-rfc8174">[RFC8274]</dt>
                     <dd><a href="https://datatracker.ietf.org/doc/html/rfc8174" rel="cito:citesAsAuthority"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a></dd>
                     <dt id="bib-solid-notifications">[SOLID-NOTIFICATIONS]</dt>
-                    <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="cito:citesAsAuthority"><cite>Solid Notifications</cite></a>. Aaron Coburn; Sarven Capadisli. W3C Solid Community Group. Version 0.1.0. URL: <a href="https://solidproject.org/TR/notifications-protocol">https://solidproject.org/TR/notifications-protocol</a></dd>
+                    <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="cito:citesAsAuthority"><cite>Solid Notifications Protocol</cite></a>. Sarven Capadisli. W3C Solid Community Group.  Version 0.2.0. URL: <a href="https://solidproject.org/TR/notifications-protocol">https://solidproject.org/TR/notifications-protocol</a></dd>
                     <dt id="bib-solid-oidc">[SOLID-OIDC]</dt>
-                    <dd><a href="https://solidproject.org/TR/oidc" rel="cito:citesAsAuthority"><cite>SOLID-OIDC</cite></a>. Aaron Coburn; elf Pavlik; Dmitri Zagidulin.  W3C Solid Community Group. Version 0.1.0. URL: <a href="https://solidproject.org/TR/oidc">https://solidproject.org/TR/oidc</a></dd>
+                    <dd><a href="https://solidproject.org/TR/oidc" rel="cito:citesAsAuthority"><cite>SOLID-OIDC</cite></a>. Aaron Coburn; elf Pavlik; Dmitri Zagidulin.  W3C Solid Community Group. Version 0.1.0.  URL: <a href="https://solidproject.org/TR/oidc">https://solidproject.org/TR/oidc</a></dd>
                     <dt id="bib-solid-protocol">[SOLID-PROTOCOL]</dt>
-                    <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo.  W3C Solid Community Group. Version 0.9.0. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
+                    <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo.  W3C Solid Community Group. Version 0.10.0.  URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
                   </dl>
                 </div>
               </section>

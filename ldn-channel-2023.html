@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>LDNChannel2023</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" media="all" rel="stylesheet" title="W3C-ED" />
+<style>
+body {
+counter-reset:section;
+counter-reset:sub-section;
+}
+em.rfc2119 { color: #900; }
+code, samp { color: #c83500; }
+pre code, pre samp { color: #000; }
+dfn { font-weight:inherit; }
+.do.fragment a { border-bottom:0; }
+.do.fragment a:hover { background:none; border-bottom:0; }
+section figure pre { margin:1em 0; display:block; }
+cite .bibref { font-style: normal; }
+.tabs nav ul li { margin:0; }
+div.issue, div.note, div.warning {
+clear: both;
+margin: 1em 0;
+padding: 1em 1.2em 0.5em;
+position: relative;
+}
+div.issue h3, div.note h3,
+div.issue h4, div.note h4,
+div.issue h5, div.note h5 {
+margin:0;
+font-weight:normal;
+font-style:normal;
+}
+div.issue h3 > span, div.note h3 > span,
+div.issue h4 > span, div.note h4 > span,
+div.issue h5 > span, div.note h5 > span {
+text-transform: uppercase;
+}
+div.issue h3, div.issue h4, div.issue h5 {
+color:#ae1e1e;
+}
+div.note h3, div.note h4, div.note h5 {
+color:#178217;
+}
+figure .example-h {
+margin-top:0;
+text-align: left;
+color:#827017;
+}
+figure .example-h > span {
+text-transform: uppercase;
+}
+header address a[href] {
+float: right;
+margin: 1rem 0 0.2rem 0.4rem;
+background: transparent none repeat scroll 0 0;
+border: medium none;
+text-decoration: none;
+}
+header address img[src*="logos/W3C"] {
+background: #1a5e9a none repeat scroll 0 0;
+border-color: #1a5e9a;
+border-image: none;
+border-radius: 0.4rem;
+border-style: solid;
+border-width: 0.65rem 0.7rem 0.6rem;
+color: white;
+display: block;
+font-weight: bold;
+}
+main article > h1 {
+font-size: 220%;
+font-weight:bold;
+}
+
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]):not([id=exit-criteria]) {
+counter-increment:section;
+counter-reset:sub-section;
+}
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]) section:not([id$=references]):not([id=exit-criteria]) {
+counter-increment:sub-section;
+counter-reset:sub-sub-section;
+}
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]) section:not([id$=references]):not([id=exit-criteria]) section {
+counter-increment:sub-sub-section;
+counter-reset:sub-sub-sub-section;
+}
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]) section:not([id$=references]):not([id=exit-criteria]) section section {
+counter-increment:sub-sub-sub-section;
+counter-reset:sub-sub-sub-sub-section;
+}
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]):not([id=exit-criteria]):not([id^=table-of-]):not([id^=list-of-]) > h2:before {
+content:counter(section) ".\00a0";
+}
+section:not([id$=references]):not([id^=change-log]):not([id=exit-criteria]) > h3:before {
+content:counter(section) "." counter(sub-section) "\00a0";
+}
+section > h4:before {
+content:counter(section)"." counter(sub-section) "." counter(sub-sub-section) "\00a0";
+}
+#acknowledgements ul { padding: 0; margin:0 }
+#acknowledgements li { display:inline; }
+#acknowledgements li:after { content: ", "; }
+#acknowledgements li:last-child:after { content: ""; }
+
+dl[id^="document-"] ul {
+padding-left:0;
+list-style-type:none;
+}
+dl [rel~="odrl:action"],
+dl [rel~="odrl:action"] li {
+display: inline;
+}
+dl [rel~="odrl:action"] li:after {
+content: ",";
+}
+dl [rel~="odrl:action"] li:last-child:after {
+content: "";
+}
+</style>
+    <link href="https://dokie.li/media/css/dokieli.css" media="all" rel="stylesheet" />
+    <script async="" src="https://dokie.li/scripts/dokieli.js"></script>
+  </head>
+
+  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ doap: http://usefulinc.com/ns/doap# deo: http://purl.org/spar/deo/ cito: http://purl.org/spar/cito/ as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# earl: http://www.w3.org/ns/earl# spec: http://www.w3.org/ns/spec# rel: https://www.w3.org/ns/iana/link-relations/relation# odrl: http://www.w3.org/ns/odrl/2/" typeof="schema:CreativeWork prov:Entity as:Article">
+    <header>
+      <address>
+        <a class="logo" href="https://solidproject.org/"><img alt="Solid Project" height="66" src="https://solidproject.org/TR/solid.svg" width="72" /></a>
+      </address>
+    </header>
+
+    <main>
+      <article about="" typeof="schema:Article doap:Specification">
+        <h1 property="schema:name">LDNChannel2023</h1>
+
+        <p id="w3c-state">Version <span property="doap:revision">1.0.0</span> Editor’s Draft, <time>2023-02-03</time></p>
+
+        <details open="">
+          <summary>More details about this document</summary>
+
+          <dl id="document-identifier">
+            <dt>This version</dt>
+            <dd><a href="https://solid.github.io/notifications/ldn-channel-2023" rel="owl:sameAs">https://solid.github.io/notifications/ldn-channel-2023</a></dd>
+          </dl>
+
+          <dl id="document-latest-version">
+            <dt>Latest version</dt>
+            <dd><a href="https://solid.github.io/notifications/ldn-channel-2023" rel="rel:latest-version">https://solid.github.io/notifications/ldn-channel-2023</a></dd>
+          </dl>
+
+          <dl id="document-editors">
+            <dt>Editors</dt>
+            <dd id="Sarven-Capadisli"><span about="" rel="schema:creator schema:editor"><span about="https://csarven.ca/#i" typeof="schema:Person"><a href="https://csarven.ca/" rel="schema:url"><span about="https://csarven.ca/#i" property="schema:name"><span property="schema:givenName">Sarven</span> <span property="schema:familyName">Capadisli</span></span></a></span></span></dd>
+          </dl>
+
+          <dl id="document-created">
+            <dt>Created</dt>
+            <dd><time content="2022-12-24T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-24T00:00:00Z" property="schema:dateCreated">2022-12-24</time></dd>
+          </dl>
+
+          <dl id="document-published">
+            <dt>Published</dt>
+            <dd><time content="2022-12-24T00:00:00Z" datatype="xsd:dateTime" datetime="2022-12-24T00:00:00Z" property="schema:datePublished">2022-12-24</time></dd>
+          </dl>
+
+          <dl id="document-modified">
+            <dt>Modified</dt>
+            <dd><time content="2023-02-03T00:00:00Z" datatype="xsd:dateTime" datetime="2023-02-03T00:00:00Z" property="schema:dateModified">2023-02-03</time></dd>
+          </dl>
+
+          <dl id="document-repository">
+            <dt>Repository</dt>
+            <dd><a href="https://github.com/solid/notifications" rel="doap:repository">GitHub</a></dd>
+            <dd><a href="https://github.com/solid/notifications/issues" rel="doap:bug-database">Issues</a></dd>
+          </dl>
+
+          <dl id="document-language">
+            <dt>Language</dt>
+            <dd><span content="en" lang="" property="dcterms:language" xml:lang="">English</span></dd>
+          </dl>
+
+          <dl id="document-license">
+            <dt>License</dt>
+            <dd><a href="http://purl.org/NET/rdflicense/MIT1.0" rel="schema:license">MIT License</a></dd>
+          </dl>
+
+          <dl id="document-status">
+            <dt>Document Status</dt>
+            <dd prefix="pso: http://purl.org/spar/pso/" rel="pso:holdsStatusInTime" resource="#a23256bd-feda-4af2-a3fb-dfbb2194c377"><span rel="pso:withStatus" resource="http://purl.org/spar/pso/draft" typeof="pso:PublicationStatus">Editor’s Draft</span></dd>
+          </dl>
+
+          <dl id="document-in-reply-to">
+            <dt>In Reply To</dt>
+            <dd><a href="https://solidproject.org/origin" rel="as:inReplyTo">Solid Origin</a></dd>
+            <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="as:inReplyTo">Solid Notifications Protocol</a></dd>
+            <dd><a href="https://github.com/solid/process/blob/main/notifications-panel-charter.md" rel="as:inReplyTo">Notifications Panel Charter</a></dd>
+          </dl>
+
+          <dl id="document-policy">
+            <dt>Policy</dt>
+            <dd>
+              <dl id="document-policy-offer" rel="odrl:hasPolicy" resource="#document-policy-offer" typeof="odrl:Policy">
+                <dt>Rule</dt>
+                <dd><a about="#document-policy-offer" href="https://www.w3.org/TR/odrl-vocab/#term-Offer" typeof="odrl:Offer">Offer</a></dd>
+                <dt>Unique Identifier</dt>
+                <dd><a href="https://solid.github.io/notifications/ldn-channel-2023#document-policy-offer" rel="odrl:uid">https://solid.github.io/notifications/ldn-channel-2023#document-policy-offer</a></dd>
+                <dt>Target</dt>
+                <dd><a href="https://solid.github.io/notifications/ldn-channel-2023" rel="odrl:target">https://solid.github.io/notifications/ldn-channel-2023</a></dd>
+                <dt>Permission</dt>
+                <dd>
+                  <dl id="document-permission" rel="odrl:permission" resource="#document-permission" typeof="odrl:Permission">
+                    <dt>Assigner</dt>
+                    <dd><a href="https://www.w3.org/groups/cg/solid" rel="odrl:assigner">W3C Solid Community Group</a></dd>
+                    <dt>Action</dt>
+                    <dd>
+                      <ul rel="odrl:action">
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-aggregate" resource="odrl:aggregate">Aggregate</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-archive" resource="odrl:archive">Archive</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-concurrentUse" resource="odrl:concurrentUse">Concurrent Use</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-DerivativeWorks" resource="http://creativecommons.org/ns#DerivativeWorks">Derivative Works</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-derive" resource="odrl:derive">Derive</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-digitize" resource="odrl:digitize">Digitize</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-display" resource="odrl:display">Display</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Distribution" resource="http://creativecommons.org/ns#Distribution">Distribution</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-index" resource="odrl:index">Index</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-inform" resource="odrl:inform">Inform</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-install" resource="odrl:install">Install</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Notice" resource="http://creativecommons.org/ns#Notice">Notice</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-present" resource="odrl:present">Present</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-print" resource="odrl:print">Print</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-read" resource="odrl:read">Read</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-reproduce" resource="odrl:reproduce">Reproduce</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-Reproduction" resource="http://creativecommons.org/ns#Reproduction">Reproduction</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-stream" resource="odrl:stream">Stream</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-synchronize" resource="odrl:synchronize">Synchronize</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-textToSpeech" resource="odrl:textToSpeech">Text-to-speech</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-transform" resource="odrl:transform">Transform</a></li>
+                        <li><a href="https://www.w3.org/TR/odrl-vocab/#term-translate" resource="odrl:translate">Translate</a></li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </dd>
+              </dl>
+            </dd>
+          </dl>
+        </details>
+
+        <p class="copyright">MIT License. Copyright © 2022-2023 <a href="https://www.w3.org/groups/cg/solid">W3C Solid Community Group</a>.</p>
+
+        <div datatype="rdf:HTML" id="content" property="schema:description">
+          <section id="abstract">
+            <h2>Abstract</h2>
+            <div datatype="rdf:HTML" property="schema:abstract">
+              <p>The <cite><a href="https://solidproject.org/TR/notifications-protocol" rel="cito:discusses">Solid Notifications Protocol</a></cite> describes how notification receivers can have messages pushed to them by notification senders, as well as how applications can choose from available notification channels in which notification receivers get messages. This specification defines the <a href="#LDNChannel2023"><code>LDNChannel2023</code></a> <cite><a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#notification-channel-types" rel="cito:discusses">notification channel type</a></cite> to enable <a href="#SubscriptionClient">Subscription Clients</a> to request subscriptions to <a href="#SubscriptionServer">Subscription Servers</a>, and for <a href="#NotificationSender">Notification Senders</a> to deliver messages to <a href="#NotificationReceiver">Notification Receivers</a> based on the <cite><a href="https://www.w3.org/TR/ldn/" rel="cito:discusses">Linked Data Notifications</a></cite> protocol.</p>
+            </div>
+          </section>
+
+          <section id="sotd" inlist="" rel="schema:hasPart" resource="#sotd">
+            <h2 property="schema:name">Status of This Document</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>This section describes the status of this document at the time of its publication.</p>
+
+              <p>This document was published by the <a href="https://www.w3.org/groups/cg/solid">Solid Community Group</a> as an <em>Editor’s Draft</em>. The sections that have been incorporated have been reviewed following the <a href="https://github.com/solid/process">Solid process</a>. However, the information in this document is still subject to change. You are invited to <a href="https://github.com/solid/notifications/issues">contribute</a> any feedback, comments, or questions you might have.</p>
+
+              <p>Publication as an <em>Editor’s Draft</em> does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
+
+              <p>This document was produced by a group operating under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>. A human-readable <a href="https://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.</p>
+            </div>
+          </section>
+
+          <nav id="toc">
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <div>
+              <ol class="toc">
+                <li class="tocline">
+                  <a class="tocxref" href="#abstract">Abstract</a>
+                </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#sotd">Status of This Document</a>
+                </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+                  <ol>
+                    <li><a href="#overview"><span class="secno">1.1</span> <span class="content">Overview</span></a></li>
+                    <li><a href="#namespaces"><span class="secno">1.2</span> <span class="content">Namespaces</span></a></li>
+                    <li><a href="#conformance"><span class="secno">1.3</span> <span class="content">Conformance</span></a></li>
+                  </ol>
+                </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#protocol"><span class="secno">2</span> <span class="content">Protocol</span></a>
+                  <ol>
+                    <li class="tocline">
+                      <a class="tocxref" href="#discovery"><span class="secno">2.1</span> Discovery</a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#subscription"><span class="secno">2.2</span> Subscription</a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-channel"><span class="secno">2.3</span> <span class="content">Notification Channel</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-message"><span class="secno">2.4</span> <span class="content">Notification Message</span></a>
+                    </li>
+                  </ol>
+                </li>
+
+                <li class="tocline">
+                  <a class="tocxref" href="#data-model"><span class="secno">3</span> <span class="content">Data Model</span></a>
+                  <ol>
+                    <li class="tocline">
+                      <a class="tocxref" href="#description-resource-data-model"><span class="secno">3.1</span> <span class="content">Description Resource</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#subscription-resource-data-model"><span class="secno">3.2</span> <span class="content">Subscription Resource</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-channel-data-model"><span class="secno">3.3</span> <span class="content">Notification Channel</span></a>
+                    </li>
+                    <li class="tocline">
+                      <a class="tocxref" href="#notification-message-data-model"><span class="secno">3.4</span> <span class="content">Notification Message</span></a>
+                    </li>
+                  </ol>
+                </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#considerations"><span class="secno">4</span> <span class="content">Considerations</span></a>
+                  <ol>
+                    <li><a href="#security-considerations"><span class="secno">4.1</span> <span class="content">Security Considerations</span></a></li>
+                    <li><a href="#privacy-considerations"><span class="secno">4.2</span> <span class="content">Privacy Considerations</span></a></li>
+                    <li><a href="#security-privacy-review"><span class="secno">4.3</span> <span class="content">Security and Privacy Review</span></a></li>
+                  </ol>
+                </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#change-log"><span class="secno"></span> <span class="content">Change Log</span></a>
+                </li>
+                <li class="tocline">
+                  <a class="tocxref" href="#references"><span class="secno"></span> <span class="content">References</span></a>
+                  <ol>
+                    <li><a href="#normative-references"><span class="secno"></span> <span class="content">Normative References</span></a></li>
+                    <li><a href="#informative-references"><span class="secno"></span> <span class="content">Informative References</span></a></li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
+          </nav>
+
+          <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
+            <h2 about="#introduction" property="schema:name" typeof="deo:Introduction">Introduction</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p><em>This section is non-normative.</em></p>
+
+              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">In order to enable users to be notified about activities pertaining topic resources of interest at any point in time, their applications need to make subscription requests indicating where they can be notified.</span></p>
+
+              <p>The <cite><a href="https://solidproject.org/TR/notifications-protocol" rel="cito:discusses">Solid Notifications Protocol</a></cite> describes how notification receivers can have messages pushed to them by notification senders, as well as how applications can choose from available notification channels in which notification receivers get messages. This specification defines the <a href="#LDNChannel2023"><code>LDNChannel2023</code></a> <cite><a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#notification-channel-types" rel="cito:discusses">notification channel type</a></cite> to enable <a href="#SubscriptionClient">Subscription Clients</a> to request subscriptions to <a href="#SubscriptionServer">Subscription Servers</a>, and for <a href="#NotificationSender">Notification Senders</a> to deliver messages to <a href="#NotificationReceiver">Notification Receivers</a> based on the <cite><a href="https://www.w3.org/TR/ldn/" rel="cito:discusses">Linked Data Notifications</a></cite> protocol.</p>
+
+              <p>LDN supports sharing and reuse of notifications across applications, regardless of how they were generated. This allows for more modular systems, which decouple data storage from the applications which display or otherwise make use of the data. Instead of treating notifications as ephemeral or non-persistent entities, this specification works with the notion of a notification as an individual entity with its own URI. As such, notifications can be retrieved and reused.</p>
+
+              <p>This specification is for:</p>
+
+              <ul rel="schema:audience">
+                <li><a href="http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135">Server developers</a> that want to enable clients to receive activities about resources.</li>
+                <li><a href="http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d">Application developers</a> who want to implement a client to receive activities about resources.</li>
+              </ul>
+
+              <section id="terminology" inlist="" rel="schema:hasPart" resource="#terminology" typeof="skos:ConceptScheme">
+                <h3 property="schema:name skos:prefLabel">Terminology</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p><em>This section is non-normative.</em></p>
+
+                  <p>This specification uses the terms from the [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>] specification. When Solid Notifications Protocol terminology is used it is linked directly to that specification.</p>
+                </div>
+              </section>
+
+              <section id="conformance" inlist="" rel="schema:hasPart" resource="#conformance">
+                <h3 property="schema:name">Conformance</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>This section describes the <span about="" rel="spec:conformance" resource="#conformance">conformance model of the Solid Notifications Protocol</span>.</p>
+
+                  <section id="normative-informative-content" inlist="" rel="schema:hasPart" resource="#normative-informative-content">
+                    <h4 property="schema:name">Normative and Informative Content</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p id="normative-informative-sections">All assertions, diagrams, examples, and notes are non-normative, as are all sections explicitly marked non-normative. Everything else is normative.</p>
+
+                      <p id="requirement-levels">The key words “<span rel="dcterms:subject" resource="spec:MUST">MUST</span>”, “<span rel="dcterms:subject" resource="spec:MUSTNOT">MUST NOT</span>”, “<span rel="dcterms:subject" resource="spec:SHOULD">SHOULD</span>”, and “<span rel="dcterms:subject" resource="spec:MAY">MAY</span>” are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [<cite><a class="bibref" href="#bib-rfc2119">RFC2119</a></cite>] [<cite><a class="bibref" href="#bib-rfc8174">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
+
+                      <p id="advisement-levels">The key words “<span rel="dcterms:subject" resource="spec:StronglyEncouraged">strongly encouraged</span>”, “<span rel="dcterms:subject" resource="spec:StronglyDiscouraged">strongly discouraged</span>”, “<span rel="dcterms:subject" resource="spec:Encouraged">encouraged</span>", “<span rel="dcterms:subject" resource="spec:Discouraged">discouraged</span>", “<span rel="dcterms:subject" resource="spec:Can">can</span>", “<span rel="dcterms:subject" resource="spec:Cannot">cannot</span>”, “<span rel="dcterms:subject" resource="spec:Could">could</span>”, “<span rel="dcterms:subject" resource="spec:CouldNot">could not</span>”, “<span rel="dcterms:subject" resource="spec:Might">might</span>”, and “<span rel="dcterms:subject" resource="spec:MightNot">might not</span>” are used for non-normative content.</p>
+                    </div>
+                  </section>
+
+                  <section id="specification-category" inlist="" rel="schema:hasPart spec:specificationCategory" resource="#specification-category" typeof="skos:ConceptScheme">
+                    <h4 property="schema:name skos:prefLabel">Specification Category</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p property="skos:definition">The <span about="" rel="spec:specificationCategory" resource="#specification-category">Solid Protocol</span> identifies the following <cite><a href="https://www.w3.org/TR/spec-variability/#spec-cat" rel="dcterms:subject" resource="spec:SpecificationCategory">Specification Category</a></cite> to distinguish the types of conformance: <span rel="skos:hasTopConcept" resource="spec:API">API</span>, <span rel="skos:hasTopConcept" resource="spec:NotationSyntax">notation/syntax</span>, <span rel="skos:hasTopConcept" resource="spec:SetOfEvents">set of events</span>, <span rel="skos:hasTopConcept" resource="spec:Protocol">protocol</span>.</p>
+                    </div>
+                  </section>
+
+                  <section id="classes-of-products" inlist="" rel="schema:hasPart" resource="#classes-of-products" typeof="skos:ConceptScheme">
+                    <h4 property="schema:name skos:prefLabel">Classes of Products</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p property="skos:definition">The <span about="" rel="spec:classesOfProducts" resource="#classes-of-products">LDNChannel2023</span> notification channel type identifies the following <cite><a href="https://www.w3.org/TR/qaframe-spec/#cop-def" rel="dcterms:subject" resource="spec:ClassesOfProducts">Classes of Products</a></cite> for conforming implementations by specialising <cite><a about="#classes-of-products" href="https://solidproject.org/TR/2022/notifications-protocol-20221231#classes-of-products" rel="cito:extends">Solid Notifications Protocol's Classes of Products</a></cite>. These products are referenced throughout this specification.</p>
+
+                      <dl rel="skos:hasTopConcept">
+                        <dt about="#SubscriptionClient" property="skos:prefLabel" typeof="skos:Concept"><dfn id="SubscriptionClient">Subscription Client</dfn></dt>
+                        <dd about="#SubscriptionClient" property="skos:definition">A <em>Subscription Client</em> requests subscriptions by building on <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#SubscriptionClient">Subscription Client</a> [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>].</dd>
+                        <dt about="#SubscriptionServer" property="skos:prefLabel" typeof="skos:Concept"><dfn id="SubscriptionServer">Subscription Server</dfn></dt>
+                        <dd about="#SubscriptionServer" property="skos:definition">A <em>Subscription Server</em> responds to subscription requests by building on <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#SubscriptionServer" rel="skos:broader">Subscription Server</a> [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>] and <a href="https://www.w3.org/TR/ldn/#receiver">Receiver</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>].</dd>
+                        <dt about="#NotificationSender" property="skos:prefLabel" typeof="skos:Concept"><dfn id="NotificationServer">Notification Sender</dfn></dt>
+                        <dd about="#NotificationSender" property="skos:definition">A <em>Notification Sender</em> is the sender of a notification message by building on <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#NotificationSender" rel="skos:broader">Notification Sender</a> [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>]</dd>
+                        <dt about="#NotificationReceiver" property="skos:prefLabel" typeof="skos:Concept"><dfn id="NotificationReceiver">Notification Receiver</dfn></dt>
+                        <dd about="#NotificationReceiver" property="skos:definition">A <em>Notification Receiver</em> is the recipient of a notification message by building on <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#NotificationReceiver" rel="skos:broader">Notification Receiver</a> [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>] and <a href="https://www.w3.org/TR/ldn/#receiver">Receiver</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>].</dd>
+                        <dt about="#ResourceServer" property="skos:prefLabel" typeof="skos:Concept"><dfn id="ResourceServer">Resource Server</dfn></dt>
+                        <dd about="#ResourceServer" property="skos:definition">A <em>resource server</em> that builds on <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#ResourceServer" rel="skos:broader">Resource Server</a> [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>].</dd>
+                      </dl>
+                    </div>
+                  </section>
+
+                  <section id="interoperability" inlist="" rel="schema:hasPart" resource="#interoperability">
+                    <h4 property="schema:name skos:prefLabel">Interoperability</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p id="interoperability-subscription-client-resource-server">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#ResourceServer" rel="rdfs:seeAlso">Resource Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to this specification.</p>
+
+                      <p id="interoperability-subscription-client-subscription-server">Interoperability of implementations for <a href="#SubscriptionClient" rel="rdfs:seeAlso">Subscription Clients</a> and <a href="#SubscriptionServer" rel="rdfs:seeAlso">Subscription Servers</a> is tested by evaluating an implementation’s ability to request and respond to HTTP messages that conform to this specification.</p>
+
+                      <p id="interoperability-notification-sender-notification-receiver">Interoperability of implementations for <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Sender</a> and <a href="#NotificationSender" rel="rdfs:seeAlso">Notification Receiver</a> is tested by evaluating an implementation’s ability to produce and consume content that adheres to the <a href="#notification-data-model" rel="rdfs:seeAlso">notification data model</a> and conforms to the <a href="#LDNChannel2023" rel="rdfs:seeAlso">LDNChannel2023</a> notification channel type.</p>
+                    </div>
+                  </section>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
+            <h2 property="schema:name">Protocol</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>This section specifies the discovery mechanism, capabilities of subscriptions, and establishing a connection to a notification channel.</p>
+
+              <p id="authentication-authorization">Implementations are encouraged to use existing approaches, such as those described in the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
+
+              <div class="issue" id="authentication" rel="schema:hasPart" resource="#authentication">
+                <h3 property="schema:name"><span>Issue</span>: Authentication: exchanging public keys, signing messages</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>Details need to be further specified. The <a href="https://w3id.org/security">Security Vocabulary</a> (or <a href="https://www.w3.org/ns/auth/cert">The Cert Ontology</a>, <a href="http://xmlns.com/wot/0.1/">WOT</a>) can be used.</p>
+
+                  <ul>
+                    <li>Subscription Clients to share Notification Receiver's public key, where <code>sendTo</code> has a <code>controller</code> (which is the <code>receiver</code>).</li>
+                    <li>Subscription Servers to share Notification Sender's public key, where <code>sender</code> describes the key.</li>
+                  </ul>
+
+                  <p>See <a href="#notification-channel-data-model">Notification Channel Data Model</a> for example subscription requests and response including public keys.</p>
+
+                  <p>Subscription Client lets the Notification Receiver know about the Notification Sender and their public key.</p>
+                  <p>Notification Receiver sets Authorization rules for Notification Sender.</p>
+                  <p>Notification Sender can optionally use <a href="https://httpwg.org/http-extensions/draft-ietf-httpbis-message-signatures.html">HTTP Message Signatures</a>.</p>
+                </div>
+              </div>
+
+              <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
+                <h3 property="schema:name">Discovery</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>This specification's discovery mechanism is a constraint of Solid Notifications Protocol's <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#discovery" rel="cito:discusses">description resource</a> in that the <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#description-resource" rel="cito:discusses">description resource</a> only advertises the <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#subscription-resource" rel="cito:discusses">subscription resource</a>.</p>
+                </div>
+              </section>
+
+              <section id="subscription" inlist="" rel="schema:hasPart" resource="#subscription">
+                <h3 property="schema:name">Subscription</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The subscription mechanism enables <a href="#SubscriptionClient">Subscription Clients</a> and <a href="#SubscriptionServer">Subscription Servers</a> with the creation and management of subscriptions.</p>
+
+                  <p about="#subscription-response" property="skos:definition" typeof="skos:Concept">A <strong><dfn id="subscription-response" property="skos:prefLabel">subscription response</dfn></strong> is an extension of <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#subscription-response">subscription response</a> [<cite><a class="bibref" href="#bib-solid-notifications-protocol">SOLID-NOTIFICATIONS-PROTOCOL</a></cite>] (where the <a href="#SubscriptionServer">Subscription Server</a> conforms to <a href="https://www.w3.org/TR/ldn/#receiver">Receiver</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]).</p>
+
+                  <p about="" id="subscription-client-subscription-request" rel="spec:requirement" resource="#subscription-client-subscription-request"><span property="spec:statement"><a rel="spec:requirementSubject" href="#SubscriptionClient">Subscription Clients</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a> in the <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#subscription-request">subscription request</a> payload.</span></p>
+
+                  <p about="" id="subscription-server-subscription-response" rel="spec:requirement" resource="#subscription-server-subscription-response"><span property="spec:statement"><a rel="spec:requirementSubject" href="#SubscriptionServer">Subscription Servers</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a> in the <a href="#subscription-response">subscription response</a> payload.</span></p>
+
+                  <figure class="example listing" id="subscription-resource-request-response-jsonld" rel="schema:hasPart" resource="#description-resource-request-response-jsonld">
+                    <p class="example-h"><span>Example</span>: Subscription request and modification.</p>
+                    <pre about="#description-resource-request-response-jsonld" property="schema:description"><code>POST https://ldn.example/subscription/</code>
+<code></code>
+<code>HTTP/1.1 201 Created</code>
+<code>Location: https://ldn.example/subscription/c452ea4f-77dc-4818-af6b-845455881a6b</code>
+<code></code>
+<code>POST https://ldn.example/subscription/c452ea4f-77dc-4818-af6b-845455881a6b</code>
+<code>Accept: application/ld+json</code>
+<code></code>
+<code>HTTP/1.1 200 OK</code>
+<code>Content-Type: application/ld+json</code>
+<code></code>
+<code>DELETE https://ldn.example/subscription/c452ea4f-77dc-4818-af6b-845455881a6b</code>
+<code></code>
+<code>HTTP/1.1 204 No Content</code></pre>
+
+                    <figcaption property="schema:name">Creating, modifying, and removing a subscription with JSON-LD serialization.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section id="notification-channel" inlist="" rel="schema:hasPart" resource="#notification-channel">
+                <h3 property="schema:name">Notification Channel</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p about="" id="notification-sender-notification-message-data-model" rel="spec:requirement" resource="#notification-sender-notification-message-data-model"><span property="spec:statement"><a rel="spec:requirementSubject" href="#NotificationSender">Notification Sender</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be able to produce message payloads using the <a href="#notification-message-data-model" rel="rdfs:seeAlso">Notification Message Data Model</a>.</span></p>
+
+                  <p about="" id="notification-receiver-notification-message-data-model" rel="spec:requirement" resource="#notification-receiver-notification-message-data-model"><span property="spec:statement"><a rel="spec:requirementSubject" href="#NotificationReceiver">Notification Receiver</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> be able to process message payloads using the <a href="#notification-message-data-model" rel="rdfs:seeAlso">Notification Message Data Model</a>.</span></p>
+
+                  <section id="LDNChannel2023" inlist="" rel="schema:hasPart" resource="#LDNChannel2023">
+                    <h4 property="schema:name">LDNChannel2023</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p>This specification defines the <code>LDNChannel2023</code> notification channel type with the URI <code>http://www.w3.org/ns/solid/notifications#LDNChannel2023</code> that can be used with Solid Notifications Protocol.</p>
+                    </div>
+                  </section>
+
+                  <section id="notification-features" inlist="" rel="schema:hasPart" resource="#notification-features" typeof="skos:Collection">
+                    <h4 property="schema:name skos:prefLabel">Features</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p property="skos:definition">The following features can be used with the <code>LDNChannel2023</code> notification channel type:</p>
+
+                      <dl>
+                        <dt id="notify-activityType" rel="dcterms:subject skos:member" resource="http://www.w3.org/ns/solid/notifications#activityType">activityType</dt>
+                        <dd>A property used to indicate the notification activity type.</dd>
+                      </dl>
+
+                      <div class="issue" id="add-notify-activityType" rel="schema:hasPart" resource="#add-notify-activityType">
+                        <h3 property="schema:name"><span>Issue</span>: Add activityType to vocab and JSON-LD context</h3>
+                        <div datatype="rdf:HTML" property="schema:description">
+                          <pre>#http://www/w3.org/ns/solid/notifications
+notify:activityType
+    a rdf:Property ;
+    rdfs:label "notification activity type"@en ;
+    rdfs:comment "A property used to indicate the notification activity type."@en ;
+    rdfs:isDefinedBy &lt;http://www.w3.org/ns/solid/notifications#&gt; ;
+    vs:term_status "testing" .
+
+#https://www.w3.org/ns/solid/notification/v1
+    "activityType": {
+      "@id": "notify:activityType",
+      "@type": "@id" },</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </section>
+
+              <section id="notification-message" inlist="" rel="schema:hasPart" resource="#notification-message">
+                <h3 property="schema:name">Notification Message</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>A <a href="#NotificationSender">Notification Sender</a> is triggered by a process to deliver messages to <a href="#NotificationReceiver">Notification Receiver</a>.</p>
+
+                  <p id="notification-receiver-notification-message-data-model">Notification Receivers MUST conform to the <a href="https://www.w3.org/TR/ldn/#receiver" rel="cito:citesAsAuthority">receiver</a> requirements of the <a href="https://www.w3.org/TR/ldn/">Linked Data Notifications</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>] specification when allowing requests to the resource specified by <a href="#notify-sendTo"><code>sendTo</code></a>.</p>
+
+                  <p>Notification Senders MUST use the <code>sender</code> value to identify themselves when the Notification Receiver requires authentication.</p>
+
+                  <p>Notification Receiver is expected to accept notifications from the <code>sender</code> at the <code>sendTo</code> location.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section id="data-model" inlist="" rel="schema:hasPart" resource="#data-model">
+            <h2 property="schema:name">Data Model</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>This section describes the <a href="#description-resource-data-model">description resource</a>, <a href="#subscription-resource-data-model">subscription resource</a>, <a href="#notification-channel-data-model">notification channel</a>, and <a href="#notification-message-data-model">notification message</a> data models which specialises the <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#data-model">data models</a> of Solid Notification Protocol.</p>
+
+              <section id="description-resource-data-model" inlist="" rel="schema:hasPart" resource="#description-resource-data-model">
+                <h3 property="schema:name">Description Resource</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The <a href="#description-resource">description resource</a> has the following properties:</p>
+
+                  <ul>
+                    <li id="notify-resource-id">One <code>id</code> property to identify the resource described by the description resource.</li>
+                    <li id="notify-subscription">One or many <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#subscription">subscription</code> property to identify the available <a href="#subscription-resource">subscription resources</a>.</li>
+                  </ul>
+
+                  <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
+                    <p class="example-h"><span>Example</span>: Representation of a description resource.</p>
+
+                    <pre about="#description-resource-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id": "https://example.org/guinan/photos/",</code>
+<code>  "subscription": [{</code>
+<code>    "id": "https://ldn.example/subscription/",</code>
+<code>    "channelType": "LDNChannel2023",</code>
+<code>    "feature": ["activityType", "startAt", "endAt", "rate"]</code>
+<code>  }]</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">JSON-LD serialization of a description resource.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section id="subscription-resource-data-model" inlist="" rel="schema:hasPart" resource="#subscription-resource-data-model">
+                <h3 property="schema:name">Subscription Resource</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The <a href="#subscription-resource">subscription resource</a> has the following properties:</p>
+
+                  <ul>
+                    <li id="notify-subscription-id">One <code>id</code> property to identify subscription resource.</li>
+                    <li id="notify-channelType">One <code>channelType</code> property whose object is <code>LDNChannel2023</code>.</li>
+                    <li id="notify-feature">Zero, one or many <code>feature</code> property value(s) to state the supported <a href="#notification-features" rel="rdfs:seeAlso">features</a>.</li>
+                  </ul>
+
+                  <figure class="example listing" id="subscription-resource-jsonld" rel="schema:hasPart" resource="#subscription-resource-jsonld">
+                    <p class="example-h"><span>Example</span>: Representation of a subscription resource.</p>
+
+                    <pre about="#subscription-resource-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id": "https://ldn.example/subscription/",</code>
+<code>  "channelType": "LDNChannel2023",</code>
+<code>  "feature": ["activityType", "startAt", "endAt", "rate"]</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">JSON-LD serialization of a subscription resource.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section id="notification-channel-data-model" inlist="" rel="schema:hasPart" resource="#notification-channel-data-model">
+                <h3 property="schema:name">Notification Channel</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <p>The <a href="#notification-channel">notification channel</a> has the following properties:</p>
+
+                  <ul>
+                    <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
+                    <li id="notify-channel-type">One <code>type</code> property whose object is <code>LDNChannel2023</code>.</li>
+                    <li id="notify-topic">At least one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#topic">topic</code> property to identify the resources that the notifications are about.</li>
+                    <li id="notify-feature-types">Zero, one or many property values stating a particular <a href="#notification-features" rel="rdfs:seeAlso">feature</a>.</li>
+                  </ul>
+
+                  <p>Notification channel in the <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#subscription-request">subscription request</a> has the following property:</p>
+
+                  <ul>
+                    <li id="notify-sendTo">One <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#sendTo">sendTo</code> property to identify the resource that can accept notifications (<a href="https://www.w3.org/TR/ldn/#discovery">LDN inbox</a>).</li>
+                    <li id="notify-receiver">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#receiver">receiver</code> property to identify the party that controls the <code>sendTo</code> resource.</li>
+                  </ul>
+
+                  <div class="issue" id="add-notify-receiver" rel="schema:hasPart" resource="#add-notify-receiver">
+                    <h4 property="schema:name"><span>Issue</span>: Add receiver to vocab and JSON-LD context</h4>
+                    <div datatype="rdf:HTML" property="schema:description">
+                      <p>Issues: <a href="https://github.com/solid/notifications/issues/153" rel="spec:issue">notifications/issues/153</a></p>
+
+                      <pre>#http://www/w3.org/ns/solid/notifications
+notify:receiver
+    a rdf:Property ;
+    rdfs:label "receiver"@en ;
+    rdfs:comment "The property used to identify the party that receives notifications."@en ;
+    rdfs:isDefinedBy &lt;http://www.w3.org/ns/solid/notifications#&gt; ;
+    vs:term_status "testing" .
+
+#https://www.w3.org/ns/solid/notification/v1
+    "receiver": {
+      "@id": "notify:receiver",
+      "@type": "@id" },</pre>
+                    </div>
+                  </div>
+
+                  <figure id="notification-subscription-request" class="example listing" rel="schema:hasPart" resource="#notification-subscription-request">
+                    <p class="example-h"><span>Example</span>: Requesting a subscription to a topic resource.</p>
+
+                    <pre about="#notification-subscription-request" datatype="rdf:JSON" property="schema:description"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1",</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://w3id.org/security/v1"</code>
+<code>  ],</code>
+<code>  "id": "",</code>
+<code>  "type": "LDNChannel2023",</code>
+<code>  "topic": "https://example.org/guinan/photos/",</code>
+<code>  "sendTo": {</code>
+<code>    "id": "https://notification-receiver.example.org/inbox/",</code>
+<code>    "controller": {</code>
+<code>       "id": "https://notification-receiver.example.org/profile#i",</code>
+<code>       "publicKey": {</code>
+<code>         "id": "https://notification-receiver.example.org/profile#key-MIID8zCCAt",</code>
+<code>         "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIID8zCCAt...ysw/GRyQ==\n-----END PUBLIC KEY-----\n"</code>
+<code>       }</code>
+<code>    }</code>
+<code>  }</code>
+<code>  "receiver": "https://notification-receiver.example.org/profile#i",</code>
+<code>  "activityType": "Add",</code>
+<code>  "endAt": "2023-12-31T23:59:59Z",</code>
+<code>  "rate": "PT1M"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">Subscription request including <code>id</code>, <code>type</code>, <code>topic</code>, <code>sendTo</code>, and <code>receiver</code>.</figcaption>
+                  </figure>
+
+                  <p>Notification channel in the <a href="https://solidproject.org/TR/2022/notifications-protocol-20221231#subscription-response">subscription response</a> has the following property:</p>
+
+                  <ul>
+                    <li id="notify-sender">One <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#sender">sender</code> property to identify the party that sends notifications.</li>
+                  </ul>
+
+                  <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
+                    <p class="example-h"><span>Example</span>: Responding to a subscription request.</p>
+
+                    <pre about="#notification-subscription-response" datatype="rdf:JSON" property="schema:description"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1",</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://w3id.org/security/v1"</code>
+<code>  ],</code>
+<code>  "id": "https://ldn.example/subscription/c452ea4f-77dc-4818-af6b-845455881a6b",</code>
+<code>  "type": "LDNChannel2023",</code>
+<code>  "topic": "https://example.org/guinan/photos/",</code>
+<code>  "sender": {</code>
+<code>    "id": "https://notification-sender.example.net/profile#i",</code>
+<code>    "publicKey": {</code>
+<code>      "id": "https://notification-sender.example.net/profile#key-MIIAwIBAgI",</code>
+<code>      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\MIIAwIBAgI...5zQYzPyswx\n-----END PUBLIC KEY-----\n"</code>
+<code>      "controller": "https://notification-sender.example.net/profile#i",</code>
+<code>    }</code>
+<code>  }</code>
+<code>  "sendTo": "https://notification-receiver.example.org/inbox/",</code>
+<code>  "receiver": "https://notification-receiver.example.org/profile#i",</code>
+<code>  "activityType": "Add",</code>
+<code>  "startAt": "2023-01-01T00:00:00Z",</code>
+<code>  "endAt": "2023-12-31T23:59:59Z",</code>
+<code>  "rate": "PT5M"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">Subscription response including <code>id</code>, <code>type</code>, <code>topic</code>, and <code>sender</code>.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section id="notification-message-data-model" inlist="" rel="schema:hasPart" resource="#notification-message-data-model">
+                <h3 property="schema:name">Notification Message</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <figure class="example listing" id="notification-add" rel="schema:hasPart" resource="#notification-add">
+                    <p class="example-h"><span>Example</span>: An add activity</p>
+
+                    <pre about="#notification-add" datatype="rdf:JSON" property="schema:description"><code>{</code>
+<code>  "@context": [</code>
+<code>    "https://www.w3.org/ns/activitystreams",</code>
+<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>  ],</code>
+<code>  "id": "urn:uuid:a4da6738-6be0-11ed-90bd-1be4ba6b6b33",</code>
+<code>  "type": "Add",</code>
+<code>  "object": "https://example.org/guinan/photos/image",</code>
+<code>  "target": "https://example.org/guinan/photos/",</code>
+<code>  "published": "2022-11-24T11:55:31.483Z"</code>
+<code>}</code></pre>
+
+                    <figcaption property="schema:name">An activity indicating that an object (image) was added to the target (photos).</figcaption>
+                  </figure>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="appendix" id="references" inlist="" rel="schema:hasPart" resource="#references">
+            <h2 property="schema:name">References</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <section id="normative-references" inlist="" rel="schema:hasPart" resource="#normative-references">
+                <h3 property="schema:name">Normative References</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <dl class="bibliography" resource="">
+                    <dt id="bib-ldn">[LDN]</dt>
+                    <dd><a href="https://www.w3.org/TR/ldn/" rel="cito:citesAsAuthority" typeof="doap:Specification"><cite>Linked Data Notifications</cite></a>. Sarven Capadisli; Amy Guy.  W3C. 2 May 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a></dd>
+                    <dt id="bib-rfc2119">[RFC2119]</dt>
+                    <dd><a href="https://datatracker.ietf.org/doc/html/rfc2119" rel="cito:citesAsAuthority"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a></dd>
+                    <dt id="bib-rfc8174">[RFC8274]</dt>
+                    <dd><a href="https://datatracker.ietf.org/doc/html/rfc8174" rel="cito:citesAsAuthority"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a></dd>
+                    <dt id="bib-solid-notifications-protocol">[SOLID-NOTIFICATIONS-PROTOCOL]</dt>
+                    <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="cito:citesAsAuthority" typeof="doap:Specification"><cite>Solid Notifications Protocol</cite></a>. Sarven Capadisli. W3C Solid Community Group. Version 0.2.0. URL: <a href="https://solidproject.org/TR/notifications-protocol">https://solidproject.org/TR/notifications-protocol</a></dd>
+                  </dl>
+                </div>
+              </section>
+
+              <section id="informative-references" inlist="" rel="schema:hasPart" resource="#informative-references">
+                <h3 property="schema:name">Informative References</h3>
+                <div datatype="rdf:HTML" property="schema:description">
+                  <dl class="bibliography" resource="">
+                    <dt id="bib-solid-protocol">[SOLID-PROTOCOL]</dt>
+                    <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo.  W3C Solid Community Group. Version 0.10.0. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
+                  </dl>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to top">↑</abbr></a></p>
+
+    <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+  </body>
+</html>
