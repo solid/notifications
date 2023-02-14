@@ -195,7 +195,7 @@ content: "";
           <dl id="document-in-reply-to">
             <dt>In Reply To</dt>
             <dd><a href="https://solidproject.org/origin" rel="as:inReplyTo">Solid Origin</a></dd>
-            <dd><a href="https://solid.github.io/notifications/protocol" rel="as:inReplyTo">Solid Notifications Protocol</a></dd>
+            <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="as:inReplyTo">Solid Notifications Protocol</a></dd>
             <dd><a href="https://github.com/solid/process/blob/main/notifications-panel-charter.md" rel="as:inReplyTo">Notifications Panel Charter</a></dd>
           </dl>
 
@@ -254,8 +254,8 @@ content: "";
           <section id="abstract">
             <h2>Abstract</h2>
             <div datatype="rdf:HTML" property="schema:abstract">
-              <p>The <cite><a href="https://solid.github.io/notifications/protocol">Solid Notifications Protocol</a></cite> defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.</p>
-              <p>This specification defines a subscription type that applies these patterns to the WebSocket Web API.</p>
+              <p>The <cite><a href="https://solidproject.org/TR/notifications-protocol">Solid Notifications Protocol</a></cite> defines a set of interaction patterns for agents to establish subscriptions to resources.</p>
+              <p>This specification defines a subscription type that applies these patterns to the <a href="https://websockets.spec.whatwg.org/">WebSocket</a> Web API.</p>
             </div>
           </section>
 
@@ -316,7 +316,7 @@ content: "";
             <div datatype="rdf:HTML" property="schema:description">
               <p><em>This section is non-normative.</em></p>
 
-              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">The <cite><a href="https://solid.github.io/notifications/protocol">Solid Notifications Protocol</a></cite> describes a general pattern by which agents can be notified when a Solid Resource changes. In the context of a Web Browser, the WebSocket API provides a convenient mechanism for a Solid Storage to alert a subscribing client of these changes.</span></p>
+              <p id="motivation" rel="schema:hasPart" resource="#motivation" typeof="deo:Motivation"><span datatype="rdf:HTML" property="schema:description">The <cite><a href="https://solidproject.org/TR/notifications-protocol">Solid Notifications Protocol</a></cite> describes a general pattern by which agents can be notified when a Solid Resource changes. In the context of a Web Browser, the WebSocket API provides a convenient mechanism for a Solid Storage to alert a subscribing client of these changes.</span></p>
 
               <p>This document describes a Solid Notifications subscription type that makes use of the WebSocket Web API.</p>
 
@@ -333,7 +333,7 @@ content: "";
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>This document uses terminology from the <cite><a href="https://solid.github.io/notifications/protocol">Solid Notification Protocol</a></cite>, including <q cite="https://solid.github.io/notifications/protocol#notification-subscription-api">subscription API</q>, <q cite="https://solid.github.io/notifications/protocol#notification-gateway-api">gateway API</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q>, <q>access token</q>, and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q cite="https://www.w3.org/TR/websub/#dfn-topic">topic</q>.</p>
+                  <p>This document uses terminology from the <cite><a href="https://solidproject.org/TR/notifications-protocol">Solid Notification Protocol</a></cite>, including <q cite="https://solidproject.org/TR/notifications-protocol#notification-subscription-api">subscription API</q>, <q cite="https://solidproject.org/TR/notifications-protocol#notification-gateway-api">gateway API</q>. This document also uses terms from <cite><a href="https://datatracker.ietf.org/doc/html/rfc6749">The OAuth 2.0 Authorization Framework</a></cite> specification, including <q>resource server</q>, <q>authorization server</q>, <q>access token</q>, and <q>client</q>, as well as terms from the <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> specification, including <q cite="https://www.w3.org/TR/websub/#dfn-topic">topic</q>.</p>
                 </div>
               </section>
 
@@ -366,14 +366,12 @@ content: "";
           <section id="subscription-type" inlist="" rel="schema:hasPart" resource="#subscription-type">
             <h2 property="schema:name">WebSocketChannel2023 Type</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>This specification defines the <code>WebSocketChannel2023</code> type for use with Solid Notifications subscriptions that use the WebSocket Web API. The URI of the subscription type is <code>http://www.w3.org/ns/solid/notification#WebSocketChannel2023</code>.</p>
-              <p>An <code>WebSocketChannel2023</code> API MUST conform to the <cite><a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications Protocol</a></cite>. [<cite><a class="bibref" href="#bib-solid-notifications">SOLID-NOTIFICATIONS</a></cite>]</p>
+              <p>This specification defines the <code>WebSocketChannel2023</code> type for use with Solid Notifications Protocol's subscriptions that use the WebSocket Web API. The URI of the subscription type is <code>http://www.w3.org/ns/solid/notification#WebSocketChannel2023</code>.</p>
+              <p>An <code>WebSocketChannel2023</code> API MUST conform to the <cite><a href="https://solidproject.org/TR/notifications-protocol#discovery">Solid Notifications Protocol</a></cite>. [<cite><a class="bibref" href="#bib-solid-notifications">SOLID-NOTIFICATIONS</a></cite>]</p>
 
-              <p>An <code>WebSocketChannel2023</code> API SHOULD support the <cite><a href="https://solid.github.io/notifications/protocol#notification-features">Solid Notifications Features</a></cite>.</p>
+              <p>A client establishes a subscription using the <code>WebSocketChannel2023</code> type by sending an authorized subscription request to the subscription resource based on <cite><a href="https://solidproject.org/TR/notifications-protocol#discovery">Solid Notifications Protocol discovery</a></cite>.</p>
 
-              <p>A client establishes a subscription using the <code>WebSocketChannel2023</code> type by sending an authorized subscription request to the hypermedia API retrieved via <cite><a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications discovery</a></cite>.</p>
-
-              <p>For <code>WebSocketChannel2023</code> interactions, the client sends a JSON-LD payload to the appropriate hypermedia API via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the type of subscription being requested.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
+              <p>For <code>WebSocketChannel2023</code> interactions, the client sends a JSON-LD payload to the appropriate subscription resource via <code>POST</code>. The only required fields in this interaction are <code>type</code> and <code>topic</code>. <span about="" id="client-subcription-type" rel="spec:requirement" resource="#client-subscription-type"><span property="spec:statement">The <code>type</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the <code>WebSocketChannel2023</code> type.</span></span> <span about="" id="client-subscription-feature" rel="spec:requirement" resource="#client-subscription-feature"><span property="spec:statement">The <code>topic</code> field <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> contain the URL of the resource a client wishes to subscribe to changes.</span></span></p>
 
               <section id="websocket-subscription" inlist="" rel="schema:hasPart" resource="#websocket-subscription">
                 <h3 property="schema:name">Subscription Example</h3>
@@ -383,7 +381,7 @@ content: "";
                   <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
 
                   <figure id="notification-subscription-request" class="example listing" rel="schema:hasPart" resource="#notification-subscription-request">
-                    <p class="example-h"><span>Example</span>: Requesting an WebSocket subscription URL from the Notification Subscription.</p>
+                    <p class="example-h"><span>Example</span>: Requesting an WebSocket subscription URL from the subscription resource.</p>
 
                     <pre about="#notification-subscription-request" property="schema:description" typeof="fabio:Script"><code>POST /subscription</code>
 <code>Authorization: DPoP &lt;token&gt;</code>
@@ -399,13 +397,13 @@ content: "";
 <code>  "rate": "PT10s"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>topic</code> targeting the Notification Subscription API.</figcaption>
+                    <figcaption property="schema:name"><code>POST</code> request including <code>type</code> and <code>topic</code> targeting the subscription resource.</figcaption>
                   </figure>
 
-                  <p>A successful response will contain a URL to the subscription API that can be used directly with a JavaScript client.</p>
+                  <p>A successful response will contain a URL to the subscription API (<code>receiveFrom</code>) that can be used directly with a JavaScript client.</p>
 
                   <figure id="notification-subscription-response" class="example listing" rel="schema:hasPart" resource="#notification-subscription-response">
-                    <p class="example-h"><span>Example</span>: Response from the Notification Subscription including the WebSocket subscription URL.</p>
+                    <p class="example-h"><span>Example</span>: Response from the subscription resource including the WebSocket subscription URL.</p>
 
                     <pre about="#notification-subscription-response" property="schema:description" typeof="fabio:Script"><code>HTTP/2</code>
 <code>Content-Type: application/ld+json</code>
@@ -425,7 +423,7 @@ content: "";
                   <figure id="websocket-new" class="example listing" rel="schema:hasPart" resource="#websocket-new">
                     <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection.</p>
 
-                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket(receiveFrom, type);</code></pre>
+                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket("wss://websocket.example/?auth=Ys3KiUq", "http://www.w3.org/ns/solid/notifications#WebSocketChannel2023");</code></pre>
 
                     <figcaption property="schema:name">JavaScript code to establish a <code>new WebSocket</code> connection</figcaption>
                   </figure>
@@ -448,9 +446,8 @@ content: "";
           <section id="authentication-authorization" inlist="" rel="schema:hasPart" resource="#authentication-authorization">
             <h2 property="schema:name">Authentication and Authorization</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>As described by the Solid Notifications Protocol section on <cite><a href="https://solid.github.io/notifications/protocol#authentication-authorization" rel="cito:discusses">Authorization</a></cite>, the WebSocket subscription API requires authorization and follows the guidance of the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
+              <p>As described by the Solid Notifications Protocol section on <cite><a href="https://solidproject.org/TR/notifications-protocol#authentication-authorization" rel="cito:discusses">Authorization</a></cite>, the WebSocket subscription API requires authorization and follows the guidance of the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
 
-              <p>It is beyond the scope of this document to describe how a client fetches an access token. <cite><a href="https://solid.github.io/solid-oidc/" rel="cito:discusses">Solid-OIDC</a></cite> is one example of an authentication mechanism that could be used with Solid Notifications [<cite><a class="bibref" href="#bib-solid-oidc">SOLID-OIDC</a></cite>].</p>
             </div>
           </section>
 
@@ -468,9 +465,9 @@ content: "";
                     <dt id="bib-solid-notifications">[SOLID-NOTIFICATIONS]</dt>
                     <dd><a href="https://solidproject.org/TR/notifications-protocol" rel="cito:citesAsAuthority"><cite>Solid Notifications</cite></a>. Aaron Coburn; Sarven Capadisli. W3C Solid Community Group. Version 0.1.0. URL: <a href="https://solidproject.org/TR/notifications-protocol">https://solidproject.org/TR/notifications-protocol</a></dd>
                     <dt id="bib-solid-oidc">[SOLID-OIDC]</dt>
-                    <dd><a href="https://solid.github.io/solid-oidc/" rel="cito:citesAsAuthority"><cite>SOLID-OIDC</cite></a>. Aaron Coburn; elf Pavlik; Dmitri Zagidulin.  W3C Solid Community Group. W3C Editor's Draft. URL: <a href="https://solid.github.io/solid-oidc/">https://solid.github.io/solid-oidc/</a></dd>
+                    <dd><a href="https://solidproject.org/TR/oidc" rel="cito:citesAsAuthority"><cite>SOLID-OIDC</cite></a>. Aaron Coburn; elf Pavlik; Dmitri Zagidulin.  W3C Solid Community Group. Version 0.1.0. URL: <a href="https://solidproject.org/TR/oidc">https://solidproject.org/TR/oidc</a></dd>
                     <dt id="bib-solid-protocol">[SOLID-PROTOCOL]</dt>
-                    <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo.  W3C Solid Community Group. W3C Editor’s Draft. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
+                    <dd><a href="https://solidproject.org/TR/protocol" rel="cito:citesAsAuthority"><cite>Solid Protocol</cite></a>. Sarven Capadisli; Tim Berners-Lee; Ruben Verborgh; Kjetil Kjernsmo.  W3C Solid Community Group. Version 0.9.0. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a></dd>
                   </dl>
                 </div>
               </section>

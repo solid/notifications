@@ -1,6 +1,7 @@
 sequenceDiagram
   autonumber
   participant Subscription Client
+  participant Notification Sender
   participant Description Resource
   participant Subscription Server
   participant Notification Sender
@@ -9,5 +10,5 @@ sequenceDiagram
   Description Resource ->> Subscription Client: Discovery response
   Subscription Client ->> Subscription Server: Request WebSocketsChannel2023 (with authentication)
   Subscription Server ->> Subscription Client: Subscription response (with wss: notifications source)
-  Subscription Client ->> Notification Sender: Establish WebSockets connection
-  Notification Sender -->> Subscription Client: Stream notifications
+  Notification Receiver ->> Notification Sender: Establish WebSockets connection
+  Notification Sender -->> Notification Receiver: Stream notifications
