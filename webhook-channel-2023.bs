@@ -1,0 +1,197 @@
+<pre class='metadata'>
+Title: Solid WebhookChannel2023
+Boilerplate: issues-index no
+Local Boilerplate: logo yes
+Shortname: solid-webhook-channel-2023
+Level: 1
+Status: w3c/ED
+Group: Solid Community Group
+Favicon: https://solidproject.org/TR/solid.svg
+ED: https://solid.github.io/notifications/webhook-channel-2023
+Repository: https://github.com/solid/notifications
+Inline Github Issues: title
+Markup Shorthands: markdown yes
+Max ToC Depth: 2
+Editor: Jackson Morgan
+Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
+Abstract:
+  The [[!Solid.Notifications.Protocol]] defines a set of interaction patterns for agents to receive notification
+  about changes to resources in a Solid Storage.
+
+  This specification defines a channel type that applies these patterns to the Webhooks.
+Status Text:
+  **Version: 0.1**
+  
+  This section describes the status of this document at the time of its publication.
+
+  This document was published by the [Solid Community Group](https://www.w3.org/community/solid/) as
+  an Editor’s Draft. The sections that have been incorporated have been reviewed following the
+  [Solid process](https://github.com/solid/process). However, the information in this document is
+  still subject to change. You are invited to [contribute](https://github.com/solid/solid-oidc/issues)
+  any feedback, comments, or questions you might have.
+
+  Publication as an Editor’s Draft does not imply endorsement by the W3C Membership. This is a draft
+  document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
+  to cite this document as other than work in progress.
+
+  This document was produced by a group operating under the [W3C Community Contributor License Agreement
+  (CLA)](https://www.w3.org/community/about/process/cla/). A human-readable
+  [summary](https://www.w3.org/community/about/process/cla-deed/) is available.
+</pre>
+
+# Introduction # {#introduction}
+
+*This section is non-normative.*
+
+The [[!Solid.Notifications.Protocol]] describes a general pattern by which agents can be notified when a Solid Resource changes.
+This specification defines a subscription type that applies these patterns to WebHooks.
+
+## Specification Goals ## {#goals}
+
+In addition to the goals set forth by the [[!Solid.Notifications.Protocol]] , this specification has goals
+required by the WebHooks use case:
+
+ 1. **Verifiable requests to a notification receiver** - a notification receiver must be able to confirm
+    if a request truly came from a specific notification sender.
+ 2. **Unsubscribing from a WebHook** - Unlike websockets, where sockets can simply be closed by the client,
+    if a notifications receiver wants to unsubscribe from a webhook, it must alert the subscription server.
+
+Issue(155):
+
+Issue(145):
+
+## Terminology ## {#terminology}
+
+**This section is non-normative.**
+
+This specification uses the terms from the [[!Solid.Notifications.Protocol]] specification.
+
+# WebhookChannel2023 Type # {#channel-type}
+
+This specification defines the WebhookChannel2023 type for use with Solid Notifications channels that use the Webhooks.
+
+An WebhookChannel2023 MUST conform to the [Solid Notifications Protocol](https://solid.github.io/notifications/protocol#discovery).
+
+An WebhookChannel2023 SHOULD support the [Solid Notifications Features](https://solid.github.io/notifications/protocol#notification-features).
+
+The WebhookChannel2023 type further constrains following properties properties:
+
+: `sendTo`
+:: The `sendTo` property
+    is used in the body of the subscription request.
+    The value of the `sendTo` property MUST be a URI, using the `https` scheme.
+
+A client establishes a subscription using the WebhookChannel2023 type by sending an authenticated
+subscription request to the Subscription Resource retrieved via Solid Notifications discovery.
+
+For WebhookChannel2023 interactions, the subscription client sends a subscription request to an appropriate
+Subscription Resource. The only required fields in the payload are `type`, `topic`, and `sendTo`.
+* The `type` field MUST contain the type of channel being requested: `WebhookChannel2023`.
+* The `topic` field MUST contain the URL of the resource to which changes a client wishes to subscribe.
+* The `sendTo` field MUST contain the `https` URL of the webhook endpoint, where the notification sender
+    is expected to send notifications.
+
+For `WebhookChannel2023` interactions, the subscription server responds with a subscription response.
+The only required fields in the payload are `id`, `type`, `topic`, `sender`
+* The `id` field MUST be a URI, which identifies the created notification channel.
+* The `type` field MUST contain the type of channel created: `WebhookChannel2023`.
+* The `topic` field MUST contain the URL of the resource which notifications will be about.
+* The `sender` field MUST contain a URI which identifies the notifications sender.
+
+Issue(134):
+
+## Subscription Example ## {#example}
+
+*This section is non-normative.*
+
+An example `POST` request, including the webhook endpoint, using a `DPoP` bound access token is below:
+
+```http
+POST /subscription
+Host: channels.example
+Authorization: DPoP <token>
+DPoP: <proof>
+Content-Type: application/ld+json
+```
+```jsonld
+{
+  "@context": ["https://www.w3.org/ns/solid/notification/v1"],
+  "type": "WebhookChannel2023",
+  "topic": "https://storage.example/resource",
+  "sendTo": "https://webhook.example/871b84e7",
+  "state": "opaque-state",
+  "expiration": "2023-12-23T12:37:15Z",
+  "rate": "PT10s"
+}
+```
+> `POST` request including `type`, `topic`, and `sendTo` targeting the Notification Subscription Resource.
+
+A successful response will contain a URL identifying the notification sender:
+
+```http
+Content-Type: application/ld+json
+```
+```jsonld
+{
+  "@context": "https://www.w3.org/ns/solid/notification/v1",
+  "id": "https://channels.example/ea1fcf13-7482-4bbb-a6c1-c168ddd7b0aa"
+  "type": "WebhookChannel2023",
+  "sender": "https://sender.example/#it",
+  "expiration": "2023-12-23T12:37:15Z",
+  "rate": "PT10s"
+}
+```
+> Response to the `POST` request, including `channel id`, `type`, and `sender identity`.
+
+# Authentication and Authorization # {#auth}
+
+* Subscription client MUST perform authenticated subscription request.
+* Notification Sender MUST perform authenticated request to *sendTo* webhook endpoint,
+    using identity provided as *sender* in the subscription response.
+
+As described by the Solid Notifications Protocol section on Authorization,
+the WebhookChannel2023 requires authorization and follows the guidance of the Solid Protocol
+sections on Authentication and Authorization [[!Solid.Protocol]].
+
+It is beyond the scope of this document to describe how a client fetches an access token.
+Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications [[!Solid.OIDC]].
+
+<pre class=biblio>
+{
+    "Solid.Protocol": {
+        "authors": [
+            "Sarven Capadisli",
+            "Tim Berners-Lee",
+            "Ruben Verborgh",
+            "Kjetil Kjernsmo"
+        ],
+        "href": "https://solidproject.org/TR/protocol",
+        "title": "Solid Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.Notifications.Protocol": {
+        "editors": [
+            "Sarven Capadisli"
+        ],                
+        "authors": [
+            "Aaron Coburn",
+            "Sarven Capadisli",
+            "elf Pavlik",
+            "Rahul Gupta"
+        ],
+        "href": "https://solid.github.io/notifications/protocol",
+        "title": "Solid Notifications Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.OIDC": {
+        "authors": [
+            "Aaron Coburn",
+            "elf Pavlik",
+            "Dmitri Zagidulin"
+        ],
+        "href": "https://solid.github.io/solid-oidc",
+        "title": "Solid-OIDC",
+        "publisher": "W3C Solid Community Group"
+    }
+}
+</pre>
