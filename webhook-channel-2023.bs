@@ -76,27 +76,27 @@ An WebhookChannel2023 SHOULD support the [Solid Notifications Features](https://
 
 The WebhookChannel2023 type further constrains following properties properties:
 
-: sendTo
-:: The *sendTo* property
+: `sendTo`
+:: The *`sendTo`* property
     is used in the body of the subscription request.
-    The value of *sendTo* property MUST be a URI, using the `https` scheme.
+    The value of the *`sendTo`* property MUST be a URI, using the `https` scheme.
 
 A client establishes a subscription using the WebhookChannel2023 type by sending an authenticated
 subscription request to the Subscription Resource retrieved via Solid Notifications discovery.
 
-For WebhookChannel2023 interactions, the subscription client sends a subscription request to an apropriate
-Subscription Resource. The only required fields in the payload are *type*, *topic* and *sendTo*.
-* The **type** field MUST contain the type of channel being requested: `WebhookChannel2023`
-* The **topic** field MUST contain the URL of the resource a client wishes to subscribe to changes.
-* The **sendTo** field MUST contain the `https` URL of the webhook endpoint, where the notification sender
+For WebhookChannel2023 interactions, the subscription client sends a subscription request to an appropriate
+Subscription Resource. The only required fields in the payload are *`type`*, *`topic`*, and *`sendTo`*.
+* The **`type`** field MUST contain the type of channel being requested: `WebhookChannel2023`.
+* The **`topic`** field MUST contain the URL of the resource to which changes a client wishes to subscribe.
+* The **`sendTo`** field MUST contain the `https` URL of the webhook endpoint, where the notification sender
     is expected to send notifications.
 
-For WebhookChannel2023 interactions, the subscription server responds with a subscription response.
-The only required fields in the payload are *id*, *type*, *topic*, *sender*
-* The **id** field MUST be a URI, which identifies created notification channel.
-* The **type** field MUST contain the type of channel created: `WebhookChannel2023` Web
-* The **topic** field MUST contain the URL of the resource which notifications will be about.
-* The **sender** field MUST contain URI, which identifies the notifications sender
+For `WebhookChannel2023` interactions, the subscription server responds with a subscription response.
+The only required fields in the payload are *`id`*, *`type`*, *`topic`*, *`sender`*
+* The **`id`** field MUST be a URI, which identifies the created notification channel.
+* The **`type`** field MUST contain the type of channel created: `WebhookChannel2023`.
+* The **`topic`** field MUST contain the URL of the resource which notifications will be about.
+* The **`sender`** field MUST contain a URI which identifies the notifications sender.
 
 Issue(134):
 
@@ -124,7 +124,7 @@ Content-Type: application/ld+json
   "rate": "PT10s"
 }
 ```
-> POST request including type, topic and sendTo targeting the Notification Subscription Resource.
+> `POST` request including `type`, `topic`, and `sendTo` targeting the Notification Subscription Resource.
 
 A successful response will contain a URL identifying the notification sender:
 
@@ -141,7 +141,7 @@ Content-Type: application/ld+json
   "rate": "PT10s"
 }
 ```
-> Response to the POST request, including channel id, type and the sender identity.
+> Response to the `POST` request, including `channel id`, `type`, and `sender identity`.
 
 # Authentication and Authorization # {#auth}
 
