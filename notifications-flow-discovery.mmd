@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant Discovery Client
+  participant Resource Server
+
+  Discovery Client ->> Resource Server: HEAD Resource (topic)
+  Resource Server ->> Discovery Client: HTTP Link rel="describedby"
+  Discovery Client ->> Resource Server: GET Description Resource
+  Resource Server ->> Discovery Client: Description Resource
