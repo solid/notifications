@@ -2,5 +2,5 @@
 
 **This section is non-normative.**
 
-This specification uses the terms from the [[!Solid.Notifications.Protocol]] specification.
+This specification uses terms from the [[!Solid.Notifications.Protocol]] specification.
 When Solid Notifications Protocol terminology is used it is linked directly to that specification.
