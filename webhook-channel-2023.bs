@@ -60,11 +60,9 @@ Issue(155):
 
 Issue(145):
 
-## Terminology ## {#terminology}
-
-**This section is non-normative.**
-
-This specification uses the terms from the [[!Solid.Notifications.Protocol]] specification.
+<pre class=include>
+path: partials/terminology.bs
+</pre>
 
 # WebhookChannel2023 Type # {#channel-type}
 
@@ -155,43 +153,3 @@ sections on Authentication and Authorization [[!Solid.Protocol]].
 
 It is beyond the scope of this document to describe how a client fetches an access token.
 Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications [[!Solid.OIDC]].
-
-<pre class=biblio>
-{
-    "Solid.Protocol": {
-        "authors": [
-            "Sarven Capadisli",
-            "Tim Berners-Lee",
-            "Ruben Verborgh",
-            "Kjetil Kjernsmo"
-        ],
-        "href": "https://solidproject.org/TR/protocol",
-        "title": "Solid Protocol",
-        "publisher": "W3C Solid Community Group"
-    },
-    "Solid.Notifications.Protocol": {
-        "editors": [
-            "Sarven Capadisli"
-        ],                
-        "authors": [
-            "Aaron Coburn",
-            "Sarven Capadisli",
-            "elf Pavlik",
-            "Rahul Gupta"
-        ],
-        "href": "https://solid.github.io/notifications/protocol",
-        "title": "Solid Notifications Protocol",
-        "publisher": "W3C Solid Community Group"
-    },
-    "Solid.OIDC": {
-        "authors": [
-            "Aaron Coburn",
-            "elf Pavlik",
-            "Dmitri Zagidulin"
-        ],
-        "href": "https://solid.github.io/solid-oidc",
-        "title": "Solid-OIDC",
-        "publisher": "W3C Solid Community Group"
-    }
-}
-</pre>
