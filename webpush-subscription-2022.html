@@ -6,10 +6,10 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version fd948879c, updated Thu Feb 16 10:17:42 2023 -0800" name="generator">
+  <meta content="Bikeshed version 79b02508e, updated Tue Feb 28 10:48:19 2023 -0800" name="generator">
   <link href="https://solid.github.io/notifications/webpush-subscription-2022" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="2654140a07f7a14492ea538feeae8d3c14a0b0b0" name="document-revision">
+  <meta content="5a46828c3e8c8cb4ca750d5418b10848964a2deb" name="document-revision">
 <style>/* style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -538,7 +538,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid WebPushSubscription2022</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-02-16">16 February 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-02">2 March 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -649,7 +649,7 @@ In addition, the document uses terms from the <a data-link-type="biblio" href="#
      <p>The <code>subscription service</code> is identified by a URI. Dereferencing this URI yields the <code>subscription service</code>'s representation, a discription of the service. By this representation, information may be provided such as Notification Subscription APIs where subscriptions can be submitted for the service to process.</p>
    </dl>
    <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/notifications/issues/63" style="text-transform:none">solid/notifications/63</a><a href="https://github.com/solid/notifications/issues/63">Rename `subscription resource`</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription resource as a container</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription service as a container</a></div>
    <dl>
     <dt data-md>browser messaging service
     <dd data-md>
@@ -717,7 +717,7 @@ by sending an authenticated subscription request to the <code>subscriptions serv
 The client sends a <code>HTTP POST</code> request with a request body to the appropriate <code>subscription resource</code>'s Notification Subscription API.
 Required information in the request are <code>type</code>, <code>topic</code>, <code>endpoint</code>, <code>keys</code> with <code>auth</code> and <code>p256dh</code>.</p>
    <p>If the subscription has been created successfully, the server responds to a client’s subscription request with HTTP status code <code>201 Created</code></p>
-   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription resource as a container</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription service as a container</a></div>
    <h3 class="heading settled" data-level="2.1" id="example"><span class="secno">2.1. </span><span class="content">Subscription Example</span><a class="self-link" href="#example"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>

@@ -1,0 +1,37 @@
+{
+    "Solid.Protocol": {
+        "authors": [
+            "Sarven Capadisli",
+            "Tim Berners-Lee",
+            "Ruben Verborgh",
+            "Kjetil Kjernsmo"
+        ],
+        "href": "https://solidproject.org/TR/protocol",
+        "title": "Solid Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.Notifications.Protocol": {
+        "editors": [
+            "Sarven Capadisli"
+        ],                
+        "authors": [
+            "Aaron Coburn",
+            "Sarven Capadisli",
+            "elf Pavlik",
+            "Rahul Gupta"
+        ],
+        "href": "https://solidproject.org/TR/notifications-protocol",
+        "title": "Solid Notifications Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "Solid.OIDC": {
+        "authors": [
+            "Aaron Coburn",
+            "elf Pavlik",
+            "Dmitri Zagidulin"
+        ],
+        "href": "https://solidproject.org/TR/oidc",
+        "title": "Solid-OIDC",
+        "publisher": "W3C Solid Community Group"
+    }
+}
