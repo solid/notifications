@@ -470,9 +470,7 @@ content: "";
                     <div datatype="rdf:HTML" property="schema:description">
                       <p property="skos:definition">The <span about="" rel="spec:classesOfProducts" resource="#classes-of-products">Solid Notifications Protocol</span> identifies the following <cite><a href="https://www.w3.org/TR/qaframe-spec/#cop-def" rel="dcterms:subject" resource="spec:ClassesOfProducts">Classes of Products</a></cite> for conforming implementations. These products are referenced throughout this specification.</p>
 
-                      <span rel="skos:hasTopConcept"><span resource="#SubscriptionClient"></span><span resource="#SubscriptionServer"></span><span resource="#NotificationSender"></span><span resource="#NotificationReceiver"></span><span resource="#ResourceServer"></span></span>
-
-                      <dl>
+                      <dl rel="skos:hasTopConcept">
                         <dt about="#ResourceServer" property="skos:prefLabel" rel="skos:broadMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="ResourceServer">Resource Server</dfn></dt>
                         <dd about="#ResourceServer" property="skos:definition">A <em>resource server</em> builds on an HTTP <cite>server</cite> [<cite><a class="bibref" href="#bib-rfc7230">RFC7230</a></cite>] and [<cite><a class="bibref" href="#bib-rfc7231">RFC7231</a></cite>] by defining media types, HTTP header fields, and the behaviour of resources, as identified by link relations.</dd>
                         <dt about="#DiscoveryClient" property="skos:prefLabel" rel="skos:broadMatch" resource="spec:Consumer" typeof="skos:Concept"><dfn id="DiscoveryClient">Discovery Client</dfn></dt>
