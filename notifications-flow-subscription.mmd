@@ -1,0 +1,6 @@
+sequenceDiagram
+  participant Subscription Client
+  participant Subscription Server
+
+  Subscription Client ->> Subscription Server: Subscription Request
+  Subscription Server ->> Subscription Client: Subscription Response (with Notification Channel)
