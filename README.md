@@ -2,7 +2,7 @@
 
 This repository hosts the technical reports for Solid Notifications.
 
-These reports are incubated by the [Solid Notifications Panel](https://github.com/solid/notifications-panel) for inclusion in the [Solid Technical Reports](https://solidproject.org/TR/) as part of the [W3C Solid Community Group](https://www.w3.org/community/solid/) (CG). The reports are within the scope of the [Notifications Panel Charter](https://github.com/solid/process/blob/main/notifications-panel-charter.md).
+These reports are incubated by the [Solid Notifications Panel](https://github.com/solid/notifications-panel) for inclusion in the [Solid Technical Reports](https://solidproject.org/TR/) as part of the [W3C Solid Community Group](https://www.w3.org/groups/cg/solid) (CG). The reports are within the scope of the [Notifications Panel Charter](https://github.com/solid/process/blob/main/notifications-panel-charter.md).
 
 ## Technical Reports
 
@@ -12,12 +12,12 @@ These reports are incubated by the [Solid Notifications Panel](https://github.co
 * Editors Draft:
   * [Solid Notifications Protocol](https://solid.github.io/notifications/protocol)
 
-### Subscription Types
+### Notificatoin Channel Types
 
-The Solid Notification Protocol makes it possible to define [subscription types](https://solid.github.io/notifications/protocol#subscription-types). An index of subscription types published by the CG is available at [Notification Subscription Types](https://solidproject.org/TR/notification-subscription-types).
+The Solid Notification Protocol makes it possible to define [notification channel types](https://solid.github.io/notifications/protocol#notification-channel-types). In order to help with the discovery of notification channel types that can be used with the Solid Notifications Protocol, it is encouraged to register them for maximum global interoperability at [Solid Technical Reports](https://solidproject.org/TR/#notification-channel-type-registry).
 
-The subscription types listed below are intended to be useful to application developers looking for existing
-subscription types as well as to authors of new subscription types.
+The notification channel types listed below are intended to be useful to application developers looking for existing
+channel types as well as to authors of new channel types.
 
 * Editors Drafts:
   * [EventSourceChannel2023](https://solid.github.io/notifications/eventsource-channel-2023)
@@ -34,9 +34,7 @@ subscription types as well as to authors of new subscription types.
   * [WebHookSubscription2021](https://github.com/solid/notifications/blob/main/webhook-subscription-2021.md)
   * [WebPushSubscription2022](https://solid.github.io/notifications/webpush-subscription-2022)
 
-To add a new subscription type to the list, please create a PR including the name and the URL of the document describing the subscription type.
-
-
+To add a new notification channel type to the list above, please create a PR including the name and the URL of the document describing the channel type.
 
 
 
