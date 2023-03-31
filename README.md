@@ -21,9 +21,10 @@ subscription types as well as to authors of new subscription types.
 
 * Editors Drafts:
   * [EventSourceChannel2023](https://solid.github.io/notifications/eventsource-channel-2023)
-  * [WebSocketChannel2023](https://solid.github.io/notifications/websocket-channel-2023)
-  * [StreamingHTTPChannel2023](https://solid.github.io/notifications/streaming-http-channel-2023)
   * [LDNChannel2023](https://solid.github.io/notifications/ldn-channel-2023)
+  * [StreamingHTTPChannel2023](https://solid.github.io/notifications/streaming-http-channel-2023)
+  * [WebhookChannel2023][https://solid.github.io/notifications/webhook-channel-2023]
+  * [WebSocketChannel2023](https://solid.github.io/notifications/websocket-channel-2023)
 
 * Deprecated Editors Drafts:
   * [WebSocketSubscription2021](https://solid.github.io/notifications/websocket-subscription-2021)
