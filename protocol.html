@@ -515,7 +515,7 @@ content: "";
               <p>A Resource Server may provide notifications over a notification channel that might be of one of many <a href="#notification-channel-types">notification channel types</a> that build upon existing web protocols.
               Individual <a href="#notification-channel-types">notification channel types</a> may augment the discovery and subscription requirements of the notification protocol.</p>
 
-              <p id="json-ld-format">This specification uses JSON-LD [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>] as the preferred data format, and <code>https://www.w3.org/ns/solid/notification/v1</code> as a URI for the JSON-LD context and as a value of the <code>profile</code> parameter used for content negotiation.</p>
+              <p id="json-ld-format">This specification uses JSON-LD [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>] as the preferred data format, and <code>https://www.w3.org/ns/solid/notifications-context/v1</code> as a URI for the JSON-LD context and as a value of the <code>profile</code> parameter used for content negotiation.</p>
 
               <p id="authentication-authorization">This specification does not require a specific authentication and authorization mechanism to be used with the Solid Notification Protocol. Implementations are encouraged to use existing approaches, such as those described in the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
 
@@ -701,7 +701,7 @@ content: "";
 
                     <pre about="#description-resource-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
 <code>  "id": "https://example.org/guinan/profile",</code>
 <code>  "subscription": [{</code>
@@ -739,7 +739,7 @@ content: "";
 
                     <pre about="#subscription-service-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
 <code>  "id": "https://websocket.example/subscription",</code>
 <code>  "channelType": "WebSocketChannel2023",</code>
@@ -786,7 +786,7 @@ content: "";
 
                     <pre about="#notification-channel-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
 <code>  "id": "https://channel.example/ac748712",</code>
 <code>  "type": "WebSocketChannel2023",</code>
@@ -825,7 +825,7 @@ content: "";
                     <pre about="#notification-update" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
 <code>  "id": "urn:uuid:fc8b5af4-bd7e-4fd1-a649-afcbd0e1c083",</code>
 <code>  "type": "Update",</code>
@@ -843,7 +843,7 @@ content: "";
                     <pre about="#notification-add" datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
-<code>    "https://www.w3.org/ns/solid/notification/v1"</code>
+<code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
 <code>  "id": "urn:uuid:a4da6738-6be0-11ed-90bd-1be4ba6b6b33",</code>
 <code>  "type": "Add",</code>
