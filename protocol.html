@@ -74,26 +74,26 @@ font-size: 220%;
 font-weight:bold;
 }
 
-article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]):not([id=exit-criteria]) {
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=changelog]):not([id=exit-criteria]) {
 counter-increment:section;
 counter-reset:sub-section;
 }
-article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]) section:not([id$=references]):not([id=exit-criteria]) {
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=changelog]) section:not([id$=references]):not([id=exit-criteria]) {
 counter-increment:sub-section;
 counter-reset:sub-sub-section;
 }
-article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]) section:not([id$=references]):not([id=exit-criteria]) section {
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=changelog]) section:not([id$=references]):not([id=exit-criteria]) section {
 counter-increment:sub-sub-section;
 counter-reset:sub-sub-sub-section;
 }
-article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]) section:not([id$=references]):not([id=exit-criteria]) section section {
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=changelog]) section:not([id$=references]):not([id=exit-criteria]) section section {
 counter-increment:sub-sub-sub-section;
 counter-reset:sub-sub-sub-sub-section;
 }
-article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=change-log]):not([id=exit-criteria]):not([id^=table-of-]):not([id^=list-of-]) > h2:before {
+article section:not([id=abstract]):not([id=sotd]):not([id=references]):not([id=appendix]):not([id=acknowledgements]):not([id=changelog]):not([id=exit-criteria]):not([id^=table-of-]):not([id^=list-of-]) > h2:before {
 content:counter(section) ".\00a0";
 }
-section:not([id$=references]):not([id^=change-log]):not([id=exit-criteria]):not([id^=table-of-]):not([id^=list-of-]) > h3:before {
+section:not([id$=references]):not([id^=changelog]):not([id=exit-criteria]):not([id^=table-of-]):not([id^=list-of-]) > h3:before {
 content:counter(section) "." counter(sub-section) "\00a0";
 }
 section > h4:before {
@@ -171,7 +171,7 @@ tfoot dd + dt { margin-top:0; }
     <script async="" src="https://dokie.li/scripts/dokieli.js"></script>
   </head>
 
-  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ doap: http://usefulinc.com/ns/doap# deo: http://purl.org/spar/deo/ cito: http://purl.org/spar/cito/ as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# earl: http://www.w3.org/ns/earl# spec: http://www.w3.org/ns/spec# rel: https://www.w3.org/ns/iana/link-relations/relation# odrl: http://www.w3.org/ns/odrl/2/" typeof="schema:CreativeWork prov:Entity as:Article">
+  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ doap: http://usefulinc.com/ns/doap# deo: http://purl.org/spar/deo/ cito: http://purl.org/spar/cito/ as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# earl: http://www.w3.org/ns/earl# spec: http://www.w3.org/ns/spec# rel: https://www.w3.org/ns/iana/link-relations/relation# odrl: http://www.w3.org/ns/odrl/2/">
     <header>
       <address>
         <a class="logo" href="https://solidproject.org/"><img alt="Solid Project" height="66" src="https://solidproject.org/TR/solid.svg" width="72" /></a>
@@ -182,7 +182,7 @@ tfoot dd + dt { margin-top:0; }
       <article about="" typeof="schema:Article doap:Specification">
         <h1 property="schema:name">Solid Notifications Protocol</h1>
 
-        <p id="w3c-state">Editor’s Draft, <time>2023-04-07</time></p>
+        <p id="w3c-state">Editor’s Draft, <time>2023-06-21</time></p>
 
         <details open="">
           <summary>More details about this document</summary>
@@ -227,7 +227,7 @@ tfoot dd + dt { margin-top:0; }
 
           <dl id="document-modified">
             <dt>Modified</dt>
-            <dd><time content="2023-04-07T00:00:00Z" datatype="xsd:dateTime" datetime="2023-04-07T00:00:00Z" property="schema:dateModified">2023-04-07</time></dd>
+            <dd><time content="2023-06-21T00:00:00Z" datatype="xsd:dateTime" datetime="2023-06-21T00:00:00Z" property="schema:dateModified">2023-06-21</time></dd>
           </dl>
 
           <dl id="document-repository">
@@ -391,7 +391,7 @@ tfoot dd + dt { margin-top:0; }
                   </ol>
                 </li>
                 <li class="tocline">
-                  <a class="tocxref" href="#change-log"><span class="secno"></span> <span class="content">Change Log</span></a>
+                  <a class="tocxref" href="#changelog"><span class="secno"></span> <span class="content">Changelog</span></a>
                 </li>
                 <li class="tocline">
                   <a class="tocxref" href="#references"><span class="secno"></span> <span class="content">References</span></a>
@@ -428,16 +428,16 @@ tfoot dd + dt { margin-top:0; }
 
                   <p>The Solid Notification protocol defines a mechanism for client applications to discover notification services available for any given resource.</p>
 
-                  <p>The following diagram shows the high-level interactions involved in discovering Notification Channels and Subscription Services.</p> 
+                  <p>The following diagram shows the high-level interactions involved in discovering Notification Channels and Subscription Services.</p>
 
                   <figure id="solid-notifications-flow-discovery" rel="schema:hasPart" resource="#solid-notifications-flow-discovery-subscription">
                     <img rel="schema:image" src="notifications-flow-discovery.mmd.svg" width="800" />
 
                     <figcaption property="schema:name">Solid Notifications Flow Discovery</figcaption>
                   </figure>
-                  
+
                   <p>A Subscription Service allows Subscription Clients to request a customised Notification Channel.</p>
-                  
+
                   <p>The following diagram shows the high-level interactions involved in establishing a customised Notification Channel.</p>
 
                   <figure id="solid-notifications-flow-subscription" rel="schema:hasPart" resource="#solid-notifications-flow-discovery-subscription">
@@ -999,7 +999,7 @@ tfoot dd + dt { margin-top:0; }
             </div>
           </section>
 
-          <section id="change-log" inlist="" rel="schema:hasPart" resource="#change-log">
+          <section id="changelog" inlist="" rel="schema:hasPart" resource="#changelog">
             <h2 property="schema:name">Change Log</h2>
             <div datatype="rdf:HTML" property="schema:description">
               <p><em>This section is non-normative.</em></p>
