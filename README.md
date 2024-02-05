@@ -12,6 +12,12 @@ These reports are incubated by the [Solid Notifications Panel](https://github.co
 * Editors Draft:
   * [Solid Notifications Protocol](https://solid.github.io/notifications/protocol)
 
+### Quick Protocol
+* Latest Published Version:
+  * [Solid Quick Notifications Protocol](https://solidproject.org/TR/quick-notifications-protocol)
+* Editors Draft:
+  * [Solid Quick Notifications Protocol](https://solid.github.io/notifications/quick-protocol)
+
 ### Notification Channel Types
 
 The Solid Notification Protocol makes it possible to define [notification channel types](https://solid.github.io/notifications/protocol#notification-channel-types). In order to help with the discovery of notification channel types that can be used with the Solid Notifications Protocol, it is encouraged to register them for maximum global interoperability at [Solid Technical Reports](https://solidproject.org/TR/#notification-channel-type-registry).

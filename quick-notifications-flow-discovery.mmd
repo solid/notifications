@@ -1,0 +1,7 @@
+sequenceDiagram
+  participant Subscription Client
+  participant Resource Server
+
+  Subscription Client ->> Resource Server: HEAD Resource (topic)
+  Resource Server ->> Subscription Client: Existing Notifications Channels
+  Resource Server ->> Subscription Client: Subscription Discovery
