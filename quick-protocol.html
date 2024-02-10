@@ -596,7 +596,7 @@ tfoot dd + dt { margin-top:0; }
                       <div property="spec:statement">
                         <p><a href="#ResourceServer">Resource Servers</a> that want to enable <a href="#SubscriptionClient">Subscription Clients</a> to request a <a href="#notification-channel">notification channel</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include, in response to a <code>HEAD</code> or a <code>GET</code> request, the <code>Accept-Events</code> header field [<cite><a class="bibref" href="#bib-prep">PREP</a></cite>] with:</p>
                         <ul>
-                          <li><code>Solid</code> as a List Item [<cite><a class="bibref" href="#bib-sf">STRUCTURED-FIELDS</a></cite>], and</li>
+                          <li><code>solid</code> as a List Item [<cite><a class="bibref" href="#bib-sf">STRUCTURED-FIELDS</a></cite>], and</li>
                           <li>parameters for each <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a> set according to <a href="#subscription-discovery-data-model" rel="rdfs:seeAlso">Subscription Discovery Data Model</a>.</li>
                         </ul>
                       </div>
@@ -620,7 +620,7 @@ tfoot dd + dt { margin-top:0; }
                         <p><a href="#ResourceServer">Resource Servers</a> that want to enable <a href="#SubscriptionClient">Subscription Clients</a> to discover existing <a href="#notification-channel">notification channels</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> include, in response to <code>HEAD</code> or a <code>GET</code> request,  <code>Notification-Channels</code> as a List Structured [<cite><a class="bibref" href="#bib-sf">STRUCTURED-FIELDS</a></cite>] header field with:</p>
 
                         <ul>
-                          <li><code>Solid</code> as a List Item [<cite><a class="bibref" href="#bib-sf">STRUCTURED-FIELDS</a></cite>], and</li>
+                          <li><code>solid</code> as a List Item [<cite><a class="bibref" href="#bib-sf">STRUCTURED-FIELDS</a></cite>], and</li>
                           <li>parameters of <a href="#notification-channel">notification channel</a> set according to the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>.</li>
                         </ul>
                       </div>
@@ -634,7 +634,7 @@ tfoot dd + dt { margin-top:0; }
 <code>Host: example.org</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
-<code>Accept-Events: "Solid";</code>
+<code>Accept-Events: "solid";</code>
 <code>  channelType="WebSocketChannel2023";</code>
 <code>  features=(rate)</code>
 <code>Notification-Channels: "Solid";</code>
@@ -682,7 +682,7 @@ tfoot dd + dt { margin-top:0; }
                     <pre about="#subscription-request-response-example" property="schema:description"><code>GET /subscription HTTP/1.1</code>
 <code>Host: https://websocket.example</code>
 <code>Accept: text/turtle</code>
-<code>Accept-Events: "Solid";</code>
+<code>Accept-Events: "solid";</code>
 <code>  type="WebSocketChannel2023";</code>
 <code>  topic="https://example.org/guinan/profile";</code>
 <code></code>
@@ -787,7 +787,7 @@ tfoot dd + dt { margin-top:0; }
                     <p class="example-h"><span>Example</span>: Representation of a Subscription Discovery.</p>
 
                     <pre about="#subscription-discovery-http-header" datatype="rdf:JSON" property="schema:description">
-<code>Accept-Events: "Solid;</code>
+<code>Accept-Events: "solid;</code>
 <code>  channelType=WebSocketChannel2023";</code>
 <code>  feature=(endAt rate state)</code></pre>
 
@@ -811,7 +811,7 @@ tfoot dd + dt { margin-top:0; }
                     <p class="example-h"><span>Example</span>: Representation of a subscription request.</p>
 
                     <pre about="#notification-channel-http-header" datatype="rdf:JSON" property="schema:description">
-<code>Accept-Events: "Solid";</code>
+<code>Accept-Events: "solid";</code>
 <code>  type="WebSocketChannel2023";</code>
 <code>  topic="https://example.org/guinan/profile";</code>
 <code>  rate="PT5M";</code></pre>
@@ -853,7 +853,7 @@ tfoot dd + dt { margin-top:0; }
                     <p class="example-h"><span>Example</span>: Representation of a notification channel.</p>
 
                     <pre about="#notification-channel-http-header" datatype="rdf:JSON" property="schema:description">
-<code>Events: protocol="Solid";</code>
+<code>Events: protocol="solid";</code>
 <code>  status=200;</code>
 <code>  id="https://channel.example/ac748712";</code>
 <code>  type="WebSocketChannel2023";</code>
