@@ -440,7 +440,7 @@ tfoot dd + dt { margin-top:0; }
                 <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
 
-                  <p>The Solid Quick Notification protocol defines a mechanism for client applications to discover notification services available for any given resource.</p>
+                  <p>The Solid Quick Notification protocol defines a mechanism whereby client applications can discover notification services available for any given resource.</p>
 
                   <p>The following diagram shows the high-level interactions involved in discovering subscription capabilities offered by Resource Servers.</p>
 
@@ -450,7 +450,7 @@ tfoot dd + dt { margin-top:0; }
                     <figcaption property="schema:name">Solid Quick Notifications Flow Discovery</figcaption>
                   </figure>
 
-                  <p>A Resource Server allows Subscription Clients to request a customised Notification Channel.</p>
+                  <p>A Resource Server allows a Subscription Client to request a customised Notification Channel.</p>
 
                   <p>The following diagram shows the high-level interactions involved in establishing a customised Notification Channel.</p>
 
@@ -463,12 +463,12 @@ tfoot dd + dt { margin-top:0; }
 
                   <p>A notification channel allows a Notification Sender to send notifications to a Notifications Receiver. A notification channel builds upon one of many established web protocols to exchange data, determining its <em>type</em>.</p>
 
-                  <p>The following diagram illustrates the flow of data for those notification channel types in which a client establishes a subscription and then maintains a persistent connection to a notifications source are illustrated by the following diagram.</p>
+                  <p>The following diagram illustrates the flow of data for those notification channel types in which a client establishes a subscription and then maintains a persistent connection to a notifications source.</p>
 
                   <figure id="solid-quick-notifications-flow-receivefrom" rel="schema:hasPart" resource="#solid-quick-notifications-flow-receivefrom">
                     <img rel="schema:image" src="notifications-flow-receivefrom.mmd.svg" width="800" />
 
-                    <figcaption property="schema:name">Solid Quick Notifications Flow Receive From, where the receiver establishes connection to sender.</figcaption>
+                    <figcaption property="schema:name">Solid Quick Notifications Flow Receive From, where the receiver establishes a connection to a sender.</figcaption>
                   </figure>
 
                   <p>The following diagram illustrates the flow of data for those Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a notifications source:</p>
@@ -476,7 +476,7 @@ tfoot dd + dt { margin-top:0; }
                   <figure id="solid-quick-notifications-flow-sendto" rel="schema:hasPart" resource="#solid-quick-notifications-flow-sendto">
                     <img rel="schema:image" src="notifications-flow-sendto.mmd.svg" width="800" />
 
-                    <figcaption property="schema:name">Solid Quick Notifications Flow Send To, where the sender delivers notifications to receiver.</figcaption>
+                    <figcaption property="schema:name">Solid Quick Notifications Flow Send To, where the sender delivers notifications to a receiver.</figcaption>
                   </figure>
                 </div>
               </section>
@@ -538,9 +538,9 @@ tfoot dd + dt { margin-top:0; }
                         <dt about="#SubscriptionClient" property="skos:prefLabel" rel="skos:broadMatch" resource="spec:Consumer" typeof="skos:Concept"><dfn id="SubscriptionClient">Subscription Client</dfn></dt>
                         <dd about="#SubscriptionClient" property="skos:definition">A <em>Subscription Client</em> that builds on HTTP <cite>client</cite> [<cite><a class="bibref" href="#bib-rfc9110">RFC9110</a></cite>] and [<cite><a class="bibref" href="#bib-fetch">FETCH</a></cite>] by defining behaviour in terms of fetching across the platform.</dd>
                         <dt about="#NotificationSender" property="skos:prefLabel" rel="skos:broadMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="NotificationSender">Notification Sender</dfn></dt>
-                        <dd about="#NotificationSender" property="skos:definition" rel="skos:broadMatch" resource="spec:ProducerOfContent">A <em>Notification Sender</em> is the sender of a notification acting in conformance to the product class of a notification channel type.</dd>
+                        <dd about="#NotificationSender" property="skos:definition" rel="skos:broadMatch" resource="spec:ProducerOfContent">A <em>Notification Sender</em> is the sender of a notification acting in conformance with the product class of a notification channel type.</dd>
                         <dt about="#NotificationReceiver" property="skos:prefLabel" rel="skos:broadMatch" resource="spec:RespondingAgent" typeof="skos:Concept"><dfn id="NotificationReceiver">Notification Receiver</dfn></dt>
-                        <dd about="#NotificationReceiver" property="skos:definition" rel="skos:broadMatch" resource="spec:Consumer">A <em>Notification Receiver</em> is the recipient of a notification acting in conformance to the product class of a notification channel type.</dd>
+                        <dd about="#NotificationReceiver" property="skos:definition" rel="skos:broadMatch" resource="spec:Consumer">A <em>Notification Receiver</em> is the recipient of a notification acting in conformance with the product class of a notification channel type.</dd>
                        </dl>
                     </div>
                   </section>
@@ -566,14 +566,14 @@ tfoot dd + dt { margin-top:0; }
           <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
             <h2 property="schema:name">Protocol</h2>
             <div datatype="rdf:HTML" property="schema:description">
-              <p>The Solid Quick Notifications Protocol specifies a mechanism for discovery of notification capabilities on resources, customisation of notification channels through subscriptions, capabilities of notification channels, and methods for establishing a connection to a notification channel.</p>
+              <p>The Solid Quick Notifications Protocol specifies mechanisms for discovery of notification capabilities on resources, customisation of notification channels through subscriptions, capabilities of notification channels, and methods for establishing a connection to a notification channel.</p>
 
               <p>A Resource Server may provide notifications over a notification channel that might be of one of many <a href="#notification-channel-types">notification channel types</a> that build upon existing web protocols.
               Individual <a href="#notification-channel-types">notification channel types</a> may augment the discovery and subscription requirements of the notification protocol.</p>
 
               <p id="json-ld-format">This specification uses JSON-LD [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>] as the preferred data format, and <code>https://www.w3.org/ns/solid/notifications-context/v1</code> as a URI for the JSON-LD context.</p>
 
-              <p id="authentication-authorization">This specification does not require a specific authentication and authorization mechanism to be used with the Solid Quick Notification Protocol. Implementations are encouraged to use existing approaches, such as those described in the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
+              <p id="authentication-authorization">This specification does not require specific authentication and/or authorization mechanisms to be used with the Solid Quick Notification Protocol. Implementations are encouraged to use existing approaches, such as those described in the Solid Protocol sections on <cite><a href="https://solidproject.org/TR/protocol#authentication" rel="cito:discusses">Authentication</a></cite> and <cite><a href="https://solidproject.org/TR/protocol#authorization" rel="cito:discusses">Authorization</a></cite> [<cite><a class="bibref" href="#bib-solid-protocol">SOLID-PROTOCOL</a></cite>].</p>
 
               <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                 <h3 property="schema:name">Discovery</h3>
@@ -587,7 +587,7 @@ tfoot dd + dt { margin-top:0; }
                     <div>
                       <p><a href="#ResourceServer">Resource Servers</a> can advertise their ability to create <a href="#notification-channel">notification channels</a> to provide notifications:</p>
                         <ul>
-                          <li>for protected resource, which relies on capability URL to protect the channel;</li>
+                          <li>for a protected resource, which relies on a capability URL to protect the channel</li>
                           <li>with specific <a href="#features">features</a> requested by the <a href="#SubscriptionClient">Subscription Client</a>.</li>
                         </ul>
                     </div>
@@ -610,8 +610,8 @@ tfoot dd + dt { margin-top:0; }
                       <p><a href="#ResourceServer">Resource Servers</a> can advertise existing <a href="#notification-channel">notification channels</a> to provide notifications:</p>
 
                       <ul>
-                        <li>for protected resource, which does not rely on capability URL to protect the channel;</li>
-                        <li>for public read resource.</li>
+                        <li>for a protected resource, which does not rely on a capability URL to protect the channel;</li>
+                        <li>for a public read resource</li>
                       </ul>
                     </div>
 
@@ -655,7 +655,7 @@ tfoot dd + dt { margin-top:0; }
                   <section id="subscription-request" inlist="" rel="schema:hasPart" resource="#subscription-request">
                     <h4 property="schema:name">Subscription Request</h4>
 
-                    <p about="#subscription-request" property="skos:definition" typeof="skos:Concept">A <strong><dfn property="skos:prefLabel">subscription request</dfn></strong> is an HTTP request from a <a href="#SubscriptionClient">Subscription Client</a> that additionally requests a <a href="#ResourceServer">Resource Server</a> to create a desired <a href="#notification-channel">notification channel</a> to receive notifications about one or more <a href="#topic-resource">topic resources</a>.</p>
+                    <p about="#subscription-request" property="skos:definition" typeof="skos:Concept">A <strong><dfn property="skos:prefLabel">subscription request</dfn></strong> is an HTTP request from a <a href="#SubscriptionClient">Subscription Client</a> that additionally requests that the <a href="#ResourceServer">Resource Server</a> create a desired <a href="#notification-channel">notification channel</a> through which it is able to receive notifications about one or more <a href="#topic-resource">topic resources</a>.</p>
 
                     <p about="" id="subscription-client-subscription-request-header" rel="spec:requirement" resource="#subscription-client-subscription-request-header"><span property="spec:statement"><a rel="spec:requirementSubject" href="#SubscriptionClient">Subscription Clients</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <code>Accept-Events</code> header field [<cite><a class="bibref" href="#bib-prep">PREP</a></cite>] in the subscription request with <code>solid</code> listed as the one of the protocols.</span></p>
 
