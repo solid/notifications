@@ -631,13 +631,13 @@ tfoot dd + dt { margin-top:0; }
                     <p class="example-h"><span>Example</span>: Discovery of notification capabilities.</p>
                     <pre about="#topic-resource-discovery-response" property="schema:description">
 <code>HEAD /guinan/profile HTTP/1.1</code>
-<code>Host: example.org</code>
+<code>Host: https://example.org</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
 <code>Accept-Events: "solid";</code>
 <code>  channelType="WebSocketChannel2023";</code>
 <code>  features=(rate)</code>
-<code>Notification-Channels: "Solid";</code>
+<code>Notification-Channels: "solid";</code>
 <code>  id="https://example.org/guinan.ws";</code>
 <code>  type="WebSocketChannel2023";</code>
 <code>  recieve-from="wss://example.org/guinan.ws"</code></pre>
@@ -679,8 +679,9 @@ tfoot dd + dt { margin-top:0; }
                   <figure class="example listing" id="subscription-request-response-example" rel="schema:hasPart" resource="#subscription-request-response-example">
                     <p class="example-h"><span>Example</span>: Subscription request and response.</p>
 
-                    <pre about="#subscription-request-response-example" property="schema:description"><code>GET /subscription HTTP/1.1</code>
-<code>Host: https://websocket.example</code>
+                    <pre about="#subscription-request-response-example" property="schema:description">
+<code>GET /guinan/profile HTTP/1.1</code>
+<code>Host: https://example.org</code>
 <code>Accept: text/turtle</code>
 <code>Accept-Events: "solid";</code>
 <code>  type="WebSocketChannel2023";</code>
@@ -688,7 +689,7 @@ tfoot dd + dt { margin-top:0; }
 <code></code>
 <code>HTTP/1.1 200 OK</code>
 <code>Content-type: text/turtle</code>
-<code>Events: protocol="Solid";</code>
+<code>Events: protocol="solid";</code>
 <code>  status=200;</code>
 <code>  id="https://channel.example/ac748712";</code>
 <code>  type="WebSocketChannel2023";</code>
@@ -787,9 +788,9 @@ tfoot dd + dt { margin-top:0; }
                     <p class="example-h"><span>Example</span>: Representation of a Subscription Discovery.</p>
 
                     <pre about="#subscription-discovery-http-header" datatype="rdf:JSON" property="schema:description">
-<code>Accept-Events: "solid;</code>
-<code>  channelType=WebSocketChannel2023";</code>
-<code>  feature=(endAt rate state)</code></pre>
+<code>Accept-Events: "solid";</code>
+<code>  channelType="WebSocketChannel2023";</code>
+<code>  feature=("endAt" "rate" "state")</code></pre>
 
                     <figcaption property="schema:name">List Structured Field serialization of subscription discovery</figcaption>
                   </figure>
