@@ -647,8 +647,8 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <p about="" id="resource-server-description-resource-response" rel="spec:requirement" resource="#resource-server-description-resource-response"><span property="spec:statement"><a href="#ResourceServer" rel="spec:requirementSubject">Resource Servers</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#description-resource-data-model" rel="rdfs:seeAlso">Description Resource Data Model</a> in the <a href="#description-resource">description resource</a> response content.</span></p>
 
                   <figure class="example listing" id="description-resource-request-response-jsonld" rel="schema:hasPart" resource="#description-resource-request-response-jsonld">
-                    <p class="example-h"><span>Example</span>: Discovery of description resource.</p>
-                    <pre about="#description-resource-request-response-jsonld" property="schema:description"><code>HEAD https://example.org/guinan/profile</code>
+                    <figcaption property="schema:name"><span>Example</span>: <span>Discovery of description resource.</span></figcaption>
+                    <pre property="schema:description"><code>HEAD https://example.org/guinan/profile</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
 <code>Link: &lt;https://example.org/guinan/profile.description&gt;; rel="describedby"</code>
@@ -659,7 +659,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>HTTP/1.1 200 OK</code>
 <code>Content-Type: application/ld+json</code></pre>
 
-                    <figcaption property="schema:name">Discovering description resource with a JSON-LD serialization.</figcaption>
+                    <p>Discovering description resource with a JSON-LD serialization.</p>
                   </figure>
                 </div>
               </section>
@@ -690,9 +690,9 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <p about="" id="subscription-server-subscription-response" rel="spec:requirement" resource="#subscription-server-subscription-response"><span property="spec:statement"><a href="#SubscriptionServer" rel="spec:requirementSubject">Subscription Servers</a> <span rel="spec:requirementLevel" resource="spec:MUST">MUST</span> use the <a href="#notification-channel-data-model" rel="rdfs:seeAlso">Notification Channel Data Model</a>, and in addition conform to a particular <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a> in the <a href="#subscription-response">subscription response</a> content.</span></p>
 
                   <figure class="example listing" id="subscription-service-request-response-jsonld" rel="schema:hasPart" resource="#subscription-service-request-response-jsonld">
-                    <p class="example-h"><span>Example</span>: Subscription request and response.</p>
+                    <figcaption property="schema:name"><span>Example</span>: <span>Subscription request and response.</span></figcaption>
 
-                    <pre about="#subscription-service-request-response-jsonld" property="schema:description"><code>GET https://websocket.example/subscription</code>
+                    <pre property="schema:description"><code>GET https://websocket.example/subscription</code>
 <code>Accept: application/ld+json</code>
 <code></code>
 <code>HTTP/1.1 200 OK</code>
@@ -705,7 +705,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>HTTP/1.1 200 OK</code>
 <code>Content-Type: application/ld+json</code></pre>
 
-                    <figcaption property="schema:name">Requesting a subscription and response with a JSON-LD serialization.</figcaption>
+                    <p>Requesting a subscription and response with a JSON-LD serialization.</p>
                   </figure>
                 </div>
               </section>
@@ -791,9 +791,9 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   </ul>
 
                   <figure class="example listing" id="description-resource-jsonld" rel="schema:hasPart" resource="#description-resource-jsonld">
-                    <p class="example-h"><span>Example</span>: Representation of a description resource.</p>
+                    <figcaption property="schema:name"><span>Example</span>: Representation of a description resource.</figcaption>
 
-                    <pre about="#description-resource-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
+                    <pre datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
@@ -812,7 +812,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  }]</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">JSON-LD serialization of a description resource.</figcaption>
+                    <p>JSON-LD serialization of a description resource.</p>
                   </figure>
                 </div>
               </section>
@@ -829,9 +829,9 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   </ul>
 
                   <figure class="example listing" id="subscription-service-jsonld" rel="schema:hasPart" resource="#subscription-service-jsonld">
-                    <p class="example-h"><span>Example</span>: Representation of a subscription service.</p>
+                    <figcaption property="schema:name"><span>Example</span>: Representation of a subscription service.</figcaption>
 
-                    <pre about="#subscription-service-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
+                    <pre datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
@@ -840,7 +840,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  "feature": ["endAt", "rate", "state"]</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">JSON-LD serialization of a subscription service.</figcaption>
+                    <p>JSON-LD serialization of a subscription service.</p>
                   </figure>
                 </div>
               </section>
@@ -876,9 +876,9 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   </ul>
 
                   <figure class="example listing" id="notification-channel-jsonld" rel="schema:hasPart" resource="#notification-channel-jsonld">
-                    <p class="example-h"><span>Example</span>: Representation of a notification channel.</p>
+                    <figcaption property="schema:name"><span>Example</span>: <span>Representation of a notification channel.</span></figcaption>
 
-                    <pre about="#notification-channel-jsonld" datatype="rdf:JSON" property="schema:description"><code>{</code>
+                    <pre datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
 <code>  ],</code>
@@ -892,7 +892,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  "state": "e75-TFJH"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">JSON-LD serialization of a notification channel.</figcaption>
+                    <p>JSON-LD serialization of a notification channel.</p>
                   </figure>
                 </div>
               </section>
@@ -914,9 +914,9 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   </ul>
 
                   <figure class="example listing" id="notification-update" rel="schema:hasPart" resource="#notification-update">
-                    <p class="example-h"><span>Example</span>: An update activity</p>
+                    <figcaption property="schema:name"><span>Example</span>: <span>An update activity</span></figcaption>
 
-                    <pre about="#notification-update" datatype="rdf:JSON" property="schema:description"><code>{</code>
+                    <pre datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
@@ -928,13 +928,13 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  "published": "2021-08-05T01:01:49.550Z"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">An activity indicating that an object (profile) was updated.</figcaption>
+                    <p>An activity indicating that an object (profile) was updated.</p>
                   </figure>
 
                   <figure class="example listing" id="notification-add" rel="schema:hasPart" resource="#notification-add">
-                    <p class="example-h"><span>Example</span>: An add activity</p>
+                    <figcaption property="schema:name"><span>Example</span>: <span>An add activity</span></figcaption>
 
-                    <pre about="#notification-add" datatype="rdf:JSON" property="schema:description"><code>{</code>
+                    <pre  datatype="rdf:JSON" property="schema:description"><code>{</code>
 <code>  "@context": [</code>
 <code>    "https://www.w3.org/ns/activitystreams",</code>
 <code>    "https://www.w3.org/ns/solid/notifications-context/v1"</code>
@@ -946,7 +946,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  "published": "2022-11-24T11:55:31.483Z"</code>
 <code>}</code></pre>
 
-                    <figcaption property="schema:name">An activity indicating that an object (image) was added to the target (photos).</figcaption>
+                    <p>An activity indicating that an object (image) was added to the target (photos).</p>
                   </figure>
                 </div>
               </section>
