@@ -479,9 +479,9 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <p>The following diagram shows the high-level interactions involved in discovering Notification Channels and Subscription Services.</p>
 
                   <figure id="solid-notifications-flow-discovery" rel="schema:hasPart" resource="#solid-notifications-flow-discovery-subscription">
-                    <img rel="schema:image" src="notifications-flow-discovery.mmd.svg" width="800" />
-
                     <figcaption property="schema:name">Solid Notifications Flow Discovery</figcaption>
+
+                    <img rel="schema:image" src="notifications-flow-discovery.mmd.svg" width="800" />
                   </figure>
 
                   <p>A Subscription Service allows Subscription Clients to request a customised Notification Channel.</p>
@@ -489,28 +489,27 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <p>The following diagram shows the high-level interactions involved in establishing a customised Notification Channel.</p>
 
                   <figure id="solid-notifications-flow-subscription" rel="schema:hasPart" resource="#solid-notifications-flow-discovery-subscription">
-                    <img rel="schema:image" src="notifications-flow-subscription.mmd.svg" width="800" />
-
                     <figcaption property="schema:name">Solid Notifications Flow Subscription</figcaption>
-                  </figure>
 
+                    <img rel="schema:image" src="notifications-flow-subscription.mmd.svg" width="800" />
+                  </figure>
 
                   <p>A notification channel allows a Notification Sender to send notifications to a Notifications Receiver. A notification channel builds upon one of many established web protocols to exchange data, determining its <em>type</em>.</p>
 
                   <p>The following diagram illustrates the flow of data for those notification channel types in which a client establishes a subscription and then maintains a persistent connection to a notifications source are illustrated by the following diagram.</p>
 
                   <figure id="solid-notifications-flow-receivefrom" rel="schema:hasPart" resource="#solid-notifications-flow-receivefrom">
-                    <img rel="schema:image" src="notifications-flow-receivefrom.mmd.svg" width="800" />
-
                     <figcaption property="schema:name">Solid Notifications Flow Receive From, where the receiver establishes connection to sender.</figcaption>
+
+                    <img rel="schema:image" src="notifications-flow-receivefrom.mmd.svg" width="800" />
                   </figure>
 
                   <p>The following diagram illustrates the flow of data for those Notification channel types in which a client establishes a subscription and does not maintain a persistent connection to a notifications source:</p>
 
                   <figure id="solid-notifications-flow-sendto" rel="schema:hasPart" resource="#solid-notifications-flow-sendto">
-                    <img rel="schema:image" src="notifications-flow-sendto.mmd.svg" width="800" />
-
                     <figcaption property="schema:name">Solid Notifications Flow Send To, where the sender delivers notifications to receiver.</figcaption>
+
+                    <img rel="schema:image" src="notifications-flow-sendto.mmd.svg" width="800" />
                   </figure>
                 </div>
               </section>
