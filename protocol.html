@@ -905,12 +905,12 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <p>A notification has the following properties:</p>
 
                   <ul>
-                    <li id="as-id">One <code rel="dcterms:subject" resource="https://www.w3.org/TR/activitystreams-vocabulary/#as-id">id</code> property to identify the notification.</li>
-                    <li id="as-type">At least one <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#Activity">type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
-                    <li id="as-object">One <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#object">object</code> property to identify the (<cite><a href="#topic-resource">topic</a></cite>) resource that the notification is about.</li>
-                    <li id="as-published">One <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#published">published</code> property to indicate the date and time of the notification.</li>
-                    <li id="as-target">Zero, one, or many <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#target">target</code> properties to identify the resource to which the activity is directed.</li>
-                    <li>Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#state">state</code> property to indicate the last known state of the resource.</li>
+                    <li id="message-id">One <code rel="dcterms:subject" resource="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-id">id</code> property to identify the notification.</li>
+                    <li id="message-type">At least one <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#Activity">type</code> property indicating a specific type of activity (<cite><a href="https://www.w3.org/TR/activitystreams-vocabulary/#activity-types" rel="rdfs:seeAlso">Activity Types</a></cite>).</li>
+                    <li id="message-object">One <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#object">object</code> property to identify the (<cite><a href="#topic-resource">topic</a></cite>) resource that the notification is about.</li>
+                    <li id="message-published">One <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#published">published</code> property to indicate the date and time of the notification.</li>
+                    <li id="message-target">Zero, one, or many <code rel="dcterms:subject" resource="https://www.w3.org/ns/activitystreams#target">target</code> properties to identify the resource to which the activity is directed.</li>
+                    <li id="message-state">Zero or one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#state">state</code> property to indicate the last known state of the resource.</li>
                   </ul>
 
                   <figure class="example listing" id="notification-update" rel="schema:hasPart" resource="#notification-update">
