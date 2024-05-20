@@ -97,7 +97,7 @@ The following diagram shows the high-level interactions involved in this flow.
 How a client retrieves an access token is outside the scope of this document.
 
 <figure>
-  <img src="webpush-subscription-2022-flow.mmd.svg" rel="schema:image" width="800" />
+  <img src="webpush-subscription-2022-flow.mmd.svg" rel="schema:image" width="800">
   <figcaption property="schema:name">Solid WebPushSubscription2022 Flow</figcaption>
 </figure>
 
