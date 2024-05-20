@@ -5,10 +5,12 @@
   <title>Solid WebPushSubscription2022</title>
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 5edf5e459, updated Thu Jun 22 11:28:01 2023 -0700" name="generator">
+  <meta content="Bikeshed version d765c696b, updated Fri Mar 8 15:58:52 2024 -0800" name="generator">
   <link href="https://solid.github.io/notifications/webpush-subscription-2022" rel="canonical">
   <link href="https://solidproject.org/TR/solid.svg" rel="icon">
-  <meta content="1e1e0d822ba9a7e56ad37f631eb992906b35624e" name="document-revision">
+  <meta content="fe0efb8f137d66aa8896bd11733599d17a97d84e" name="revision">
+  <meta content="dark light" name="color-scheme">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -80,7 +82,6 @@ pre .property::before, pre .property::after {
 }
 </style>
 <style>/* Boilerplate: style-colors */
-
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
     color-scheme: light dark;
@@ -350,7 +351,6 @@ a[href].issue-return {
 }
 </style>
 <style>/* Boilerplate: style-selflinks */
-
 :root {
     --selflink-text: white;
     --selflink-bg: gray;
@@ -410,7 +410,6 @@ a.self-link::before            { content: "¶"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
 <style>/* Boilerplate: style-syntax-highlighting */
-
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 
@@ -467,7 +466,6 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-
 
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
@@ -536,7 +534,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid WebPushSubscription2022</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-06-29">29 June 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-05-20">20 May 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -551,7 +549,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -564,15 +562,12 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p></p>
    <p>This section describes the status of this document at the time of its publication.</p>
    <p>This document was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a> as
-
-an Editor’s Draft. The sections that have been incorporated have been reviewed following the <a href="https://github.com/solid/process">Solid process</a>. However, the information in this document is
+an Editor’s Draft. The information in this document is
 still subject to change. You are invited to <a href="https://github.com/solid/solid-oidc/issues">contribute</a> any feedback, comments, or questions you might have.</p>
    <p>Publication as an Editor’s Draft does not imply endorsement by the W3C Membership. This is a draft
-
 document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
 to cite this document as other than work in progress.</p>
    <p>This document was produced by a group operating under the <a href="https://www.w3.org/community/about/process/cla/">W3C Community Contributor License Agreement
-
 (CLA)</a>. A human-readable <a href="https://www.w3.org/community/about/process/cla-deed/">summary</a> is available.</p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -644,7 +639,7 @@ In addition, the document uses terms from the <a data-link-type="biblio" href="#
     <dd data-md>
      <p>A <code>subscription service</code> is a service, which handles and manages subscriptions for resources stored on the corresponding Solid Storage.</p>
     <dd data-md>
-     <p>The <code>subscription service</code> is identified by a URI. Dereferencing this URI yields the <code>subscription service</code>'s representation, a discription of the service. By this representation, information may be provided such as Notification Subscription APIs where subscriptions can be submitted for the service to process.</p>
+     <p>The <code>subscription service</code> is identified by a URI. Dereferencing this URI yields the <code>subscription service</code>’s representation, a discription of the service. By this representation, information may be provided such as Notification Subscription APIs where subscriptions can be submitted for the service to process.</p>
    </dl>
    <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/notifications/issues/63" style="text-transform:none">solid/notifications/63</a><a href="https://github.com/solid/notifications/issues/63">Rename `subscription resource`</a></div>
    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription service as a container</a></div>
@@ -711,8 +706,8 @@ The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#
      <p>The <code>p256dh</code> property indicates the elliptic curve Diffie-Hellman (ECDH) public key as defined by <a data-link-type="biblio" href="#biblio-rfc8291" title="Message Encryption for Web Push">[RFC8291]</a>.</p>
    </dl>
    <p>A client establishes a subscription using the <code>WebPushSubscription2022</code> type
-by sending an authenticated subscription request to the <code>subscriptions service</code>'s Notification Subscription API retrieved via <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> discovery.
-The client sends a <code>HTTP POST</code> request with a request body to the appropriate <code>subscription resource</code>'s Notification Subscription API.
+by sending an authenticated subscription request to the <code>subscriptions service</code>’s Notification Subscription API retrieved via <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> discovery.
+The client sends a <code>HTTP POST</code> request with a request body to the appropriate <code>subscription resource</code>’s Notification Subscription API.
 Required information in the request are <code>type</code>, <code>topic</code>, <code>endpoint</code>, <code>keys</code> with <code>auth</code> and <code>p256dh</code>.</p>
    <p>If the subscription has been created successfully, the server responds to a client’s subscription request with HTTP status code <code>201 Created</code></p>
    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/notifications/issues/36" style="text-transform:none">solid/notifications/36</a><a href="https://github.com/solid/notifications/issues/36">Subscription service as a container</a></div>
@@ -739,7 +734,7 @@ Content-Type: text/turtle
         <c- nn>push</c-><c- p>:</c-><c- f>p256dh</c-> <c- s>"BNocq-WqQufNxY5NtFWz-ckbLoCprrHT74ALR-DXcpCoKmqV2cVflQ6ibyas-vJBMWMLeSDPdRBbJhcc0lDmJ5g"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c->
                 <c- p>]</c-> <c- p>.</c->
 </pre>
-    Example: POST request creating a <code>WebPushSubscription2022</code> subscription. 
+    <p>Example: POST request creating a <code>WebPushSubscription2022</code> subscription.</p>
    </div>
     %% Note: TODO check data types of <code>auth</code> and <code>p256dh</code>. 
    <p>A successful response will have a HTTP status code of <code>201 Created</code> and no (meaningful) response body.</p>
@@ -767,7 +762,7 @@ Content-Type: text/turtle
     <c- nn>ldp</c-><c- p>:</c-><c- f>inbox</c-> <c- g>&lt;https://solid.aifb.kit.edu/web-push/subscribe/></c-><c- p>;</c-> 
     <c- nn>push</c-><c- p>:</c-><c- f>vapidPublicKey</c-> <c- s>"BAOxV1U1Hj5npToInct2VhhYpJkL0GmHqc-ADbHu7O8Z2CJNkqSzc8BfCStWbTKq_yT9B6g6kYjyEHrAEpVuqww"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c-><c- p>.</c->
 </pre>
-    Example: Representation of a <em>subscription service</em>. 
+    <p>Example: Representation of a <em>subscription service</em>.</p>
    </div>
    <p class="note" role="note"><span class="marker">Note:</span> The representation includes the Notification Subscription API where subscriptions can be submitted via POST using <code>ldp:inbox</code>.
 Currently, it is not yet specified by <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> how the subscription service is modelled.
@@ -831,7 +826,7 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
     Implementers are encouraged to optimize. </p>
    </section>
   </div>
-<script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+  <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
