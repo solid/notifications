@@ -801,6 +801,12 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  "subscription": [{</code>
 <code>    "id": "https://websocket.example/subscription",</code>
 <code>    "channelType": "WebSocketChannel2023",</code>
+<code>    "channelAuthScheme": ["CapabilityURL"],</code>
+<code>    "feature": ["endAt", "rate", "state"]</code>
+<code>  }, {</code>
+<code>    "id": "https://webhook.example/subscription",</code>
+<code>    "channelType": "WebhookChannel2023",</code>
+<code>    "channelAuthScheme": ["CapabilityURL", "SolidOIDC"]</code>
 <code>    "feature": ["endAt", "rate", "state"]</code>
 <code>  }],</code>
 <code>  "channel": [{</code>
@@ -808,6 +814,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>    "type": "WebSocketChannel2023",</code>
 <code>    "topic": "https://example.org/guinan/profile",</code>
 <code>    "receiveFrom": "wss://websocket.example/guinan/profile",</code>
+<code>    "authScheme": "None",</code>
 <code>    "rate": "PT1M"</code>
 <code>  }]</code>
 <code>}</code></pre>
@@ -823,6 +830,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <ul>
                     <li id="notify-subscription-id">One <code>id</code> property to identify the subscription service.</li>
                     <li id="notify-channelType">One <code>channelType</code> property to state the <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</li>
+                    <li id="notify-channelAuthScheme">One or many <code>channelAuthScheme</code> property to state the supported authentication schemes.</li>
                     <li id="notify-feature">Zero, one, or many <code>feature</code> properties to state the supported <a href="#notification-features" rel="rdfs:seeAlso">features</a>.</li>
                   </ul>
 
@@ -835,6 +843,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  ],</code>
 <code>  "id": "https://websocket.example/subscription",</code>
 <code>  "channelType": "WebSocketChannel2023",</code>
+<code>  "channelAuthScheme": ["CapabilityURL"],</code>
 <code>  "feature": ["endAt", "rate", "state"]</code>
 <code>}</code></pre>
                   </figure>
@@ -849,6 +858,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
                   <ul>
                     <li id="notify-channel-id">One <code>id</code> property to identify the notification channel.</li>
                     <li id="notify-channel-type">One <code>type</code> property to state the <a href="#notification-channel-types" rel="rdfs:seeAlso">notification channel type</a>.</li>
+                    <li id="notify-channel-authScheme">One <code>authScheme</code> property to state the authentication scheme used for the channel.</li>
                     <li id="notify-topic">At least one <code rel="dcterms:subject" resource="http://www.w3.org/ns/solid/notifications#topic">topic</code> property to identify the resource that the notifications are about.</li>
                     <li id="notify-feature-types">Zero, one, or many properties stating a particular <a href="#notification-features" rel="rdfs:seeAlso">feature</a>.</li>
                   </ul>
@@ -882,6 +892,7 @@ content:counter(appendix, upper-alpha) "." counter(sub-appendix) "\00a0";
 <code>  "type": "WebSocketChannel2023",</code>
 <code>  "topic": "https://example.org/guinan/profile",</code>
 <code>  "receiveFrom": "wss://websocket.example/d4cf3f19",</code>
+<code>  "authScheme": "CapabilityURL",</code>
 <code>  "startAt": "2023-01-01T07:00:00.000Z",</code>
 <code>  "endAt": "2023-01-01T09:00:00.000Z",</code>
 <code>  "rate": "PT5M",</code>
