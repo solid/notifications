@@ -1,9 +1,9 @@
-# Workflow for processing and publishing bikeshed documents to github pages
+# Workflow for verifying bikeshed documents processing
 
-name: Publish documents
+name: Verify processing
 on:
-  push:
-    # only concerned with changes in the main branch
+  # only concerned with gating PRs to the main branch
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -28,12 +28,3 @@ jobs:
 
       - name: Generate SVG
         run: for diagram in ./*.mmd; do docker run --rm -v "$PWD:/data" minlag/mermaid-cli -i /data/$diagram; done
-
-      - name: Keep files that get published
-        run: rm -rf .gitignore .github *.bs
-
-      - name: Publish to GitHub pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: .
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
