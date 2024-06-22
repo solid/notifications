@@ -3,34 +3,19 @@ Title: Solid StreamingHTTPSubscription2021
 Boilerplate: issues-index no
 Shortname: solid-streaming-http-subscription-2021
 Level: 1
-Status: w3c/CG-DRAFT
-Group: Solid Community Group
+Status: CG-DRAFT
+Group: solidcg
 ED: https://solid.github.io/notifications/streaming-http-subscription-2021
 Repository: https://github.com/solid/notifications
 Inline Github Issues: title
 Markup Shorthands: markdown yes
 Max ToC Depth: 2
 Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
+!Version: 0.1
 Abstract:
   The [[!Solid.Notifications]] defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
 
   This specification defines a subscription type that applies these patterns to the Fetch API.
-Status Text:
-  This section describes the status of this document at the time of its publication.
-
-  This document was published by the [Solid Community Group](https://www.w3.org/community/solid/) as
-  a Community Group Draft Report. The sections that have been incorporated have been reviewed following the
-  [Solid process](https://github.com/solid/process). However, the information in this document is
-  still subject to change. You are invited to [contribute](https://github.com/solid/solid-oidc/issues)
-  any feedback, comments, or questions you might have.
-
-  Publication as a Community Group Draft Report does not imply endorsement by the W3C Membership. This is a draft
-  document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate
-  to cite this document as other than work in progress.
-
-  This document was produced by a group operating under the [W3C Community Contributor License Agreement
-  (CLA)](https://www.w3.org/community/about/process/cla/). A human-readable
-  [summary](https://www.w3.org/community/about/process/cla-deed/) is available.
 </pre>
 
 # Introduction # {#introduction}
