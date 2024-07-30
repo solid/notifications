@@ -1,0 +1,32 @@
+sequenceDiagram
+  autonumber
+  participant Discovery Client
+  participant Subscription Client
+  participant Notification Receiver
+  participant Browser Messaging Service
+  participant Storage Metadata
+  participant Subscription Service
+  participant Notification Sender
+
+
+    Note over Discovery Client, Subscription Service: Discovery
+  Discovery Client ->>+ Storage Metadata: GET 
+  Storage Metadata -->>- Discovery Client: 200 OK with Storage Metadata Representation
+
+    Note over Subscription Client, Subscription Service: Establish Channel
+  Subscription Client ->>+ Browser Messaging Service: Subscribe to Web Push Service
+  Browser Messaging Service -->>- Subscription Client: Web Push Subscription data 
+
+  Subscription Client ->>+ Subscription Service: Submit subscription request to discovered subscription service via POST
+  Subscription Service -->>- Subscription Client: 201 CREATED
+
+  Note over Notification Receiver, Notification Sender: Deliver Notifications for Subscription
+  loop for each notification
+    Notification Sender -) Browser Messaging Service: Deliver notification
+    Browser Messaging Service -) Notification Receiver: Deliver notification
+  end
+
+  Note over Subscription Client, Subscription Service: Cancel Subscription
+  Subscription Client ->>+ Browser Messaging Service: Unsubscribe (delete subscription)
+  Subscription Client ->>+ Subscription Service: Unsubscribe (delete subscription)
+  Subscription Service -->>- Subscription Client: 204 No Content
