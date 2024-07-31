@@ -1,32 +1,32 @@
 sequenceDiagram
   autonumber
-  participant Discovery Client
-  participant Subscription Client
-  participant Notification Receiver
-  participant Browser Messaging Service
-  participant Storage Metadata
+  participant Browser Messaging Service as Browser Messaging Service (NR)
+  participant PWA as PWA (DC & SC)
+  participant Storage as Storage (RS)
   participant Subscription Service
   participant Notification Sender
 
+  Note over PWA, Storage: Discovery (Solid)
+  PWA ->>+ Storage: GET Storage Description
+  Storage -->>- PWA: 200 OK includes Subscription Service description
 
-    Note over Discovery Client, Subscription Service: Discovery
-  Discovery Client ->>+ Storage Metadata: GET 
-  Storage Metadata -->>- Discovery Client: 200 OK with Storage Metadata Representation
+  Note over PWA, Browser Messaging Service: Create Subscription (WebPush)
+  PWA ->>+ Browser Messaging Service: Subscribe to Web Push Service
+  Browser Messaging Service -->>- PWA: Web Push Subscription data 
 
-    Note over Subscription Client, Subscription Service: Establish Channel
-  Subscription Client ->>+ Browser Messaging Service: Subscribe to Web Push Service
-  Browser Messaging Service -->>- Subscription Client: Web Push Subscription data 
+  Note over PWA, Subscription Service: Establish Channel (Solid)
+  PWA ->>+ Subscription Service: Submit subscription request to discovered subscription service via POST
+  Subscription Service -->>- PWA: 201 CREATED
 
-  Subscription Client ->>+ Subscription Service: Submit subscription request to discovered subscription service via POST
-  Subscription Service -->>- Subscription Client: 201 CREATED
-
-  Note over Notification Receiver, Notification Sender: Deliver Notifications for Subscription
+  Note over Browser Messaging Service, Notification Sender: Deliver Notifications on the channel (WebPush & Solid)
   loop for each notification
-    Notification Sender -) Browser Messaging Service: Deliver notification
-    Browser Messaging Service -) Notification Receiver: Deliver notification
+    Notification Sender -) Browser Messaging Service: Deliver notification (Solid & WebPush)
+    Browser Messaging Service -) PWA: Deliver notification (WebPush)
   end
 
-  Note over Subscription Client, Subscription Service: Cancel Subscription
-  Subscription Client ->>+ Browser Messaging Service: Unsubscribe (delete subscription)
-  Subscription Client ->>+ Subscription Service: Unsubscribe (delete subscription)
-  Subscription Service -->>- Subscription Client: 204 No Content
+  Note over PWA, Subscription Service: Delete channel (Solid)
+  PWA ->>+ Subscription Service: Unsubscribe (delete channel)
+  Subscription Service -->>- PWA: 204 No Content
+
+  Note over PWA, Browser Messaging Service: Cancel Subscription (WebPush)
+  PWA ->>+ Browser Messaging Service: Unsubscribe (delete subscription)
