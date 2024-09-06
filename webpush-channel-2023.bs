@@ -40,21 +40,21 @@ This specification is for:
 
 *This section is non-normative.*
 
-This document uses terminology from the [[!SOLID-NOTIFICATIONS]] protocol, 
-  including "Notification Subscription Service".
-
 Issue(62):
 
 Note: Let the predicate `topic` be an `rdfs:subClassOf` of `as:object`?
 
-The document further uses terms from [[!PUSH-API]] specification, 
-  including "push endpoint", "push service" and "authentication secret".
-It also uses terms from [[!OAUTH-2.0]] specification,
-  including  "authorization server" and "access token".
-In addition, the document uses terms from the [[!WEBARCH]] specification, 
-  including "information resource".
+This document uses terms from the following specifications, as listed:
+* from the [[!SOLID-NOTIFICATIONS]] protocol, terms including
+    "Notification Subscription Service"
+* from the [[!PUSH-API]] specification, terms including 
+    "push endpoint", "push service", and "authentication secret"
+* from the [[!OAUTH-2.0]] specification, terms including
+    "authorization server" and "access token"
+* from the [[!WEBARCH]] specification, terms including 
+    "information resource"
 
-This document uses the following terms as defined below:
+This document additionally uses the following terms, as defined below:
 : browser messaging service
 :: Refers to the implementation of a "push service" [[!PUSH-API]] in a browser.
 
