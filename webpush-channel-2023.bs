@@ -1,0 +1,292 @@
+<pre class='metadata'>
+Title: Solid WebPushChannel2023
+Boilerplate: issues-index no
+Shortname: solid-webpush-channel-2023
+Level: 1
+Status: CG-DRAFT
+Group: solidcg
+ED: https://solid.github.io/notifications/webpush-channel-2023
+Repository: https://github.com/solid/notifications
+Inline Github Issues: title
+Markup Shorthands: markdown yes
+Max ToC Depth: 2
+Editor: [Christoph Braun](https://github.com/uvdsl)
+Editor: [elf Pavlik](https://elf-pavlik.hackers4peace.net/)
+!Version: 0.1
+Abstract:
+  The [[!SOLID-NOTIFICATIONS inline]] defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.
+
+  This specification defines a subscription type that applies these patterns to the [[!PUSH-API inline]].
+</pre>
+
+<div class="note">
+This draft is based on a submission for [Web Push Notifications from Solid Pods](https://uvdsl.solid.aifb.kit.edu/conf/2022/icwe/demo).
+</div>
+
+# Introduction # {#introduction}
+
+*This section is non-normative.*
+
+The [[!SOLID-NOTIFICATIONS inline]] describes a general pattern by which agents can be notified when a Solid Resource changes.
+
+This document describes a Solid Notifications subscription type that makes use of the [[!PUSH-API inline]] for Web Push notifications in Progressive Web Applications (PWAs).
+
+This specification is for:
+
+* Resource server developers who wish to enable clients, i.e., PWAs, to listen for updates to particular resources.
+* Application developers who wish to implement a client, i.e., a PWA, to listen for updates to particular resources.
+
+## Terminology ## {#terminology}
+
+*This section is non-normative.*
+
+Issue(62):
+
+Note: Let the predicate `topic` be an `rdfs:subClassOf` of `as:object`?
+
+This document uses terms from the following specifications, as listed:
+* from the [[!SOLID-NOTIFICATIONS]] protocol, terms including
+    "Notification Subscription Service"
+* from the [[!PUSH-API]] specification, terms including 
+    "push endpoint", "push service", and "authentication secret"
+* from the [[!OAUTH-2.0]] specification, terms including
+    "authorization server" and "access token"
+* from the [[!WEBARCH]] specification, terms including 
+    "information resource"
+
+This document additionally uses the following terms, as defined below:
+: browser messaging service
+:: Refers to the implementation of a "push service" [[!PUSH-API]] in a browser.
+
+
+## Overview ## {#overview}
+
+The following diagram shows the high-level interactions involved in this flow. 
+How a client retrieves an access token is outside the scope of this document.
+
+<figure>
+  <img src="webpush-channel-2023-flow.mmd.svg" rel="schema:image" width="800">
+  <figcaption property="schema:name">Solid WebPushChannel2023 Flow</figcaption>
+</figure>
+
+<ul>
+<li> 
+**Discovery:**
+The *discovery client* discovers from the *storage metadata* a suitable *subscription service*.
+It further discovers from the *subscription service*'s representation the `vapidPublicKey` of the *subscription service*.
+</li>
+<li> 
+**Establish Subscription:**
+The *subscription client* subscribes to the *browser messaging service* to receive Web Push notifications
+using the `vapidPublicKey` of the *subscription service*.
+In return, the *subscription client* retrieves the `endpoint`, `auth` and `p256dh` values. 
+A corresponding notification channel is requested from the Notification Service API.
+The *subscription service* authenticates the *subscriber* with the *Authorization Server*,
+checks the authorization of the *subscriber* and creates the notification channel.
+</li>
+<li>
+**Deliver Notifications:**
+The *notification sender* issues Push notifications to the *browser messaging service*
+which in turn delivers the Push notification to the *notification receiver*.
+For each notification, the *subscription service* checks the authorization of the *subscriber* with the *Authorization Server*.
+
+Issue(185):
+</li>
+<li>
+**Unsubscribe:**
+When the *subscriber* chooses not to receive Web Push notifications anymore, it unsubscribes from the *browser messaging service*. 
+Additionally, it sends an unsubscription request to the *subscription service*.
+
+Issue(145):
+</li>
+</ul>
+
+# WebPushChannel2023 Type # {#channel-type}
+
+This specification defines the WebPushChannel2023 type for use with Solid Notifications.
+The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#WebPushChannel2023&gt;.
+
+A WebPushChannel2023 MUST conform to the [Solid Notifications Protocol](https://solid.github.io/notifications/protocol#discovery).
+
+A WebPushChannel2023 SHOULD support the [Solid Notifications Features](https://solid.github.io/notifications/protocol#notification-features).
+
+Note: Let the class `WebPushChannel2023` be an `rdfs:subClassOf` of `as:Follow`?
+
+The WebPushChannel2023 type defines the following properties:
+
+: vapidPublicKey
+:: The `vapidPublicKey` property indicates the notification server's public key as defined by [[!RFC8292]],
+    which can be used by the client for the Voluntary Application Server Identification (VAPID).
+
+: sendTo
+:: The `sendTo` property indicates the "Push Endpoint" as defined in the [[!PUSH-API]] specification.
+
+: keys
+:: The `keys` property indicates a "cryptographic keys object" that has the properties of `auth` and `p256dh`.
+
+: auth
+:: The `auth` property indicates the "authentication secret" as defined in the [[!RFC8291]] specifications.
+
+: p256dh
+:: The `p256dh` property indicates the elliptic curve Diffie-Hellman (ECDH) public key as defined by [[!RFC8291]].
+
+
+Note: Let the predicate `push:endpoint` be an `rdfs:subClassOf` of `notify:sendTo`?
+
+## Subscription Example ## {#example}
+
+*This section is non-normative.*
+
+An example `POST` request using a `DPoP` bound access token is below:
+
+<div class=example>
+```http
+POST /subscribe/
+Authorization: DPoP <token>
+DPoP: <proof>
+Content-Type: text/turtle
+```
+```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix push: <https://purl.org/solid-web-push/vocab#> .
+@prefix notify: <https://www.w3.org/ns/solid/notification#> .
+
+<>  a notify:WebPushChannel2023;
+    notify:topic <https://uvdsl.solid.aifb.kit.edu/inbox/>;
+    notify:sendTo <https://fcm.googleapis.com/fcm/send/ezblK6NIv80:APA91bHrjqImGaqs5-kcIZ_zO72HVDHGfnrzi9xwJvSsHD3qu4js1nQfHvcjf1Fjgo3mpxBqMkFcqPdiaRPFXnYSkEf9yz78m9FFBaWzwIvmaQ8M1-2vxaAO3S-ha2jf7ALLqRP92Y9z>;
+    push:keys   [
+        push:auth "Z51Yn6DRglyzR6SpDYHkqw"^^xsd:base64Binary;
+        push:p256dh "BNocq-WqQufNxY5NtFWz-ckbLoCprrHT74ALR-DXcpCoKmqV2cVflQ6ibyas-vJBMWMLeSDPdRBbJhcc0lDmJ5g"^^xsd:base64Binary
+    ] .
+```
+Example: POST request creating a `WebPushChannel2023`.
+</div>
+
+Note: TODO check data types of `auth` and `p256dh`.
+
+A successful response will have a HTTP status code of `201 Created` and full notification channel description in the body.
+
+The Subscription Service, in our example `/subscribe/`, where the POST request is submitted to:
+
+<div class=example>
+```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix as: <https://www.w3.org/ns/activitystreams#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix push: <https://purl.org/solid-web-push/vocab#>.
+            
+<#web-push> a notify:SubscriptionService;
+    as:name "Solid Web Push"@en;
+    rdfs:label "Solid Web Push Service"@en;
+    notify:channelType notify:WebPushChannel2023;
+    push:vapidPublicKey "BAOxV1U1Hj5npToInct2VhhYpJkL0GmHqc-ADbHu7O8Z2CJNkqSzc8BfCStWbTKq_yT9B6g6kYjyEHrAEpVuqww"^^xsd:base64Binary.
+```
+Example: Representation of a *subscription service*.
+</div>
+
+
+For Unsubscription,
+
+Issue(145):
+
+
+# Authentication and Authorization # {#auth}
+
+As described by the Solid Notifications Protocol section on Authorization,
+the WebPush subscription API requires authorization and follows the guidance of the Solid Protocol
+sections on Authentication and Authorization [[!SOLID-PROTOCOL]].
+
+It is beyond the scope of this document to describe how a client fetches an access token.
+Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications [[!SOLID-OIDC]].
+
+
+<pre class=biblio>
+{
+    "SOLID-PROTOCOL": {
+        "authors": [
+            "Sarven Capadisli",
+            "Tim Berners-Lee",
+            "Ruben Verborgh",
+            "Kjetil Kjernsmo"
+        ],
+        "href": "https://solidproject.org/TR/protocol",
+        "title": "Solid Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "SOLID-NOTIFICATIONS": {
+        "authors": [
+            "Aaron Coburn",
+            "Sarven Capadisli"
+        ],
+        "href": "https://solid.github.io/notifications/protocol",
+        "title": "Solid Notifications Protocol",
+        "publisher": "W3C Solid Community Group"
+    },
+    "SOLID-OIDC": {
+        "authors": [
+            "Aaron Coburn",
+            "elf Pavlik",
+            "Dmitri Zagidulin"
+        ],
+        "href": "https://solid.github.io/solid-oidc",
+        "title": "Solid-OIDC",
+        "publisher": "W3C Solid Community Group"
+    },
+     "PUSH-API": {
+        "authors": [
+            "Peter Beverloo", 
+            "Martin Thomson"
+        ],
+        "href": "https://www.w3.org/TR/push-api/",
+        "title": "Push API",
+        "publisher": "W3C Web Applications Working Group"
+    },
+    "OAUTH-2.0": {
+        "authors": [
+            "D. Hardt"
+        ],
+        "href": "https://www.ietf.org/rfc/rfc6749.txt",
+        "title": "The OAuth 2.0 Authorization Framework",
+        "publisher": "Internet Engineering Task Force (IETF)"
+    },
+    "WEBSUB": {
+        "authors": [
+          "Julien Genestoux", 
+          "Aaron Parecki"
+        ],
+        "href": "https://www.w3.org/TR/websub/",
+        "title": "WebSub",
+        "publisher": "W3C Social Web Working Group"
+    },
+      "WEBARCH": {
+        "authors": [
+          "Ian Jacobs",
+          "Norman Walsh"
+        ],
+        "href": "https://www.w3.org/TR/webarch/",
+        "title": "Architecture of the World Wide Web, Volume One",
+        "publisher": "W3C Technical Architecture Group"
+    },
+    "RFC8291": {
+        "authors": [
+          "M. Thomson"
+        ],
+        "href": "https://www.ietf.org/rfc/rfc8291.txt",
+        "title": "Message Encryption for Web Push",
+        "publisher": "Internet Engineering Task Force (IETF)"
+    },
+    "RFC8292": {
+        "authors": [
+          "M. Thomson",
+          "P. Beverloo"
+        ],
+        "href": "https://www.ietf.org/rfc/rfc8292.txt",
+        "title": "Voluntary Application Server Identification (VAPID) for Web Push",
+        "publisher": "Internet Engineering Task Force (IETF)"
+    }
+}
+</pre>
