@@ -2,11 +2,11 @@
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Solid StreamingHTTPChannel2023</title>
+  <title>Solid WebPushChannel2023</title>
   <meta content="CG-DRAFT" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version 6270e4735, updated Tue Aug 6 12:12:30 2024 -0700" name="generator">
-  <link href="https://solid.github.io/notifications/streaming-http-channel-2023" rel="canonical">
+  <link href="https://solid.github.io/notifications/webpush-channel-2023" rel="canonical">
   <meta content="57c6437ac56373ed0e35accc8bcb3754f8937559" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
@@ -532,17 +532,18 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
-   <h1 class="p-name no-ref" id="title">Solid StreamingHTTPChannel2023</h1>
+   <h1 class="p-name no-ref" id="title">Solid WebPushChannel2023</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-09-06">6 September 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://solid.github.io/notifications/streaming-http-channel-2023">https://solid.github.io/notifications/streaming-http-channel-2023</a>
+      <dd><a class="u-url" href="https://solid.github.io/notifications/webpush-channel-2023">https://solid.github.io/notifications/webpush-channel-2023</a>
       <dt>Issue Tracking:
       <dd><a href="https://github.com/solid/notifications/issues/">GitHub</a>
-      <dt class="editor">Editor:
+      <dt class="editor">Editors:
+      <dd class="editor p-author h-card vcard"><span class="p-name fn"><a href="https://github.com/uvdsl">Christoph Braun</a></span>
       <dd class="editor p-author h-card vcard"><span class="p-name fn"><a href="https://elf-pavlik.hackers4peace.net/">elf Pavlik</a></span>
       <dt>Version:
       <dd>0.1
@@ -551,7 +552,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </details>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright">
-    <p> Copyright © 2024 the Contributors to the Solid StreamingHTTPChannel2023,
+    <p> Copyright © 2024 the Contributors to the Solid WebPushChannel2023,
   published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
   A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    </p>
@@ -559,9 +560,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>The <a data-link-type="biblio" href="#biblio-solidnotificationsprotocol" title="Solid Notifications Protocol">[Solid.Notifications.Protocol]</a> defines a set of interaction patterns for agents to receive notification
-about changes to resources in a Solid Storage.</p>
-   <p>This specification defines a channel type that applies these patterns to the Fetch API.</p>
+   <p>The <a data-biblio-display="inline" data-link-type="biblio" href="https://solid.github.io/notifications/protocol"><cite>Solid Notifications Protocol</cite></a> defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.</p>
+   <p>This specification defines a subscription type that applies these patterns to the <a data-biblio-display="inline" data-link-type="biblio" href="https://www.w3.org/TR/push-api/"><cite>Push API</cite></a>.</p>
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
@@ -579,9 +579,10 @@ about changes to resources in a Solid Storage.</p>
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
       <li><a href="#terminology"><span class="secno">1.1</span> <span class="content">Terminology</span></a>
+      <li><a href="#overview"><span class="secno">1.2</span> <span class="content">Overview</span></a>
      </ol>
     <li>
-     <a href="#channel-type"><span class="secno">2</span> <span class="content">StreamingHTTPChannel2023 Type</span></a>
+     <a href="#channel-type"><span class="secno">2</span> <span class="content">WebPushChannel2023 Type</span></a>
      <ol class="toc">
       <li><a href="#example"><span class="secno">2.1</span> <span class="content">Subscription Example</span></a>
      </ol>
@@ -599,115 +600,148 @@ about changes to resources in a Solid Storage.</p>
    </ol>
   </nav>
   <main>
+   <div class="note" role="note"> This draft is based on a submission for <a href="https://uvdsl.solid.aifb.kit.edu/conf/2022/icwe/demo">Web Push Notifications from Solid Pods</a>. </div>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><em>This section is non-normative.</em></p>
-   <p>The <a data-link-type="biblio" href="#biblio-solidnotificationsprotocol" title="Solid Notifications Protocol">[Solid.Notifications.Protocol]</a> describes a general pattern by which agents can be notified when a Solid Resource changes.
-In the context of a Web Browser, the Streaming HTTP Channel provides a convenient mechanism for a Solid Storage
-to alert a subscribing client of these changes.</p>
-   <p>This document describes a Solid Notifications channel type that makes use of the Fetch API.</p>
+   <p>The <a data-biblio-display="inline" data-link-type="biblio" href="https://solid.github.io/notifications/protocol"><cite>Solid Notifications Protocol</cite></a> describes a general pattern by which agents can be notified when a Solid Resource changes.</p>
+   <p>This document describes a Solid Notifications subscription type that makes use of the <a data-biblio-display="inline" data-link-type="biblio" href="https://www.w3.org/TR/push-api/"><cite>Push API</cite></a> for Web Push notifications in Progressive Web Applications (PWAs).</p>
    <p>This specification is for:</p>
    <ul>
     <li data-md>
-     <p>Resource server developers who wish to enable clients to listen for updates to particular resources.</p>
+     <p>Resource server developers who wish to enable clients, i.e., PWAs, to listen for updates to particular resources.</p>
     <li data-md>
-     <p>Application developers who wish to implement a client to listen for updates to particular resources.</p>
+     <p>Application developers who wish to implement a client, i.e., a PWA, to listen for updates to particular resources.</p>
    </ul>
    <h3 class="heading settled" data-level="1.1" id="terminology"><span class="secno">1.1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h3>
-   <p><strong>This section is non-normative.</strong></p>
-   <p>This specification uses terms from the <a data-link-type="biblio" href="#biblio-solidnotificationsprotocol" title="Solid Notifications Protocol">[Solid.Notifications.Protocol]</a> specification.
-When Solid Notifications Protocol terminology is used it is linked directly to that specification.</p>
-   <h2 class="heading settled" data-level="2" id="channel-type"><span class="secno">2. </span><span class="content">StreamingHTTPChannel2023 Type</span><a class="self-link" href="#channel-type"></a></h2>
-   <p>This specification defines the StreamingHTTPChannel2023 type for use with Solid Notifications channels.
-that use the Fetch API.</p>
-   <p>An StreamingHTTPChannel2023 MUST conform to the <a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications Protocol</a>.</p>
-   <p>An StreamingHTTPChannel2023 SHOULD support the <a href="https://solid.github.io/notifications/protocol#notification-features">Solid Notifications Features</a>.</p>
-   <p>The StreamingHTTPChannel2023 type further constrains following properties properties:</p>
+   <p><em>This section is non-normative.</em></p>
+   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/notifications/issues/62" style="text-transform:none">solid/notifications/62</a><a href="https://github.com/solid/notifications/issues/62">:bike: shed: Use `object` (closely aligned with AS) instead of `topic` to receive notifications about a resource</a></div>
+   <p class="note" role="note"><span class="marker">Note:</span> Let the predicate <code>topic</code> be an <code>rdfs:subClassOf</code> of <code>as:object</code>?</p>
+   <p>This document uses terms from the following specifications, as listed:</p>
+   <ul>
+    <li data-md>
+     <p>from the <a data-link-type="biblio" href="#biblio-solid-notifications" title="Solid Notifications Protocol">[SOLID-NOTIFICATIONS]</a> protocol, terms including
+"Notification Subscription Service"</p>
+    <li data-md>
+     <p>from the <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> specification, terms including
+"push endpoint", "push service", and "authentication secret"</p>
+    <li data-md>
+     <p>from the <a data-link-type="biblio" href="#biblio-oauth-20" title="The OAuth 2.0 Authorization Framework">[OAUTH-2.0]</a> specification, terms including
+"authorization server" and "access token"</p>
+    <li data-md>
+     <p>from the <a data-link-type="biblio" href="#biblio-webarch" title="Architecture of the World Wide Web, Volume One">[WEBARCH]</a> specification, terms including
+"information resource"</p>
+   </ul>
+   <p>This document additionally uses the following terms, as defined below:</p>
    <dl>
-    <dt data-md>receiveFrom
+    <dt data-md>browser messaging service
     <dd data-md>
-     <p>The <a href="https://solid.github.io/notifications/protocol#notify-receiveFrom">receiveFrom</a> property
-is used in the body of the subscription response.
-The value of source property MUST be a URI, using the <code>https</code> scheme.</p>
+     <p>Refers to the implementation of a "push service" <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> in a browser.</p>
    </dl>
-   <p>A client establishes a subscription using the StreamingHTTPChannel2023 type by sending an authenticated
-subscription request to the Subscription Resource retrieved via Solid Notifications discovery.</p>
-   <p>For StreamingHTTPChannel2023 interactions, the client sends a JSON-LD payload to the appropriate
-Subscription Resource via POST. The only required fields in this interaction are type and topic.
-The type field MUST contain the type of channel being requested: <code>StreamingHTTPChannel2023</code> The topic field MUST contain the URL of the resource a client wishes to subscribe to changes.</p>
-<script type="text/turtle">
-PREFIX doap: <http://usefulinc.com/ns/doap#>
-PREFIX spec: <http://www.w3.org/ns/spec#>
-
-<>
-  a doap:Specification ;
-  spec:requirement
-        <#req1> ,
-        <#req2> ,
-        <#req3> .
-<#req1>
-  spec:requirementSubject <#subscription-request> ;
-  spec:requirementLevel spec:MUST ;
-  spec:statement "The type field MUST contain the type of channel being requested."@en .
-<#req2>
-  spec:requirementSubject <#subscription-request> ;
-  spec:requirementLevel spec:MUST ;
-  spec:statement "The topic field MUST contain the URL of the resource a client wishes to subscribe to changes."@en .
-<#req3>
-  spec:requirementSubject <#subscription-response> ;
-  spec:requirementLevel spec:MUST ;
-  spec:statement "The value of source property MUST be a URI, using the https scheme."@en .
-
-</script>
+   <h3 class="heading settled" data-level="1.2" id="overview"><span class="secno">1.2. </span><span class="content">Overview</span><a class="self-link" href="#overview"></a></h3>
+   <p>The following diagram shows the high-level interactions involved in this flow.
+How a client retrieves an access token is outside the scope of this document.</p>
+   <figure>
+     <img rel="schema:image" src="webpush-channel-2023-flow.mmd.svg" width="800"> 
+    <figcaption property="schema:name">Solid WebPushChannel2023 Flow</figcaption>
+   </figure>
+   <ul>
+    <li> <strong>Discovery:</strong> The <em>discovery client</em> discovers from the <em>storage metadata</em> a suitable <em>subscription service</em>.
+It further discovers from the <em>subscription service</em>'s representation the <code>vapidPublicKey</code> of the <em>subscription service</em>. 
+    <li> <strong>Establish Subscription:</strong> The <em>subscription client</em> subscribes to the <em>browser messaging service</em> to receive Web Push notifications
+using the <code>vapidPublicKey</code> of the <em>subscription service</em>.
+In return, the <em>subscription client</em> retrieves the <code>endpoint</code>, <code>auth</code> and <code>p256dh</code> values. 
+A corresponding notification channel is requested from the Notification Service API.
+The <em>subscription service</em> authenticates the <em>subscriber</em> with the <em>Authorization Server</em>,
+checks the authorization of the <em>subscriber</em> and creates the notification channel. 
+    <li>
+      <strong>Deliver Notifications:</strong> The <em>notification sender</em> issues Push notifications to the <em>browser messaging service</em> which in turn delivers the Push notification to the <em>notification receiver</em>.
+For each notification, the <em>subscription service</em> checks the authorization of the <em>subscriber</em> with the <em>Authorization Server</em>. 
+     <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/notifications/issues/185" style="text-transform:none">solid/notifications/185</a><a href="https://github.com/solid/notifications/issues/185">Changing access policy for a topic resource may require invalidating some channels</a></div>
+    <li>
+      <strong>Unsubscribe:</strong> When the <em>subscriber</em> chooses not to receive Web Push notifications anymore, it unsubscribes from the <em>browser messaging service</em>. 
+Additionally, it sends an unsubscription request to the <em>subscription service</em>. 
+     <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/notifications/issues/145" style="text-transform:none">solid/notifications/145</a><a href="https://github.com/solid/notifications/issues/145">Define unsubscribing</a></div>
+   </ul>
+   <h2 class="heading settled" data-level="2" id="channel-type"><span class="secno">2. </span><span class="content">WebPushChannel2023 Type</span><a class="self-link" href="#channel-type"></a></h2>
+   <p>This specification defines the WebPushChannel2023 type for use with Solid Notifications.
+The URI of the subscription type is &lt;http://www.w3.org/ns/solid/notification#WebPushChannel2023>.</p>
+   <p>A WebPushChannel2023 MUST conform to the <a href="https://solid.github.io/notifications/protocol#discovery">Solid Notifications Protocol</a>.</p>
+   <p>A WebPushChannel2023 SHOULD support the <a href="https://solid.github.io/notifications/protocol#notification-features">Solid Notifications Features</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Let the class <code>WebPushChannel2023</code> be an <code>rdfs:subClassOf</code> of <code>as:Follow</code>?</p>
+   <p>The WebPushChannel2023 type defines the following properties:</p>
+   <dl>
+    <dt data-md>vapidPublicKey
+    <dd data-md>
+     <p>The <code>vapidPublicKey</code> property indicates the notification server’s public key as defined by <a data-link-type="biblio" href="#biblio-rfc8292" title="Voluntary Application Server Identification (VAPID) for Web Push">[RFC8292]</a>,
+which can be used by the client for the Voluntary Application Server Identification (VAPID).</p>
+    <dt data-md>sendTo
+    <dd data-md>
+     <p>The <code>sendTo</code> property indicates the "Push Endpoint" as defined in the <a data-link-type="biblio" href="#biblio-push-api" title="Push API">[PUSH-API]</a> specification.</p>
+    <dt data-md>keys
+    <dd data-md>
+     <p>The <code>keys</code> property indicates a "cryptographic keys object" that has the properties of <code>auth</code> and <code>p256dh</code>.</p>
+    <dt data-md>auth
+    <dd data-md>
+     <p>The <code>auth</code> property indicates the "authentication secret" as defined in the <a data-link-type="biblio" href="#biblio-rfc8291" title="Message Encryption for Web Push">[RFC8291]</a> specifications.</p>
+    <dt data-md>p256dh
+    <dd data-md>
+     <p>The <code>p256dh</code> property indicates the elliptic curve Diffie-Hellman (ECDH) public key as defined by <a data-link-type="biblio" href="#biblio-rfc8291" title="Message Encryption for Web Push">[RFC8291]</a>.</p>
+   </dl>
+   <p class="note" role="note"><span class="marker">Note:</span> Let the predicate <code>push:endpoint</code> be an <code>rdfs:subClassOf</code> of <code>notify:sendTo</code>?</p>
    <h3 class="heading settled" data-level="2.1" id="example"><span class="secno">2.1. </span><span class="content">Subscription Example</span><a class="self-link" href="#example"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
-<pre class="language-http highlight">POST /subscription
+   <div class="example" id="example-6df678ed">
+    <a class="self-link" href="#example-6df678ed"></a> 
+<pre class="language-http highlight">POST /subscribe/
 Authorization: DPoP &lt;token>
 DPoP: &lt;proof>
-Content-Type: application/ld+json
+Content-Type: text/turtle
 </pre>
-<pre class="language-jsonld highlight"><c- p>{</c->
-  <c- nd>"@context"</c-><c- p>:</c-> <c- p>[</c-><c- u>"https://www.w3.org/ns/solid/notification/v1"</c-><c- p>],</c->
-  <c- f>"type"</c-><c- p>:</c-> <c- u>"StreamingHTTPChannel2023"</c-><c- p>,</c->
-  <c- f>"topic"</c-><c- p>:</c-> <c- u>"https://storage.example/resource"</c-><c- p>,</c->
-  <c- f>"state"</c-><c- p>:</c-> <c- u>"opaque-state"</c-><c- p>,</c->
-  <c- f>"endAt"</c-><c- p>:</c-> <c- u>"2023-12-23T12:37:15Z"</c-><c- p>,</c->
-  <c- f>"rate"</c-><c- p>:</c-> <c- u>"PT10s"</c->
-<c- p>}</c->
+<pre class="language-turtle highlight"><c- k>@prefix</c-> <c- nn>rdf:</c-> <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>as:</c-> <c- g>&lt;https://www.w3.org/ns/activitystreams#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>push:</c-> <c- g>&lt;https://purl.org/solid-web-push/vocab#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>notify:</c-> <c- g>&lt;https://www.w3.org/ns/solid/notification#></c-> <c- p>.</c->
+
+<c- g>&lt;></c->  <c- b>a</c-> <c- nn>notify</c-><c- p>:</c-><c- f>WebPushChannel2023</c-><c- p>;</c->
+    <c- nn>notify</c-><c- p>:</c-><c- f>topic</c-> <c- g>&lt;https://uvdsl.solid.aifb.kit.edu/inbox/></c-><c- p>;</c->
+    <c- nn>notify</c-><c- p>:</c-><c- f>sendTo</c-> <c- g>&lt;https://fcm.googleapis.com/fcm/send/ezblK6NIv80:APA91bHrjqImGaqs5-kcIZ_zO72HVDHGfnrzi9xwJvSsHD3qu4js1nQfHvcjf1Fjgo3mpxBqMkFcqPdiaRPFXnYSkEf9yz78m9FFBaWzwIvmaQ8M1-2vxaAO3S-ha2jf7ALLqRP92Y9z></c-><c- p>;</c->
+    <c- nn>push</c-><c- p>:</c-><c- f>keys</c->   <c- p>[</c->
+        <c- nn>push</c-><c- p>:</c-><c- f>auth</c-> <c- s>"Z51Yn6DRglyzR6SpDYHkqw"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c-><c- p>;</c->
+        <c- nn>push</c-><c- p>:</c-><c- f>p256dh</c-> <c- s>"BNocq-WqQufNxY5NtFWz-ckbLoCprrHT74ALR-DXcpCoKmqV2cVflQ6ibyas-vJBMWMLeSDPdRBbJhcc0lDmJ5g"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c->
+    <c- p>]</c-> <c- p>.</c->
 </pre>
-   <blockquote>
-    <p>POST request including type and topic targeting the Notification Subscription Resource.</p>
-   </blockquote>
-   <p>A successful response will contain a URL to the subscription Resource that can be used directly with a JavaScript client.</p>
-<pre class="language-http highlight">Content-Type: application/ld+json
+    <p>Example: POST request creating a <code>WebPushChannel2023</code>.</p>
+   </div>
+   <p class="note" role="note"><span class="marker">Note:</span> TODO check data types of <code>auth</code> and <code>p256dh</code>.</p>
+   <p>A successful response will have a HTTP status code of <code>201 Created</code> and full notification channel description in the body.</p>
+   <p>The Subscription Service, in our example <code>/subscribe/</code>, where the POST request is submitted to:</p>
+   <div class="example" id="example-f75c9dc4">
+    <a class="self-link" href="#example-f75c9dc4"></a> 
+<pre class="language-turtle highlight"><c- k>@prefix</c-> <c- nn>rdf:</c-> <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-><c- p>.</c->
+<c- k>@prefix</c-> <c- nn>rdfs:</c-> <c- g>&lt;http://www.w3.org/2000/01/rdf-schema#></c-><c- p>.</c->
+<c- k>@prefix</c-> <c- nn>dc:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-><c- p>.</c->
+<c- k>@prefix</c-> <c- nn>xsd:</c-> <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-><c- p>.</c->
+<c- k>@prefix</c-> <c- nn>as:</c-> <c- g>&lt;https://www.w3.org/ns/activitystreams#></c-><c- p>.</c->
+<c- k>@prefix</c-> <c- nn>ldp:</c-> <c- g>&lt;http://www.w3.org/ns/ldp#></c-><c- p>.</c->
+<c- k>@prefix</c-> <c- nn>push:</c-> <c- g>&lt;https://purl.org/solid-web-push/vocab#></c-><c- p>.</c->
+            
+<c- g>&lt;#web-push></c-> <c- b>a</c-> <c- nn>notify</c-><c- p>:</c-><c- f>SubscriptionService</c-><c- p>;</c->
+    <c- nn>as</c-><c- p>:</c-><c- f>name</c-> <c- s>"Solid Web Push"</c-><c- o>@</c->en<c- p>;</c->
+    <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Solid Web Push Service"</c-><c- o>@</c->en<c- p>;</c->
+    <c- nn>notify</c-><c- p>:</c-><c- f>channelType</c-> <c- nn>notify</c-><c- p>:</c-><c- f>WebPushChannel2023</c-><c- p>;</c->
+    <c- nn>push</c-><c- p>:</c-><c- f>vapidPublicKey</c-> <c- s>"BAOxV1U1Hj5npToInct2VhhYpJkL0GmHqc-ADbHu7O8Z2CJNkqSzc8BfCStWbTKq_yT9B6g6kYjyEHrAEpVuqww"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c-><c- p>.</c->
 </pre>
-<pre class="language-jsonld highlight"><c- p>{</c->
-  <c- nd>"@context"</c-><c- p>:</c-> <c- u>"https://www.w3.org/ns/solid/notification/v1"</c-><c- p>,</c->
-  <c- f>"type"</c-><c- p>:</c-> <c- u>"StreamingHTTPChannel2023"</c-><c- p>,</c->
-  <c- f>"receiveFrom"</c-><c- p>:</c-> <c- u>"https://fetch.example/aca3cb0a-fb0a-4091-b9f8-8117d2cdb392"</c->
-<c- p>}</c->
-</pre>
-   <blockquote>
-    <p>Response to the POST request, including channel type and the receiveFrom URL.</p>
-   </blockquote>
-   <p>In JavaScript, a client can use the data in the response to establish a connection to the Fetch API.
-And define how to handle notifications</p>
-<pre class="language-js highlight"><c- a>const</c-> response <c- o>=</c-> <c- k>await</c-> fetch<c- p>(</c-><c- t>'https://fetch.example/aca3cb0a-fb0a-4091-b9f8-8117d2cdb392'</c-><c- p>)</c->
-<c- a>const</c-> textStream <c- o>=</c-> response<c- p>.</c->body<c- p>.</c->pipeThrough<c- p>(</c-><c- ow>new</c-> TextDecoderStream<c- p>());</c->
-<c- k>for</c-> <c- k>await</c-> <c- p>(</c-><c- a>const</c-> notificationText <c- k>of</c-> textStream<c- p>)</c-> <c- p>{</c->
-  parseAndHandle<c- p>(</c->notificationText<c- p>)</c->
-<c- p>}</c->
-</pre>
-   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/solid/notifications/issues/46" style="text-transform:none">solid/notifications/46</a><a href="https://github.com/solid/notifications/issues/46">Specify that each chunk must include one full notification.</a></div>
+    <p>Example: Representation of a <em>subscription service</em>.</p>
+   </div>
+   <p>For Unsubscription,</p>
+   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/notifications/issues/145" style="text-transform:none">solid/notifications/145</a><a href="https://github.com/solid/notifications/issues/145">Define unsubscribing</a></div>
    <h2 class="heading settled" data-level="3" id="auth"><span class="secno">3. </span><span class="content">Authentication and Authorization</span><a class="self-link" href="#auth"></a></h2>
-   <p>Streaming HTTP Channel has the advantage of being able to authenticate with the Subscription Resource
-as well as the notifications <code>receiveFrom</code>. The same <em>access token</em> can be used with both resources.
-This doesn’t just rely on the notifications source being a <a href="https://www.w3.org/TR/capability-urls/">Capability URL</a> as many other channel types do.</p>
    <p>As described by the Solid Notifications Protocol section on Authorization,
-the Streaming HTTP Channel requires authorization and follows the guidance of the Solid Protocol
-sections on Authentication and Authorization <a data-link-type="biblio" href="#biblio-solidprotocol" title="Solid Protocol">[Solid.Protocol]</a>.</p>
+the WebPush subscription API requires authorization and follows the guidance of the Solid Protocol
+sections on Authentication and Authorization <a data-link-type="biblio" href="#biblio-solid-protocol" title="Solid Protocol">[SOLID-PROTOCOL]</a>.</p>
    <p>It is beyond the scope of this document to describe how a client fetches an access token.
-Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications <a data-link-type="biblio" href="#biblio-solidoidc" title="Solid-OIDC">[Solid.OIDC]</a>.</p>
+Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications <a data-link-type="biblio" href="#biblio-solid-oidc" title="Solid-OIDC">[SOLID-OIDC]</a>.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
@@ -740,12 +774,22 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
+   <dt id="biblio-oauth-20">[OAUTH-2.0]
+   <dd>D. Hardt. <a href="https://www.ietf.org/rfc/rfc6749.txt"><cite>The OAuth 2.0 Authorization Framework</cite></a>. URL: <a href="https://www.ietf.org/rfc/rfc6749.txt">https://www.ietf.org/rfc/rfc6749.txt</a>
+   <dt id="biblio-push-api">[PUSH-API]
+   <dd>Peter Beverloo; Martin Thomson. <a href="https://www.w3.org/TR/push-api/"><cite>Push API</cite></a>. URL: <a href="https://www.w3.org/TR/push-api/">https://www.w3.org/TR/push-api/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
-   <dt id="biblio-solidnotificationsprotocol">[Solid.Notifications.Protocol]
-   <dd>Aaron Coburn; et al. <a href="https://solidproject.org/TR/notifications-protocol"><cite>Solid Notifications Protocol</cite></a>. URL: <a href="https://solidproject.org/TR/notifications-protocol">https://solidproject.org/TR/notifications-protocol</a>
-   <dt id="biblio-solidoidc">[Solid.OIDC]
-   <dd>Aaron Coburn; elf Pavlik; Dmitri Zagidulin. <a href="https://solidproject.org/TR/oidc"><cite>Solid-OIDC</cite></a>. URL: <a href="https://solidproject.org/TR/oidc">https://solidproject.org/TR/oidc</a>
-   <dt id="biblio-solidprotocol">[Solid.Protocol]
+   <dt id="biblio-rfc8291">[RFC8291]
+   <dd>M. Thomson. <a href="https://www.ietf.org/rfc/rfc8291.txt"><cite>Message Encryption for Web Push</cite></a>. URL: <a href="https://www.ietf.org/rfc/rfc8291.txt">https://www.ietf.org/rfc/rfc8291.txt</a>
+   <dt id="biblio-rfc8292">[RFC8292]
+   <dd>M. Thomson; P. Beverloo. <a href="https://www.ietf.org/rfc/rfc8292.txt"><cite>Voluntary Application Server Identification (VAPID) for Web Push</cite></a>. URL: <a href="https://www.ietf.org/rfc/rfc8292.txt">https://www.ietf.org/rfc/rfc8292.txt</a>
+   <dt id="biblio-solid-notifications">[SOLID-NOTIFICATIONS]
+   <dd>Aaron Coburn; Sarven Capadisli. <a href="https://solid.github.io/notifications/protocol"><cite>Solid Notifications Protocol</cite></a>. URL: <a href="https://solid.github.io/notifications/protocol">https://solid.github.io/notifications/protocol</a>
+   <dt id="biblio-solid-oidc">[SOLID-OIDC]
+   <dd>Aaron Coburn; elf Pavlik; Dmitri Zagidulin. <a href="https://solid.github.io/solid-oidc"><cite>Solid-OIDC</cite></a>. URL: <a href="https://solid.github.io/solid-oidc">https://solid.github.io/solid-oidc</a>
+   <dt id="biblio-solid-protocol">[SOLID-PROTOCOL]
    <dd>Sarven Capadisli; et al. <a href="https://solidproject.org/TR/protocol"><cite>Solid Protocol</cite></a>. URL: <a href="https://solidproject.org/TR/protocol">https://solidproject.org/TR/protocol</a>
+   <dt id="biblio-webarch">[WEBARCH]
+   <dd>Ian Jacobs; Norman Walsh. <a href="https://www.w3.org/TR/webarch/"><cite>Architecture of the World Wide Web, Volume One</cite></a>. URL: <a href="https://www.w3.org/TR/webarch/">https://www.w3.org/TR/webarch/</a>
   </dl>
