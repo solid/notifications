@@ -423,7 +423,7 @@ content: "";
                   <figure id="websocket-new" class="example listing" rel="schema:hasPart" resource="#websocket-new">
                     <p class="example-h"><span>Example</span>: Establishing a new WebSocket connection.</p>
 
-                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket("wss://websocket.example/?auth=Ys3KiUq", "http://www.w3.org/ns/solid/notifications#WebSocketChannel2023");</code></pre>
+                    <pre about="#websocket-new" property="schema:description" typeof="fabio:Script"><code>const ws = new WebSocket("wss://websocket.example/?auth=Ys3KiUq");</code></pre>
 
                     <figcaption property="schema:name">JavaScript code to establish a <code>new WebSocket</code> connection</figcaption>
                   </figure>
@@ -433,8 +433,8 @@ content: "";
                   <figure id="websocket-onclose-onmessage" class="example listing" rel="schema:hasPart" resource="#websocket-onclose-onmessage">
                     <p class="example-h"><span>Example</span>: Handling WebSocket events after the connection is established.</p>
 
-                    <pre about="#websocket-onclose-onmessage" property="schema:description" typeof="fabio:Script"><code>ws.onclose(evt => reconnect(evt));</code>
-<code>ws.onmessage(evt => console.log("Message received: ", evt))</code></pre>
+                    <pre about="#websocket-onclose-onmessage" property="schema:description" typeof="fabio:Script"><code>ws.onclose = evt => reconnect(evt);</code>
+<code>ws.onmessage = evt => console.log("Message received: ", evt)</code></pre>
 
                     <figcaption property="schema:name">JavaScript code to handle <code>onclose</code> and <code>onmessage</code> events</figcaption>
                   </figure>
