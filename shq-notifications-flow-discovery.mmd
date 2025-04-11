@@ -1,0 +1,7 @@
+sequenceDiagram
+
+  participant Client
+  participant Server
+
+  Client ->> Server: HEAD Topic Resource
+  Server ->> Client: HTTP Accept-Query: "application/ld+json"#59; <br/>profile="http://www.w3.org/ns/json-ld#35;context<br/>https://www.w3.org/ns/solid/notifications-context/v1"
