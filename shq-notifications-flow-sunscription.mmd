@@ -1,0 +1,7 @@
+sequenceDiagram
+  participant Client
+  participant Server
+
+  Client ->> Server: Subscription Request
+  Server ->> Client: Notification Channel
+  Server -->> Client: Notification Messages
