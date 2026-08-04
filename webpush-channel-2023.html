@@ -5,10 +5,10 @@
   <title>Solid WebPushChannel2023</title>
   <meta content="CG-DRAFT" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
+  <meta content="Bikeshed version d113b2e81, updated Tue Jun 9 14:57:55 2026 -0700" name="generator">
   <link href="https://solid.github.io/notifications/webpush-channel-2023" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="f89654486de712fcf6d83877b3a1e7ecc18c8918" name="revision">
+  <meta content="24c414e526c04bc0a683e8a5d8ebdbef6601c4e9" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -304,7 +304,7 @@ pre .property::before, pre .property::after {
 </style>
 <style>/* Boilerplate: style-counters */
 body {
-    counter-reset: example figure issue;
+    counter-reset: example figure issue table;
 }
 .issue {
     counter-increment: issue;
@@ -321,7 +321,7 @@ body {
 }
 .invalid.example:not(.no-marker)::before,
 .illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
+    content: "Invalid Example " counter(example);
 }
 
 figcaption {
@@ -329,6 +329,13 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
 }
 </style>
 <style>/* Boilerplate: style-issues */
@@ -529,12 +536,40 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
 </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
-   <h1 class="p-name no-ref" id="title">Solid WebPushChannel2023</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2025-05-11">11 May 2025</time></p>
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
+    <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+</a>
+</p>
+   <h1 class="no-ref p-name" id="title">Solid WebPushChannel2023</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
+    <time class="dt-updated" datetime="2026-08-04">4 August 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -544,36 +579,41 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <dt>Issue Tracking:
       <dd><a href="https://github.com/solid/notifications/issues/">GitHub</a>
       <dt class="editor">Editors:
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">[Christoph Braun](https://github.com/uvdsl)</span>
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">[elf Pavlik](https://elf-pavlik.hackers4peace.net/)</span>
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">[Christoph Braun](https://github.com/uvdsl)</span>
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">[elf Pavlik](https://elf-pavlik.hackers4peace.net/)</span>
       <dt>Version:
       <dd>0.1
      </dl>
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright">Copyright © 2025 the Contributors to the Solid WebPushChannel2023,
-published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
-A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
+   <p class="copyright" data-fill-with="copyright">Copyright © 2026 the Contributors to the Solid WebPushChannel2023,
+published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a>
+under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
-   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <h2 class="heading no-num no-ref no-toc settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>The <a data-biblio-display="inline" data-link-type="biblio" href="https://solid.github.io/notifications/protocol"><cite>Solid Notifications Protocol</cite></a> defines a set of interaction patterns for agents to establish subscriptions to resources in a Solid Storage.</p>
    <p>This specification defines a subscription type that applies these patterns to the <a data-biblio-display="inline" data-link-type="biblio" href="https://www.w3.org/TR/push-api/"><cite>Push API</cite></a>.</p>
   </div>
-  <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
+  <h2 class="heading no-num no-ref no-toc settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> This report was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a>.
+   <p>
+  This report was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a>.
   It is not a W3C Standard nor is it on the W3C Standards Track.
-  Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
-  Learn more about <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>. </p>
+  Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>
+  there is a limited opt-out and other conditions apply.
+  Learn more about <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.
+</p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
-   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
-   <ol class="toc" role="directory">
+   <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
+   <ol class="toc">
     <li>
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
@@ -599,7 +639,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    </ol>
   </nav>
   <main>
-   <div class="note" role="note"> This draft is based on a submission for <a href="https://uvdsl.solid.aifb.kit.edu/conf/2022/icwe/demo">Web Push Notifications from Solid Pods</a>. </div>
+   <div class="note" role="note">
+This draft is based on a submission for <a href="https://uvdsl.solid.aifb.kit.edu/conf/2022/icwe/demo">Web Push Notifications from Solid Pods</a>.
+</div>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><em>This section is non-normative.</em></p>
    <p>The <a data-biblio-display="inline" data-link-type="biblio" href="https://solid.github.io/notifications/protocol"><cite>Solid Notifications Protocol</cite></a> describes a general pattern by which agents can be notified when a Solid Resource changes.</p>
@@ -640,25 +682,42 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>The following diagram shows the high-level interactions involved in this flow.
 How a client retrieves an access token is outside the scope of this document.</p>
    <figure>
-     <img rel="schema:image" src="webpush-channel-2023-flow.mmd.svg" width="800"> 
+    
+  <img rel="schema:image" src="webpush-channel-2023-flow.mmd.svg" width="800">
+  
     <figcaption property="schema:name">Solid WebPushChannel2023 Flow</figcaption>
    </figure>
    <ul>
-    <li> <strong>Discovery:</strong> The <em>discovery client</em> discovers from the <em>storage metadata</em> a suitable <em>subscription service</em>.
-It further discovers from the <em>subscription service</em>'s representation the <code>vapidPublicKey</code> of the <em>subscription service</em>. 
-    <li> <strong>Establish Subscription:</strong> The <em>subscription client</em> subscribes to the <em>browser messaging service</em> to receive Web Push notifications
+    <li> 
+<strong>Discovery:</strong>
+The <em>discovery client</em> discovers from the <em>storage metadata</em> a suitable <em>subscription service</em>.
+It further discovers from the <em>subscription service</em>'s representation the <code>vapidPublicKey</code> of the <em>subscription service</em>.
+
+    <li> 
+<strong>Establish Subscription:</strong>
+The <em>subscription client</em> subscribes to the <em>browser messaging service</em> to receive Web Push notifications
 using the <code>vapidPublicKey</code> of the <em>subscription service</em>.
 In return, the <em>subscription client</em> retrieves the <code>endpoint</code>, <code>auth</code> and <code>p256dh</code> values. 
 A corresponding notification channel is requested from the Notification Service API.
 The <em>subscription service</em> authenticates the <em>subscriber</em> with the <em>Authorization Server</em>,
-checks the authorization of the <em>subscriber</em> and creates the notification channel. 
+checks the authorization of the <em>subscriber</em> and creates the notification channel.
+
     <li>
-      <strong>Deliver Notifications:</strong> The <em>notification sender</em> issues Push notifications to the <em>browser messaging service</em> which in turn delivers the Push notification to the <em>notification receiver</em>.
-For each notification, the <em>subscription service</em> checks the authorization of the <em>subscriber</em> with the <em>Authorization Server</em>. 
+     
+<strong>Deliver Notifications:</strong>
+The <em>notification sender</em> issues Push notifications to the <em>browser messaging service</em>
+which in turn delivers the Push notification to the <em>notification receiver</em>.
+For each notification, the <em>subscription service</em> checks the authorization of the <em>subscriber</em> with the <em>Authorization Server</em>.
+
+
      <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/solid/notifications/issues/185" style="text-transform:none">solid/notifications/185</a><a href="https://github.com/solid/notifications/issues/185">Changing access policy for a topic resource may require invalidating some channels</a></div>
     <li>
-      <strong>Unsubscribe:</strong> When the <em>subscriber</em> chooses not to receive Web Push notifications anymore, it unsubscribes from the <em>browser messaging service</em>. 
-Additionally, it sends an unsubscription request to the <em>subscription service</em>. 
+     
+<strong>Unsubscribe:</strong>
+When the <em>subscriber</em> chooses not to receive Web Push notifications anymore, it unsubscribes from the <em>browser messaging service</em>. 
+Additionally, it sends an unsubscription request to the <em>subscription service</em>.
+
+
      <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/solid/notifications/issues/145" style="text-transform:none">solid/notifications/145</a><a href="https://github.com/solid/notifications/issues/145">Define unsubscribing</a></div>
    </ul>
    <h2 class="heading settled" data-level="2" id="channel-type"><span class="secno">2. </span><span class="content">WebPushChannel2023 Type</span><a class="self-link" href="#channel-type"></a></h2>
@@ -691,13 +750,14 @@ which can be used by the client for the Voluntary Application Server Identificat
    <p><em>This section is non-normative.</em></p>
    <p>An example <code>POST</code> request using a <code>DPoP</code> bound access token is below:</p>
    <div class="example" id="example-6df678ed">
-    <a class="self-link" href="#example-6df678ed"></a> 
-<pre class="language-http highlight">POST /subscribe/
+    <a class="self-link" href="#example-6df678ed"></a>
+
+<pre class="highlight language-http">POST /subscribe/
 Authorization: DPoP &lt;token>
 DPoP: &lt;proof>
 Content-Type: text/turtle
 </pre>
-<pre class="language-turtle highlight"><c- k>@prefix</c-> <c- nn>rdf:</c-> <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-> <c- p>.</c->
+<pre class="highlight language-turtle"><c- k>@prefix</c-> <c- nn>rdf:</c-> <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>as:</c-> <c- g>&lt;https://www.w3.org/ns/activitystreams#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>push:</c-> <c- g>&lt;https://purl.org/solid-web-push/vocab#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>notify:</c-> <c- g>&lt;https://www.w3.org/ns/solid/notification#></c-> <c- p>.</c->
@@ -710,28 +770,33 @@ Content-Type: text/turtle
         <c- nn>push</c-><c- p>:</c-><c- f>p256dh</c-> <c- s>"BNocq-WqQufNxY5NtFWz-ckbLoCprrHT74ALR-DXcpCoKmqV2cVflQ6ibyas-vJBMWMLeSDPdRBbJhcc0lDmJ5g"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c->
     <c- p>]</c-> <c- p>.</c->
 </pre>
-    <p>Example: POST request creating a <code>WebPushChannel2023</code>.</p>
+    
+Example: POST request creating a <code>WebPushChannel2023</code>.
+
    </div>
    <p class="note" role="note"><span class="marker">Note:</span> TODO check data types of <code>auth</code> and <code>p256dh</code>.</p>
    <p>A successful response will have a HTTP status code of <code>201 Created</code> and full notification channel description in the body.</p>
    <p>The Subscription Service, in our example <code>/subscribe/</code>, where the POST request is submitted to:</p>
    <div class="example" id="example-f75c9dc4">
-    <a class="self-link" href="#example-f75c9dc4"></a> 
-<pre class="language-turtle highlight"><c- k>@prefix</c-> <c- nn>rdf:</c-> <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-><c- p>.</c->
+    <a class="self-link" href="#example-f75c9dc4"></a>
+
+<pre class="highlight language-turtle"><c- k>@prefix</c-> <c- nn>rdf:</c-> <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-><c- p>.</c->
 <c- k>@prefix</c-> <c- nn>rdfs:</c-> <c- g>&lt;http://www.w3.org/2000/01/rdf-schema#></c-><c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dc:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-><c- p>.</c->
 <c- k>@prefix</c-> <c- nn>xsd:</c-> <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-><c- p>.</c->
 <c- k>@prefix</c-> <c- nn>as:</c-> <c- g>&lt;https://www.w3.org/ns/activitystreams#></c-><c- p>.</c->
 <c- k>@prefix</c-> <c- nn>ldp:</c-> <c- g>&lt;http://www.w3.org/ns/ldp#></c-><c- p>.</c->
 <c- k>@prefix</c-> <c- nn>push:</c-> <c- g>&lt;https://purl.org/solid-web-push/vocab#></c-><c- p>.</c->
-            
+
 <c- g>&lt;#web-push></c-> <c- b>a</c-> <c- nn>notify</c-><c- p>:</c-><c- f>SubscriptionService</c-><c- p>;</c->
     <c- nn>as</c-><c- p>:</c-><c- f>name</c-> <c- s>"Solid Web Push"</c-><c- o>@</c->en<c- p>;</c->
     <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Solid Web Push Service"</c-><c- o>@</c->en<c- p>;</c->
     <c- nn>notify</c-><c- p>:</c-><c- f>channelType</c-> <c- nn>notify</c-><c- p>:</c-><c- f>WebPushChannel2023</c-><c- p>;</c->
     <c- nn>push</c-><c- p>:</c-><c- f>vapidPublicKey</c-> <c- s>"BAOxV1U1Hj5npToInct2VhhYpJkL0GmHqc-ADbHu7O8Z2CJNkqSzc8BfCStWbTKq_yT9B6g6kYjyEHrAEpVuqww"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>base64Binary</c-><c- p>.</c->
 </pre>
-    <p>Example: Representation of a <em>subscription service</em>.</p>
+    
+Example: Representation of a <em>subscription service</em>.
+
    </div>
    <p>For Unsubscription,</p>
    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/solid/notifications/issues/145" style="text-transform:none">solid/notifications/145</a><a href="https://github.com/solid/notifications/issues/145">Define unsubscribing</a></div>
@@ -743,8 +808,8 @@ sections on Authentication and Authorization <a data-link-type="biblio" href="#b
 Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications <a data-link-type="biblio" href="#biblio-solid-oidc" title="Solid-OIDC">[SOLID-OIDC]</a>.</p>
   </main>
   <div data-fill-with="conformance">
-   <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
-   <h3 class="no-ref no-num heading settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="heading no-num no-ref settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
    <p>Conformance requirements are expressed
     with a combination of descriptive assertions
     and RFC 2119 terminology.
@@ -752,26 +817,36 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
   </div>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
-  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-oauth-20">[OAUTH-2.0]
    <dd>D. Hardt. <a href="https://www.ietf.org/rfc/rfc6749.txt"><cite>The OAuth 2.0 Authorization Framework</cite></a>. URL: <a href="https://www.ietf.org/rfc/rfc6749.txt">https://www.ietf.org/rfc/rfc6749.txt</a>

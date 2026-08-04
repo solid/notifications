@@ -5,10 +5,10 @@
   <title>Solid WebhookChannel2023</title>
   <meta content="CG-DRAFT" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
+  <meta content="Bikeshed version d113b2e81, updated Tue Jun 9 14:57:55 2026 -0700" name="generator">
   <link href="https://solid.github.io/notifications/webhook-channel-2023" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="f89654486de712fcf6d83877b3a1e7ecc18c8918" name="revision">
+  <meta content="24c414e526c04bc0a683e8a5d8ebdbef6601c4e9" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -304,7 +304,7 @@ pre .property::before, pre .property::after {
 </style>
 <style>/* Boilerplate: style-counters */
 body {
-    counter-reset: example figure issue;
+    counter-reset: example figure issue table;
 }
 .issue {
     counter-increment: issue;
@@ -321,7 +321,7 @@ body {
 }
 .invalid.example:not(.no-marker)::before,
 .illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
+    content: "Invalid Example " counter(example);
 }
 
 figcaption {
@@ -329,6 +329,13 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
 }
 </style>
 <style>/* Boilerplate: style-issues */
@@ -529,12 +536,40 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
 </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
-   <h1 class="p-name no-ref" id="title">Solid WebhookChannel2023</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2025-05-11">11 May 2025</time></p>
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
+    <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+</a>
+</p>
+   <h1 class="no-ref p-name" id="title">Solid WebhookChannel2023</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
+    <time class="dt-updated" datetime="2026-08-04">4 August 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -544,37 +579,42 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <dt>Issue Tracking:
       <dd><a href="https://github.com/solid/notifications/issues/">GitHub</a>
       <dt class="editor">Editors:
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">Jackson Morgan</span>
-      <dd class="editor p-author h-card vcard"><span class="p-name fn">[elf Pavlik](https://elf-pavlik.hackers4peace.net/)</span>
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">Jackson Morgan</span>
+      <dd class="editor h-card p-author vcard"><span class="fn p-name">[elf Pavlik](https://elf-pavlik.hackers4peace.net/)</span>
       <dt>Version:
       <dd>0.1
      </dl>
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright">Copyright © 2025 the Contributors to the Solid WebhookChannel2023,
-published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
-A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
+   <p class="copyright" data-fill-with="copyright">Copyright © 2026 the Contributors to the Solid WebhookChannel2023,
+published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a>
+under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
-   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <h2 class="heading no-num no-ref no-toc settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>The <a data-link-type="biblio" href="#biblio-solidnotificationsprotocol" title="Solid Notifications Protocol">[Solid.Notifications.Protocol]</a> defines a set of interaction patterns for agents to receive notification
 about changes to resources in a Solid Storage.</p>
    <p>This specification defines a channel type that applies these patterns to the Webhooks.</p>
   </div>
-  <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
+  <h2 class="heading no-num no-ref no-toc settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> This report was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a>.
+   <p>
+  This report was published by the <a href="https://www.w3.org/community/solid/">Solid Community Group</a>.
   It is not a W3C Standard nor is it on the W3C Standards Track.
-  Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
-  Learn more about <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>. </p>
+  Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>
+  there is a limited opt-out and other conditions apply.
+  Learn more about <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.
+</p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
-   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
-   <ol class="toc" role="directory">
+   <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
+   <ol class="toc">
     <li>
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
@@ -662,13 +702,13 @@ The only required fields in the payload are <code>id</code>, <code>type</code>, 
    <h3 class="heading settled" data-level="2.1" id="example"><span class="secno">2.1. </span><span class="content">Subscription Example</span><a class="self-link" href="#example"></a></h3>
    <p><em>This section is non-normative.</em></p>
    <p>An example <code>POST</code> request, including the webhook endpoint, using a <code>DPoP</code> bound access token is below:</p>
-<pre class="language-http highlight">POST /subscription
+<pre class="highlight language-http">POST /subscription
 Host: channels.example
 Authorization: DPoP &lt;token>
 DPoP: &lt;proof>
 Content-Type: application/ld+json
 </pre>
-<pre class="language-jsonld highlight"><c- p>{</c->
+<pre class="highlight language-jsonld"><c- p>{</c->
   <c- nd>"@context"</c-><c- p>:</c-> <c- p>[</c-><c- u>"https://www.w3.org/ns/solid/notification/v1"</c-><c- p>],</c->
   <c- f>"type"</c-><c- p>:</c-> <c- u>"WebhookChannel2023"</c-><c- p>,</c->
   <c- f>"topic"</c-><c- p>:</c-> <c- u>"https://storage.example/resource"</c-><c- p>,</c->
@@ -682,9 +722,9 @@ Content-Type: application/ld+json
     <p><code>POST</code> request including <code>type</code>, <code>topic</code>, and <code>sendTo</code> targeting the Notification Subscription Resource.</p>
    </blockquote>
    <p>A successful response will contain a URL identifying the notification sender:</p>
-<pre class="language-http highlight">Content-Type: application/ld+json
+<pre class="highlight language-http">Content-Type: application/ld+json
 </pre>
-<pre class="language-jsonld highlight"><c- p>{</c->
+<pre class="highlight language-jsonld"><c- p>{</c->
   <c- nd>"@context"</c-><c- p>:</c-> <c- u>"https://www.w3.org/ns/solid/notification/v1"</c-><c- p>,</c->
   <c- f>"id"</c-><c- p>:</c-> <c- f>"https://channels.example/ea1fcf13-7482-4bbb-a6c1-c168ddd7b0aa"</c->
   <c- f>"type"</c-><c- p>:</c-> <c- u>"WebhookChannel2023"</c-><c- p>,</c->
@@ -711,8 +751,8 @@ sections on Authentication and Authorization <a data-link-type="biblio" href="#b
 Solid-OIDC is one example of an authentication mechanism that could be used with Solid Notifications <a data-link-type="biblio" href="#biblio-solidoidc" title="Solid-OIDC">[Solid.OIDC]</a>.</p>
   </main>
   <div data-fill-with="conformance">
-   <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
-   <h3 class="no-ref no-num heading settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="heading no-num no-ref settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
    <p>Conformance requirements are expressed
     with a combination of descriptive assertions
     and RFC 2119 terminology.
@@ -720,26 +760,36 @@ Solid-OIDC is one example of an authentication mechanism that could be used with
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
   </div>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
-  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
